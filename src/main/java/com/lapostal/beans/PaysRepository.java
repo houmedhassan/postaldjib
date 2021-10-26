@@ -11,5 +11,7 @@ public interface PaysRepository extends JpaRepository<Pays, String> {
 	 * Find All
 	 */
 	List<Pays> findAll();
+	
+	 Pays findByName(String name);
 
 }

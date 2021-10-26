@@ -4212,11 +4212,11 @@
                 icon: 'pi pi-fw pi-forward',
                 routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
               }, {
-                label: 'En stock',
+                label: 'Produit en stock',
                 icon: 'pi pi-fw pi-forward',
                 routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
               }, {
-                label: 'Colis defaillant',
+                label: 'Produit efaillant',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
               }, {
@@ -4240,7 +4240,7 @@
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
               }, {
-                label: 'Livraison echoué',
+                label: 'Livraison echoué / rejeté',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
               }, {
@@ -4253,14 +4253,14 @@
              * Gestion d'inventaire
              */
             {
-              label: 'Ventes',
+              label: 'Recette',
               icon: 'pi pi-step-forward-alt',
               items: [{
                 label: 'Parametrage',
                 icon: 'pi pi-fw pi-forward',
                 routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
               }, {
-                label: 'Nouveau vente',
+                label: 'Nouveau recettes',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
               }, {

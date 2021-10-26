@@ -45,18 +45,7 @@ public class EnvoiController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@GetMapping("/all")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
-	public ResponseEntity<List<Envoi>> findAllData(Principal principal)
-	{
-		try {
-			return new ResponseEntity<List<Envoi>>(envoiRepository.findAll(), HttpStatus.OK);
-		}catch(Exception ex)
-		{			
-			return new ResponseEntity<List<Envoi>>(HttpStatus.FORBIDDEN);
-		}	
-		
-	}
+
 	
 	@GetMapping("/ems")
 	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
