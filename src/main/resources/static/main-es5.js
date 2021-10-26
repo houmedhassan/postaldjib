@@ -3615,7 +3615,7 @@
 
       var environment = {
         production: false,
-        url: 'http://localhost:8845'
+        url: 'https://lapostedjib.herokuapp.com'
       };
       /***/
     },
@@ -9689,7 +9689,7 @@
 
       var environment = {
         production: true,
-        url: 'http://localhost:8845'
+        url: 'https://lapostedjib.herokuapp.com'
       };
       /***/
     },
