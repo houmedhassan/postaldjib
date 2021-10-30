@@ -44,5 +44,6 @@ public class TypeArticle {
 	private  User updated;
 	private LocalDateTime updatedat;
 	
+	private String color;
 
 }

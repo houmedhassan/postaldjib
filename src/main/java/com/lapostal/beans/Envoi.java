@@ -49,6 +49,7 @@ public class Envoi {
 	private String telrecipient;
 	
 	private String tel2;
+	private String color;
 	
 	@ManyToOne
 	@JoinColumn(name="article", referencedColumnName = "gkey")

@@ -2,7 +2,11 @@ package com.lapostal.beans.controller;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.json.simple.JSONObject;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lapostal.beans.ChartLineByMonthDTO;
 import com.lapostal.beans.Envoi;
 import com.lapostal.beans.EnvoiRepository;
 import com.lapostal.beans.TypeArticle;
@@ -46,6 +51,19 @@ public class EnvoiController {
 	private UserRepository userRepository;
 	
 
+	@GetMapping("/reference")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	public ResponseEntity<Envoi> findByReference(@RequestParam("reference") String reference, Principal principal)
+	{
+		try {
+			return new ResponseEntity<Envoi>(envoiRepository.findByReference(reference), HttpStatus.OK);
+		}catch(Exception ex)
+		{			
+			return new ResponseEntity<Envoi>(HttpStatus.FORBIDDEN);
+		}	
+		
+	}
+	
 	
 	@GetMapping("/ems")
 	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
@@ -80,6 +98,20 @@ public class EnvoiController {
 	{
 		try {
 			return new ResponseEntity<List<Envoi>>(envoiRepository.findByTypeOrderByGkeyDesc("RECOMMANDE - RR"), HttpStatus.OK);
+		}catch(Exception ex)
+		{			
+			return new ResponseEntity<List<Envoi>>(HttpStatus.FORBIDDEN);
+		}	
+		
+	}
+	
+	
+	@GetMapping("/ordinaire")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	public ResponseEntity<List<Envoi>> findAllOrdinaire(Principal principal)
+	{
+		try {
+			return new ResponseEntity<List<Envoi>>(envoiRepository.findByTypeOrderByGkeyDesc("ORDINAIRE"), HttpStatus.OK);
 		}catch(Exception ex)
 		{			
 			return new ResponseEntity<List<Envoi>>(HttpStatus.FORBIDDEN);
@@ -200,6 +232,154 @@ public class EnvoiController {
 		}catch(Exception ex)
 		{			
 			return new ResponseEntity<List<JSONObject>>(HttpStatus.FORBIDDEN);
+		}	
+		
+	}
+	
+	
+	@GetMapping("/tableau/bord2")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	public ResponseEntity<Map<String, List<ChartLineByMonthDTO>>> tableaudebord2()
+	{
+		try {
+			Map<String, List<ChartLineByMonthDTO>> envois = new HashMap<String, List<ChartLineByMonthDTO>>();
+			
+			for(TypeArticle article : typearticleRepository.findAll())
+			{
+				//envois.put(article.getName(), charts);
+			
+			
+			
+			List<ChartLineByMonthDTO> charts = new ArrayList<ChartLineByMonthDTO>();
+			
+				for(int i =1; i<=12; i++)
+				{
+				 ChartLineByMonthDTO month = new  ChartLineByMonthDTO();
+				 
+				 switch (i) {
+					 case 1:
+						 month.setMonthname("JANVIER");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+		
+					 case 2:
+						 month.setMonthname("FEVRIER");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 3:
+						 month.setMonthname("MARS");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 4:
+						 month.setMonthname("AVRIL");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 5:
+						 month.setMonthname("MAI");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 6:
+						 month.setMonthname("JUIN");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 7:
+						 month.setMonthname("JUILLET");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 8:
+						 month.setMonthname("AOUT");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 9:
+						 month.setMonthname("SEPTEMBRE");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 10:
+						 month.setMonthname("OCTOBRE");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 11:
+						 month.setMonthname("NOVEMBRE");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 case 12:
+						 month.setMonthname("DECEMBRE");
+						 month.setValue(0);
+						 month.setIndex(0);
+						 month.setColor(article.getColor());
+						break;
+					 default:
+						break;
+				  }
+				 
+				 //charts.add(month);	
+
+				envois.computeIfAbsent(article.getName(),  k -> new ArrayList<>()).add(month);
+				 
+				}
+			}
+
+			/**
+			 * Recupration de la liste par mois
+			 */
+			
+			for(JSONObject json : envoiRepository.tableaudebord2())
+			{
+				
+				List<ChartLineByMonthDTO> chart =  new ArrayList<ChartLineByMonthDTO>();
+						chart = envois.get(json.get("type").toString());				
+						
+					System.out.println(chart.get(Integer.parseInt(json.get("updatedat").toString())-1));
+					
+				ChartLineByMonthDTO month = new ChartLineByMonthDTO();
+				month = chart.get(Integer.parseInt(json.get("updatedat").toString())-1);	
+				month.setValue(Integer.parseInt(json.get("COUNT").toString()));
+				month.setColor((json.get("color") == null) ? "#0000":json.get("color").toString());
+				
+				chart.set(Integer.parseInt(json.get("updatedat").toString())-1, month);	
+
+				envois.replace(json.get("type").toString(), chart);	
+				
+				System.out.println(" ****** "+chart.get(9).getMonthname() + " ******* "+chart.get(9).getValue());
+				
+			}
+			
+			
+			for(Entry<String, List<ChartLineByMonthDTO>> envoi : envois.entrySet())
+			{
+				for(ChartLineByMonthDTO chart : envoi.getValue())
+				{
+					System.out.println(" ****** "+chart.getMonthname() + " ******* "+chart.getValue());
+				}
+			}
+						
+			return new ResponseEntity<Map<String, List<ChartLineByMonthDTO>>>(envois, HttpStatus.OK);
+		}catch(Exception ex)
+		{		
+			//ex.printStackTrace();
+			return new ResponseEntity<Map<String, List<ChartLineByMonthDTO>>>(HttpStatus.FORBIDDEN);
 		}	
 		
 	}

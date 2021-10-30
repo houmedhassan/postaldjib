@@ -3,7 +3,6 @@ package com.lapostal.beans;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -77,7 +76,8 @@ public class Reception {
 	private LocalDateTime updatedat;
 	
 	private String idcrypt;
-	
+	@Null
+	private String color;
 		
 	
 	private boolean dommage=false;

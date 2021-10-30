@@ -47,6 +47,7 @@ public class Vente {
 	private String nom;
 	private  double prix;
 	private double penalite; 
+	private String typepaiement;
 	
 	private double prixtotal;
 	

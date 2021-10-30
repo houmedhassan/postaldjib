@@ -25,6 +25,24 @@ public class LivraisonController {
 	@Autowired
 	LivraisonRepository livraisonRepository;
 	
+
+	/**
+	 * 
+	 * @param principal
+	 * @return
+	 */
+	@GetMapping("/all")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	public ResponseEntity<List<Livraison>> findAll(Principal principal)
+	{
+		try {
+			return new ResponseEntity<List<Livraison>>(livraisonRepository.findAll(), HttpStatus.OK);
+		}catch(Exception ex)
+		{			
+			return new ResponseEntity<List<Livraison>>(HttpStatus.FORBIDDEN);
+		}	
+		
+	}
 	
 	/**
 	 * 
@@ -63,5 +81,7 @@ public class LivraisonController {
 		}	
 		
 	}
+	
+	
 
 }

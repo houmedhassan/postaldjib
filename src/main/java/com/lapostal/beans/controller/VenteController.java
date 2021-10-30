@@ -114,13 +114,14 @@ public class VenteController {
 			}
 			vente.setDatevente(ventes.getDatevente());
 			vente.setNom(ventes.getNom());
+			
 			vente.setPrix(ventes.getPrix());
 			vente.setPenalite(ventes.getPenalite());
 			vente.setPrixtotal(vente.getPrix()+vente.getPenalite());
+			vente.setTypepaiement(ventes.getTypepaiement());
 			
 			vente.setCreated(user.get());
 			vente.setCreatedat(LocalDateTime.now());
-			
 			vente.setUpdated(user.get());
 			vente.setUpdatedat(LocalDateTime.now());
 			

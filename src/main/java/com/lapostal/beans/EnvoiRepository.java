@@ -6,11 +6,6 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 public interface EnvoiRepository extends JpaRepository<Envoi, Integer> {
 	
@@ -19,6 +14,13 @@ public interface EnvoiRepository extends JpaRepository<Envoi, Integer> {
 	 *  List of article to send
 	 */
 	List<Envoi> findAll();
+	
+	/**
+	 * 
+	 * @param reference
+	 * @return
+	 */
+	Envoi findByReference(String reference);
 	
 	
 	/**
@@ -45,9 +47,18 @@ public interface EnvoiRepository extends JpaRepository<Envoi, Integer> {
 	 */
 	Envoi findByIdcrypt(String idcrypt);
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	@Query(value="SELECT count(*) AS COUNT, type  FROM [epostal].[dbo].[envoi]  group by type ", nativeQuery = true)
 	List<JSONObject> tableaudebord();
-	
+
+	/**
+	 * 
+	 * @return
+	 */
+	@Query(value="SELECT COUNT(*) COUNT,   type, color,  MONTH(updatedat) AS updatedat  FROM [epostal].[dbo].envoi  group by type, color, MONTH(updatedat)", nativeQuery = true)
+	List<JSONObject> tableaudebord2();
 
 }

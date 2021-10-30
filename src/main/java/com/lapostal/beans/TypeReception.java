@@ -42,5 +42,7 @@ public class TypeReception {
 	@JoinColumn(referencedColumnName = "id", name = "updated")
 	private  User updated;
 	private LocalDateTime updatedat;
+	
+	private String color;
 
 }
