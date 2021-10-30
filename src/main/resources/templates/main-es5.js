@@ -166,24 +166,48 @@
             var _this2 = this;
 
             console.log(colisForm);
-            this.envoidto.reference = colisForm['reference'];
-            this.envoidto.name = 'COLIS - CP';
-            this.envoidto.type = colisForm['typearticle'];
-            this.envoidto.adresse = colisForm['adresse'];
-            this.envoidto.nomsender = colisForm['nomsender'];
-            this.envoidto.telexpediteur = colisForm['telexpediteur'];
-            this.envoidto.namerecipient = colisForm['namerecipient'];
-            this.envoidto.telrecipient = colisForm['telrecipient'];
-            this.envoidto.typearticle = this.typeactivite.code;
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", this.envoidto, {
-              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-              })
-            }).subscribe(function (response) {
-              _this2.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
-            }, function (error) {
-              _this2.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
-            });
+            var amontsection = colisForm['reference'].substring(0, 2);
+            var numbersection = Number(colisForm['reference'].substring(2, 11));
+            var avalsection = colisForm['reference'].substring(11, 14);
+            var letters = /^[A-Za-z]+$/;
+            console.log("amontsection " + amontsection + " " + typeof amontsection + " numbersection " + numbersection + " " + typeof numbersection + " avalsection " + avalsection + " " + typeof avalsection);
+
+            if (!amontsection.match(letters) || amontsection.length != 2 || !numbersection || !avalsection.match(letters) || avalsection.length != 2) {
+              this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+            } else {
+              this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/reference?reference=" + colisForm['reference'], {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                  'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                })
+              }).subscribe(function (response) {
+                if (response['reference'] == null) {
+                  _this2.envoidto.reference = colisForm['reference'];
+                  _this2.envoidto.name = 'COLIS - CP';
+                  _this2.envoidto.type = colisForm['typearticle'];
+                  _this2.envoidto.adresse = colisForm['adresse'];
+                  _this2.envoidto.nomsender = colisForm['nomsender'];
+                  _this2.envoidto.telexpediteur = colisForm['telexpediteur'];
+                  _this2.envoidto.namerecipient = colisForm['namerecipient'];
+                  _this2.envoidto.telrecipient = colisForm['telrecipient'];
+                  _this2.envoidto.typearticle = _this2.typeactivite.code;
+
+                  _this2.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this2.envoidto, {
+                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                      'Authorization': 'Bearer ' + _this2.tokenStorage.getToken()
+                    })
+                  }).subscribe(function (response) {
+                    _this2.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
+                  }, function (error) {
+                    _this2.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                  });
+                } else {
+                  _this2.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
+              }, function (error) {
+                _this2.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              });
+            }
           }
           /**
            *  costumisation des erreurs
@@ -227,6 +251,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.colisForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -273,7 +317,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"dashboard p-grid\">     \n\n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '40%'}\"></p-chart>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"line\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/recommande/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception RECOMMANDE - RR \"class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>";
+      __webpack_exports__["default"] = "<div class=\"dashboard p-grid\">     \n\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '200%'}\"></p-chart>\n    </div>\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>";
       /***/
     },
 
@@ -293,7 +337,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<p>tableaubordstocks works!</p>\n";
+      __webpack_exports__["default"] = "<div class=\"dashboard p-grid\">     \n\n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire des produit non-defaillance\">\n            <p-chart type=\"bar\" [data]=\"basicData2\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire de defaillance\">\n            <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/recommande/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception RECOMMANDE - RR \"class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>";
       /***/
     },
 
@@ -444,25 +488,47 @@
           value: function save(recommandeForm) {
             var _this4 = this;
 
-            console.log(recommandeForm);
-            this.envoidto.reference = recommandeForm['reference'];
-            this.envoidto.name = 'COLIS RECOMMANDE';
-            this.envoidto.type = recommandeForm['typearticle'];
-            this.envoidto.adresse = recommandeForm['adresse'];
-            this.envoidto.nomsender = recommandeForm['nomsender'];
-            this.envoidto.telexpediteur = recommandeForm['telexpediteur'];
-            this.envoidto.namerecipient = recommandeForm['namerecipient'];
-            this.envoidto.telrecipient = recommandeForm['telrecipient'];
-            this.envoidto.typearticle = this.typeactivite.code;
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", this.envoidto, {
-              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-              })
-            }).subscribe(function (response) {
-              _this4.showSuccess("Vous avez enregistrer avec success votre recommande  !!! ");
-            }, function (error) {
-              _this4.showError(" une erreur c'est produit et le système n'a pas enregitré votre recommande - La raison est voici : " + error.getMessage());
-            });
+            var amontsection = recommandeForm['reference'].substring(0, 2);
+            var numbersection = Number(recommandeForm['reference'].substring(2, 11));
+            var avalsection = recommandeForm['reference'].substring(11, 14);
+            var letters = /^[A-Za-z]+$/;
+
+            if (!amontsection.match(letters) || amontsection.length != 2 || !numbersection || !avalsection.match(letters) || avalsection.length != 2) {
+              this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+            } else {
+              this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/reference?reference=" + recommandeForm['reference'], {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                  'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                })
+              }).subscribe(function (response) {
+                if (response == null) {
+                  _this4.envoidto.reference = recommandeForm['reference'];
+                  _this4.envoidto.name = 'COLIS RECOMMANDE';
+                  _this4.envoidto.type = recommandeForm['typearticle'];
+                  _this4.envoidto.adresse = recommandeForm['adresse'];
+                  _this4.envoidto.nomsender = recommandeForm['nomsender'];
+                  _this4.envoidto.telexpediteur = recommandeForm['telexpediteur'];
+                  _this4.envoidto.namerecipient = recommandeForm['namerecipient'];
+                  _this4.envoidto.telrecipient = recommandeForm['telrecipient'];
+                  _this4.envoidto.typearticle = _this4.typeactivite.code;
+
+                  _this4.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this4.envoidto, {
+                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                      'Authorization': 'Bearer ' + _this4.tokenStorage.getToken()
+                    })
+                  }).subscribe(function (response) {
+                    _this4.showSuccess("Vous avez enregistrer avec success votre recommande  !!! ");
+                  }, function (error) {
+                    _this4.showError(" une erreur c'est produit et le système n'a pas enregitré votre recommande - La raison est voici : " + error.getMessage());
+                  });
+                } else {
+                  _this4.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
+              }, function (error) {
+                _this4.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              });
+            }
           }
           /**
            *  costumisation des erreurs
@@ -506,6 +572,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.recommandeForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -1236,42 +1322,74 @@
           value: function ngOnInit() {
             var _this10 = this;
 
-            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord1", {
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/tableau/bord1", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
               console.log(response);
+              var labels = [];
+              var results = [];
+              var colors = [];
+              var i = 1;
+              response.forEach(function (element) {
+                labels.push(element['type']);
+                results.push(element['COUNT']);
+                colors.push(element['color']);
+                i++;
+              });
               _this10.tableaubord1 = {
-                labels: ['A', 'B', 'C'],
+                labels: [].concat(labels),
                 datasets: [{
-                  data: [300, 50, 100],
-                  backgroundColor: ["#42A5F5", "#66BB6A", "#FFA726"],
-                  hoverBackgroundColor: ["#64B5F6", "#81C784", "#FFB74D"]
+                  data: [].concat(results),
+                  backgroundColor: [].concat(colors),
+                  hoverBackgroundColor: ["#64B5F6", "#81C784", "#FFB74D", "#FFB74D"]
                 }]
               };
             }, function (error) {
               _this10.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
-            this.basicData = {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-              datasets: [{
-                label: 'First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
-                fill: false,
-                borderColor: '#42A5F5',
-                tension: .4
-              }, {
-                label: 'Second Dataset',
-                data: [28, 48, 40, 19, 86, 27, 90],
-                fill: false,
-                borderColor: '#FFA726',
-                tension: .4
-              }]
-            };
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/tableau/bord2", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              console.log(response);
+              var datas = [];
+              var result = Object.keys(response).forEach(function (key) {
+                var obj1 = response[key];
+                console.log('key is ' + key);
+                var _postsArray = [];
+                var _postsColor = [];
+                var sousresult = Object.keys(obj1).forEach(function (key1) {
+                  _postsArray.push(obj1[key1]['value']);
+
+                  _postsColor.push(obj1[key1]['color']);
+                });
+                console.log(_postsArray);
+                Promise.all(['sousresult']).then(function () {
+                  datas.push({
+                    label: '' + key,
+                    data: [].concat(_postsArray),
+                    backgroundColor: _postsColor[0],
+                    borderColor: _postsColor[0],
+                    tension: .4
+                  });
+                });
+              });
+              Promise.all(['result']).then(function () {
+                console.log(datas);
+                _this10.basicData = {
+                  labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                  datasets: [].concat(datas)
+                };
+              });
+            }, function (error) {
+              _this10.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+            });
             /**
-            *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
-            */
+             *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
+             */
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/all", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -1697,35 +1815,48 @@
           value: function save(recommandeForm) {
             var _this13 = this;
 
-            console.log(recommandeForm);
-            var format = 'yyyy-MM-dd';
-            var format_date = 'dd';
-            var locale = 'en-US';
-            this.receptiondto.reference = recommandeForm['reference'];
-            this.receptiondto.name = 'recommande - EXPRESS MAIL SERVICE';
-            this.receptiondto.type = recommandeForm['typearticle'];
-            this.receptiondto.adresse = recommandeForm['adresse'];
-            this.receptiondto.nomsender = recommandeForm['nomsender'];
-            this.receptiondto.telexpediteur = recommandeForm['telexpediteur'];
-            this.receptiondto.namerecipient = recommandeForm['namerecipient'];
-            this.receptiondto.telrecipient = recommandeForm['telrecipient'];
-            this.receptiondto.email = recommandeForm['email'];
-            this.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(recommandeForm['datereception'], format, locale);
-            this.receptiondto.typearticle = this.typeactivite.code;
-            this.receptiondto.dommage = this.dommage;
-            this.receptiondto.commentaire = recommandeForm['commentaire'];
-            this.receptiondto.envoisms = this.envoisms;
-            this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
-            this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", this.receptiondto, {
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + recommandeForm['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this13.showSuccess("Vous avez enregistrer avec success votre recommande  !!! ");
+              if (response == null) {
+                var format = 'yyyy-MM-dd';
+                var format_date = 'dd';
+                var locale = 'en-US';
+                _this13.receptiondto.reference = recommandeForm['reference'];
+                _this13.receptiondto.name = 'recommande - EXPRESS MAIL SERVICE';
+                _this13.receptiondto.type = recommandeForm['typearticle'];
+                _this13.receptiondto.adresse = recommandeForm['adresse'];
+                _this13.receptiondto.nomsender = recommandeForm['nomsender'];
+                _this13.receptiondto.telexpediteur = recommandeForm['telexpediteur'];
+                _this13.receptiondto.namerecipient = recommandeForm['namerecipient'];
+                _this13.receptiondto.telrecipient = recommandeForm['telrecipient'];
+                _this13.receptiondto.email = recommandeForm['email'];
+                _this13.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(recommandeForm['datereception'], format, locale);
+                _this13.receptiondto.typearticle = _this13.typeactivite.code;
+                _this13.receptiondto.dommage = _this13.dommage;
+                _this13.receptiondto.commentaire = recommandeForm['commentaire'];
+                _this13.receptiondto.envoisms = _this13.envoisms;
+                _this13.receptiondto.paysrecipient = _this13.selectedCountrydestinateur['code'];
+                _this13.receptiondto.paysexpediteur = _this13.selectedCountryexpediteur['code'];
+
+                _this13.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this13.receptiondto, {
+                  headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                    'Authorization': 'Bearer ' + _this13.tokenStorage.getToken()
+                  })
+                }).subscribe(function (response) {
+                  _this13.showSuccess("Vous avez enregistrer avec success votre recommande  !!! ");
+                }, function (error) {
+                  _this13.showError(" une erreur c'est produit et le système n'a pas enregitré votre recommande - La raison est voici : " + error.message);
+                });
+              } else {
+                _this13.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+              } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
             }, function (error) {
-              _this13.showError(" une erreur c'est produit et le système n'a pas enregitré votre recommande - La raison est voici : " + error.message);
-            });
+              _this13.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+            }); //}
           }
           /**
           *
@@ -1788,6 +1919,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.recommandeForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -2207,40 +2358,78 @@
               _this14.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
+          /**
+           *
+           * @param $event
+           */
+
+        }, {
+          key: "referenceVerify",
+          value: function referenceVerify($event) {
+            console.log($event);
+          }
+          /**
+           *
+           * @param colisForm
+           */
+
         }, {
           key: "save",
           value: function save(colisForm) {
             var _this15 = this;
 
             console.log(colisForm);
-            var format = 'yyyy-MM-dd';
-            var format_date = 'dd';
-            var locale = 'en-US';
-            this.receptiondto.reference = colisForm['reference'];
-            this.receptiondto.name = 'COLIS - PERSONNEL';
-            this.receptiondto.type = colisForm['typearticle'];
-            this.receptiondto.adresse = colisForm['adresse'];
-            this.receptiondto.nomsender = colisForm['nomsender'];
-            this.receptiondto.telexpediteur = colisForm['telexpediteur'];
-            this.receptiondto.namerecipient = colisForm['namerecipient'];
-            this.receptiondto.telrecipient = colisForm['telrecipient'];
-            this.receptiondto.email = colisForm['email'];
-            this.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(colisForm['datereception'], format, locale);
-            this.receptiondto.typearticle = this.typeactivite.code;
-            this.receptiondto.dommage = this.dommage;
-            this.receptiondto.commentaire = colisForm['commentaire'];
-            this.receptiondto.envoisms = this.envoisms;
-            this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
-            this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", this.receptiondto, {
-              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-              })
-            }).subscribe(function (response) {
-              _this15.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
-            }, function (error) {
-              _this15.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
-            });
+            var regex = /\d/;
+            var amontsection = colisForm['reference'].substring(0, 2);
+            var numbersection = colisForm['reference'].substring(3, 12);
+            var avalsection = colisForm['reference'].substring(12, 14);
+
+            if (typeof amontsection != 'number' || typeof numbersection != 'string' || typeof avalsection != 'number') {
+              this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+            } else {
+              this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + colisForm['reference'], {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                  'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                })
+              }).subscribe(function (response) {
+                if (response == null) {
+                  var format = 'yyyy-MM-dd';
+                  var format_date = 'dd';
+                  var locale = 'en-US';
+                  _this15.receptiondto.reference = colisForm['reference'];
+                  _this15.receptiondto.name = 'COLIS - PERSONNEL';
+                  _this15.receptiondto.type = colisForm['typearticle'];
+                  _this15.receptiondto.adresse = colisForm['adresse'];
+                  _this15.receptiondto.nomsender = colisForm['nomsender'];
+                  _this15.receptiondto.telexpediteur = colisForm['telexpediteur'];
+                  _this15.receptiondto.namerecipient = colisForm['namerecipient'];
+                  _this15.receptiondto.telrecipient = colisForm['telrecipient'];
+                  _this15.receptiondto.email = colisForm['email'];
+                  _this15.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(colisForm['datereception'], format, locale);
+                  _this15.receptiondto.typearticle = _this15.typeactivite.code;
+                  _this15.receptiondto.dommage = _this15.dommage;
+                  _this15.receptiondto.commentaire = colisForm['commentaire'];
+                  _this15.receptiondto.envoisms = _this15.envoisms;
+                  _this15.receptiondto.paysrecipient = _this15.selectedCountrydestinateur['code'];
+                  _this15.receptiondto.paysexpediteur = _this15.selectedCountryexpediteur['code'];
+
+                  _this15.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this15.receptiondto, {
+                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                      'Authorization': 'Bearer ' + _this15.tokenStorage.getToken()
+                    })
+                  }).subscribe(function (response) {
+                    _this15.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
+                  }, function (error) {
+                    _this15.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
+                  });
+                } else {
+                  _this15.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
+              }, function (error) {
+                _this15.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              });
+            }
           }
           /**
            *
@@ -2305,6 +2494,26 @@
               detail: '' + message
             });
           }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.colisForm.patchValue({
+              reference: undefined
+            });
+          }
         }]);
 
         return NouveaucolisreceptionComponent;
@@ -2349,7 +2558,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception EMS\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - EMS (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!emsForm.controls['datereception'].valid&&emsForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception EMS\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - EMS (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!emsForm.controls['datereception'].valid&&emsForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -3139,33 +3348,77 @@
             var _this19 = this;
 
             console.log(emsForm);
-            var format = 'yyyy-MM-dd';
-            var format_date = 'dd';
-            var locale = 'en-US';
-            this.receptiondto.reference = emsForm['reference'];
-            this.receptiondto.type = emsForm['typearticle'];
-            this.receptiondto.adresse = emsForm['adresse'];
-            this.receptiondto.nomsender = emsForm['nomsender'];
-            this.receptiondto.telexpediteur = emsForm['telexpediteur'];
-            this.receptiondto.namerecipient = emsForm['namerecipient'];
-            this.receptiondto.telrecipient = emsForm['telrecipient'];
-            this.receptiondto.email = emsForm['email'];
-            this.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(this.datereception, format, locale);
-            this.receptiondto.dommage = this.dommage;
-            this.receptiondto.commentaire = emsForm['commentaire'];
-            this.receptiondto.envoisms = this.envoisms;
-            this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
-            this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
-            console.log(this.receptiondto);
-            var reponse = this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + this.value, this.receptiondto, {
-              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-              })
-            }).subscribe(function (response) {
-              _this19.showSuccess("L'article a été mise à jour avec success !!! ");
-            }, function (error) {
-              _this19.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
-            });
+
+            if (this.receptiondto.reference == emsForm['reference']) {
+              var format = 'yyyy-MM-dd';
+              var format_date = 'dd';
+              var locale = 'en-US';
+              this.receptiondto.reference = emsForm['reference'];
+              this.receptiondto.type = emsForm['typearticle'];
+              this.receptiondto.adresse = emsForm['adresse'];
+              this.receptiondto.nomsender = emsForm['nomsender'];
+              this.receptiondto.telexpediteur = emsForm['telexpediteur'];
+              this.receptiondto.namerecipient = emsForm['namerecipient'];
+              this.receptiondto.telrecipient = emsForm['telrecipient'];
+              this.receptiondto.email = emsForm['email'];
+              this.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(this.datereception, format, locale);
+              this.receptiondto.dommage = this.dommage;
+              this.receptiondto.commentaire = emsForm['commentaire'];
+              this.receptiondto.envoisms = this.envoisms;
+              this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
+              this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
+              console.log(this.receptiondto);
+              var reponse = this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + this.value, this.receptiondto, {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                  'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                })
+              }).subscribe(function (response) {
+                _this19.showSuccess("L'article a été mise à jour avec success !!! ");
+              }, function (error) {
+                _this19.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+              });
+            } else {
+              this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + emsForm['reference'], {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                  'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                })
+              }).subscribe(function (response) {
+                if (response == null) {
+                  var _format = 'yyyy-MM-dd';
+                  var _format_date = 'dd';
+                  var _locale = 'en-US';
+                  _this19.receptiondto.reference = emsForm['reference'];
+                  _this19.receptiondto.type = emsForm['typearticle'];
+                  _this19.receptiondto.adresse = emsForm['adresse'];
+                  _this19.receptiondto.nomsender = emsForm['nomsender'];
+                  _this19.receptiondto.telexpediteur = emsForm['telexpediteur'];
+                  _this19.receptiondto.namerecipient = emsForm['namerecipient'];
+                  _this19.receptiondto.telrecipient = emsForm['telrecipient'];
+                  _this19.receptiondto.email = emsForm['email'];
+                  _this19.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(_this19.datereception, _format, _locale);
+                  _this19.receptiondto.dommage = _this19.dommage;
+                  _this19.receptiondto.commentaire = emsForm['commentaire'];
+                  _this19.receptiondto.envoisms = _this19.envoisms;
+                  _this19.receptiondto.paysrecipient = _this19.selectedCountrydestinateur['code'];
+                  _this19.receptiondto.paysexpediteur = _this19.selectedCountryexpediteur['code'];
+                  console.log(_this19.receptiondto);
+
+                  var _reponse = _this19.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + _this19.value, _this19.receptiondto, {
+                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                      'Authorization': 'Bearer ' + _this19.tokenStorage.getToken()
+                    })
+                  }).subscribe(function (response) {
+                    _this19.showSuccess("L'article a été mise à jour avec success !!! ");
+                  }, function (error) {
+                    _this19.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                  });
+                } else {
+                  _this19.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                }
+              }, function (error) {
+                _this19.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              });
+            }
           }
           /**
           *
@@ -3228,6 +3481,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.emsForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -3468,35 +3741,59 @@
           value: function save(esuuqForm) {
             var _this21 = this;
 
-            console.log(esuuqForm);
-            var format = 'yyyy-MM-dd';
-            var format_date = 'dd';
-            var locale = 'en-US';
-            this.receptiondto.reference = esuuqForm['reference'];
-            this.receptiondto.name = 'ESUUQ';
-            this.receptiondto.type = esuuqForm['typearticle'];
-            this.receptiondto.adresse = esuuqForm['adresse'];
-            this.receptiondto.nomsender = esuuqForm['nomsender'];
-            this.receptiondto.telexpediteur = esuuqForm['telexpediteur'];
-            this.receptiondto.namerecipient = esuuqForm['namerecipient'];
-            this.receptiondto.telrecipient = esuuqForm['telrecipient'];
-            this.receptiondto.email = esuuqForm['email'];
-            this.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(esuuqForm['datereception'], format, locale);
-            this.receptiondto.typearticle = this.typeactivite.code;
-            this.receptiondto.dommage = this.dommage;
-            this.receptiondto.commentaire = esuuqForm['commentaire'];
-            this.receptiondto.envoisms = this.envoisms;
-            this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
-            this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", this.receptiondto, {
+            /*
+            let amontsection = esuuqForm['reference'].substring(0,2);
+            let numbersection = Number(esuuqForm['reference'].substring(2,11));
+            let avalsection = esuuqForm['reference'].substring(11,14);
+            let letters = /^[A-Za-z]+$/;
+                  console.log("amontsection "+amontsection+ " " +typeof(amontsection)+ " numbersection "+numbersection+" " + typeof(numbersection)+" avalsection "+avalsection+" "+typeof(avalsection));
+                  if( !amontsection.match(letters) || amontsection.length !=2|| !numbersection || !avalsection.match(letters) || avalsection.length !=2)
+            {
+            this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+            }else{
+              */
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + esuuqForm['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this21.showSuccess("Vous avez enregistrer avec success votre esuuq  !!! ");
+              if (response == null) {
+                var format = 'yyyy-MM-dd';
+                var format_date = 'dd';
+                var locale = 'en-US';
+                _this21.receptiondto.reference = esuuqForm['reference'];
+                _this21.receptiondto.name = 'ESUUQ';
+                _this21.receptiondto.type = esuuqForm['typearticle'];
+                _this21.receptiondto.adresse = esuuqForm['adresse'];
+                _this21.receptiondto.nomsender = esuuqForm['nomsender'];
+                _this21.receptiondto.telexpediteur = esuuqForm['telexpediteur'];
+                _this21.receptiondto.namerecipient = esuuqForm['namerecipient'];
+                _this21.receptiondto.telrecipient = esuuqForm['telrecipient'];
+                _this21.receptiondto.email = esuuqForm['email'];
+                _this21.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(esuuqForm['datereception'], format, locale);
+                _this21.receptiondto.typearticle = _this21.typeactivite.code;
+                _this21.receptiondto.dommage = _this21.dommage;
+                _this21.receptiondto.commentaire = esuuqForm['commentaire'];
+                _this21.receptiondto.envoisms = _this21.envoisms;
+                _this21.receptiondto.paysrecipient = _this21.selectedCountrydestinateur['code'];
+                _this21.receptiondto.paysexpediteur = _this21.selectedCountryexpediteur['code'];
+
+                _this21.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this21.receptiondto, {
+                  headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                    'Authorization': 'Bearer ' + _this21.tokenStorage.getToken()
+                  })
+                }).subscribe(function (response) {
+                  _this21.showSuccess("Vous avez enregistrer avec success votre esuuq  !!! ");
+                }, function (error) {
+                  _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre esuuq - La raison est voici : " + error.message);
+                });
+              } else {
+                _this21.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+              } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
             }, function (error) {
-              _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre esuuq - La raison est voici : " + error.message);
-            });
+              _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+            }); //}
           }
           /**
           *
@@ -3559,6 +3856,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.esuuqForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -4152,17 +4469,21 @@
               label: 'Envoie de Colis',
               icon: 'pi pi-step-forward-alt',
               items: [{
-                label: 'EMS - EE',
+                label: 'EMS',
                 icon: 'pi pi-fw pi-forward',
                 routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
               }, {
-                label: 'Colis - CP',
+                label: 'Colis',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/envoi/colis?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb']
               }, {
                 label: 'Recommandé',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
+              }, {
+                label: 'Ordinaire',
+                icon: 'pi pi-fw pi-fast-backward',
+                routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
               }, {
                 label: 'Tableau de bord',
                 icon: 'pi pi-fw pi-fast-backward',
@@ -4176,19 +4497,19 @@
               label: 'Reception',
               icon: 'pi pi-step-forward-alt',
               items: [{
-                label: 'EMS - EE',
+                label: 'EMS',
                 icon: 'pi pi-fw pi-forward',
                 routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
               }, {
-                label: 'Colis - CP',
+                label: 'Colis',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
               }, {
-                label: 'Recommandé - RR',
+                label: 'Recommandé',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
               }, {
-                label: 'Ordinaire - N/A',
+                label: 'Ordinaire',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
               }, {
@@ -4216,13 +4537,13 @@
                 icon: 'pi pi-fw pi-forward',
                 routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
               }, {
-                label: 'Produit efaillant',
+                label: 'Produit defaillant',
                 icon: 'pi pi-fw pi-fast-backward',
                 routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
               }, {
                 label: 'Tableau de bord',
                 icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/colis en stocks']
+                routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
               }]
             },
             /**
@@ -4979,6 +5300,8 @@
           this.listventes = undefined;
           this.itemstypeventes = undefined;
           this.itemstypevente = undefined;
+          this.typepaiements = undefined;
+          this.typepaiement = undefined;
           this.penalite = false;
           this.disabled = true;
         }
@@ -4988,14 +5311,30 @@
           value: function ngOnInit() {
             var _this24 = this;
 
+            this.typepaiement = {
+              code: 'CASH',
+              name: 'CASH'
+            };
+            this.typepaiements = [];
+            this.typepaiements.push({
+              code: 'CASH',
+              name: 'CASH'
+            });
+            this.typepaiements.push({
+              code: 'CHEQUE',
+              name: 'CHEQUE'
+            });
+            this.typepaiements.push({
+              code: 'AUTRES',
+              name: 'AUTRES'
+            });
             this.venteForm = this.formBuilder.group({
               //'nom': new FormControl('', Validators.required),
               'datevente': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required),
               'typevente': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required),
               'itemstypevente': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
               'prix': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
-              'penalite': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
-              'penalitemontant': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('')
+              'typepaiement': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('')
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/parametrage/all", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
@@ -5061,6 +5400,7 @@
             var locale = 'en-US';
             var vente = {};
             vente.typevente = value['typevente']['code'];
+            vente.typepaiement = this.typepaiement.code;
             vente.datevente = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(value['datevente'], format, locale);
 
             if (value['itemstypevente']) {
@@ -5224,6 +5564,26 @@
     },
 
     /***/
+    "Jj24":
+    /*!************************************************************************!*\
+      !*** ./src/app/apps/envoi/ordinaireenvoi/ordinaireenvoi.component.css ***!
+      \************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function Jj24(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcmRpbmFpcmVlbnZvaS5jb21wb25lbnQuY3NzIn0= */";
+      /***/
+    },
+
+    /***/
     "KaQX":
     /*!*********************************************************************************************!*\
       !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/app.accessdenied.component.html ***!
@@ -5259,7 +5619,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "\n\n\n\n<div class=\"dashboard p-grid\">    \n \n\n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '40%'}\"></p-chart>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"line\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n    <div class=\"p-col-12 p-lg-12\">\n        <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ems/nouveau?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n</div>\n";
+      __webpack_exports__["default"] = "\n\n\n\n<div class=\"dashboard p-grid\">    \n \n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '40%'}\"></p-chart>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n    <div class=\"p-col-12 p-lg-12\">\n        <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n</div>\n";
       /***/
     },
 
@@ -5303,30 +5663,237 @@
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common/http */
+      "tk/3");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var primeng_api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! primeng/api */
+      "7zfz");
+      /* harmony import */
+
+
+      var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/auth/token-storage.service */
+      "dZLz");
+      /* harmony import */
+
+
+      var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! src/environments/environment.prod */
+      "cxbk");
 
       var TableaubordstocksComponent = /*#__PURE__*/function () {
-        function TableaubordstocksComponent() {
+        /**
+         *
+         * @param formBuilder
+         * @param messageService
+         * @param httpClient
+         * @param router
+         * @param tokenStorage
+         */
+        function TableaubordstocksComponent(formBuilder, messageService, httpClient, router, tokenStorage) {
           _classCallCheck(this, TableaubordstocksComponent);
+
+          this.formBuilder = formBuilder;
+          this.messageService = messageService;
+          this.httpClient = httpClient;
+          this.router = router;
+          this.tokenStorage = tokenStorage;
+          /***
+           *
+           */
+
+          this.msgs = [];
+          this.tableaubord1 = undefined;
+          this.basicData = undefined;
+          this.basicData2 = undefined;
+          this.listems = undefined;
         }
 
         _createClass(TableaubordstocksComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            var _this27 = this;
+
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/stock/tableau/bord2", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              console.log(response);
+              var datas = [];
+              var result = Object.keys(response).forEach(function (key) {
+                var obj1 = response[key];
+                console.log('key is ' + key);
+                var _postsArray = [];
+                var _postsColor = [];
+                var sousresult = Object.keys(obj1).forEach(function (key1) {
+                  _postsArray.push(obj1[key1]['value']);
+
+                  _postsColor.push(obj1[key1]['color']);
+                });
+                console.log(_postsArray);
+                Promise.all(['sousresult']).then(function () {
+                  datas.push({
+                    label: '' + key,
+                    data: [].concat(_postsArray),
+                    backgroundColor: _postsColor[0],
+                    borderColor: _postsColor[0],
+                    tension: .4
+                  });
+                });
+              });
+              Promise.all(['result']).then(function () {
+                console.log(datas);
+                _this27.basicData2 = {
+                  labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                  datasets: [].concat(datas)
+                };
+              });
+            }, function (error) {
+              _this27.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+            });
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/stock/tableau/bord1", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              console.log(response);
+              var datas = [];
+              var result = Object.keys(response).forEach(function (key) {
+                var obj1 = response[key];
+                console.log('key is ' + key);
+                var _postsArray = [];
+                var _postsColor = [];
+                var sousresult = Object.keys(obj1).forEach(function (key1) {
+                  _postsArray.push(obj1[key1]['value']);
+
+                  _postsColor.push(obj1[key1]['color']);
+                });
+                console.log(_postsArray);
+                Promise.all(['sousresult']).then(function () {
+                  datas.push({
+                    label: '' + key,
+                    data: [].concat(_postsArray),
+                    backgroundColor: _postsColor[0],
+                    borderColor: _postsColor[0],
+                    tension: .4
+                  });
+                });
+              });
+              Promise.all(['result']).then(function () {
+                console.log(datas);
+                _this27.basicData = {
+                  labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                  datasets: [].concat(datas)
+                };
+              });
+            }, function (error) {
+              _this27.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+            });
+            /**
+             *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
+             */
+
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/all", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              _this27.listems = response;
+              console.log(_this27.listems);
+            }, function (error) {
+              _this27.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+            });
+          }
+          /**
+           *  costumisation des erreurs
+           */
+
+        }, {
+          key: "showSuccess",
+          value: function showSuccess(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'success',
+              summary: 'Message de success :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showInfo",
+          value: function showInfo(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'info',
+              summary: 'Message Info :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showWarn",
+          value: function showWarn(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Message d\'avertissement :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showError",
+          value: function showError(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Message d\'erreur ',
+              detail: '' + message
+            });
+          }
         }]);
 
         return TableaubordstocksComponent;
       }();
 
       TableaubordstocksComponent.ctorParameters = function () {
-        return [];
+        return [{
+          type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
+        }, {
+          type: primeng_api__WEBPACK_IMPORTED_MODULE_7__["MessageService"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]
+        }, {
+          type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_8__["TokenStorageService"]
+        }];
       };
 
-      TableaubordstocksComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+      TableaubordstocksComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
         selector: 'app-tableaubordstocks',
         template: _raw_loader_tableaubordstocks_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_7__["MessageService"]],
         styles: [_tableaubordstocks_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], TableaubordstocksComponent);
       /***/
@@ -5595,7 +6162,7 @@
         _createClass(LivraisonechoueComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this27 = this;
+            var _this28 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -5605,10 +6172,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this27.liste = response;
-              console.log(_this27.liste);
+              _this28.liste = response;
+              console.log(_this28.liste);
             }, function (error) {
-              _this27.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
+              _this28.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
             });
           }
           /**
@@ -5904,7 +6471,7 @@
 
       AppProfileComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-inline-profile',
-        template: "\n        <div class=\"profile\" [ngClass]=\"{'profile-expanded':active}\">\n            <a href=\"#\" (click)=\"onClick($event)\">\n                <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                <span class=\"profile-name\">Houmed Hassan Mohamed </span>\n                <i class=\"pi pi-fw pi-chevron-down\"></i>\n                <span class=\"profile-role\">Marketing</span>\n            </a>\n        </div>\n\n        <ul id=\"profile-menu\" class=\"layout-menu\" [@menu]=\"active ? 'visible' : 'hidden'\">\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-user\"></i>\n                    <span>Profile</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Profile</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-fw pi-lock\"></i>\n                    <span>Privacy</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Privacy</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-cog\"></i>\n                    <span>Settings</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Settings</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a  (onClick)=\"logout()\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-sign-out\"></i>\n                    <span>Logout</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Logout</div>\n                </div>\n            </li>\n        </ul>\n    ",
+        template: "\n        <!--\n        <div class=\"profile\" [ngClass]=\"{'profile-expanded':active}\">\n            <a href=\"#\" (click)=\"onClick($event)\">\n                <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                <span class=\"profile-name\">Houmed Hassan Mohamed </span>\n                <i class=\"pi pi-fw pi-chevron-down\"></i>\n                <span class=\"profile-role\">Marketing</span>\n            </a>\n        </div>\n\n        <ul id=\"profile-menu\" class=\"layout-menu\" [@menu]=\"active ? 'visible' : 'hidden'\">\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-user\"></i>\n                    <span>Profile</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Profile</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-fw pi-lock\"></i>\n                    <span>Privacy</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Privacy</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-cog\"></i>\n                    <span>Settings</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Settings</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a  (onClick)=\"logout()\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-sign-out\"></i>\n                    <span>Logout</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Logout</div>\n                </div>\n            </li>\n        </ul>\n        -->\n    ",
         animations: [Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["trigger"])('menu', [Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["state"])('hidden', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["style"])({
           height: '0px'
         })), Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["state"])('visible', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["style"])({
@@ -6068,27 +6635,27 @@
         }, {
           key: "connexion",
           value: function connexion(value) {
-            var _this28 = this;
+            var _this29 = this;
 
             this.loginInfo = new _auth_models_login_info__WEBPACK_IMPORTED_MODULE_8__["AuthLoginInfo"](value['username'], value['password']);
             this.authService.attemptAuth(this.loginInfo).subscribe(function (data) {
-              _this28.tokenStorage.saveToken(data.accessToken);
+              _this29.tokenStorage.saveToken(data.accessToken);
 
-              _this28.tokenStorage.saveUsername(data.username);
+              _this29.tokenStorage.saveUsername(data.username);
 
-              _this28.tokenStorage.saveAuthorities(data.authorities);
+              _this29.tokenStorage.saveAuthorities(data.authorities);
 
-              _this28.isLoginFailed = false;
-              _this28.isLoggedIn = true;
-              _this28.roles = _this28.tokenStorage.getAuthorities(); //this.reloadPage();
+              _this29.isLoginFailed = false;
+              _this29.isLoggedIn = true;
+              _this29.roles = _this29.tokenStorage.getAuthorities(); //this.reloadPage();
 
-              _this28.router.navigate(['/accueil']);
+              _this29.router.navigate(['/accueil']);
             }, function (error) {
-              _this28.errorMessage = error.error.message;
+              _this29.errorMessage = error.error.message;
 
-              _this28.showError(_this28.errorMessage);
+              _this29.showError(_this29.errorMessage);
 
-              _this28.isLoginFailed = true;
+              _this29.isLoginFailed = true;
             });
           }
         }, {
@@ -6335,7 +6902,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi colis\">\n                <form [formGroup]=\"colisForm\" (ngSubmit)=\"save(colisForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouveau - colis (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!colisForm.controls['reference'].valid&&colisForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!colisForm.controls['nomsender'].valid&&colisForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!colisForm.controls['telexpediteur'].valid&&colisForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!colisForm.controls['namerecipient'].valid&&colisForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!colisForm.controls['telrecipient'].valid&&colisForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!colisForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi colis\">\n                <form [formGroup]=\"colisForm\" (ngSubmit)=\"save(colisForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouveau - colis (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!colisForm.controls['reference'].valid&&colisForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!colisForm.controls['nomsender'].valid&&colisForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!colisForm.controls['telexpediteur'].valid&&colisForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!colisForm.controls['namerecipient'].valid&&colisForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!colisForm.controls['telrecipient'].valid&&colisForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!colisForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"OK\" class=\"p-button-primary\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -6866,7 +7433,7 @@
           this.auth = auth;
           this.tokenStorage = tokenStorage;
           this.router = router;
-          this.layoutMode = 'horizontal';
+          this.layoutMode = 'static';
           this.darkMenu = false;
           this.profileMode = 'inline';
           this.ripple = true;
@@ -6996,7 +7563,7 @@
         _createClass(RecommandeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this29 = this;
+            var _this30 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -7006,10 +7573,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this29.listrecommande = response;
-              console.log(_this29.listrecommande);
+              _this30.listrecommande = response;
+              console.log(_this30.listrecommande);
             }, function (error) {
-              _this29.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this30.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -7112,7 +7679,27 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un reception\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Mise à jour  - {{receptiondto.type}}\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"receptiondto.type\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\" [(ngModel)]=\"receptiondto.reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"datereception\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                               \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\"  [(ngModel)]=\"receptiondto.nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\"  [(ngModel)]=\"receptiondto.telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-4 p-md-4 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\" [(ngModel)]=\"receptiondto.adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\" [(ngModel)]=\"receptiondto.email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\" [(ngModel)]=\"receptiondto.namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\" [(ngModel)]=\"receptiondto.telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un reception\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Mise à jour  - {{receptiondto.type}}\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"receptiondto.type\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\" [(ngModel)]=\"receptiondto.reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"datereception\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                               \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\"  [(ngModel)]=\"receptiondto.nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\"  [(ngModel)]=\"receptiondto.telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-4 p-md-4 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\" [(ngModel)]=\"receptiondto.adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\" [(ngModel)]=\"receptiondto.email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\" [(ngModel)]=\"receptiondto.namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\" [(ngModel)]=\"receptiondto.telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
+      /***/
+    },
+
+    /***/
+    "Vwg9":
+    /*!**********************************************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component.html ***!
+      \**********************************************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function Vwg9(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi Ordinaire\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouveau - ORDINAIRE\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -7333,7 +7920,7 @@
         _createClass(RecommandereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this30 = this;
+            var _this31 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -7343,10 +7930,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this30.listems = response;
-              console.log(_this30.listems);
+              _this31.listems = response;
+              console.log(_this31.listems);
             }, function (error) {
-              _this30.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this31.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -7590,10 +8177,10 @@
         _createClass(AppCrudComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this31 = this;
+            var _this32 = this;
 
             this.productService.getProducts().then(function (data) {
-              return _this31.products = data;
+              return _this32.products = data;
             });
             this.cols = [{
               field: 'name',
@@ -7622,19 +8209,19 @@
         }, {
           key: "deleteSelectedProducts",
           value: function deleteSelectedProducts() {
-            var _this32 = this;
+            var _this33 = this;
 
             this.confirmationService.confirm({
               message: 'Are you sure you want to delete the selected products?',
               header: 'Confirm',
               icon: 'pi pi-exclamation-triangle',
               accept: function accept() {
-                _this32.products = _this32.products.filter(function (val) {
-                  return !_this32.selectedProducts.includes(val);
+                _this33.products = _this33.products.filter(function (val) {
+                  return !_this33.selectedProducts.includes(val);
                 });
-                _this32.selectedProducts = null;
+                _this33.selectedProducts = null;
 
-                _this32.messageService.add({
+                _this33.messageService.add({
                   severity: 'success',
                   summary: 'Successful',
                   detail: 'Products Deleted',
@@ -7652,19 +8239,19 @@
         }, {
           key: "deleteProduct",
           value: function deleteProduct(product) {
-            var _this33 = this;
+            var _this34 = this;
 
             this.confirmationService.confirm({
               message: 'Are you sure you want to delete ' + product.name + '?',
               header: 'Confirm',
               icon: 'pi pi-exclamation-triangle',
               accept: function accept() {
-                _this33.products = _this33.products.filter(function (val) {
+                _this34.products = _this34.products.filter(function (val) {
                   return val.id !== product.id;
                 });
-                _this33.product = {};
+                _this34.product = {};
 
-                _this33.messageService.add({
+                _this34.messageService.add({
                   severity: 'success',
                   summary: 'Successful',
                   detail: 'Product Deleted',
@@ -8708,6 +9295,18 @@
       var _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__ = __webpack_require__(
       /*! ./apps/vente/tableaubordvente/tableaubordvente.component */
       "8KQc");
+      /* harmony import */
+
+
+      var _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_155__ = __webpack_require__(
+      /*! ./apps/envoi/ordinaireenvoi/ordinaireenvoi.component */
+      "k7Oa");
+      /* harmony import */
+
+
+      var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__ = __webpack_require__(
+      /*! ./apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component */
+      "bUil");
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
@@ -8715,7 +9314,7 @@
 
       AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], primeng_accordion__WEBPACK_IMPORTED_MODULE_8__["AccordionModule"], primeng_autocomplete__WEBPACK_IMPORTED_MODULE_9__["AutoCompleteModule"], primeng_avatar__WEBPACK_IMPORTED_MODULE_10__["AvatarModule"], primeng_avatargroup__WEBPACK_IMPORTED_MODULE_11__["AvatarGroupModule"], primeng_badge__WEBPACK_IMPORTED_MODULE_12__["BadgeModule"], primeng_breadcrumb__WEBPACK_IMPORTED_MODULE_13__["BreadcrumbModule"], primeng_button__WEBPACK_IMPORTED_MODULE_14__["ButtonModule"], primeng_calendar__WEBPACK_IMPORTED_MODULE_15__["CalendarModule"], primeng_card__WEBPACK_IMPORTED_MODULE_16__["CardModule"], primeng_carousel__WEBPACK_IMPORTED_MODULE_17__["CarouselModule"], primeng_cascadeselect__WEBPACK_IMPORTED_MODULE_18__["CascadeSelectModule"], primeng_chart__WEBPACK_IMPORTED_MODULE_19__["ChartModule"], primeng_checkbox__WEBPACK_IMPORTED_MODULE_20__["CheckboxModule"], primeng_chip__WEBPACK_IMPORTED_MODULE_21__["ChipModule"], primeng_chips__WEBPACK_IMPORTED_MODULE_22__["ChipsModule"], primeng_codehighlighter__WEBPACK_IMPORTED_MODULE_23__["CodeHighlighterModule"], primeng_confirmdialog__WEBPACK_IMPORTED_MODULE_24__["ConfirmDialogModule"], primeng_confirmpopup__WEBPACK_IMPORTED_MODULE_25__["ConfirmPopupModule"], primeng_colorpicker__WEBPACK_IMPORTED_MODULE_26__["ColorPickerModule"], primeng_contextmenu__WEBPACK_IMPORTED_MODULE_27__["ContextMenuModule"], primeng_dataview__WEBPACK_IMPORTED_MODULE_28__["DataViewModule"], primeng_dialog__WEBPACK_IMPORTED_MODULE_29__["DialogModule"], primeng_divider__WEBPACK_IMPORTED_MODULE_30__["DividerModule"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_31__["DropdownModule"], primeng_fieldset__WEBPACK_IMPORTED_MODULE_32__["FieldsetModule"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_33__["FileUploadModule"], primeng_fullcalendar__WEBPACK_IMPORTED_MODULE_34__["FullCalendarModule"], primeng_galleria__WEBPACK_IMPORTED_MODULE_35__["GalleriaModule"], primeng_inplace__WEBPACK_IMPORTED_MODULE_36__["InplaceModule"], primeng_inputnumber__WEBPACK_IMPORTED_MODULE_37__["InputNumberModule"], primeng_inputmask__WEBPACK_IMPORTED_MODULE_38__["InputMaskModule"], primeng_inputswitch__WEBPACK_IMPORTED_MODULE_39__["InputSwitchModule"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_40__["InputTextModule"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_41__["InputTextareaModule"], primeng_knob__WEBPACK_IMPORTED_MODULE_42__["KnobModule"], primeng_lightbox__WEBPACK_IMPORTED_MODULE_43__["LightboxModule"], primeng_listbox__WEBPACK_IMPORTED_MODULE_44__["ListboxModule"], primeng_megamenu__WEBPACK_IMPORTED_MODULE_45__["MegaMenuModule"], primeng_menu__WEBPACK_IMPORTED_MODULE_46__["MenuModule"], primeng_menubar__WEBPACK_IMPORTED_MODULE_47__["MenubarModule"], primeng_message__WEBPACK_IMPORTED_MODULE_49__["MessageModule"], primeng_messages__WEBPACK_IMPORTED_MODULE_48__["MessagesModule"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_50__["MultiSelectModule"], primeng_orderlist__WEBPACK_IMPORTED_MODULE_51__["OrderListModule"], primeng_organizationchart__WEBPACK_IMPORTED_MODULE_52__["OrganizationChartModule"], primeng_overlaypanel__WEBPACK_IMPORTED_MODULE_53__["OverlayPanelModule"], primeng_paginator__WEBPACK_IMPORTED_MODULE_54__["PaginatorModule"], primeng_panel__WEBPACK_IMPORTED_MODULE_55__["PanelModule"], primeng_panelmenu__WEBPACK_IMPORTED_MODULE_56__["PanelMenuModule"], primeng_password__WEBPACK_IMPORTED_MODULE_57__["PasswordModule"], primeng_picklist__WEBPACK_IMPORTED_MODULE_58__["PickListModule"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_59__["ProgressBarModule"], primeng_radiobutton__WEBPACK_IMPORTED_MODULE_60__["RadioButtonModule"], primeng_rating__WEBPACK_IMPORTED_MODULE_61__["RatingModule"], primeng_ripple__WEBPACK_IMPORTED_MODULE_62__["RippleModule"], primeng_scrollpanel__WEBPACK_IMPORTED_MODULE_63__["ScrollPanelModule"], primeng_scrolltop__WEBPACK_IMPORTED_MODULE_64__["ScrollTopModule"], primeng_selectbutton__WEBPACK_IMPORTED_MODULE_65__["SelectButtonModule"], primeng_sidebar__WEBPACK_IMPORTED_MODULE_66__["SidebarModule"], primeng_skeleton__WEBPACK_IMPORTED_MODULE_67__["SkeletonModule"], primeng_slidemenu__WEBPACK_IMPORTED_MODULE_68__["SlideMenuModule"], primeng_slider__WEBPACK_IMPORTED_MODULE_69__["SliderModule"], primeng_splitbutton__WEBPACK_IMPORTED_MODULE_70__["SplitButtonModule"], primeng_splitter__WEBPACK_IMPORTED_MODULE_71__["SplitterModule"], primeng_steps__WEBPACK_IMPORTED_MODULE_72__["StepsModule"], primeng_table__WEBPACK_IMPORTED_MODULE_74__["TableModule"], primeng_tabmenu__WEBPACK_IMPORTED_MODULE_73__["TabMenuModule"], primeng_tabview__WEBPACK_IMPORTED_MODULE_75__["TabViewModule"], primeng_tag__WEBPACK_IMPORTED_MODULE_76__["TagModule"], primeng_terminal__WEBPACK_IMPORTED_MODULE_77__["TerminalModule"], primeng_timeline__WEBPACK_IMPORTED_MODULE_79__["TimelineModule"], primeng_tieredmenu__WEBPACK_IMPORTED_MODULE_78__["TieredMenuModule"], primeng_toast__WEBPACK_IMPORTED_MODULE_80__["ToastModule"], primeng_togglebutton__WEBPACK_IMPORTED_MODULE_81__["ToggleButtonModule"], primeng_toolbar__WEBPACK_IMPORTED_MODULE_82__["ToolbarModule"], primeng_tooltip__WEBPACK_IMPORTED_MODULE_83__["TooltipModule"], primeng_tree__WEBPACK_IMPORTED_MODULE_84__["TreeModule"], primeng_treetable__WEBPACK_IMPORTED_MODULE_85__["TreeTableModule"], primeng_virtualscroller__WEBPACK_IMPORTED_MODULE_86__["VirtualScrollerModule"], _app_code_component__WEBPACK_IMPORTED_MODULE_87__["AppCodeModule"]],
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_88__["AppComponent"], _app_main_component__WEBPACK_IMPORTED_MODULE_89__["AppMainComponent"], _app_menu_component__WEBPACK_IMPORTED_MODULE_95__["AppMenuComponent"], _app_menuitem_component__WEBPACK_IMPORTED_MODULE_96__["AppMenuitemComponent"], _app_topbar_component__WEBPACK_IMPORTED_MODULE_97__["AppTopBarComponent"], _app_footer_component__WEBPACK_IMPORTED_MODULE_98__["AppFooterComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _app_config_component__WEBPACK_IMPORTED_MODULE_90__["AppConfigComponent"], _demo_view_dashboarddemo_component__WEBPACK_IMPORTED_MODULE_100__["DashboardDemoComponent"], _demo_view_documentation_component__WEBPACK_IMPORTED_MODULE_101__["DocumentationComponent"], _demo_view_formlayoutdemo_component__WEBPACK_IMPORTED_MODULE_110__["FormLayoutDemoComponent"], _pages_app_notfound_component__WEBPACK_IMPORTED_MODULE_91__["AppNotfoundComponent"], _pages_app_error_component__WEBPACK_IMPORTED_MODULE_92__["AppErrorComponent"], _pages_app_accessdenied_component__WEBPACK_IMPORTED_MODULE_93__["AppAccessdeniedComponent"], _pages_app_login_component__WEBPACK_IMPORTED_MODULE_94__["AppLoginComponent"], _pages_app_crud_component__WEBPACK_IMPORTED_MODULE_111__["AppCrudComponent"], _pages_app_calendar_component__WEBPACK_IMPORTED_MODULE_112__["AppCalendarComponent"], _pages_app_timelinedemo_component__WEBPACK_IMPORTED_MODULE_113__["AppTimelineDemoComponent"], _pages_app_invoice_component__WEBPACK_IMPORTED_MODULE_114__["AppInvoiceComponent"], _pages_app_help_component__WEBPACK_IMPORTED_MODULE_115__["AppHelpComponent"], _apps_colis_reception_reception_component__WEBPACK_IMPORTED_MODULE_116__["ReceptionComponent"], _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_141__["RechercheComponent"], _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_142__["EnstockComponent"], _apps_parametrage_categorie_categorie_component__WEBPACK_IMPORTED_MODULE_117__["CategorieComponent"], _apps_parametrage_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_118__["UtilisateursComponent"], _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_119__["AccessComponent"], _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_120__["EmsComponent"], _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_121__["ColisComponent"], _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_122__["RecommandeComponent"], _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_123__["TableaubordComponent"], _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_124__["OrdinaireComponent"], _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_125__["EmsreceptionComponent"], _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_126__["TableaubordreceptionComponent"], _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_127__["RecommandereceptionComponent"], _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_128__["ColisreceptionComponent"], _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_129__["NouveauComponent"], _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_130__["EditionComponent"], _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_131__["NouveaucolisComponent"], _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_132__["EditioncolisComponent"], _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_133__["NouveaurecommandeComponent"], _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_134__["NouveauemsreceptionComponent"], _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_135__["EditreceptionComponent"], _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_136__["NouveaucolisreceptionComponent"], _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_137__["NouveaurecommandereceptionComponent"], _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_138__["NouveauordinairereceptionComponent"], _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_139__["SuiviComponent"], _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_140__["TableaubordstocksComponent"], _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_143__["EsuuqComponent"], _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_144__["NouveauesuuqComponent"], _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_145__["DefaillantComponent"], _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_146__["LivraisonComponent"], _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_147__["NouveaulivraisonComponent"], _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_148__["LivraisonreussiComponent"], _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_149__["LivraisonechoueComponent"], _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_150__["ParametrageComponent"], _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_151__["ParametrageVenteComponent"], _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_152__["NouveauventeComponent"], _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_153__["RapportsventeComponent"], _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__["TableaubordventeComponent"]],
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_88__["AppComponent"], _app_main_component__WEBPACK_IMPORTED_MODULE_89__["AppMainComponent"], _app_menu_component__WEBPACK_IMPORTED_MODULE_95__["AppMenuComponent"], _app_menuitem_component__WEBPACK_IMPORTED_MODULE_96__["AppMenuitemComponent"], _app_topbar_component__WEBPACK_IMPORTED_MODULE_97__["AppTopBarComponent"], _app_footer_component__WEBPACK_IMPORTED_MODULE_98__["AppFooterComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _app_config_component__WEBPACK_IMPORTED_MODULE_90__["AppConfigComponent"], _demo_view_dashboarddemo_component__WEBPACK_IMPORTED_MODULE_100__["DashboardDemoComponent"], _demo_view_documentation_component__WEBPACK_IMPORTED_MODULE_101__["DocumentationComponent"], _demo_view_formlayoutdemo_component__WEBPACK_IMPORTED_MODULE_110__["FormLayoutDemoComponent"], _pages_app_notfound_component__WEBPACK_IMPORTED_MODULE_91__["AppNotfoundComponent"], _pages_app_error_component__WEBPACK_IMPORTED_MODULE_92__["AppErrorComponent"], _pages_app_accessdenied_component__WEBPACK_IMPORTED_MODULE_93__["AppAccessdeniedComponent"], _pages_app_login_component__WEBPACK_IMPORTED_MODULE_94__["AppLoginComponent"], _pages_app_crud_component__WEBPACK_IMPORTED_MODULE_111__["AppCrudComponent"], _pages_app_calendar_component__WEBPACK_IMPORTED_MODULE_112__["AppCalendarComponent"], _pages_app_timelinedemo_component__WEBPACK_IMPORTED_MODULE_113__["AppTimelineDemoComponent"], _pages_app_invoice_component__WEBPACK_IMPORTED_MODULE_114__["AppInvoiceComponent"], _pages_app_help_component__WEBPACK_IMPORTED_MODULE_115__["AppHelpComponent"], _apps_colis_reception_reception_component__WEBPACK_IMPORTED_MODULE_116__["ReceptionComponent"], _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_141__["RechercheComponent"], _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_142__["EnstockComponent"], _apps_parametrage_categorie_categorie_component__WEBPACK_IMPORTED_MODULE_117__["CategorieComponent"], _apps_parametrage_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_118__["UtilisateursComponent"], _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_119__["AccessComponent"], _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_120__["EmsComponent"], _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_121__["ColisComponent"], _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_122__["RecommandeComponent"], _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_123__["TableaubordComponent"], _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_124__["OrdinaireComponent"], _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_125__["EmsreceptionComponent"], _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_126__["TableaubordreceptionComponent"], _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_127__["RecommandereceptionComponent"], _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_128__["ColisreceptionComponent"], _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_129__["NouveauComponent"], _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_130__["EditionComponent"], _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_131__["NouveaucolisComponent"], _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_132__["EditioncolisComponent"], _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_133__["NouveaurecommandeComponent"], _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_134__["NouveauemsreceptionComponent"], _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_135__["EditreceptionComponent"], _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_136__["NouveaucolisreceptionComponent"], _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_137__["NouveaurecommandereceptionComponent"], _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_138__["NouveauordinairereceptionComponent"], _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_139__["SuiviComponent"], _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_140__["TableaubordstocksComponent"], _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_143__["EsuuqComponent"], _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_144__["NouveauesuuqComponent"], _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_145__["DefaillantComponent"], _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_146__["LivraisonComponent"], _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_147__["NouveaulivraisonComponent"], _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_148__["LivraisonreussiComponent"], _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_149__["LivraisonechoueComponent"], _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_150__["ParametrageComponent"], _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_151__["ParametrageVenteComponent"], _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_152__["NouveauventeComponent"], _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_153__["RapportsventeComponent"], _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__["TableaubordventeComponent"], _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_155__["OrdinaireenvoiComponent"], _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__["NouveauordinaireComponent"]],
         providers: [{
           provide: _angular_common__WEBPACK_IMPORTED_MODULE_6__["LocationStrategy"],
           useClass: _angular_common__WEBPACK_IMPORTED_MODULE_6__["HashLocationStrategy"]
@@ -8953,7 +9552,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        \n        <p-panel header=\"Nouveau vente\" class=\"panel-work\">\n            <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n                <p-fieldset legend=\"Formulaire de creation d'une reception colis\">\n                    <form [formGroup]=\"venteForm\" (ngSubmit)=\"save(venteForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!venteForm.controls['typevente'].valid&&venteForm.controls['typevente'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une type de vente car elle est obligatoire\" ></p-message>   </li>\n                                           \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Type de vente <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <p-dropdown [options]=\"typeventes\" [(ngModel)]=\"typevente\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Selectionner un type de vente \" (onChange)=\"change($event)\"  formControlName=\"typevente\">\n                                                        </p-dropdown>                                   \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Type de vente <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <p-dropdown [options]=\"itemstypeventes\" [(ngModel)]=\"itemstypevente\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Selectionner un items de vente \"  formControlName=\"itemstypevente\">\n                                                        </p-dropdown>                                   \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Date de vente <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        <p-calendar name=\"datevente\" class=\"form-control\" formControlName=\"datevente\" ></p-calendar>                                                      \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Penalité vente </label>\n                                                    <div class=\"p-col-9 p-p-md-9\">      \n                                                        <p-checkbox [(ngModel)]=\"penalite\" binary=\"true\" (onChange)=\"penaliteEvent($event)\" inputId=\"binary\" formControlName=\"penalite\"></p-checkbox>                                                                                  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Prix total <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        <input type=\"number\" name=\"prix\" pInputText   class=\"form-control\" formControlName=\"prix\"> \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Montant de penalité </label>\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <input type=\"number\" name=\"penalitemontant\" pInputText  [disabled]=\"disabled\"  class=\"form-control\" formControlName=\"penalitemontant\"> \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!venteForm.valid\"></button>\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                    </form>\n                </p-fieldset>\n                \n                <p-table [value]=\"listventes\" responsiveLayout=\"scroll\" >\n                    <ng-template pTemplate=\"header\">\n                        <tr>\n                            <th>Vente</th>\n                            <th>Date de vente</th>\n                            <th>Prix Fixe</th>\n                            <th>Penalité</th>\n                            <th>Total</th>\n                            <th>Mise à jour</th>\n                            <th> Date</th>\n                        </tr>\n                    </ng-template>\n                    <ng-template pTemplate=\"body\" let-product>\n                        <tr>\n                            <td>{{product.nom}}</td>\n                            <td>{{product.datevente}}</td>\n                            <td>{{product.prix}}</td>\n                            <td>{{product.penalite}}</td>\n                            <td>{{product.prixtotal}}</td>\n                            <td>{{product.updated.username}}</td>\n                            <td>{{product.updatedat}}</td>\n                        </tr>\n                    </ng-template>\n                </p-table>\n            </div>        \n        </p-panel>\n    </div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        \n        <p-panel header=\"Nouveau vente\" class=\"panel-work\">\n            <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n                <p-fieldset legend=\"Formulaire de creation d'une recette\">\n                    <form [formGroup]=\"venteForm\" (ngSubmit)=\"save(venteForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!venteForm.controls['typevente'].valid&&venteForm.controls['typevente'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une type de vente car elle est obligatoire\" ></p-message>   </li>\n                                           \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Recette <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <p-dropdown [options]=\"typeventes\" [(ngModel)]=\"typevente\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Selectionner un type de vente \" (onChange)=\"change($event)\"  formControlName=\"typevente\">\n                                                        </p-dropdown>                                   \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Sous-categorie <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <p-dropdown [options]=\"itemstypeventes\" [(ngModel)]=\"itemstypevente\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Selectionner un items de vente \"  formControlName=\"itemstypevente\">\n                                                        </p-dropdown>                                   \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Date de vente <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        <p-calendar name=\"datevente\" class=\"form-control\" formControlName=\"datevente\" ></p-calendar>                                                      \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Type paiement </label>\n                                                    <div class=\"p-col-9 p-p-md-9\">     \n                                                        <p-dropdown [options]=\"typepaiements\" [(ngModel)]=\"typepaiement\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Selectionner une modalité de paiement \"  formControlName=\"typepaiement\">\n                                                        </p-dropdown>              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Prix total <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        <input type=\"number\" name=\"prix\" pInputText   class=\"form-control\" formControlName=\"prix\"> \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <!--\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-4 p-mb-3 p-md-3 p-mb-md-0\">Montant de penalité </label>\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <input type=\"number\" name=\"penalitemontant\" pInputText  [disabled]=\"disabled\"  class=\"form-control\" formControlName=\"penalitemontant\"> \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                     -->\n                                </div>\n\n                                <hr/>\n                                \n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!venteForm.valid\"></button>\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                    </form>\n                </p-fieldset>\n                \n                <p-table [value]=\"listventes\" responsiveLayout=\"scroll\" >\n                    <ng-template pTemplate=\"header\">\n                        <tr>\n                            <th>Vente</th>\n                            <th>Date de vente</th>\n                            <th>Prix Fixe</th>\n                            <th>Modalité</th>\n                            <th>Total</th>\n                            <th>Mise à jour</th>\n                            <th> Date</th>\n                        </tr>\n                    </ng-template>\n                    <ng-template pTemplate=\"body\" let-product>\n                        <tr>\n                            <td>{{product.nom}}</td>\n                            <td>{{product.datevente}}</td>\n                            <td>{{product.prix}}</td>\n                            <td>{{product.typepaiement}}</td>\n                            <td>{{product.prixtotal}}</td>\n                            <td>{{product.updated.username}}</td>\n                            <td>{{product.updatedat}}</td>\n                        </tr>\n                    </ng-template>\n                </p-table>\n            </div>        \n        </p-panel>\n    </div>";
       /***/
     },
 
@@ -9137,7 +9736,7 @@
         _createClass(NouveauemsreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this34 = this;
+            var _this35 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -9165,24 +9764,24 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this34.typeactivites = [];
+              _this35.typeactivites = [];
               response.forEach(function (element) {
                 console.log(element);
 
                 if (element['name'] == 'EMS - EE') {
-                  _this34.typeactivite = {
+                  _this35.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this34.typeactivites.push({
+                _this35.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this34.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this35.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
             /**
             *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -9194,51 +9793,75 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this34.countries = [];
+              _this35.countries = [];
               response.forEach(function (element) {
-                _this34.countries.push({
+                _this35.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this34.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this35.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this35 = this;
+            var _this36 = this;
 
-            console.log(emsForm);
-            var format = 'yyyy-MM-dd';
-            var format_date = 'dd';
-            var locale = 'en-US';
-            this.receptiondto.reference = emsForm['reference'];
-            this.receptiondto.name = 'EMS - EXPRESS MAIL SERVICE';
-            this.receptiondto.type = emsForm['typearticle'];
-            this.receptiondto.adresse = emsForm['adresse'];
-            this.receptiondto.nomsender = emsForm['nomsender'];
-            this.receptiondto.telexpediteur = emsForm['telexpediteur'];
-            this.receptiondto.namerecipient = emsForm['namerecipient'];
-            this.receptiondto.telrecipient = emsForm['telrecipient'];
-            this.receptiondto.email = emsForm['email'];
-            this.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(emsForm['datereception'], format, locale);
-            this.receptiondto.typearticle = this.typeactivite.code;
-            this.receptiondto.dommage = this.dommage;
-            this.receptiondto.commentaire = emsForm['commentaire'];
-            this.receptiondto.envoisms = this.envoisms;
-            this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
-            this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", this.receptiondto, {
+            /*
+              let amontsection = emsForm['reference'].substring(0,2);
+              let numbersection = Number(emsForm['reference'].substring(2,11));
+              let avalsection = emsForm['reference'].substring(11,14);
+              let letters = /^[A-Za-z]+$/;
+                    console.log("amontsection "+amontsection+ " " +typeof(amontsection)+ " numbersection "+numbersection+" " + typeof(numbersection)+" avalsection "+avalsection+" "+typeof(avalsection));
+                    if( !amontsection.match(letters) || amontsection.length !=2|| !numbersection || !avalsection.match(letters) || avalsection.length !=2)
+              {
+              this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+              }else{
+             */
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + emsForm['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this35.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+              if (response == null) {
+                var format = 'yyyy-MM-dd';
+                var format_date = 'dd';
+                var locale = 'en-US';
+                _this36.receptiondto.reference = emsForm['reference'];
+                _this36.receptiondto.name = 'EMS - EXPRESS MAIL SERVICE';
+                _this36.receptiondto.type = emsForm['typearticle'];
+                _this36.receptiondto.adresse = emsForm['adresse'];
+                _this36.receptiondto.nomsender = emsForm['nomsender'];
+                _this36.receptiondto.telexpediteur = emsForm['telexpediteur'];
+                _this36.receptiondto.namerecipient = emsForm['namerecipient'];
+                _this36.receptiondto.telrecipient = emsForm['telrecipient'];
+                _this36.receptiondto.email = emsForm['email'];
+                _this36.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(emsForm['datereception'], format, locale);
+                _this36.receptiondto.typearticle = _this36.typeactivite.code;
+                _this36.receptiondto.dommage = _this36.dommage;
+                _this36.receptiondto.commentaire = emsForm['commentaire'];
+                _this36.receptiondto.envoisms = _this36.envoisms;
+                _this36.receptiondto.paysrecipient = _this36.selectedCountrydestinateur['code'];
+                _this36.receptiondto.paysexpediteur = _this36.selectedCountryexpediteur['code'];
+
+                _this36.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this36.receptiondto, {
+                  headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                    'Authorization': 'Bearer ' + _this36.tokenStorage.getToken()
+                  })
+                }).subscribe(function (response) {
+                  _this36.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                }, function (error) {
+                  _this36.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                });
+              } else {
+                _this36.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+              } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
             }, function (error) {
-              _this35.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
-            });
+              _this36.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+            }); //}
           }
           /**
           *
@@ -9301,6 +9924,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.emsForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -9437,10 +10080,10 @@
         _createClass(EditionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this36 = this;
+            var _this37 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this36.value = params.id;
+              _this37.value = params.id;
             });
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -9456,40 +10099,77 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this36.envoidto.reference = response['reference'];
-              _this36.envoidto.type = response['type'];
-              _this36.envoidto.adresse = response['adresse'];
-              _this36.envoidto.nomsender = response['nomsender'];
-              _this36.envoidto.telexpediteur = response['telexpediteur'];
-              _this36.envoidto.namerecipient = response['namerecipient'];
-              _this36.envoidto.telrecipient = response['telrecipient'];
+              _this37.envoidto.reference = response['reference'];
+              _this37.envoidto.type = response['type'];
+              _this37.envoidto.adresse = response['adresse'];
+              _this37.envoidto.nomsender = response['nomsender'];
+              _this37.envoidto.telexpediteur = response['telexpediteur'];
+              _this37.envoidto.namerecipient = response['namerecipient'];
+              _this37.envoidto.telrecipient = response['telrecipient'];
             }, function (error) {
-              _this36.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
+              _this37.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this37 = this;
+            var _this38 = this;
 
-            console.log(emsForm);
-            this.envoidto.reference = emsForm['reference'];
-            this.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
-            this.envoidto.type = emsForm['typearticle'];
-            this.envoidto.adresse = emsForm['adresse'];
-            this.envoidto.nomsender = emsForm['nomsender'];
-            this.envoidto.telexpediteur = emsForm['telexpediteur'];
-            this.envoidto.namerecipient = emsForm['namerecipient'];
-            this.envoidto.telrecipient = emsForm['telrecipient'];
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + this.value, this.envoidto, {
-              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-              })
-            }).subscribe(function (response) {
-              _this37.showSuccess("L'article a été mise à jour avec success !!! ");
-            }, function (error) {
-              _this37.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
-            });
+            var amontsection = emsForm['reference'].substring(0, 2);
+            var numbersection = Number(emsForm['reference'].substring(2, 11));
+            var avalsection = emsForm['reference'].substring(11, 14);
+            var letters = /^[A-Za-z]+$/;
+
+            if (!amontsection.match(letters) || amontsection.length != 2 || !numbersection || !avalsection.match(letters) || avalsection.length != 2) {
+              this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+            } else {
+              if (this.envoidto.reference == emsForm['reference']) {
+                this.envoidto.reference = emsForm['reference'];
+                this.envoidto.adresse = emsForm['adresse'];
+                this.envoidto.nomsender = emsForm['nomsender'];
+                this.envoidto.telexpediteur = emsForm['telexpediteur'];
+                this.envoidto.namerecipient = emsForm['namerecipient'];
+                this.envoidto.telrecipient = emsForm['telrecipient'];
+                this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + this.value, this.envoidto, {
+                  headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                    'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                  })
+                }).subscribe(function (response) {
+                  _this38.showSuccess("L'article a été mise à jour avec success !!! ");
+                }, function (error) {
+                  _this38.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                });
+              } else {
+                this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/reference?reference=" + emsForm['reference'], {
+                  headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                    'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                  })
+                }).subscribe(function (response) {
+                  if (response == null) {
+                    _this38.envoidto.reference = emsForm['reference'];
+                    _this38.envoidto.adresse = emsForm['adresse'];
+                    _this38.envoidto.nomsender = emsForm['nomsender'];
+                    _this38.envoidto.telexpediteur = emsForm['telexpediteur'];
+                    _this38.envoidto.namerecipient = emsForm['namerecipient'];
+                    _this38.envoidto.telrecipient = emsForm['telrecipient'];
+
+                    _this38.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + _this38.value, _this38.envoidto, {
+                      headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                        'Authorization': 'Bearer ' + _this38.tokenStorage.getToken()
+                      })
+                    }).subscribe(function (response) {
+                      _this38.showSuccess("L'article a été mise à jour avec success !!! ");
+                    }, function (error) {
+                      _this38.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                    });
+                  } else {
+                    _this38.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  }
+                }, function (error) {
+                  _this38.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                });
+              }
+            }
           }
           /**
            *  costumisation des erreurs
@@ -9533,6 +10213,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.emsForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -9583,7 +10283,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi EMS\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouveau - EMS (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi EMS\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouveau - EMS (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -9603,7 +10303,289 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception recommande\">\n                <form [formGroup]=\"recommandeForm\" (ngSubmit)=\"save(recommandeForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - recommande (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!recommandeForm.controls['reference'].valid&&recommandeForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!recommandeForm.controls['nomsender'].valid&&recommandeForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!recommandeForm.controls['telexpediteur'].valid&&recommandeForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!recommandeForm.controls['namerecipient'].valid&&recommandeForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!recommandeForm.controls['telrecipient'].valid&&recommandeForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!recommandeForm.controls['datereception'].valid&&recommandeForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!recommandeForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception recommande\">\n                <form [formGroup]=\"recommandeForm\" (ngSubmit)=\"save(recommandeForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - recommande (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!recommandeForm.controls['reference'].valid&&recommandeForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!recommandeForm.controls['nomsender'].valid&&recommandeForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!recommandeForm.controls['telexpediteur'].valid&&recommandeForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!recommandeForm.controls['namerecipient'].valid&&recommandeForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!recommandeForm.controls['telrecipient'].valid&&recommandeForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!recommandeForm.controls['datereception'].valid&&recommandeForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!recommandeForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
+      /***/
+    },
+
+    /***/
+    "bUil":
+    /*!******************************************************************************************!*\
+      !*** ./src/app/apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component.ts ***!
+      \******************************************************************************************/
+
+    /*! exports provided: NouveauordinaireComponent */
+
+    /***/
+    function bUil(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "NouveauordinaireComponent", function () {
+        return NouveauordinaireComponent;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_nouveauordinaire_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./nouveauordinaire.component.html */
+      "Vwg9");
+      /* harmony import */
+
+
+      var _nouveauordinaire_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./nouveauordinaire.component.css */
+      "ixt6");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common/http */
+      "tk/3");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var primeng_api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! primeng/api */
+      "7zfz");
+      /* harmony import */
+
+
+      var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/auth/token-storage.service */
+      "dZLz");
+      /* harmony import */
+
+
+      var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! src/environments/environment.prod */
+      "cxbk");
+
+      var NouveauordinaireComponent = /*#__PURE__*/function () {
+        function NouveauordinaireComponent(formBuilder, messageService, httpClient, router, tokenStorage) {
+          _classCallCheck(this, NouveauordinaireComponent);
+
+          this.formBuilder = formBuilder;
+          this.messageService = messageService;
+          this.httpClient = httpClient;
+          this.router = router;
+          this.tokenStorage = tokenStorage;
+          this.typeactivites = [];
+          this.msgs = [];
+          this.typearticle = 'ORDINAIRE';
+          this.disabled = true;
+          this.envoidto = {};
+        }
+        /**
+         * Funciton ngOnInit
+         */
+
+
+        _createClass(NouveauordinaireComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            var _this39 = this;
+
+            this.emsForm = this.formBuilder.group({
+              'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
+              'reference': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required),
+              'adresse': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required),
+              'nomsender': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required),
+              'telexpediteur': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required),
+              'namerecipient': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required),
+              'telrecipient': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required)
+            });
+            /**
+             *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
+             */
+
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/type/activite/all", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function () {
+              var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+              _this39.typeactivites = [];
+              response.forEach(function (element) {
+                if (element['name'] == 'ORDINAIRE') {
+                  _this39.typeactivite = {
+                    code: element,
+                    name: element['name']
+                  };
+                }
+
+                _this39.typeactivites.push({
+                  code: element,
+                  name: element['name']
+                });
+              });
+            }, function (error) {
+              _this39.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+            });
+          }
+        }, {
+          key: "save",
+          value: function save(emsForm) {
+            var _this40 = this;
+
+            var amontsection = emsForm['reference'].substring(0, 2);
+            var numbersection = Number(emsForm['reference'].substring(2, 11));
+            var avalsection = emsForm['reference'].substring(11, 14);
+            var letters = /^[A-Za-z]+$/;
+            console.log("amontsection " + amontsection + " " + typeof amontsection + " numbersection " + numbersection + " " + typeof numbersection + " avalsection " + avalsection + " " + typeof avalsection);
+
+            if (!amontsection.match(letters) || amontsection.length != 2 || !numbersection || !avalsection.match(letters) || avalsection.length != 2) {
+              this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+            } else {
+              this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/reference?reference=" + emsForm['reference'], {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                  'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                })
+              }).subscribe(function (response) {
+                if (response == null) {
+                  _this40.envoidto.reference = emsForm['reference'];
+                  _this40.envoidto.name = 'ORDINAIRE';
+                  _this40.envoidto.type = emsForm['typearticle'];
+                  _this40.envoidto.adresse = emsForm['adresse'];
+                  _this40.envoidto.nomsender = emsForm['nomsender'];
+                  _this40.envoidto.telexpediteur = emsForm['telexpediteur'];
+                  _this40.envoidto.namerecipient = emsForm['namerecipient'];
+                  _this40.envoidto.telrecipient = emsForm['telrecipient'];
+                  _this40.envoidto.typearticle = _this40.typeactivite.code;
+
+                  _this40.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this40.envoidto, {
+                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                      'Authorization': 'Bearer ' + _this40.tokenStorage.getToken()
+                    })
+                  }).subscribe(function (response) {
+                    _this40.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                  }, function (error) {
+                    _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                  });
+                } else {
+                  _this40.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
+              }, function (error) {
+                _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              });
+            }
+          }
+          /**
+           *  costumisation des erreurs
+           */
+
+        }, {
+          key: "showSuccess",
+          value: function showSuccess(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'success',
+              summary: 'Message de success :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showInfo",
+          value: function showInfo(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'info',
+              summary: 'Message Info :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showWarn",
+          value: function showWarn(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Message d\'avertissement :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showError",
+          value: function showError(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Message d\'erreur ',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.emsForm.patchValue({
+              reference: undefined
+            });
+          }
+        }]);
+
+        return NouveauordinaireComponent;
+      }();
+
+      NouveauordinaireComponent.ctorParameters = function () {
+        return [{
+          type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
+        }, {
+          type: primeng_api__WEBPACK_IMPORTED_MODULE_7__["MessageService"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]
+        }, {
+          type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_8__["TokenStorageService"]
+        }];
+      };
+
+      NouveauordinaireComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
+        selector: 'app-nouveauordinaire',
+        template: _raw_loader_nouveauordinaire_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_7__["MessageService"]],
+        styles: [_nouveauordinaire_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], NouveauordinaireComponent);
       /***/
     },
 
@@ -9623,7 +10605,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception esuuq\">\n                <form [formGroup]=\"esuuqForm\" (ngSubmit)=\"save(esuuqForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - esuuq (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!esuuqForm.controls['reference'].valid&&esuuqForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!esuuqForm.controls['nomsender'].valid&&esuuqForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!esuuqForm.controls['telexpediteur'].valid&&esuuqForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!esuuqForm.controls['namerecipient'].valid&&esuuqForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!esuuqForm.controls['telrecipient'].valid&&esuuqForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!esuuqForm.controls['datereception'].valid&&esuuqForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!esuuqForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception esuuq\">\n                <form [formGroup]=\"esuuqForm\" (ngSubmit)=\"save(esuuqForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - esuuq (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!esuuqForm.controls['reference'].valid&&esuuqForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!esuuqForm.controls['nomsender'].valid&&esuuqForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!esuuqForm.controls['telexpediteur'].valid&&esuuqForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!esuuqForm.controls['namerecipient'].valid&&esuuqForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!esuuqForm.controls['telrecipient'].valid&&esuuqForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!esuuqForm.controls['datereception'].valid&&esuuqForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!esuuqForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -9663,7 +10645,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Mise à jour  - {{envoidto.type}}\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"envoidto.type\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\" [(ngModel)]=\"envoidto.reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\" [(ngModel)]=\"envoidto.nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\" [(ngModel)]=\"envoidto.telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\" [(ngModel)]=\"envoidto.adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\" [(ngModel)]=\"envoidto.namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\" [(ngModel)]=\"envoidto.telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Mise à jour  - {{envoidto.type}}\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"envoidto.type\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\" [(ngModel)]=\"envoidto.reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\" [(ngModel)]=\"envoidto.nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\" [(ngModel)]=\"envoidto.telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\" [(ngModel)]=\"envoidto.adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\" [(ngModel)]=\"envoidto.namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\" [(ngModel)]=\"envoidto.telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -9783,7 +10765,7 @@
         _createClass(ColisComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this38 = this;
+            var _this41 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -9793,10 +10775,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this38.listcolis = response;
-              console.log(_this38.listcolis);
+              _this41.listcolis = response;
+              console.log(_this41.listcolis);
             }, function (error) {
-              _this38.showWarn("Les article  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this41.showWarn("Les article  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -9972,13 +10954,13 @@
         }, {
           key: "getAuthorities",
           value: function getAuthorities() {
-            var _this39 = this;
+            var _this42 = this;
 
             this.roles = [];
 
             if (sessionStorage.getItem(TOKEN_KEY)) {
               JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(function (authority) {
-                _this39.roles.push(authority.authority);
+                _this42.roles.push(authority.authority);
               });
             }
 
@@ -10124,10 +11106,10 @@
         _createClass(AppCalendarComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this40 = this;
+            var _this43 = this;
 
             this.eventService.getEvents().then(function (events) {
-              _this40.events = events;
+              _this43.events = events;
             });
             this.changedEvent = {
               title: '',
@@ -10145,11 +11127,11 @@
               },
               editable: true,
               eventClick: function eventClick(e) {
-                _this40.eventDialog = true;
-                _this40.clickedEvent = e.event;
-                _this40.changedEvent.title = _this40.clickedEvent.title;
-                _this40.changedEvent.start = _this40.clickedEvent.start;
-                _this40.changedEvent.end = _this40.clickedEvent.end;
+                _this43.eventDialog = true;
+                _this43.clickedEvent = e.event;
+                _this43.changedEvent.title = _this43.clickedEvent.title;
+                _this43.changedEvent.start = _this43.clickedEvent.start;
+                _this43.changedEvent.end = _this43.clickedEvent.end;
               }
             };
           }
@@ -10341,7 +11323,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ0YWJsZWF1Ym9yZHN0b2Nrcy5jb21wb25lbnQuY3NzIn0= */";
+      __webpack_exports__["default"] = "canvas.chartjs-render-monitor {\r\n    width: 1200px !important;\r\n    height: 500px !important;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhYmxlYXVib3Jkc3RvY2tzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSx3QkFBd0I7SUFDeEIsd0JBQXdCO0FBQzVCIiwiZmlsZSI6InRhYmxlYXVib3Jkc3RvY2tzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJjYW52YXMuY2hhcnRqcy1yZW5kZXItbW9uaXRvciB7XHJcbiAgICB3aWR0aDogMTIwMHB4ICFpbXBvcnRhbnQ7XHJcbiAgICBoZWlnaHQ6IDUwMHB4ICFpbXBvcnRhbnQ7XHJcbn0iXX0= */";
       /***/
     },
 
@@ -10421,7 +11403,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception colis\">\n                <form [formGroup]=\"colisForm\" (ngSubmit)=\"save(colisForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - colis (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!colisForm.controls['reference'].valid&&colisForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!colisForm.controls['nomsender'].valid&&colisForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!colisForm.controls['telexpediteur'].valid&&colisForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!colisForm.controls['namerecipient'].valid&&colisForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!colisForm.controls['telrecipient'].valid&&colisForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!colisForm.controls['datereception'].valid&&colisForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!colisForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception colis\">\n                <form [formGroup]=\"colisForm\" (ngSubmit)=\"save(colisForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - colis (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!colisForm.controls['reference'].valid&&colisForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!colisForm.controls['nomsender'].valid&&colisForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!colisForm.controls['telexpediteur'].valid&&colisForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!colisForm.controls['namerecipient'].valid&&colisForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!colisForm.controls['telrecipient'].valid&&colisForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!colisForm.controls['datereception'].valid&&colisForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText  (onChange)=\"referenceVerify($event)\"  class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!colisForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -10461,7 +11443,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi recommande\">\n                <form [formGroup]=\"recommandeForm\" (ngSubmit)=\"save(recommandeForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouveau - recommande (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!recommandeForm.controls['reference'].valid&&recommandeForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!recommandeForm.controls['nomsender'].valid&&recommandeForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!recommandeForm.controls['telexpediteur'].valid&&recommandeForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!recommandeForm.controls['namerecipient'].valid&&recommandeForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!recommandeForm.controls['telrecipient'].valid&&recommandeForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!recommandeForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un envoi recommande\">\n                <form [formGroup]=\"recommandeForm\" (ngSubmit)=\"save(recommandeForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouveau - recommande (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!recommandeForm.controls['reference'].valid&&recommandeForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!recommandeForm.controls['nomsender'].valid&&recommandeForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!recommandeForm.controls['telexpediteur'].valid&&recommandeForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!recommandeForm.controls['namerecipient'].valid&&recommandeForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!recommandeForm.controls['telrecipient'].valid&&recommandeForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference</label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom de l'expediiteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone de l'expediteur</label>\n                                            <div class=\"p-col-12 p-md-12\">   \n                                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                <div class=\"p-field p-grid\">\n                                    <label for=\"firstname4\" class=\"p-col-12 p-mb-2 p-md-2 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                    <div class=\"p-col-12 p-md-12\">      \n                                        <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Telephone du destinateur </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!recommandeForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -10578,6 +11560,46 @@
 
 
       __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJyYXBwb3J0c3ZlbnRlLmNvbXBvbmVudC5jc3MifQ== */";
+      /***/
+    },
+
+    /***/
+    "ixt6":
+    /*!*******************************************************************************************!*\
+      !*** ./src/app/apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component.css ***!
+      \*******************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function ixt6(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJub3V2ZWF1b3JkaW5haXJlLmNvbXBvbmVudC5jc3MifQ== */";
+      /***/
+    },
+
+    /***/
+    "j+Qn":
+    /*!***************************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/apps/envoi/ordinaireenvoi/ordinaireenvoi.component.html ***!
+      \***************************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function jQn(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie de type Ordinaire </h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ordinaire/nouveau?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Ordinaire \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -10832,7 +11854,7 @@
               file: 'lime',
               color: '#74CD32'
             }];
-            this.changeLayout('joomla', true);
+            this.changeLayout('joomla', false);
           }
         }, {
           key: "changeLayout",
@@ -10929,6 +11951,195 @@
     },
 
     /***/
+    "k7Oa":
+    /*!***********************************************************************!*\
+      !*** ./src/app/apps/envoi/ordinaireenvoi/ordinaireenvoi.component.ts ***!
+      \***********************************************************************/
+
+    /*! exports provided: OrdinaireenvoiComponent */
+
+    /***/
+    function k7Oa(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "OrdinaireenvoiComponent", function () {
+        return OrdinaireenvoiComponent;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_ordinaireenvoi_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./ordinaireenvoi.component.html */
+      "j+Qn");
+      /* harmony import */
+
+
+      var _ordinaireenvoi_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./ordinaireenvoi.component.css */
+      "Jj24");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common/http */
+      "tk/3");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var primeng_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! primeng/api */
+      "7zfz");
+      /* harmony import */
+
+
+      var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/auth/token-storage.service */
+      "dZLz");
+      /* harmony import */
+
+
+      var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/environments/environment.prod */
+      "cxbk");
+
+      var OrdinaireenvoiComponent = /*#__PURE__*/function () {
+        function OrdinaireenvoiComponent(messageService, httpClient, router, tokenStorage) {
+          _classCallCheck(this, OrdinaireenvoiComponent);
+
+          this.messageService = messageService;
+          this.httpClient = httpClient;
+          this.router = router;
+          this.tokenStorage = tokenStorage;
+          this.msgs = [];
+          this.listems = undefined;
+        }
+
+        _createClass(OrdinaireenvoiComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            var _this44 = this;
+
+            /**
+             *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
+             */
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__["environment"].url + "/api/postal/envoi/ordinaire", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              _this44.listems = response;
+              console.log(_this44.listems);
+            }, function (error) {
+              _this44.showWarn("Les articles Ordinaire  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+            });
+          }
+          /**
+           * Editer EMS - Redirection vers la page de edition d'un nouveau ems
+           */
+
+        }, {
+          key: "editer",
+          value: function editer(rowData) {
+            //console.log("je suis ici");
+            this.router.navigate(['gestion/envoi/ordinaire/nouveau?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab'], {
+              queryParams: {
+                id: '' + rowData["idcrypt"] + ''
+              }
+            });
+          }
+          /**
+           *  costumisation des erreurs
+           */
+
+        }, {
+          key: "showSuccess",
+          value: function showSuccess(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'success',
+              summary: 'Message de success :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showInfo",
+          value: function showInfo(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'info',
+              summary: 'Message Info :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showWarn",
+          value: function showWarn(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Message d\'avertissement :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showError",
+          value: function showError(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Message d\'erreur ',
+              detail: '' + message
+            });
+          }
+        }]);
+
+        return OrdinaireenvoiComponent;
+      }();
+
+      OrdinaireenvoiComponent.ctorParameters = function () {
+        return [{
+          type: primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
+        }, {
+          type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"]
+        }];
+      };
+
+      OrdinaireenvoiComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
+        selector: 'app-ordinaireenvoi',
+        template: _raw_loader_ordinaireenvoi_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]],
+        styles: [_ordinaireenvoi_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], OrdinaireenvoiComponent);
+      /***/
+    },
+
+    /***/
     "kA7y":
     /*!*******************************************!*\
       !*** ./src/app/app.menuitem.component.ts ***!
@@ -10992,7 +12203,7 @@
 
       var AppMenuitemComponent = /*#__PURE__*/function () {
         function AppMenuitemComponent(appMain, router, cd, menuService) {
-          var _this41 = this;
+          var _this45 = this;
 
           _classCallCheck(this, AppMenuitemComponent);
 
@@ -11003,23 +12214,23 @@
           this.active = false;
           this.menuSourceSubscription = this.menuService.menuSource$.subscribe(function (key) {
             // deactivate current active menu
-            if (_this41.active && _this41.key !== key && key.indexOf(_this41.key) !== 0) {
-              _this41.active = false;
+            if (_this45.active && _this45.key !== key && key.indexOf(_this45.key) !== 0) {
+              _this45.active = false;
             }
           });
           this.menuResetSubscription = this.menuService.resetSource$.subscribe(function () {
-            _this41.active = false;
+            _this45.active = false;
           });
           this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (event) {
             return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"];
           })).subscribe(function (params) {
-            if (_this41.appMain.isHorizontal() || _this41.appMain.isSlim()) {
-              _this41.active = false;
+            if (_this45.appMain.isHorizontal() || _this45.appMain.isSlim()) {
+              _this45.active = false;
             } else {
-              if (_this41.item.routerLink) {
-                _this41.updateActiveStateFromRoute();
+              if (_this45.item.routerLink) {
+                _this45.updateActiveStateFromRoute();
               } else {
-                _this41.active = false;
+                _this45.active = false;
               }
             }
           });
@@ -11320,12 +12531,12 @@
         _createClass(RechercheComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this42 = this;
+            var _this46 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this42.parametre = params.id;
+              _this46.parametre = params.id;
 
-              _this42.serchByreferenceReceiveinparam(_this42.parametre);
+              _this46.serchByreferenceReceiveinparam(_this46.parametre);
             });
             this.rechercheForm = this.formBuilder.group({
               'reference': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required)
@@ -11334,7 +12545,7 @@
         }, {
           key: "serchByreferenceReceiveinparam",
           value: function serchByreferenceReceiveinparam(value) {
-            var _this43 = this;
+            var _this47 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche/resultat?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -11342,11 +12553,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this43.article = response;
+              _this47.article = response;
 
-              _this43.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this47.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this43.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this47.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/historique?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -11354,11 +12565,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this43.historiques = response;
+              _this47.historiques = response;
 
-              _this43.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this47.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this43.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this47.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/alarme?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -11366,11 +12577,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this43.alarmes = response;
+              _this47.alarmes = response;
 
-              _this43.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this47.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this43.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this47.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
           }
           /**
@@ -11381,7 +12592,7 @@
         }, {
           key: "searchByReference",
           value: function searchByReference(event) {
-            var _this44 = this;
+            var _this48 = this;
 
             console.log(event);
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche?param=' + event.query, {
@@ -11390,15 +12601,15 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this44.string = response;
+              _this48.string = response;
             }, function (err) {
-              _this44.showError("La recherche n'est pas operationnel car une erreur c'est produit. Veuillez verifier que tout les services sont operationnels.*** voici l'erreur generer par le systeme :" + err.message);
+              _this48.showError("La recherche n'est pas operationnel car une erreur c'est produit. Veuillez verifier que tout les services sont operationnels.*** voici l'erreur generer par le systeme :" + err.message);
             });
           }
         }, {
           key: "findResultat",
           value: function findResultat(reference) {
-            var _this45 = this;
+            var _this49 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche/resultat?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -11406,11 +12617,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this45.article = response;
+              _this49.article = response;
 
-              _this45.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this49.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this45.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this49.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/historique?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -11418,11 +12629,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this45.historiques = response;
+              _this49.historiques = response;
 
-              _this45.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this49.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this45.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this49.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/alarme?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -11430,11 +12641,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this45.alarmes = response;
+              _this49.alarmes = response;
 
-              _this45.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this49.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this45.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this49.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
           }
           /**
@@ -11527,7 +12738,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = ".dashboard{\r\n    background-color: white;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhYmxlYXVib3JkcmVjZXB0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSx1QkFBdUI7QUFDM0IiLCJmaWxlIjoidGFibGVhdWJvcmRyZWNlcHRpb24uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kYXNoYm9hcmR7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxuIl19 */";
+      __webpack_exports__["default"] = ".dashboard{\r\n    background-color: white;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhYmxlYXVib3JkcmVjZXB0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSx1QkFBdUI7QUFDM0IiLCJmaWxlIjoidGFibGVhdWJvcmRyZWNlcHRpb24uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kYXNoYm9hcmR7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxufVxyXG4iXX0= */";
       /***/
     },
 
@@ -11922,7 +13133,7 @@
         _createClass(EnstockComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this46 = this;
+            var _this50 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -11932,10 +13143,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this46.liststocks = response;
-              console.log(_this46.liststocks);
+              _this50.liststocks = response;
+              console.log(_this50.liststocks);
             }, function (error) {
-              _this46.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this50.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
         }, {
@@ -12128,7 +13339,7 @@
         _createClass(TableaubordComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this47 = this;
+            var _this51 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord1", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12136,46 +13347,79 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this47.tableaubord1 = {
-                labels: ['A', 'B', 'C'],
+              var labels = [];
+              var results = [];
+              var colors = [];
+              var i = 1;
+              response.forEach(function (element) {
+                labels.push(element['type']);
+                results.push(element['COUNT']);
+                colors.push(element['color']);
+                i++;
+              });
+              _this51.tableaubord1 = {
+                labels: [].concat(labels),
                 datasets: [{
-                  data: [300, 50, 100],
-                  backgroundColor: ["#42A5F5", "#66BB6A", "#FFA726"],
+                  data: [].concat(results),
+                  backgroundColor: [].concat(colors),
                   hoverBackgroundColor: ["#64B5F6", "#81C784", "#FFB74D"]
                 }]
               };
             }, function (error) {
-              _this47.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this51.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
-            this.basicData = {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-              datasets: [{
-                label: 'First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
-                fill: false,
-                borderColor: '#42A5F5',
-                tension: .4
-              }, {
-                label: 'Second Dataset',
-                data: [28, 48, 40, 19, 86, 27, 90],
-                fill: false,
-                borderColor: '#FFA726',
-                tension: .4
-              }]
-            };
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord2", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              console.log(response);
+              var datas = [];
+              var result = Object.keys(response).forEach(function (key) {
+                var obj1 = response[key];
+                console.log('key is ' + key);
+                var _postsArray = [];
+                var _postsColor = [];
+                var sousresult = Object.keys(obj1).forEach(function (key1) {
+                  _postsArray.push(obj1[key1]['value']);
+
+                  _postsColor.push(obj1[key1]['color']);
+                });
+                console.log(_postsArray);
+                Promise.all(['sousresult']).then(function () {
+                  datas.push({
+                    label: '' + key,
+                    data: [].concat(_postsArray),
+                    fill: false,
+                    backgroundColor: _postsColor[0],
+                    borderColor: _postsColor[0],
+                    tension: .4
+                  });
+                });
+              });
+              Promise.all(['result']).then(function () {
+                console.log(datas);
+                _this51.basicData = {
+                  labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                  datasets: [].concat(datas)
+                };
+              });
+            }, function (error) {
+              _this51.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+            });
             /**
-            *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
-            */
+             *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
+             */
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/ems", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this47.listems = response;
-              console.log(_this47.listems);
+              _this51.listems = response;
+              console.log(_this51.listems);
             }, function (error) {
-              _this47.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this51.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -12353,7 +13597,7 @@
         _createClass(NouveauComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this48 = this;
+            var _this52 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -12374,48 +13618,71 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this48.typeactivites = [];
+              _this52.typeactivites = [];
               response.forEach(function (element) {
-                if (element['name']) {
-                  _this48.typeactivite = {
+                if (element['name'] == 'EMS - EE') {
+                  _this52.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this48.typeactivites.push({
+                _this52.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this48.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this52.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this49 = this;
+            var _this53 = this;
 
             console.log(emsForm);
-            this.envoidto.reference = emsForm['reference'];
-            this.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
-            this.envoidto.type = emsForm['typearticle'];
-            this.envoidto.adresse = emsForm['adresse'];
-            this.envoidto.nomsender = emsForm['nomsender'];
-            this.envoidto.telexpediteur = emsForm['telexpediteur'];
-            this.envoidto.namerecipient = emsForm['namerecipient'];
-            this.envoidto.telrecipient = emsForm['telrecipient'];
-            this.envoidto.typearticle = this.typeactivite.code;
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", this.envoidto, {
-              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-              })
-            }).subscribe(function (response) {
-              _this49.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
-            }, function (error) {
-              _this49.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
-            });
+            var amontsection = emsForm['reference'].substring(0, 2);
+            var numbersection = Number(emsForm['reference'].substring(2, 11));
+            var avalsection = emsForm['reference'].substring(11, 14);
+            var letters = /^[A-Za-z]+$/;
+
+            if (!amontsection.match(letters) || amontsection.length != 2 || !numbersection || !avalsection.match(letters) || avalsection.length != 2) {
+              this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+            } else {
+              this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/reference?reference=" + emsForm['reference'], {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                  'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                })
+              }).subscribe(function (response) {
+                if (response == null) {
+                  _this53.envoidto.reference = emsForm['reference'];
+                  _this53.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
+                  _this53.envoidto.type = emsForm['typearticle'];
+                  _this53.envoidto.adresse = emsForm['adresse'];
+                  _this53.envoidto.nomsender = emsForm['nomsender'];
+                  _this53.envoidto.telexpediteur = emsForm['telexpediteur'];
+                  _this53.envoidto.namerecipient = emsForm['namerecipient'];
+                  _this53.envoidto.telrecipient = emsForm['telrecipient'];
+                  _this53.envoidto.typearticle = _this53.typeactivite.code;
+
+                  _this53.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this53.envoidto, {
+                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                      'Authorization': 'Bearer ' + _this53.tokenStorage.getToken()
+                    })
+                  }).subscribe(function (response) {
+                    _this53.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                  }, function (error) {
+                    _this53.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                  });
+                } else {
+                  _this53.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
+              }, function (error) {
+                _this53.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              });
+            }
           }
           /**
            *  costumisation des erreurs
@@ -12459,6 +13726,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.emsForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -12647,7 +13934,7 @@
         _createClass(ColisreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this50 = this;
+            var _this54 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -12657,10 +13944,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this50.listems = response;
-              console.log(_this50.listems);
+              _this54.listems = response;
+              console.log(_this54.listems);
             }, function (error) {
-              _this50.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this54.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -12982,7 +14269,7 @@
         _createClass(EmsComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this51 = this;
+            var _this55 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -12992,10 +14279,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this51.listems = response;
-              console.log(_this51.listems);
+              _this55.listems = response;
+              console.log(_this55.listems);
             }, function (error) {
-              _this51.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this55.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -13349,7 +14636,7 @@
         _createClass(LivraisonreussiComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this52 = this;
+            var _this56 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -13359,10 +14646,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this52.liste = response;
-              console.log(_this52.liste);
+              _this56.liste = response;
+              console.log(_this56.liste);
             }, function (error) {
-              _this52.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.getMessage());
+              _this56.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.getMessage());
             });
           }
           /**
@@ -13614,7 +14901,7 @@
         _createClass(EmsreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this53 = this;
+            var _this57 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -13624,10 +14911,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this53.listems = response;
-              console.log(_this53.listems);
+              _this57.listems = response;
+              console.log(_this57.listems);
             }, function (error) {
-              _this53.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this57.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -14017,6 +15304,24 @@
       var _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(
       /*! ./apps/vente/tableaubordvente/tableaubordvente.component */
       "8KQc");
+      /* harmony import */
+
+
+      var _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(
+      /*! ./apps/stocks/tableaubordstocks/tableaubordstocks.component */
+      "L7Y2");
+      /* harmony import */
+
+
+      var _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(
+      /*! ./apps/envoi/ordinaireenvoi/ordinaireenvoi.component */
+      "k7Oa");
+      /* harmony import */
+
+
+      var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(
+      /*! ./apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component */
+      "bUil");
 
       var AppRoutingModule = function AppRoutingModule() {
         _classCallCheck(this, AppRoutingModule);
@@ -14093,6 +15398,12 @@
             path: 'gestion/envoi/recommande/nouveau?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136',
             component: _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_25__["NouveaurecommandeComponent"]
           }, {
+            path: 'gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab',
+            component: _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_45__["OrdinaireenvoiComponent"]
+          }, {
+            path: 'gestion/envoi/ordinaire/nouveau?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab',
+            component: _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_46__["NouveauordinaireComponent"]
+          }, {
             path: 'gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3',
             component: _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_15__["TableaubordComponent"]
           },
@@ -14164,6 +15475,9 @@
           }, {
             path: 'gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab',
             component: _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_39__["LivraisonechoueComponent"]
+          }, {
+            path: 'gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab',
+            component: _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_44__["TableaubordstocksComponent"]
           }, {
             path: 'gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda',
             component: _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_40__["ParametrageVenteComponent"]
@@ -14391,7 +15705,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception ordinaire\">\n                <form [formGroup]=\"ordinaireForm\" (ngSubmit)=\"save(ordinaireForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - ordinaire (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!ordinaireForm.controls['reference'].valid&&ordinaireForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!ordinaireForm.controls['nomsender'].valid&&ordinaireForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!ordinaireForm.controls['telexpediteur'].valid&&ordinaireForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!ordinaireForm.controls['namerecipient'].valid&&ordinaireForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!ordinaireForm.controls['telrecipient'].valid&&ordinaireForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!ordinaireForm.controls['datereception'].valid&&ordinaireForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!ordinaireForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'une reception ordinaire\">\n                <form [formGroup]=\"ordinaireForm\" (ngSubmit)=\"save(ordinaireForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Nouvelle Reception - ordinaire (Express Mail Service)\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                            <ul>\n                                <li *ngIf=\"!ordinaireForm.controls['reference'].valid&&ordinaireForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!ordinaireForm.controls['nomsender'].valid&&ordinaireForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!ordinaireForm.controls['telexpediteur'].valid&&ordinaireForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!ordinaireForm.controls['namerecipient'].valid&&ordinaireForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!ordinaireForm.controls['telrecipient'].valid&&ordinaireForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                      \n                                <li *ngIf=\"!ordinaireForm.controls['datereception'].valid&&ordinaireForm.controls['datereception'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir la date de reception car il est obligatoire\" ></p-message>   </li>\n                                                  \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"typearticle\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <hr/>\n                                \n\n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!ordinaireForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
       /***/
     },
 
@@ -14508,7 +15822,7 @@
         _createClass(NouveauordinairereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this54 = this;
+            var _this58 = this;
 
             this.ordinaireForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -14536,22 +15850,22 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this54.typeactivites = [];
+              _this58.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'ORDINAIRE - N/A') {
-                  _this54.typeactivite = {
+                  _this58.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this54.typeactivites.push({
+                _this58.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this54.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - ordinaire ");
+              _this58.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - ordinaire ");
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -14563,51 +15877,75 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this54.countries = [];
+              _this58.countries = [];
               response.forEach(function (element) {
-                _this54.countries.push({
+                _this58.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this54.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this58.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(ordinaireForm) {
-            var _this55 = this;
+            var _this59 = this;
 
-            console.log(ordinaireForm);
-            var format = 'yyyy-MM-dd';
-            var format_date = 'dd';
-            var locale = 'en-US';
-            this.receptiondto.reference = ordinaireForm['reference'];
-            this.receptiondto.name = 'ordinaire - EXPRESS MAIL SERVICE';
-            this.receptiondto.type = ordinaireForm['typearticle'];
-            this.receptiondto.adresse = ordinaireForm['adresse'];
-            this.receptiondto.nomsender = ordinaireForm['nomsender'];
-            this.receptiondto.telexpediteur = ordinaireForm['telexpediteur'];
-            this.receptiondto.namerecipient = ordinaireForm['namerecipient'];
-            this.receptiondto.telrecipient = ordinaireForm['telrecipient'];
-            this.receptiondto.email = ordinaireForm['email'];
-            this.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(ordinaireForm['datereception'], format, locale);
-            this.receptiondto.typearticle = this.typeactivite.code;
-            this.receptiondto.dommage = this.dommage;
-            this.receptiondto.commentaire = ordinaireForm['commentaire'];
-            this.receptiondto.envoisms = this.envoisms;
-            this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
-            this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
-            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", this.receptiondto, {
+            /*
+            let amontsection = ordinaireForm['reference'].substring(0,2);
+            let numbersection = Number(ordinaireForm['reference'].substring(2,11));
+            let avalsection = ordinaireForm['reference'].substring(11,14);
+            let letters = /^[A-Za-z]+$/;
+                  console.log("amontsection "+amontsection+ " " +typeof(amontsection)+ " numbersection "+numbersection+" " + typeof(numbersection)+" avalsection "+avalsection+" "+typeof(avalsection));
+                  if( !amontsection.match(letters) || amontsection.length !=2|| !numbersection || !avalsection.match(letters) || avalsection.length !=2)
+            {
+            this.showConfirm("Numero de reference erronné", "Une reference doit contenir deux lettre en amant suivi de 9 chiffre et avec deux lettre à la fin !!!");
+            }else{
+                    */
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + ordinaireForm['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this55.showSuccess("Vous avez enregistrer avec success votre ordinaire  !!! ");
+              if (response == null) {
+                var format = 'yyyy-MM-dd';
+                var format_date = 'dd';
+                var locale = 'en-US';
+                _this59.receptiondto.reference = ordinaireForm['reference'];
+                _this59.receptiondto.name = 'ordinaire - EXPRESS MAIL SERVICE';
+                _this59.receptiondto.type = ordinaireForm['typearticle'];
+                _this59.receptiondto.adresse = ordinaireForm['adresse'];
+                _this59.receptiondto.nomsender = ordinaireForm['nomsender'];
+                _this59.receptiondto.telexpediteur = ordinaireForm['telexpediteur'];
+                _this59.receptiondto.namerecipient = ordinaireForm['namerecipient'];
+                _this59.receptiondto.telrecipient = ordinaireForm['telrecipient'];
+                _this59.receptiondto.email = ordinaireForm['email'];
+                _this59.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(ordinaireForm['datereception'], format, locale);
+                _this59.receptiondto.typearticle = _this59.typeactivite.code;
+                _this59.receptiondto.dommage = _this59.dommage;
+                _this59.receptiondto.commentaire = ordinaireForm['commentaire'];
+                _this59.receptiondto.envoisms = _this59.envoisms;
+                _this59.receptiondto.paysrecipient = _this59.selectedCountrydestinateur['code'];
+                _this59.receptiondto.paysexpediteur = _this59.selectedCountryexpediteur['code'];
+
+                _this59.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this59.receptiondto, {
+                  headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                    'Authorization': 'Bearer ' + _this59.tokenStorage.getToken()
+                  })
+                }).subscribe(function (response) {
+                  _this59.showSuccess("Vous avez enregistrer avec success votre ordinaire  !!! ");
+                }, function (error) {
+                  _this59.showError(" une erreur c'est produit et le système n'a pas enregitré votre ordinaire - La raison est voici : " + error.message);
+                });
+              } else {
+                _this59.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+              } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
+
             }, function (error) {
-              _this55.showError(" une erreur c'est produit et le système n'a pas enregitré votre ordinaire - La raison est voici : " + error.message);
-            });
+              _this59.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+            }); //}
           }
           /**
            *
@@ -14670,6 +16008,26 @@
               severity: 'error',
               summary: 'Message d\'erreur ',
               detail: '' + message
+            });
+          }
+        }, {
+          key: "showConfirm",
+          value: function showConfirm(title, detail) {
+            this.messageService.clear();
+            this.messageService.add({
+              key: 'c',
+              sticky: true,
+              severity: 'warn',
+              summary: title,
+              detail: detail
+            });
+          }
+        }, {
+          key: "onConfirm",
+          value: function onConfirm() {
+            this.messageService.clear('c');
+            this.ordinaireForm.patchValue({
+              reference: undefined
             });
           }
         }]);
@@ -14797,13 +16155,13 @@
         _createClass(DashboardDemoComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this56 = this;
+            var _this60 = this;
 
             this.productService.getProducts().then(function (data) {
-              return _this56.products = data;
+              return _this60.products = data;
             });
             this.eventService.getEvents().then(function (events) {
-              _this56.events = events;
+              _this60.events = events;
             });
             this.cities = [];
             this.cities.push({

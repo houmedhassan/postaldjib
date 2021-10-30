@@ -1819,6 +1819,7 @@ body a {
 }
 .layout-wrapper .layout-menu-container .layout-main-menu {
   padding-bottom: 120px;
+  background-color: #ffd400;
 }
 .layout-wrapper .layout-menu-container .profile {
   padding: 15px;
@@ -2045,6 +2046,8 @@ body a {
 .layout-wrapper .layout-menu li a span {
   display: inline-block;
   vertical-align: middle;
+  color: #2a4f91;
+  font-weight: bold;
 }
 .layout-wrapper .layout-menu li a .menuitem-badge {
   float: right;
