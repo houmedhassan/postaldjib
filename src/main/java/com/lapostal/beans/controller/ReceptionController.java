@@ -239,6 +239,7 @@ public class ReceptionController {
 			TypeReception type = typeReceptionRepository.findByName(envoidto.getTypearticle().getName());
 			
 			reception.setReception(type);
+			reception.setColor(type.getColor());
 			
 			Optional<User> user = userRepository.findByUsername(principal.getName()); 
 			

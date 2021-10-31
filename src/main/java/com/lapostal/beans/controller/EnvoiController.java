@@ -143,6 +143,7 @@ public class EnvoiController {
 			TypeArticle type = typearticleRepository.findByName(envoidto.getTypearticle().getName());
 			
 			envoi.setArticle(type);
+			envoi.setColor(type.getColor());
 			
 			Optional<User> user = userRepository.findByUsername(principal.getName()); 
 			
