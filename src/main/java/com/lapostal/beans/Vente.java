@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lapostal.security.entities.User;
 
 import lombok.AllArgsConstructor;
@@ -48,6 +47,9 @@ public class Vente {
 	private  double prix;
 	private double penalite; 
 	private String typepaiement;
+	
+	private int annee;
+	private int month;
 	
 	private double prixtotal;
 	

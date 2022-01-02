@@ -2174,7 +2174,7 @@
 
       AppTopBarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-topbar',
-        template: "\n        <div class=\"topbar clearfix\">\n            <div class=\"topbar-left\">\n                <a routerLink=\"/\">\n                    <img src=\"assets/layout/images/logo.png\" class=\"topbar-logo\" routerLink=\"/\" />\n                </a>\n            </div>\n\n            <div class=\"topbar-right\">\n                <a id=\"menu-button\" href=\"#\" (click)=\"appMain.onMenuButtonClick($event)\"\n                   [ngClass]=\"{'menu-button-rotate': appMain.rotateMenuButton}\">\n                    <i class=\"pi pi-angle-left\"></i>\n                </a>\n\n                <a id=\"topbar-menu-button\" href=\"#\" (click)=\"appMain.onTopbarMenuButtonClick($event)\">\n                    <i class=\"pi pi-bars\"></i>\n                </a>\n\n                <ul class=\"topbar-items fadeInDown\" [ngClass]=\"{'topbar-items-visible': appMain.topbarMenuActive}\">\n                    <li #profile class=\"profile-item\" *ngIf=\"app.profileMode==='top'|| appMain.isHorizontal()\"\n                        [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === profile}\">\n\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,profile)\">\n                            <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                            <span class=\"topbar-item-name\">Houmed Hassan</span>\n                            <span class=\"topbar-item-role\">Marketing</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-user\"></i>\n                                    <span>Profile</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Privacy</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-cog\"></i>\n                                    <span>Settings</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\"  (click)=\"logout($event)\">\n                                    <i class=\"pi pi-fw pi-sign-out\"></i>\n                                    <span>Logout</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <!--\n                    <li #settings [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === settings}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,settings)\">\n                            <i class=\"topbar-icon pi pi-cog\"></i>\n                            <span class=\"topbar-item-name\">Settings</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-palette\"></i>\n                                    <span>Change Theme</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-star-o\"></i>\n                                    <span>Favorites</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Lock Screen</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-image\"></i>\n                                    <span>Wallpaper</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #messages [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === messages}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,messages)\">\n                            <i class=\"topbar-icon animated swing pi pi-fw pi-envelope\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">5</span>\n                            <span class=\"topbar-item-name\">Messages</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar1.png\" width=\"35\"/>\n                                    <span>Give me a call</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Sales reports attached</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar3.png\" width=\"35\"/>\n                                    <span>About your invoice</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Meeting today at 10pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar4.png\" width=\"35\"/>\n                                    <span>Out of office</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #notifications [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === notifications}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,notifications)\">\n                            <i class=\"topbar-icon pi pi-fw pi-bell\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">4</span>\n                            <span class=\"topbar-item-name\">Notifications</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-sliders-h\"></i>\n                                    <span>Pending tasks</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-calendar\"></i>\n                                    <span>Meeting today at 3pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-download\"></i>\n                                    <span>Download documents</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-bookmark\"></i>\n                                    <span>Book flight</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #search class=\"search-item\" [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === search}\"\n                        (click)=\"appMain.onTopbarItemClick($event,search)\">\n                        <div class=\"topbar-search\">\n                            <input type=\"text\" placeholder=\"Search\" />\n                            <i class=\"pi pi-search\"></i>\n                        </div>\n                    </li>\n                    -->\n                </ul>\n            </div>\n        </div>\n    "
+        template: "\n        <div class=\"topbar clearfix\">\n            <div class=\"topbar-left\">\n                <a routerLink=\"/\">\n                    <img src=\"assets/layout/images/logo.png\" class=\"topbar-logo\" routerLink=\"/\" />\n                </a>\n\n    \n            </div>\n\n            <div class=\"topbar-right\">\n\n            \n                &nbsp;&nbsp;&nbsp;&nbsp;\n\n                <a routerLink=\"/\">\n                    <img src=\"assets/layout/images/esuuq.PNG\" class=\"topbar-logo-right\" routerLink=\"/\"   style=\"width: 50px; margin-top: -10px;\" />\n                </a>\n\n                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n\n                <a routerLink=\"/\">\n                <img src=\"assets/layout/images/ems.PNG\" class=\"topbar-logo-right\" routerLink=\"/\"   style=\"width: 50px; margin-top: -10px;\" />\n            </a>\n\n                <a id=\"menu-button\" href=\"#\" (click)=\"appMain.onMenuButtonClick($event)\"\n                   [ngClass]=\"{'menu-button-rotate': appMain.rotateMenuButton}\">\n                    <i class=\"pi pi-angle-left\"></i>\n                </a>\n\n                <a id=\"topbar-menu-button\" href=\"#\" (click)=\"appMain.onTopbarMenuButtonClick($event)\">\n                    <i class=\"pi pi-bars\"></i>\n                </a>\n\n                <ul class=\"topbar-items fadeInDown\" [ngClass]=\"{'topbar-items-visible': appMain.topbarMenuActive}\">\n                    <li #profile class=\"profile-item\" *ngIf=\"app.profileMode==='top'|| appMain.isHorizontal()\"\n                        [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === profile}\">\n\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,profile)\">\n                            <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                            <span class=\"topbar-item-name\">Houmed Hassan</span>\n                            <span class=\"topbar-item-role\">Marketing</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-user\"></i>\n                                    <span>Profile</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Privacy</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-cog\"></i>\n                                    <span>Settings</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\"  (click)=\"logout($event)\">\n                                    <i class=\"pi pi-fw pi-sign-out\"></i>\n                                    <span>Logout</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <!--\n                    <li #settings [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === settings}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,settings)\">\n                            <i class=\"topbar-icon pi pi-cog\"></i>\n                            <span class=\"topbar-item-name\">Settings</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-palette\"></i>\n                                    <span>Change Theme</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-star-o\"></i>\n                                    <span>Favorites</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Lock Screen</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-image\"></i>\n                                    <span>Wallpaper</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #messages [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === messages}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,messages)\">\n                            <i class=\"topbar-icon animated swing pi pi-fw pi-envelope\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">5</span>\n                            <span class=\"topbar-item-name\">Messages</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar1.png\" width=\"35\"/>\n                                    <span>Give me a call</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Sales reports attached</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar3.png\" width=\"35\"/>\n                                    <span>About your invoice</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Meeting today at 10pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar4.png\" width=\"35\"/>\n                                    <span>Out of office</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #notifications [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === notifications}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,notifications)\">\n                            <i class=\"topbar-icon pi pi-fw pi-bell\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">4</span>\n                            <span class=\"topbar-item-name\">Notifications</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-sliders-h\"></i>\n                                    <span>Pending tasks</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-calendar\"></i>\n                                    <span>Meeting today at 3pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-download\"></i>\n                                    <span>Download documents</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-bookmark\"></i>\n                                    <span>Book flight</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #search class=\"search-item\" [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === search}\"\n                        (click)=\"appMain.onTopbarItemClick($event,search)\">\n                        <div class=\"topbar-search\">\n                            <input type=\"text\" placeholder=\"Search\" />\n                            <i class=\"pi pi-search\"></i>\n                        </div>\n                    </li>\n                    -->\n                </ul>\n            </div>\n        </div>\n    "
       })], AppTopBarComponent);
       /***/
     },
@@ -3064,6 +3064,268 @@
     },
 
     /***/
+    "8IyQ":
+    /*!********************************************!*\
+      !*** ./src/app/profil/profil.component.ts ***!
+      \********************************************/
+
+    /*! exports provided: ProfilComponent */
+
+    /***/
+    function IyQ(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ProfilComponent", function () {
+        return ProfilComponent;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_profil_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./profil.component.html */
+      "aFPW");
+      /* harmony import */
+
+
+      var _profil_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./profil.component.css */
+      "AYXS");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common/http */
+      "tk/3");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var primeng_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! primeng/api */
+      "7zfz");
+      /* harmony import */
+
+
+      var src_environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/environments/environment */
+      "AytR");
+      /* harmony import */
+
+
+      var _auth_auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! ../auth/auth.service */
+      "qXBG");
+      /* harmony import */
+
+
+      var _auth_models_login_info__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! ../auth/models/login-info */
+      "u2iu");
+      /* harmony import */
+
+
+      var _auth_token_storage_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! ../auth/token-storage.service */
+      "dZLz");
+
+      var ProfilComponent = /*#__PURE__*/function () {
+        function ProfilComponent(messageService, formBuilder, authService, tokenStorage, httpClient) {
+          _classCallCheck(this, ProfilComponent);
+
+          this.messageService = messageService;
+          this.formBuilder = formBuilder;
+          this.authService = authService;
+          this.tokenStorage = tokenStorage;
+          this.httpClient = httpClient;
+          this.profil = undefined;
+          this.message_error = undefined;
+          /**
+          *  costumisation des erreurs
+          */
+
+          this.msgs = [];
+        }
+
+        _createClass(ProfilComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            var _this18 = this;
+
+            /*this.userService.getUserBoard().subscribe(
+              data => {
+                this.board = data;
+              },
+              error => {
+                this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
+              }
+            );
+              */
+            this.httpClient.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].url + '/authentification/api/profil', {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (res) {
+              _this18.profil = res;
+              console.log(_this18.profil);
+            }, function (err) {
+              console.log(" rr " + err.message);
+
+              _this18.showError("message d'erreur ");
+            });
+            this.passwordForm = this.formBuilder.group({
+              'ancienpassword': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(6)])),
+              'password': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(6)])),
+              'confirmationpassword': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(6)]))
+            });
+          }
+        }, {
+          key: "onClick",
+          value: function onClick(event) {
+            this.active = !this.active;
+            event.preventDefault();
+          }
+        }, {
+          key: "logout",
+          value: function logout() {
+            this.tokenStorage.signOut();
+            window.location.reload();
+          }
+        }, {
+          key: "updatePassword",
+          value: function updatePassword(value) {
+            var _this19 = this;
+
+            console.log(value);
+
+            if (value['confirmationpassword'] != value['password']) {
+              this.message_error = "la confirmation de mot de passe et le mot de passe doivent etre le meme ";
+              this.showWarn(this.message_error);
+            } else {
+              this.httpClient.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].url + '/authentification/api/update/password', value, {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                  'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+                })
+              }).subscribe(function (res) {
+                console.log(res);
+                _this19.loginInfo = new _auth_models_login_info__WEBPACK_IMPORTED_MODULE_9__["AuthLoginInfo"](_this19.profil['username'], value['password']);
+
+                _this19.authService.attemptAuth(_this19.loginInfo).subscribe(function (data) {
+                  _this19.tokenStorage.saveToken(data.accessToken);
+
+                  _this19.tokenStorage.saveUsername(data.username);
+
+                  _this19.tokenStorage.saveAuthorities(data.authorities); //            this.reloadPage();
+
+                }, function (error) {
+                  _this19.errorMessage = error.error.message;
+
+                  _this19.showError(_this19.errorMessage); //this.isLoginFailed = true;
+
+                });
+
+                _this19.showSuccess("Vous avez mis à jour avec success votre mot de passe. Merci !");
+
+                _this19.passwordForm.reset(); //this.profil = res;
+
+              }, function (err) {
+                if (err.status === 401) {
+                  _this19.showError(" Vous n'etes pas autorisé à effectuer cette modification, veuillez vous deconnectez et vous reconnectez");
+                } else {
+                  _this19.showError("message d'erreur " + err.message);
+                }
+              });
+            }
+          }
+        }, {
+          key: "showSuccess",
+          value: function showSuccess(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'success',
+              summary: 'Message de success :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showInfo",
+          value: function showInfo(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'info',
+              summary: 'Message Info :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showWarn",
+          value: function showWarn(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Message d\'avertissement :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showError",
+          value: function showError(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Message d\'erreur ',
+              detail: '' + message
+            });
+          }
+        }]);
+
+        return ProfilComponent;
+      }();
+
+      ProfilComponent.ctorParameters = function () {
+        return [{
+          type: primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]
+        }, {
+          type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
+        }, {
+          type: _auth_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]
+        }, {
+          type: _auth_token_storage_service__WEBPACK_IMPORTED_MODULE_10__["TokenStorageService"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+        }];
+      };
+
+      ProfilComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
+        selector: 'app-profil',
+        template: _raw_loader_profil_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]],
+        styles: [_profil_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], ProfilComponent);
+      /***/
+    },
+
+    /***/
     "8KQc":
     /*!***************************************************************************!*\
       !*** ./src/app/apps/vente/tableaubordvente/tableaubordvente.component.ts ***!
@@ -3248,10 +3510,10 @@
         _createClass(EditreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this18 = this;
+            var _this20 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this18.value = params.id;
+              _this20.value = params.id;
             });
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -3281,37 +3543,37 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this18.receptiondto.reference = response['reference'];
-              _this18.receptiondto.type = response['type'];
-              _this18.receptiondto.adresse = response['adresse'];
-              _this18.dommage = response['dommage'];
-              _this18.envoisms = response['envoisms'];
-              _this18.datereception = new Date(response['datereception']);
-              console.log(_this18.datereception);
-              _this18.receptiondto.nomsender = response['nomsender'];
-              _this18.receptiondto.telexpediteur = response['telexpediteur'];
-              _this18.receptiondto.namerecipient = response['namerecipient'];
-              _this18.receptiondto.telrecipient = response['telrecipient'];
-              _this18.receptiondto.dommage = _this18.dommage;
-              _this18.receptiondto.commentaire = response['commentaire'];
-              _this18.receptiondto.envoisms = _this18.envoisms;
+              _this20.receptiondto.reference = response['reference'];
+              _this20.receptiondto.type = response['type'];
+              _this20.receptiondto.adresse = response['adresse'];
+              _this20.dommage = response['dommage'];
+              _this20.envoisms = response['envoisms'];
+              _this20.datereception = new Date(response['datereception']);
+              console.log(_this20.datereception);
+              _this20.receptiondto.nomsender = response['nomsender'];
+              _this20.receptiondto.telexpediteur = response['telexpediteur'];
+              _this20.receptiondto.namerecipient = response['namerecipient'];
+              _this20.receptiondto.telrecipient = response['telrecipient'];
+              _this20.receptiondto.dommage = _this20.dommage;
+              _this20.receptiondto.commentaire = response['commentaire'];
+              _this20.receptiondto.envoisms = _this20.envoisms;
               /*
               this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
               this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
               */
 
-              _this18.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/pays/all", {
+              _this20.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/pays/all", {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                  'Authorization': 'Bearer ' + _this18.tokenStorage.getToken()
+                  'Authorization': 'Bearer ' + _this20.tokenStorage.getToken()
                 })
               }).subscribe(function () {
                 var response2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
                 console.log(response2);
-                _this18.countries = [];
+                _this20.countries = [];
                 response2.forEach(function (element) {
                   if (element['code'] == response['paysexpediteur']) {
                     console.log(" je suis i dans selectedCountry expediteur");
-                    _this18.selectedCountryexpediteur = {
+                    _this20.selectedCountryexpediteur = {
                       name: element['name'],
                       code: element['code']
                     };
@@ -3319,22 +3581,22 @@
 
                   if (element['code'] == response['paysrecipient']) {
                     console.log(" je suis i dans selectedCountry destinateur");
-                    _this18.selectedCountrydestinateur = {
+                    _this20.selectedCountrydestinateur = {
                       name: element['name'],
                       code: element['code']
                     };
                   }
 
-                  _this18.countries.push({
+                  _this20.countries.push({
                     name: element['name'],
                     code: element['code']
                   });
                 });
               }, function (error) {
-                _this18.showWarn("La liste des pays n'a pas pu etre chargé ");
+                _this20.showWarn("La liste des pays n'a pas pu etre chargé ");
               });
             }, function (error) {
-              _this18.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
+              _this20.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -3345,7 +3607,7 @@
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this19 = this;
+            var _this21 = this;
 
             console.log(emsForm);
 
@@ -3373,9 +3635,9 @@
                   'Authorization': 'Bearer ' + this.tokenStorage.getToken()
                 })
               }).subscribe(function (response) {
-                _this19.showSuccess("L'article a été mise à jour avec success !!! ");
+                _this21.showSuccess("L'article a été mise à jour avec success !!! ");
               }, function (error) {
-                _this19.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
               });
             } else {
               this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + emsForm['reference'], {
@@ -3387,36 +3649,36 @@
                   var _format = 'yyyy-MM-dd';
                   var _format_date = 'dd';
                   var _locale = 'en-US';
-                  _this19.receptiondto.reference = emsForm['reference'];
-                  _this19.receptiondto.type = emsForm['typearticle'];
-                  _this19.receptiondto.adresse = emsForm['adresse'];
-                  _this19.receptiondto.nomsender = emsForm['nomsender'];
-                  _this19.receptiondto.telexpediteur = emsForm['telexpediteur'];
-                  _this19.receptiondto.namerecipient = emsForm['namerecipient'];
-                  _this19.receptiondto.telrecipient = emsForm['telrecipient'];
-                  _this19.receptiondto.email = emsForm['email'];
-                  _this19.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(_this19.datereception, _format, _locale);
-                  _this19.receptiondto.dommage = _this19.dommage;
-                  _this19.receptiondto.commentaire = emsForm['commentaire'];
-                  _this19.receptiondto.envoisms = _this19.envoisms;
-                  _this19.receptiondto.paysrecipient = _this19.selectedCountrydestinateur['code'];
-                  _this19.receptiondto.paysexpediteur = _this19.selectedCountryexpediteur['code'];
-                  console.log(_this19.receptiondto);
+                  _this21.receptiondto.reference = emsForm['reference'];
+                  _this21.receptiondto.type = emsForm['typearticle'];
+                  _this21.receptiondto.adresse = emsForm['adresse'];
+                  _this21.receptiondto.nomsender = emsForm['nomsender'];
+                  _this21.receptiondto.telexpediteur = emsForm['telexpediteur'];
+                  _this21.receptiondto.namerecipient = emsForm['namerecipient'];
+                  _this21.receptiondto.telrecipient = emsForm['telrecipient'];
+                  _this21.receptiondto.email = emsForm['email'];
+                  _this21.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(_this21.datereception, _format, _locale);
+                  _this21.receptiondto.dommage = _this21.dommage;
+                  _this21.receptiondto.commentaire = emsForm['commentaire'];
+                  _this21.receptiondto.envoisms = _this21.envoisms;
+                  _this21.receptiondto.paysrecipient = _this21.selectedCountrydestinateur['code'];
+                  _this21.receptiondto.paysexpediteur = _this21.selectedCountryexpediteur['code'];
+                  console.log(_this21.receptiondto);
 
-                  var _reponse = _this19.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + _this19.value, _this19.receptiondto, {
+                  var _reponse = _this21.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + _this21.value, _this21.receptiondto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this19.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this21.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this19.showSuccess("L'article a été mise à jour avec success !!! ");
+                    _this21.showSuccess("L'article a été mise à jour avec success !!! ");
                   }, function (error) {
-                    _this19.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                    _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
                   });
                 } else {
-                  _this19.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this21.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 }
               }, function (error) {
-                _this19.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -3668,7 +3930,7 @@
         _createClass(NouveauesuuqComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this20 = this;
+            var _this22 = this;
 
             this.esuuqForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -3696,24 +3958,24 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this20.typeactivites = [];
+              _this22.typeactivites = [];
               response.forEach(function (element) {
                 console.log(element);
 
                 if (element['name'] == 'ESUUQ') {
-                  _this20.typeactivite = {
+                  _this22.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this20.typeactivites.push({
+                _this22.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this20.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - esuuq ");
+              _this22.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - esuuq ");
             });
             /**
             *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -3725,21 +3987,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this20.countries = [];
+              _this22.countries = [];
               response.forEach(function (element) {
-                _this20.countries.push({
+                _this22.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this20.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this22.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(esuuqForm) {
-            var _this21 = this;
+            var _this23 = this;
 
             /*
             let amontsection = esuuqForm['reference'].substring(0,2);
@@ -3761,38 +4023,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this21.receptiondto.reference = esuuqForm['reference'];
-                _this21.receptiondto.name = 'ESUUQ';
-                _this21.receptiondto.type = esuuqForm['typearticle'];
-                _this21.receptiondto.adresse = esuuqForm['adresse'];
-                _this21.receptiondto.nomsender = esuuqForm['nomsender'];
-                _this21.receptiondto.telexpediteur = esuuqForm['telexpediteur'];
-                _this21.receptiondto.namerecipient = esuuqForm['namerecipient'];
-                _this21.receptiondto.telrecipient = esuuqForm['telrecipient'];
-                _this21.receptiondto.email = esuuqForm['email'];
-                _this21.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(esuuqForm['datereception'], format, locale);
-                _this21.receptiondto.typearticle = _this21.typeactivite.code;
-                _this21.receptiondto.dommage = _this21.dommage;
-                _this21.receptiondto.commentaire = esuuqForm['commentaire'];
-                _this21.receptiondto.envoisms = _this21.envoisms;
-                _this21.receptiondto.paysrecipient = _this21.selectedCountrydestinateur['code'];
-                _this21.receptiondto.paysexpediteur = _this21.selectedCountryexpediteur['code'];
+                _this23.receptiondto.reference = esuuqForm['reference'];
+                _this23.receptiondto.name = 'ESUUQ';
+                _this23.receptiondto.type = esuuqForm['typearticle'];
+                _this23.receptiondto.adresse = esuuqForm['adresse'];
+                _this23.receptiondto.nomsender = esuuqForm['nomsender'];
+                _this23.receptiondto.telexpediteur = esuuqForm['telexpediteur'];
+                _this23.receptiondto.namerecipient = esuuqForm['namerecipient'];
+                _this23.receptiondto.telrecipient = esuuqForm['telrecipient'];
+                _this23.receptiondto.email = esuuqForm['email'];
+                _this23.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(esuuqForm['datereception'], format, locale);
+                _this23.receptiondto.typearticle = _this23.typeactivite.code;
+                _this23.receptiondto.dommage = _this23.dommage;
+                _this23.receptiondto.commentaire = esuuqForm['commentaire'];
+                _this23.receptiondto.envoisms = _this23.envoisms;
+                _this23.receptiondto.paysrecipient = _this23.selectedCountrydestinateur['code'];
+                _this23.receptiondto.paysexpediteur = _this23.selectedCountryexpediteur['code'];
 
-                _this21.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this21.receptiondto, {
+                _this23.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this23.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this21.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this23.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this21.showSuccess("Vous avez enregistrer avec success votre esuuq  !!! ");
+                  _this23.showSuccess("Vous avez enregistrer avec success votre esuuq  !!! ");
                 }, function (error) {
-                  _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre esuuq - La raison est voici : " + error.message);
+                  _this23.showError(" une erreur c'est produit et le système n'a pas enregitré votre esuuq - La raison est voici : " + error.message);
                 });
               } else {
-                _this21.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this23.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this23.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -3903,6 +4165,26 @@
         providers: [primeng_api__WEBPACK_IMPORTED_MODULE_8__["MessageService"]],
         styles: [_nouveauesuuq_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], NouveauesuuqComponent);
+      /***/
+    },
+
+    /***/
+    "AYXS":
+    /*!*********************************************!*\
+      !*** ./src/app/profil/profil.component.css ***!
+      \*********************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function AYXS(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9maWwuY29tcG9uZW50LmNzcyJ9 */";
       /***/
     },
 
@@ -4066,7 +4348,7 @@
         _createClass(OrdinaireComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this22 = this;
+            var _this24 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -4076,10 +4358,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this22.listems = response;
-              console.log(_this22.listems);
+              _this24.listems = response;
+              console.log(_this24.listems);
             }, function (error) {
-              _this22.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this24.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -4426,6 +4708,10 @@
                   icon: 'pi pi-fw pi-home',
                   routerLink: ['/dashboards/generic']
                 }]
+              }, {
+                label: 'Profil',
+                icon: 'pi pi-fw pi-forward',
+                routerLink: ['/profil']
               }]
             },
             /*
@@ -4445,23 +4731,23 @@
             /**
              * Gestion de parametrage
              */
-            {
-              label: 'Parametrage',
-              icon: 'pi pi-step-forward-alt',
-              items: [{
-                label: 'Utilisateurs',
-                icon: 'pi pi-fw pi-forward',
-                routerLink: ['/parametrage/utilisateurs']
-              }, {
-                label: 'Gestion d\'access ',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/parametrage/gestion/access']
-              }, {
-                label: 'Categorie',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/parametrage/categorie']
-              }]
-            },
+
+            /*{
+                label: 'Parametrage', icon: 'pi pi-step-forward-alt',
+                items: [
+                    {
+                        label: 'Utilisateurs', icon: 'pi pi-fw pi-forward',  routerLink: ['/parametrage/utilisateurs']
+                    },
+                    {
+                        label: 'Gestion d\'access ', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/gestion/access']
+                    },
+                    {
+                        label: 'Categorie', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/categorie']
+                    }
+                ]
+            }
+            ,*/
+
             /**
              * Gestion d'envoi
              */
@@ -4623,7 +4909,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Articles en stocks \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th style=\"width: 10%;\"> Reference </th>\n                        <th style=\"width: 8%;\">Date </th>\n                        <th style=\"width: 5%;\"> Etat </th>\n                        <th style=\"width: 10%;\"> Type </th>\n                        <th style=\"width: 15%;\"> Adresse </th>\n                        <th style=\"width: 10%;\"> Expediteur </th>\n                        <th  style=\"width: 10%;\"> Destinateur </th>\n                        <th  style=\"width: 10%;\"> Telephone 2 </th>\n                        \n                        <th  style=\"width: 10%;\"> Editeur </th>\n                        <th style=\"width: 10%;\"> Edition </th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.adresse}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n                        <td>  {{stocks.telrecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Articles en stocks \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div> \n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th style=\"width: 10%;\"> Reference </th>\n                        <th style=\"width: 8%;\">Date </th>\n                        <th style=\"width: 5%;\"> Etat </th>\n                        <th style=\"width: 10%;\"> Type </th>\n                        <th style=\"width: 15%;\"> Adresse </th>\n                        <th style=\"width: 10%;\"> Expediteur </th>\n                        <th  style=\"width: 10%;\"> Destinateur </th>\n                        <th  style=\"width: 10%;\"> Telephone 2 </th>\n                        \n                        <th  style=\"width: 10%;\"> Editeur </th>\n                        <th style=\"width: 10%;\"> Edition </th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.adresse}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n                        <td>  {{stocks.telrecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -4683,7 +4969,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(livre)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <!--\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(livre)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                        -->\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -4723,7 +5009,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-5\" style=\"text-align:left;\">\n                        <img src=\"assets/layout/images/logo.png\"  class=\"logo\" alt=\"avalon-ng\"/>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur E-Postal Djibouti</h2>\n                        <span class=\"guest-sign-in\">Connecté vous sur le reseau e-postal </span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
+      __webpack_exports__["default"] = "<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur E-Postal Djibouti</h2>\n                        <span class=\"guest-sign-in\">Connecté vous sur le reseau e-postal </span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
       /***/
     },
 
@@ -4816,7 +5102,7 @@
         _createClass(EsuuqComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this23 = this;
+            var _this25 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -4826,10 +5112,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this23.listesuuq = response;
-              console.log(_this23.listesuuq);
+              _this25.listesuuq = response;
+              console.log(_this25.listesuuq);
             }, function (error) {
-              _this23.showWarn("Les articles esuuq  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this25.showWarn("Les articles esuuq  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -5016,30 +5302,147 @@
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common */
+      "ofXK");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/common/http */
+      "tk/3");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var primeng_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! primeng/api */
+      "7zfz");
+      /* harmony import */
+
+
+      var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! src/app/auth/token-storage.service */
+      "dZLz");
+      /* harmony import */
+
+
+      var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! src/environments/environment.prod */
+      "cxbk");
 
       var RapportsventeComponent = /*#__PURE__*/function () {
-        function RapportsventeComponent() {
+        /**
+         *
+         * @param messageService
+         * @param httpClient
+         * @param router
+         * @param tokenStorage
+         */
+        function RapportsventeComponent(formBuilder, messageService, httpClient, router, tokenStorage) {
           _classCallCheck(this, RapportsventeComponent);
+
+          this.formBuilder = formBuilder;
+          this.messageService = messageService;
+          this.httpClient = httpClient;
+          this.router = router;
+          this.tokenStorage = tokenStorage;
+          this.rapportVentes = undefined;
+          this.rapportFormObject = {};
         }
 
         _createClass(RapportsventeComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            var _this26 = this;
+
+            this.rapportForm = this.formBuilder.group({
+              //'nom': new FormControl('', Validators.required),
+              'datedebut': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required),
+              'datefin': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required)
+            });
+            var format = 'yyyy-MM-dd';
+            var format_date = 'dd';
+            var locale = 'en-US';
+            console.log(new Date().getUTCFullYear());
+            this.rapportFormObject.datedebut = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])('01/01/' + new Date().getUTCFullYear(), format, locale);
+            this.rapportFormObject.datefin = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])('12/31/' + new Date().getUTCFullYear(), format, locale);
+            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/rapports", this.rapportFormObject, {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              console.log(response);
+              _this26.rapportVentes = response;
+            }, function (error) {});
+          }
+          /**
+           *
+           * @param value
+           */
+
+        }, {
+          key: "saveRapport",
+          value: function saveRapport(value) {
+            var _this27 = this;
+
+            console.log('je suis');
+            console.log(value);
+            var format = 'yyyy-MM-dd';
+            var format_date = 'dd';
+            var locale = 'en-US';
+            console.log(new Date().getUTCFullYear());
+            this.rapportFormObject.datedebut = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(value['datedebut'], format, locale);
+            this.rapportFormObject.datefin = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(value['datefin'], format, locale);
+            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/rapports", this.rapportFormObject, {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              console.log(response);
+              _this27.rapportVentes = response;
+            }, function (error) {});
+          }
         }]);
 
         return RapportsventeComponent;
       }();
 
       RapportsventeComponent.ctorParameters = function () {
-        return [];
+        return [{
+          type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"]
+        }, {
+          type: primeng_api__WEBPACK_IMPORTED_MODULE_8__["MessageService"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]
+        }, {
+          type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_9__["TokenStorageService"]
+        }];
       };
 
-      RapportsventeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+      RapportsventeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["Component"])({
         selector: 'app-rapportsvente',
         template: _raw_loader_rapportsvente_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_8__["MessageService"]],
         styles: [_rapportsvente_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], RapportsventeComponent);
       /***/
@@ -5161,7 +5564,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<p>rapportsvente works!</p>\n";
+      __webpack_exports__["default"] = "\n                <p-fieldset legend=\"Rapports  de recette \">\n                    <form [formGroup]=\"rapportForm\" (ngSubmit)=\"saveRapport(rapportForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                           \n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">     \n                                                       <label> Date debut <span class=\"required\">*</span></label>    \n                                                       <p-calendar name=\"datedebut\" formControlName=\"datedebut\" class=\"form-control\"></p-calendar>                           \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <label> Date fin <span class=\"required\">*</span></label>  \n                                                        <p-calendar name=\"datefin\"  formControlName=\"datefin\" class=\"form-control\"></p-calendar>                               \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    \n                                    <div class=\"p-col-2\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        &nbsp; \n                                                        <button pButton type=\"submit\" label=\"Valider\" class=\"p-button-raised p-button-rounded\" [disabled]=\"!rapportForm.valid\"></button>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <hr/>\n                            </div>\n                        </div>\n                    </form>\n\n                    <p-tabView>\n                        <p-tabPanel *ngFor=\"let vente of rapportVentes\" header=\"{{vente.month}}\">\n                           \n                            <p-table [value]=\"vente.ventes\" responsiveLayout=\"scroll\">\n                                <ng-template pTemplate=\"caption\">\n                                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\" style=\"text-align: center;\">\n                                        Vente du mois - {{vente.month}}\n                                    </div>\n                                </ng-template>\n                                <ng-template pTemplate=\"header\">                                    \n                                    <tr> <th *ngFor=\"let entente of vente.entete\"> {{entente}} </th> </tr>\n                                </ng-template>\n                                <ng-template pTemplate=\"body\" let-vtee>\n                                  \n                                    <tr>\n                                        <td> {{vtee.date}}</td>\n                                        <td *ngFor=\"let vt of vtee.ventes\"> {{vt}}</td>\n                                    </tr>\n                                </ng-template>\n                                \n                            </p-table>\n\n\n                        </p-tabPanel>\n\n                    </p-tabView>\n\n                </p-fieldset>\n\n\n               ";
       /***/
     },
 
@@ -5309,7 +5712,7 @@
         _createClass(NouveauventeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this24 = this;
+            var _this28 = this;
 
             this.typepaiement = {
               code: 'CASH',
@@ -5341,37 +5744,37 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this24.typeventes = [];
+              _this28.typeventes = [];
               response.forEach(function (element) {
-                _this24.typeventes.push({
+                _this28.typeventes.push({
                   code: element,
                   name: element['nom']
                 });
               });
             }, function (error) {
-              _this24.showError(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this28.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this24.listventes = response;
+              _this28.listventes = response;
             }, function (error) {
-              _this24.showError(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this28.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
             });
           }
         }, {
           key: "change",
           value: function change($event) {
-            var _this25 = this;
+            var _this29 = this;
 
             /**
              *  -- liste items
              */
             this.itemstypeventes = [];
             $event.value.code['items'].forEach(function (element) {
-              _this25.itemstypeventes.push({
+              _this29.itemstypeventes.push({
                 code: element,
                 name: element['nom']
               });
@@ -5392,7 +5795,7 @@
         }, {
           key: "save",
           value: function save(value) {
-            var _this26 = this;
+            var _this30 = this;
 
             console.log(value);
             var format = 'yyyy-MM-dd';
@@ -5421,34 +5824,34 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this26.venteForm.patchValue({
+              _this30.venteForm.patchValue({
                 type: undefined
               });
 
-              _this26.venteForm.patchValue({
+              _this30.venteForm.patchValue({
                 prix: undefined
               });
 
-              _this26.venteForm.patchValue({
+              _this30.venteForm.patchValue({
                 penalite: undefined
               });
 
-              _this26.typevente = undefined;
-              _this26.itemstypevente = undefined; //this.items = [];
+              _this30.typevente = undefined;
+              _this30.itemstypevente = undefined; //this.items = [];
 
-              _this26.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
+              _this30.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                  'Authorization': 'Bearer ' + _this26.tokenStorage.getToken()
+                  'Authorization': 'Bearer ' + _this30.tokenStorage.getToken()
                 })
               }).subscribe(function (response) {
-                _this26.listventes = response;
+                _this30.listventes = response;
               }, function (error) {
-                _this26.showError(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+                _this30.showError(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
               });
 
-              _this26.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
+              _this30.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
             }, function (error) {
-              _this26.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
+              _this30.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
             });
           }
           /**
@@ -5734,7 +6137,7 @@
         _createClass(TableaubordstocksComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this27 = this;
+            var _this31 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/stock/tableau/bord2", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -5766,13 +6169,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this27.basicData2 = {
+                _this31.basicData2 = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this27.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this31.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/stock/tableau/bord1", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -5804,13 +6207,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this27.basicData = {
+                _this31.basicData = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this27.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this31.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -5821,10 +6224,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this27.listems = response;
-              console.log(_this27.listems);
+              _this31.listems = response;
+              console.log(_this31.listems);
             }, function (error) {
-              _this27.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this31.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -6162,7 +6565,7 @@
         _createClass(LivraisonechoueComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this28 = this;
+            var _this32 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -6172,10 +6575,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this28.liste = response;
-              console.log(_this28.liste);
+              _this32.liste = response;
+              console.log(_this32.liste);
             }, function (error) {
-              _this28.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
+              _this32.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
             });
           }
           /**
@@ -6635,27 +7038,27 @@
         }, {
           key: "connexion",
           value: function connexion(value) {
-            var _this29 = this;
+            var _this33 = this;
 
             this.loginInfo = new _auth_models_login_info__WEBPACK_IMPORTED_MODULE_8__["AuthLoginInfo"](value['username'], value['password']);
             this.authService.attemptAuth(this.loginInfo).subscribe(function (data) {
-              _this29.tokenStorage.saveToken(data.accessToken);
+              _this33.tokenStorage.saveToken(data.accessToken);
 
-              _this29.tokenStorage.saveUsername(data.username);
+              _this33.tokenStorage.saveUsername(data.username);
 
-              _this29.tokenStorage.saveAuthorities(data.authorities);
+              _this33.tokenStorage.saveAuthorities(data.authorities);
 
-              _this29.isLoginFailed = false;
-              _this29.isLoggedIn = true;
-              _this29.roles = _this29.tokenStorage.getAuthorities(); //this.reloadPage();
+              _this33.isLoginFailed = false;
+              _this33.isLoggedIn = true;
+              _this33.roles = _this33.tokenStorage.getAuthorities(); //this.reloadPage();
 
-              _this29.router.navigate(['/accueil']);
+              _this33.router.navigate(['/accueil']);
             }, function (error) {
-              _this29.errorMessage = error.error.message;
+              _this33.errorMessage = error.error.message;
 
-              _this29.showError(_this29.errorMessage);
+              _this33.showError(_this33.errorMessage);
 
-              _this29.isLoginFailed = true;
+              _this33.isLoginFailed = true;
             });
           }
         }, {
@@ -7563,7 +7966,7 @@
         _createClass(RecommandeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this30 = this;
+            var _this34 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -7573,10 +7976,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this30.listrecommande = response;
-              console.log(_this30.listrecommande);
+              _this34.listrecommande = response;
+              console.log(_this34.listrecommande);
             }, function (error) {
-              _this30.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this34.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -7920,7 +8323,7 @@
         _createClass(RecommandereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this31 = this;
+            var _this35 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -7930,10 +8333,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this31.listems = response;
-              console.log(_this31.listems);
+              _this35.listems = response;
+              console.log(_this35.listems);
             }, function (error) {
-              _this31.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this35.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -8177,10 +8580,10 @@
         _createClass(AppCrudComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this32 = this;
+            var _this36 = this;
 
             this.productService.getProducts().then(function (data) {
-              return _this32.products = data;
+              return _this36.products = data;
             });
             this.cols = [{
               field: 'name',
@@ -8209,19 +8612,19 @@
         }, {
           key: "deleteSelectedProducts",
           value: function deleteSelectedProducts() {
-            var _this33 = this;
+            var _this37 = this;
 
             this.confirmationService.confirm({
               message: 'Are you sure you want to delete the selected products?',
               header: 'Confirm',
               icon: 'pi pi-exclamation-triangle',
               accept: function accept() {
-                _this33.products = _this33.products.filter(function (val) {
-                  return !_this33.selectedProducts.includes(val);
+                _this37.products = _this37.products.filter(function (val) {
+                  return !_this37.selectedProducts.includes(val);
                 });
-                _this33.selectedProducts = null;
+                _this37.selectedProducts = null;
 
-                _this33.messageService.add({
+                _this37.messageService.add({
                   severity: 'success',
                   summary: 'Successful',
                   detail: 'Products Deleted',
@@ -8239,19 +8642,19 @@
         }, {
           key: "deleteProduct",
           value: function deleteProduct(product) {
-            var _this34 = this;
+            var _this38 = this;
 
             this.confirmationService.confirm({
               message: 'Are you sure you want to delete ' + product.name + '?',
               header: 'Confirm',
               icon: 'pi pi-exclamation-triangle',
               accept: function accept() {
-                _this34.products = _this34.products.filter(function (val) {
+                _this38.products = _this38.products.filter(function (val) {
                   return val.id !== product.id;
                 });
-                _this34.product = {};
+                _this38.product = {};
 
-                _this34.messageService.add({
+                _this38.messageService.add({
                   severity: 'success',
                   summary: 'Successful',
                   detail: 'Product Deleted',
@@ -9307,6 +9710,12 @@
       var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__ = __webpack_require__(
       /*! ./apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component */
       "bUil");
+      /* harmony import */
+
+
+      var _profil_profil_component__WEBPACK_IMPORTED_MODULE_157__ = __webpack_require__(
+      /*! ./profil/profil.component */
+      "8IyQ");
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
@@ -9314,7 +9723,7 @@
 
       AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], primeng_accordion__WEBPACK_IMPORTED_MODULE_8__["AccordionModule"], primeng_autocomplete__WEBPACK_IMPORTED_MODULE_9__["AutoCompleteModule"], primeng_avatar__WEBPACK_IMPORTED_MODULE_10__["AvatarModule"], primeng_avatargroup__WEBPACK_IMPORTED_MODULE_11__["AvatarGroupModule"], primeng_badge__WEBPACK_IMPORTED_MODULE_12__["BadgeModule"], primeng_breadcrumb__WEBPACK_IMPORTED_MODULE_13__["BreadcrumbModule"], primeng_button__WEBPACK_IMPORTED_MODULE_14__["ButtonModule"], primeng_calendar__WEBPACK_IMPORTED_MODULE_15__["CalendarModule"], primeng_card__WEBPACK_IMPORTED_MODULE_16__["CardModule"], primeng_carousel__WEBPACK_IMPORTED_MODULE_17__["CarouselModule"], primeng_cascadeselect__WEBPACK_IMPORTED_MODULE_18__["CascadeSelectModule"], primeng_chart__WEBPACK_IMPORTED_MODULE_19__["ChartModule"], primeng_checkbox__WEBPACK_IMPORTED_MODULE_20__["CheckboxModule"], primeng_chip__WEBPACK_IMPORTED_MODULE_21__["ChipModule"], primeng_chips__WEBPACK_IMPORTED_MODULE_22__["ChipsModule"], primeng_codehighlighter__WEBPACK_IMPORTED_MODULE_23__["CodeHighlighterModule"], primeng_confirmdialog__WEBPACK_IMPORTED_MODULE_24__["ConfirmDialogModule"], primeng_confirmpopup__WEBPACK_IMPORTED_MODULE_25__["ConfirmPopupModule"], primeng_colorpicker__WEBPACK_IMPORTED_MODULE_26__["ColorPickerModule"], primeng_contextmenu__WEBPACK_IMPORTED_MODULE_27__["ContextMenuModule"], primeng_dataview__WEBPACK_IMPORTED_MODULE_28__["DataViewModule"], primeng_dialog__WEBPACK_IMPORTED_MODULE_29__["DialogModule"], primeng_divider__WEBPACK_IMPORTED_MODULE_30__["DividerModule"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_31__["DropdownModule"], primeng_fieldset__WEBPACK_IMPORTED_MODULE_32__["FieldsetModule"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_33__["FileUploadModule"], primeng_fullcalendar__WEBPACK_IMPORTED_MODULE_34__["FullCalendarModule"], primeng_galleria__WEBPACK_IMPORTED_MODULE_35__["GalleriaModule"], primeng_inplace__WEBPACK_IMPORTED_MODULE_36__["InplaceModule"], primeng_inputnumber__WEBPACK_IMPORTED_MODULE_37__["InputNumberModule"], primeng_inputmask__WEBPACK_IMPORTED_MODULE_38__["InputMaskModule"], primeng_inputswitch__WEBPACK_IMPORTED_MODULE_39__["InputSwitchModule"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_40__["InputTextModule"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_41__["InputTextareaModule"], primeng_knob__WEBPACK_IMPORTED_MODULE_42__["KnobModule"], primeng_lightbox__WEBPACK_IMPORTED_MODULE_43__["LightboxModule"], primeng_listbox__WEBPACK_IMPORTED_MODULE_44__["ListboxModule"], primeng_megamenu__WEBPACK_IMPORTED_MODULE_45__["MegaMenuModule"], primeng_menu__WEBPACK_IMPORTED_MODULE_46__["MenuModule"], primeng_menubar__WEBPACK_IMPORTED_MODULE_47__["MenubarModule"], primeng_message__WEBPACK_IMPORTED_MODULE_49__["MessageModule"], primeng_messages__WEBPACK_IMPORTED_MODULE_48__["MessagesModule"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_50__["MultiSelectModule"], primeng_orderlist__WEBPACK_IMPORTED_MODULE_51__["OrderListModule"], primeng_organizationchart__WEBPACK_IMPORTED_MODULE_52__["OrganizationChartModule"], primeng_overlaypanel__WEBPACK_IMPORTED_MODULE_53__["OverlayPanelModule"], primeng_paginator__WEBPACK_IMPORTED_MODULE_54__["PaginatorModule"], primeng_panel__WEBPACK_IMPORTED_MODULE_55__["PanelModule"], primeng_panelmenu__WEBPACK_IMPORTED_MODULE_56__["PanelMenuModule"], primeng_password__WEBPACK_IMPORTED_MODULE_57__["PasswordModule"], primeng_picklist__WEBPACK_IMPORTED_MODULE_58__["PickListModule"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_59__["ProgressBarModule"], primeng_radiobutton__WEBPACK_IMPORTED_MODULE_60__["RadioButtonModule"], primeng_rating__WEBPACK_IMPORTED_MODULE_61__["RatingModule"], primeng_ripple__WEBPACK_IMPORTED_MODULE_62__["RippleModule"], primeng_scrollpanel__WEBPACK_IMPORTED_MODULE_63__["ScrollPanelModule"], primeng_scrolltop__WEBPACK_IMPORTED_MODULE_64__["ScrollTopModule"], primeng_selectbutton__WEBPACK_IMPORTED_MODULE_65__["SelectButtonModule"], primeng_sidebar__WEBPACK_IMPORTED_MODULE_66__["SidebarModule"], primeng_skeleton__WEBPACK_IMPORTED_MODULE_67__["SkeletonModule"], primeng_slidemenu__WEBPACK_IMPORTED_MODULE_68__["SlideMenuModule"], primeng_slider__WEBPACK_IMPORTED_MODULE_69__["SliderModule"], primeng_splitbutton__WEBPACK_IMPORTED_MODULE_70__["SplitButtonModule"], primeng_splitter__WEBPACK_IMPORTED_MODULE_71__["SplitterModule"], primeng_steps__WEBPACK_IMPORTED_MODULE_72__["StepsModule"], primeng_table__WEBPACK_IMPORTED_MODULE_74__["TableModule"], primeng_tabmenu__WEBPACK_IMPORTED_MODULE_73__["TabMenuModule"], primeng_tabview__WEBPACK_IMPORTED_MODULE_75__["TabViewModule"], primeng_tag__WEBPACK_IMPORTED_MODULE_76__["TagModule"], primeng_terminal__WEBPACK_IMPORTED_MODULE_77__["TerminalModule"], primeng_timeline__WEBPACK_IMPORTED_MODULE_79__["TimelineModule"], primeng_tieredmenu__WEBPACK_IMPORTED_MODULE_78__["TieredMenuModule"], primeng_toast__WEBPACK_IMPORTED_MODULE_80__["ToastModule"], primeng_togglebutton__WEBPACK_IMPORTED_MODULE_81__["ToggleButtonModule"], primeng_toolbar__WEBPACK_IMPORTED_MODULE_82__["ToolbarModule"], primeng_tooltip__WEBPACK_IMPORTED_MODULE_83__["TooltipModule"], primeng_tree__WEBPACK_IMPORTED_MODULE_84__["TreeModule"], primeng_treetable__WEBPACK_IMPORTED_MODULE_85__["TreeTableModule"], primeng_virtualscroller__WEBPACK_IMPORTED_MODULE_86__["VirtualScrollerModule"], _app_code_component__WEBPACK_IMPORTED_MODULE_87__["AppCodeModule"]],
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_88__["AppComponent"], _app_main_component__WEBPACK_IMPORTED_MODULE_89__["AppMainComponent"], _app_menu_component__WEBPACK_IMPORTED_MODULE_95__["AppMenuComponent"], _app_menuitem_component__WEBPACK_IMPORTED_MODULE_96__["AppMenuitemComponent"], _app_topbar_component__WEBPACK_IMPORTED_MODULE_97__["AppTopBarComponent"], _app_footer_component__WEBPACK_IMPORTED_MODULE_98__["AppFooterComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _app_config_component__WEBPACK_IMPORTED_MODULE_90__["AppConfigComponent"], _demo_view_dashboarddemo_component__WEBPACK_IMPORTED_MODULE_100__["DashboardDemoComponent"], _demo_view_documentation_component__WEBPACK_IMPORTED_MODULE_101__["DocumentationComponent"], _demo_view_formlayoutdemo_component__WEBPACK_IMPORTED_MODULE_110__["FormLayoutDemoComponent"], _pages_app_notfound_component__WEBPACK_IMPORTED_MODULE_91__["AppNotfoundComponent"], _pages_app_error_component__WEBPACK_IMPORTED_MODULE_92__["AppErrorComponent"], _pages_app_accessdenied_component__WEBPACK_IMPORTED_MODULE_93__["AppAccessdeniedComponent"], _pages_app_login_component__WEBPACK_IMPORTED_MODULE_94__["AppLoginComponent"], _pages_app_crud_component__WEBPACK_IMPORTED_MODULE_111__["AppCrudComponent"], _pages_app_calendar_component__WEBPACK_IMPORTED_MODULE_112__["AppCalendarComponent"], _pages_app_timelinedemo_component__WEBPACK_IMPORTED_MODULE_113__["AppTimelineDemoComponent"], _pages_app_invoice_component__WEBPACK_IMPORTED_MODULE_114__["AppInvoiceComponent"], _pages_app_help_component__WEBPACK_IMPORTED_MODULE_115__["AppHelpComponent"], _apps_colis_reception_reception_component__WEBPACK_IMPORTED_MODULE_116__["ReceptionComponent"], _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_141__["RechercheComponent"], _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_142__["EnstockComponent"], _apps_parametrage_categorie_categorie_component__WEBPACK_IMPORTED_MODULE_117__["CategorieComponent"], _apps_parametrage_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_118__["UtilisateursComponent"], _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_119__["AccessComponent"], _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_120__["EmsComponent"], _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_121__["ColisComponent"], _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_122__["RecommandeComponent"], _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_123__["TableaubordComponent"], _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_124__["OrdinaireComponent"], _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_125__["EmsreceptionComponent"], _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_126__["TableaubordreceptionComponent"], _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_127__["RecommandereceptionComponent"], _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_128__["ColisreceptionComponent"], _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_129__["NouveauComponent"], _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_130__["EditionComponent"], _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_131__["NouveaucolisComponent"], _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_132__["EditioncolisComponent"], _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_133__["NouveaurecommandeComponent"], _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_134__["NouveauemsreceptionComponent"], _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_135__["EditreceptionComponent"], _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_136__["NouveaucolisreceptionComponent"], _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_137__["NouveaurecommandereceptionComponent"], _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_138__["NouveauordinairereceptionComponent"], _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_139__["SuiviComponent"], _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_140__["TableaubordstocksComponent"], _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_143__["EsuuqComponent"], _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_144__["NouveauesuuqComponent"], _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_145__["DefaillantComponent"], _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_146__["LivraisonComponent"], _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_147__["NouveaulivraisonComponent"], _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_148__["LivraisonreussiComponent"], _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_149__["LivraisonechoueComponent"], _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_150__["ParametrageComponent"], _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_151__["ParametrageVenteComponent"], _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_152__["NouveauventeComponent"], _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_153__["RapportsventeComponent"], _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__["TableaubordventeComponent"], _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_155__["OrdinaireenvoiComponent"], _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__["NouveauordinaireComponent"]],
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_88__["AppComponent"], _app_main_component__WEBPACK_IMPORTED_MODULE_89__["AppMainComponent"], _app_menu_component__WEBPACK_IMPORTED_MODULE_95__["AppMenuComponent"], _app_menuitem_component__WEBPACK_IMPORTED_MODULE_96__["AppMenuitemComponent"], _app_topbar_component__WEBPACK_IMPORTED_MODULE_97__["AppTopBarComponent"], _app_footer_component__WEBPACK_IMPORTED_MODULE_98__["AppFooterComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _app_config_component__WEBPACK_IMPORTED_MODULE_90__["AppConfigComponent"], _demo_view_dashboarddemo_component__WEBPACK_IMPORTED_MODULE_100__["DashboardDemoComponent"], _demo_view_documentation_component__WEBPACK_IMPORTED_MODULE_101__["DocumentationComponent"], _demo_view_formlayoutdemo_component__WEBPACK_IMPORTED_MODULE_110__["FormLayoutDemoComponent"], _pages_app_notfound_component__WEBPACK_IMPORTED_MODULE_91__["AppNotfoundComponent"], _pages_app_error_component__WEBPACK_IMPORTED_MODULE_92__["AppErrorComponent"], _pages_app_accessdenied_component__WEBPACK_IMPORTED_MODULE_93__["AppAccessdeniedComponent"], _pages_app_login_component__WEBPACK_IMPORTED_MODULE_94__["AppLoginComponent"], _pages_app_crud_component__WEBPACK_IMPORTED_MODULE_111__["AppCrudComponent"], _pages_app_calendar_component__WEBPACK_IMPORTED_MODULE_112__["AppCalendarComponent"], _pages_app_timelinedemo_component__WEBPACK_IMPORTED_MODULE_113__["AppTimelineDemoComponent"], _pages_app_invoice_component__WEBPACK_IMPORTED_MODULE_114__["AppInvoiceComponent"], _pages_app_help_component__WEBPACK_IMPORTED_MODULE_115__["AppHelpComponent"], _apps_colis_reception_reception_component__WEBPACK_IMPORTED_MODULE_116__["ReceptionComponent"], _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_141__["RechercheComponent"], _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_142__["EnstockComponent"], _apps_parametrage_categorie_categorie_component__WEBPACK_IMPORTED_MODULE_117__["CategorieComponent"], _apps_parametrage_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_118__["UtilisateursComponent"], _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_119__["AccessComponent"], _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_120__["EmsComponent"], _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_121__["ColisComponent"], _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_122__["RecommandeComponent"], _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_123__["TableaubordComponent"], _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_124__["OrdinaireComponent"], _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_125__["EmsreceptionComponent"], _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_126__["TableaubordreceptionComponent"], _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_127__["RecommandereceptionComponent"], _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_128__["ColisreceptionComponent"], _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_129__["NouveauComponent"], _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_130__["EditionComponent"], _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_131__["NouveaucolisComponent"], _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_132__["EditioncolisComponent"], _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_133__["NouveaurecommandeComponent"], _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_134__["NouveauemsreceptionComponent"], _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_135__["EditreceptionComponent"], _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_136__["NouveaucolisreceptionComponent"], _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_137__["NouveaurecommandereceptionComponent"], _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_138__["NouveauordinairereceptionComponent"], _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_139__["SuiviComponent"], _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_140__["TableaubordstocksComponent"], _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_143__["EsuuqComponent"], _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_144__["NouveauesuuqComponent"], _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_145__["DefaillantComponent"], _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_146__["LivraisonComponent"], _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_147__["NouveaulivraisonComponent"], _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_148__["LivraisonreussiComponent"], _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_149__["LivraisonechoueComponent"], _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_150__["ParametrageComponent"], _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_151__["ParametrageVenteComponent"], _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_152__["NouveauventeComponent"], _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_153__["RapportsventeComponent"], _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__["TableaubordventeComponent"], _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_155__["OrdinaireenvoiComponent"], _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__["NouveauordinaireComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _profil_profil_component__WEBPACK_IMPORTED_MODULE_157__["ProfilComponent"]],
         providers: [{
           provide: _angular_common__WEBPACK_IMPORTED_MODULE_6__["LocationStrategy"],
           useClass: _angular_common__WEBPACK_IMPORTED_MODULE_6__["HashLocationStrategy"]
@@ -9484,6 +9893,26 @@
 
 
       __webpack_exports__["default"] = "<div class=\"p-grid\">\n    <div class=\"p-col-12\">\n        <div class=\"card docs\">\n\n            <h4>Current Version</h4>\n            <p>Angular 11 and PrimeNG 11</p>\n\n            <h4>Dependencies</h4>\n            <p>Avalon has no direct dependency. More information about dependencies is available at <a href=\"https://www.primefaces.org/why-primeng-templates/\">Why PrimeNG Templates</a> article.</p>\n\n            <h4>Getting Started</h4>\n            <p>Avalon is a true native application template for Angular and is distributed as a CLI project. If you don't have CLI installed already run the following commands to set it up. In case\n            you have an application that do not use CLI, skip the <a href=\"#noncli\">Integration with an Existing Non CLI Application</a> part.</p>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"markup\">\nnpm install -g @angular/cli\n</app-code>\n\n            <p>Once CLI is ready in your system, extract the contents of the avalon zip file distribution, cd to the directory,\n            install the libraries from npm and then execute \"ng serve\" to run the application in your local environment at http://localhost:4200/.</p>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"markup\">\ncd avalon\nnpm install\nng serve\n</app-code>\n\n            <p>That's it, you may now start with the development of your application.</p>\n\n            <h4>Important CLI Commands</h4>\n            <p>Following commands are derived from CLI.</p>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"markup\">\nRun 'ng serve' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.\n\nRun 'ng generate component component-name' to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.\n\nRun 'ng build' to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.\n\nRun 'ng test' to execute the unit tests via [Karma](https://karma-runner.github.io).\n\nRun 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).\n\nRun 'ng help' for more options.\n</app-code>\n\n            <h4>Structure</h4>\n            <p>avalon consists of 3 main parts; the application layout, layout resources and theme resources for PrimeNG components. <i>app.component.html</i> inside app folder is the html template for the base layout,\n                required resources for the layout are placed inside the <i>src/assets/layout</i> folder and similarly theme resources are inside <i>src/assets/theme</i> folder.\n            </p>\n\n            <h4>Template</h4>\n            <p>Main layout is the html view of the app.component.ts, it is divided into a couple of sections such as topbar, profile, menu and footer. Here is the code for\n                the main template. The component class app.component.ts implements the logic such as opening menus, managing layout modes and so on.\n            </p>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"markup\">\n&lt;div class=\"layout-wrapper\" (click)=\"onLayoutClick()\"\n    [ngClass]=\"&#123;'menu-layout-static': app.layoutMode !== 'overlay',\n\t\t\t\t'menu-layout-overlay': app.layoutMode === 'overlay',\n\t\t\t\t'layout-menu-overlay-active': overlayMenuActive,\n\t\t\t\t'menu-layout-slim': app.layoutMode === 'slim',\n\t\t\t\t'menu-layout-horizontal': app.layoutMode === 'horizontal',\n\t\t\t\t'layout-menu-static-inactive': this.staticMenuDesktopInactive,\n\t\t\t\t'layout-menu-static-active': staticMenuMobileActive,\n                'p-input-filled': app.inputStyle === 'filled',\n                'p-ripple-disabled': !app.ripple&#125;\"&gt;\n\n    &lt;app-topbar&gt;&lt;/app-topbar&gt;\n\n    &lt;div class=\"layout-menu-container\" [ngClass]=\"&#123;'layout-menu-dark':app.darkMenu&#125;\" (click)=\"onMenuClick($event)\"&gt;\n        &lt;div class=\"menu-scroll-content\"&gt;\n            &lt;inline-profile *ngIf=\"app.profileMode=='inline'&&!isHorizontal()\"&gt;&lt;/inline-profile&gt;\n            &lt;app-menu&gt;&lt;/app-menu&gt;\n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=\"layout-main\"&gt;\n        &lt;router-outlet&gt;&lt;/router-outlet&gt;\n    &lt;/div&gt;\n\n    &lt;div class=\"layout-mask\"&gt;&lt;/div&gt;\n\n    &lt;app-config&gt;&lt;/app-config&gt;\n\n    &lt;app-footer&gt;&lt;/app-footer&gt;\n\n&lt;/div&gt;\n</app-code>\n\n            <h4>Menu</h4>\n            <p>Menu is a separate component defined in app.menu.component.ts file based on PrimeNG MenuModel API. In order to define the menuitems,\n            navigate to this file and define your own model as a nested structure. Here is the menu component from the sample application.</p>\n<div style=\"height:400px;overflow: auto;\">\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"javascript\">\nimport &#123;Component, OnInit&#125; from '@angular/core';\n\n@Component(&#123;\n    selector: 'app-menu',\n    template: `\n    &lt;ul class=&quot;layout-menu layout-main-menu clearfix&quot;&gt;\n        &lt;li app-menuitem *ngFor=&quot;let item of model; let i = index;&quot; [item]=&quot;item&quot; [index]=&quot;i&quot; [root]=&quot;true&quot;&gt;&lt;/li&gt;\n    &lt;/ul&gt;\n    `\n&#125;)\nexport class AppMenuComponent implements OnInit &#123;\n\n    model: any[];\n\n    ngOnInit() &#123;\n        this.model = [\n            &#123;\n                label: 'Favorites', icon: 'pi pi-home',\n                items: [\n                    &#123;\n                        label: 'Dashboards', icon: 'pi pi-fw pi-home', routerLink: ['/dashboards'],\n                        items: [\n                            &#123;label: 'Generic', icon: 'pi pi-fw pi-home', routerLink: ['/dashboards/generic']&#125;,\n                            &#123;label: 'Banking', icon: 'pi pi-fw pi-money-bill', routerLink: ['/dashboards/dashboard_banking']&#125;,\n                        ]\n                    &#125;\n                ]\n            &#125;,\n            &#123;\n                label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],\n                items: [\n                    &#123;label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']&#125;,\n                    &#123;label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']&#125;,\n                    &#123;label: 'Float Label', icon: 'pi pi-bookmark', routerLink: ['/uikit/floatlabel']&#125;,\n                    &#123;label: 'Invalid State', icon: 'pi pi-exclamation-circle', routerLink: ['/uikit/invalidstate']&#125;,\n                    &#123;label: 'Button', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'&#125;,\n                    &#123;label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']&#125;,\n                    &#123;label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list']&#125;,\n                    &#123;label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree']&#125;,\n                    &#123;label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']&#125;,\n                    &#123;label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']&#125;,\n                    &#123;label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu']&#125;,\n                    &#123;label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']&#125;,\n                    &#123;label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']&#125;,\n                    &#123;label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']&#125;,\n                    &#123;label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']&#125;\n                ]\n            &#125;,\n            &#123;\n                label: 'Utilities', icon: 'pi pi-fw pi-compass', routerLink: ['utilities'],\n                items: [\n                    &#123;label: 'Display', icon: 'pi pi-fw pi-desktop', routerLink: ['utilities/display']&#125;,\n                    &#123;label: 'Elevation', icon: 'pi pi-fw pi-external-link', routerLink: ['utilities/elevation']&#125;,\n                    &#123;label: 'FlexBox', icon: 'pi pi-fw pi-directions', routerLink: ['utilities/flexbox']&#125;,\n                    &#123;label: 'Icons', icon: 'pi pi-fw pi-search', routerLink: ['utilities/icons']&#125;,\n                    &#123;label: 'Text', icon: 'pi pi-fw pi-pencil', routerLink: ['utilities/text']&#125;,\n                    &#123;label: 'Widgets', icon: 'pi pi-fw pi-star-o', routerLink: ['utilities/widgets']&#125;,\n                    &#123;label: 'Grid System', icon: 'pi pi-fw pi-th-large', routerLink: ['utilities/grid']&#125;,\n                    &#123;label: 'Spacing', icon: 'pi pi-fw pi-arrow-right', routerLink: ['utilities/spacing']&#125;,\n                    &#123;label: 'Typography', icon: 'pi pi-fw pi-align-center', routerLink: ['utilities/typography']&#125;\n                ]\n            &#125;,\n            &#123;\n                label: 'Pages', icon: 'pi pi-fw pi-clone', routerLink: ['/pages'],\n                items: [\n                    &#123;label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']&#125;,\n                    &#123;label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']&#125;,\n                    &#123;label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']&#125;,\n                    &#123;label: 'Landing Page', icon: 'pi pi-fw pi-user-plus', url: 'assets/pages/landing.html', target: '_blank'&#125;,\n                    &#123;label: 'Login Page', icon: 'pi pi-fw pi-question-circle', routerLink: ['/login'], target: '_blank'&#125;,\n                    &#123;label: 'Invoice', icon: 'pi pi-fw pi-dollar', routerLink: ['/pages/invoice']&#125;,\n                    &#123;label: 'Wizard', icon: 'pi pi-fw pi-star', routerLink: ['/wizard']&#125;,\n                    &#123;label: 'Help Page', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/help']&#125;,\n                    &#123;label: 'Error Page', icon: 'pi pi-fw pi-times-circle', routerLink: ['/error'], target: '_blank'&#125;,\n                    &#123;label: 'Not Found Page', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/notfound'], target: '_blank'&#125;,\n                    &#123;label: 'Access Denied Page', icon: 'pi pi-fw pi-lock', routerLink: ['/accessdenied'], target: '_blank'&#125;,\n                    &#123;label: 'Empty Page', icon: 'pi pi-fw pi-circle-off', routerLink: ['/pages/empty']&#125;\n                ]\n            &#125;,\n            &#123;\n                label: 'Menu Hierarchy', icon: 'pi pi-fw pi-sort-amount-down-alt',\n                items: [\n                    &#123;\n                        label: 'Submenu 1', icon: 'pi pi-fw pi-circle-off',\n                        items: [\n                            &#123;\n                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-circle-off',\n                                items: [\n                                    &#123;label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-circle-off'&#125;,\n                                    &#123;label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-circle-off'&#125;,\n                                    &#123;label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-circle-off'&#125;,\n                                ]\n                            &#125;,\n                            &#123;\n                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-circle-off',\n                                items: [\n                                    &#123;label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-circle-off'&#125;,\n                                    &#123;label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-circle-off'&#125;\n                                ]\n                            &#125;,\n                        ]\n                    &#125;,\n                    &#123;\n                        label: 'Submenu 2', icon: 'pi pi-fw pi-circle-off',\n                        items: [\n                            &#123;\n                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-circle-off',\n                                items: [\n                                    &#123;label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-circle-off'&#125;,\n                                    &#123;label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-circle-off'&#125;,\n                                    &#123;label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-circle-off'&#125;,\n                                ]\n                            &#125;,\n                            &#123;\n                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-circle-off',\n                                items: [\n                                    &#123;label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-circle-off'&#125;,\n                                    &#123;label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-circle-off'&#125;\n                                ]\n                            &#125;,\n                        ]\n                    &#125;\n                ]\n            &#125;,\n            &#123;\n                label: 'Start', icon: 'pi pi-download',\n                items: [\n                    &#123;\n                        label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']\n                    &#125;,\n                    &#123;\n                        label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']\n                    &#125;\n                ]\n            &#125;\n        ];\n    &#125;\n&#125;\n</app-code>\n</div>\n\n\n            <h4>Integration with an Existing CLI Project</h4>\n            <p>To setup avalon in an existing project, copy the <i>src/assets</i> folder to your projects folder with the same name\n                and replace the contents of app.component.ts, app.component.html with their counterparts in avalon under <i>src/app</i> folder.</p>\n\n            <p>Install PrimeNG</p>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"markup\">\nnpm install primeng@latest --save\nnpm install primeicons@latest --save\n</app-code>\n\n            <p>Add PrimeNG CSS at styles section in angular.json.</p>\n\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"markup\">\n\"styles\": [\n    \"styles.scss\"                                               //your styles and overrides\n],\n</app-code>\n\n            <p>Last part is adding theme and layout css files, in the CLI app they are defined using link tags in index.html so the demo can switch them on\n            the fly by changing the path however if this is not a requirement, you may also add them to the styles configuration so they go inside the bundle.</p>\n\n            <h4 id=\"noncli\">Integration with an Existing Non-CLI Project</h4>\n            <p>For an existing project that do not use CLI, setup steps are more or less similar. Start with installing the dependencies listed above in package.json</p>\n            <p>Copy the <i>src/assets</i> folder to your application and include the resources listed above with a module bundler like webpack or using link-script tags.</p>\n            <p>Finally copy the contents of app.component.html to your application's main component template such as <i>app/application.html</i> along\n            with the sub components which are app.menu.component.ts, app.profile.components.ts, app.topbar.component.ts and app.footer.component.ts.</p>\n\n            <h4>Theme</h4>\n            <p>Avalon provides 15 PrimeNG themes out of the box, setup of a theme simple including the css of theme to your application. All themes are located inside are located inside assets/theme folder.</p>\n\n            <ul>\n                <li>theme-amber</li>\n                <li>theme-blue</li>\n                <li>theme-brown</li>\n                <li>theme-cyan</li>\n                <li>theme-darkgrey</li>\n                <li>theme-deeppurple</li>\n                <li>theme-green</li>\n                <li>theme-indigo</li>\n                <li>theme-lightblue</li>\n                <li>theme-lightgreen</li>\n                <li>theme-lime</li>\n                <li>theme-orange</li>\n                <li>theme-pink</li>\n                <li>theme-purple</li>\n                <li>theme-teal</li>\n            </ul>\n\n            <p>A custom theme can be developed by the following steps.</p>\n            <ul>\n                <li>Choose a custom theme name such as theme-myown.</li>\n                <li>Create a file named theme-myown.scss under <i>assets/theme folder</i>.</li>\n                <li>Define the variables listed below and import the <i>/sass/theme/_theme.scss</i> file.</li>\n                <li>Build the scss to generate css</li>\n                <li>Include the generated theme.css to your page.</li>\n            </ul>\n\n            <p>Here are the variables required to create a theme, you may need to change the last line according to the\n                relative path of the sass folder in your application.</p>\n\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"css\">\n$primaryLightColor: rgba(38,143,255,.5);\n$primaryColor: #007bff;\n$primaryDarkColor: #0069d9;\n$primaryDarkerColor: #0062cc;\n$primaryTextColor: #ffffff;\n\n$highlightBg: $primaryColor;\n$highlightTextColor: $primaryTextColor;\n\n@import '../sass/theme/_theme';\n</app-code>\n\n            <p> An example sass command to compile the css would be;</p>\n\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"markup\">\nsass src/assets/theme/theme-myown.scss src/assets/theme/theme-myown.css\n</app-code>\n\n            <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command\n            so that sass generates the file whenever you make a customization. This builds all css files whenever a change is made to any scss file.</p>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"markup\">\nsass --watch src/:src/ --no-source-map\n</app-code>\n\n            <p>Same can also be applied to layout itself;</p>\n            <ul>\n                <li>Choose a layout name such as layout-myown.</li>\n                <li>Create an empty file named layout-myown.scss inside <i>assets/layout/css</i> folder.</li>\n                <li>Define the variables listed below and import the <i>/sass/layout/_layout.scss</i> file.</li>\n                <li>Build the scss to generate css</li>\n                <li>Serve the css by importing it using a link tag or a bundler.</li>\n            </ul>\n\n            <p>Here are the variables required to create a layout, you may need to change the last line according to the\n                relative path of the sass folder in your application.</p>\n\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"css\">\n$topbarLeftGradientStartBgColor:#ff8f00;\n$topbarLeftGradientEndBgColor:#ffb300;\n$topbarRightGradientStartBgColor:#ff8f00;\n$topbarRightGradientEndBgColor:#ffb300;\n$topbarTextColor:#ffffff;\n$menuGradientStartBgColor:#ffffff;\n$menuGradientEndBgColor:#ffffff;\n$menuitemHoverBgColor:#e8e8e8;\n$menuitemActiveColor: #ff8f00;\n$menuitemActiveBgColor:#e8e8e8;\n$menuButtonBgColor:#ffffff;\n$menuButtonColor:#ff6f00;\n$badgeBgColor:#3eb839;\n$badgeColor:#ffffff;\n$darkMenuGradientStartBgColor:#363a41;\n$darkMenuGradientEndBgColor:#363a41;\n$darkMenuHoverBgColor:#4a4d54;\n$darkMenuMenuitemColor:#ffffff;\n$darkMenuMenuitemActiveColor:#ffe57f;\n$darkMenuMenuitemActiveBgColor:#282b30;\n\n@import '../../sass/layout/_layout';\n</app-code>\n\n            <h4>Common SASS Variables</h4>\n            <p>In case you'd like to customize common variables, the _common.scss under sass variables folder is where the core variables (e.g. font size, paddings) for the layout are defined.</p>\n\n<h5>sass/layout/_variables.scss</h5>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"css\">\n$fontFamily:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\";\n$fontSize:14px;\n$textColor:#292B2C;\n$textSecondaryColor:#777777;\n$borderRadius:4px;\n$dividerColor:#e5e5e5;\n$transitionDuration:.3s;\n$disabledBgColor:#eeeeee;\n\n/* Predefined Colors */\n$lightestGray:#f5f5f5;\n$lightGray:#cccccc;\n$gray:#999999;\n$darkGray:#777777;\n$white:#ffffff;\n\n$blue:#007bff;\n$purple:#9189fd;\n$orange:#ffbf79;\n$lightBlue:#8dc8ff;\n$pink:#f790c8;\n$indigo:#6610f2;\n$green:#3e9018;\n$red:#da2f31;\n$orange:#ffb200;\n$teal:#599597;\n$black:#000000;\n$yellow:#ffd644;\n\n\n$inputInvalidBorderColor:#b94a48;\n$inputInvalidBgColor:#ffffff;\n</app-code>\n\n            <h5>sass/theme/_variables.scss</h5>\n<div style=\"height:400px;overflow: auto;\">\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"css\">\n//reused color variables\n$shade000:#ffffff;              //surface\n$shade100:rgba(0,0,0,.03);      //header background\n$shade200:#e9ecef;              //hover background\n$shade300:#dee2e6;              //border, divider\n$shade400:#ced4da;              //input border\n$shade500:#adb5bd;              //unused\n$shade600:#6c757d;              //text secondary color\n$shade700:#495057;              //input text color\n$shade800:#343a40;              //unused\n$shade900:#212529;              //text color\n\n//global\n$fontFamily:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n$fontSize:1rem;\n$fontWeight:normal;\n$textColor:$shade900;\n$textSecondaryColor:$shade600;\n$borderRadius:4px;\n$transitionDuration:.15s;\n$formElementTransition:background-color $transitionDuration, border-color $transitionDuration, box-shadow $transitionDuration;\n$actionIconTransition:box-shadow $transitionDuration;\n$listItemTransition:box-shadow $transitionDuration;\n$primeIconFontSize:1rem;\n$divider:1px solid $shade300;\n$inlineSpacing:.5rem;\n$disabledOpacity:.65;\n$maskBg:rgba(0, 0, 0, 0.4);\n$loadingIconFontSize:2rem;\n$errorColor:#dc3545;\n\n//scale\n$scaleSM:0.875;\n$scaleLG:1.25;\n\n//focus\n$focusOutlineColor:$primaryLightColor;\n$focusOutline:0 none;\n$focusOutlineOffset:0;\n$focusShadow:0 0 0 0.2rem $focusOutlineColor;\n\n//action icons\n$actionIconWidth:2rem;\n$actionIconHeight:2rem;\n$actionIconBg:transparent;\n$actionIconBorder:0 none;\n$actionIconColor:$shade600;\n$actionIconHoverBg:transparent;\n$actionIconHoverBorderColor:transparent;\n$actionIconHoverColor:$shade700;\n$actionIconBorderRadius:50%;\n\n//input field (e.g. inputtext, spinner, inputmask)\n$inputPadding:.5rem .75rem;\n$inputTextFontSize:1rem;\n$inputBg:$shade000;\n$inputTextColor:$shade700;\n$inputIconColor:$shade700;\n$inputBorder:1px solid $shade400;\n$inputHoverBorderColor:$shade400;\n$inputFocusBorderColor:$primaryColor;\n$inputErrorBorderColor:$errorColor;\n$inputPlaceholderTextColor:$shade600;\n$inputFilledBg:$shade100;\n$inputFilledHoverBg:$shade100;\n$inputFilledFocusBg:$shade100;\n\n//input groups\n$inputGroupBg:$shade200;\n$inputGroupTextColor:$shade700;\n$inputGroupAddOnMinWidth:2.357rem;\n\n//input lists (e.g. dropdown, autocomplete, multiselect, orderlist)\n$inputListBg:$shade000;\n$inputListTextColor:$shade900;\n$inputListBorder:$inputBorder;\n$inputListPadding:.5rem 0;\n$inputListItemPadding:.5rem 1.5rem;\n$inputListItemBg:transparent;\n$inputListItemTextColor:$shade900;\n$inputListItemHoverBg:$shade200;\n$inputListItemTextHoverColor:$shade900;\n$inputListItemBorder:0 none;\n$inputListItemBorderRadius:0;\n$inputListItemMargin:0;\n$inputListItemFocusShadow:inset 0 0 0 0.15rem $focusOutlineColor;\n$inputListHeaderPadding:.75rem 1.5rem;\n$inputListHeaderMargin:0;\n$inputListHeaderBg:$shade100;\n$inputListHeaderTextColor:$shade900;\n$inputListHeaderBorder:1px solid $shade300;\n\n//inputs with overlays (e.g. autocomplete, dropdown, multiselect)\n$inputOverlayBg:$inputListBg;\n$inputOverlayHeaderBg:$inputListHeaderBg;\n$inputOverlayBorder:1px solid rgba(0,0,0,.15);\n$inputOverlayShadow:none;\n\n//button\n$buttonPadding:.5rem .75rem;\n$buttonIconOnlyWidth:2.357rem;\n$buttonIconOnlyPadding:.5rem 0;\n$buttonBg:$primaryColor;\n$buttonTextColor:$primaryTextColor;\n$buttonBorder:1px solid $primaryColor;\n$buttonHoverBg:$primaryDarkColor;\n$buttonTextHoverColor:$primaryTextColor;\n$buttonHoverBorderColor:$primaryDarkColor;\n$buttonActiveBg:$primaryDarkerColor;\n$buttonTextActiveColor:$primaryTextColor;\n$buttonActiveBorderColor:$primaryDarkerColor;\n$raisedButtonShadow:0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);\n$roundedButtonBorderRadius:2rem;\n\n$textButtonHoverBgOpacity:.04;\n$textButtonActiveBgOpacity:.16;\n$outlinedButtonBorder:1px solid;\n$plainButtonTextColor:$textSecondaryColor;\n$plainButtonHoverBgColor:$shade200;\n$plainButtonActiveBgColor:$shade300;\n\n$secondaryButtonBg:#6c757d;\n$secondaryButtonTextColor:#ffffff;\n$secondaryButtonBorder:1px solid #6c757d;\n$secondaryButtonHoverBg:#5a6268;\n$secondaryButtonTextHoverColor:#ffffff;\n$secondaryButtonHoverBorderColor:#5a6268;\n$secondaryButtonActiveBg:#545b62;\n$secondaryButtonTextActiveColor:#ffffff;\n$secondaryButtonActiveBorderColor:#4e555b;\n$secondaryButtonFocusShadow:0 0 0 0.2rem rgba(130,138,145,.5);\n\n$infoButtonBg:#17a2b8;\n$infoButtonTextColor:#ffffff;\n$infoButtonBorder:1px solid #17a2b8;\n$infoButtonHoverBg:#138496;\n$infoButtonTextHoverColor:#ffffff;\n$infoButtonHoverBorderColor:#117a8b;\n$infoButtonActiveBg:#138496;\n$infoButtonTextActiveColor:#ffffff;\n$infoButtonActiveBorderColor:#117a8b;\n$infoButtonFocusShadow:0 0 0 0.2rem rgba(58,176,195,.5);\n\n$successButtonBg:#28a745;\n$successButtonTextColor:#ffffff;\n$successButtonBorder:1px solid #28a745;\n$successButtonHoverBg:#218838;\n$successButtonTextHoverColor:#ffffff;\n$successButtonHoverBorderColor:#1e7e34;\n$successButtonActiveBg:#1e7e34;\n$successButtonTextActiveColor:#ffffff;\n$successButtonActiveBorderColor:#1c7430;\n$successButtonFocusShadow:0 0 0 0.2rem rgba(72,180,97,.5);\n\n$warningButtonBg:#ffc107;\n$warningButtonTextColor:#212529;\n$warningButtonBorder:1px solid #ffc107;\n$warningButtonHoverBg:#e0a800;\n$warningButtonTextHoverColor:#212529;\n$warningButtonHoverBorderColor:#d39e00;\n$warningButtonActiveBg:#d39e00;\n$warningButtonTextActiveColor:#212529;\n$warningButtonActiveBorderColor:#c69500;\n$warningButtonFocusShadow:0 0 0 0.2rem rgba(222,170,12,.5);\n\n$helpButtonBg:#6f42c1;\n$helpButtonTextColor:#ffffff;\n$helpButtonBorder:1px solid #6f42c1;\n$helpButtonHoverBg:#633bad;\n$helpButtonTextHoverColor:#ffffff;\n$helpButtonHoverBorderColor:#58349a;\n$helpButtonActiveBg:#58349a;\n$helpButtonTextActiveColor:#ffffff;\n$helpButtonActiveBorderColor:#4d2e87;\n$helpButtonFocusShadow:0 0 0 0.2rem #d3c6ec;\n\n$dangerButtonBg:#dc3545;\n$dangerButtonTextColor:#ffffff;\n$dangerButtonBorder:1px solid #dc3545;\n$dangerButtonHoverBg:#c82333;\n$dangerButtonTextHoverColor:#ffffff;\n$dangerButtonHoverBorderColor:#bd2130;\n$dangerButtonActiveBg:#bd2130;\n$dangerButtonTextActiveColor:#ffffff;\n$dangerButtonActiveBorderColor:#b21f2d;\n$dangerButtonFocusShadow:0 0 0 0.2rem rgba(225,83,97,.5);\n\n$linkButtonColor:$primaryColor;\n$linkButtonHoverColor:$primaryDarkColor;\n$linkButtonTextHoverDecoration:underline;\n$linkButtonFocusShadow:0 0 0 0.2rem $focusOutlineColor;\n\n//checkbox\n$checkboxWidth:20px;\n$checkboxHeight:20px;\n$checkboxBorder:2px solid $shade400;\n$checkboxIconFontSize:14px;\n$checkboxActiveBorderColor:$primaryColor;\n$checkboxActiveBg:$primaryColor;\n$checkboxIconActiveColor:$primaryTextColor;\n$checkboxActiveHoverBg:$primaryDarkerColor;\n$checkboxIconActiveHoverColor:$primaryTextColor;\n$checkboxActiveHoverBorderColor:$primaryDarkerColor;\n\n//radiobutton\n$radiobuttonWidth:20px;\n$radiobuttonHeight:20px;\n$radiobuttonBorder:2px solid $shade400;\n$radiobuttonIconSize:12px;\n$radiobuttonActiveBorderColor:$primaryColor;\n$radiobuttonActiveBg:$primaryColor;\n$radiobuttonIconActiveColor:$primaryTextColor;\n$radiobuttonActiveHoverBg:$primaryDarkerColor;\n$radiobuttonIconActiveHoverColor:$primaryTextColor;\n$radiobuttonActiveHoverBorderColor:$primaryDarkerColor;\n\n//colorpicker\n$colorPickerPreviewWidth:2rem;\n$colorPickerPreviewHeight:2rem;\n$colorPickerBg:#212529;\n$colorPickerBorderColor:#212529;\n$colorPickerHandleColor:$shade000;\n\n//togglebutton\n$toggleButtonBg:#6c757d;\n$toggleButtonBorder:1px solid #6c757d;\n$toggleButtonTextColor:#ffffff;\n$toggleButtonIconColor:#ffffff;\n$toggleButtonHoverBg:#5a6268;\n$toggleButtonHoverBorderColor:#545b62;\n$toggleButtonTextHoverColor:#ffffff;\n$toggleButtonIconHoverColor:#ffffff;\n$toggleButtonActiveBg:#545b62;\n$toggleButtonActiveBorderColor:#4e555b;\n$toggleButtonTextActiveColor:#ffffff;\n$toggleButtonIconActiveColor:#ffffff;\n$toggleButtonActiveHoverBg:#545b62;\n$toggleButtonActiveHoverBorderColor:#4e555b;\n$toggleButtonTextActiveHoverColor:#ffffff;\n$toggleButtonIconActiveHoverColor:#ffffff;\n\n//inplace\n$inplacePadding:$inputPadding;\n$inplaceHoverBg:$shade200;\n$inplaceTextHoverColor:$shade900;\n\n//rating\n$ratingIconFontSize:1.143rem;\n$ratingCancelIconColor:#dc3545;\n$ratingCancelIconHoverColor:#dc3545;\n$ratingStarIconOffColor:$shade700;\n$ratingStarIconOnColor:$primaryColor;\n$ratingStarIconHoverColor:$primaryColor;\n\n//slider\n$sliderBg:$shade200;\n$sliderBorder:0 none;\n$sliderHorizontalHeight:.286rem;\n$sliderVerticalWidth:0.286rem;\n$sliderHandleWidth:1.143rem;\n$sliderHandleHeight:1.143rem;\n$sliderHandleBg:$primaryColor;\n$sliderHandleBorder:2px solid $primaryColor;\n$sliderHandleBorderRadius:$borderRadius;\n$sliderHandleHoverBorderColor:$primaryDarkColor;\n$sliderHandleHoverBg:$primaryDarkColor;\n$sliderRangeBg:$primaryColor;\n\n//calendar\n$calendarTableMargin:.5rem 0;\n$calendarPadding:0;\n$calendarBg:$shade000;\n$calendarInlineBg:$calendarBg;\n$calendarTextColor:$shade900;\n$calendarBorder:$inputListBorder;\n$calendarOverlayBorder:$inputOverlayBorder;\n\n$calendarHeaderPadding:.5rem;\n$calendarHeaderBg:$shade100;\n$calendarInlineHeaderBg:$calendarBg;\n$calendarHeaderBorder:1px solid $shade300;\n$calendarHeaderTextColor:$shade900;\n$calendarHeaderFontWeight:600;\n$calendarHeaderCellPadding:.5rem;\n\n$calendarCellDatePadding:.5rem;\n$calendarCellDateWidth:2.5rem;\n$calendarCellDateHeight:2.5rem;\n$calendarCellDateBorderRadius:$borderRadius;\n$calendarCellDateBorder:1px solid transparent;\n$calendarCellDateHoverBg:$shade200;\n$calendarCellDateTodayBg:$shade400;\n$calendarCellDateTodayBorderColor:transparent;\n$calendarCellDateTodayTextColor:$shade900;\n\n$calendarButtonBarPadding:1rem 0;\n$calendarTimePickerPadding:.5rem;\n$calendarTimePickerElementPadding:0 .5rem;\n$calendarTimePickerTimeFontSize:1.25rem;\n\n$calendarBreakpoint:769px;\n$calendarCellDatePaddingSM:0;\n\n//input switch\n$inputSwitchWidth:3rem;\n$inputSwitchHeight:1.75rem;\n$inputSwitchBorderRadius:$borderRadius;\n$inputSwitchHandleWidth:1.250rem;\n$inputSwitchHandleHeight:1.250rem;\n$inputSwitchHandleBorderRadius:$borderRadius;\n$inputSwitchSliderPadding:.25rem;\n$inputSwitchSliderOffBg:$shade400;\n$inputSwitchHandleOffBg:$shade000;\n$inputSwitchSliderOffHoverBg:$shade400;\n$inputSwitchSliderOnBg:$primaryColor;\n$inputSwitchSliderOnHoverBg:$primaryColor;\n$inputSwitchHandleOnBg:$shade000;\n\n//panel\n$panelHeaderBorder:1px solid $shade300;\n$panelHeaderBg:$shade100;\n$panelHeaderTextColor:$shade900;\n$panelHeaderFontWeight:600;\n$panelHeaderPadding:1rem 1.25rem;\n$panelToggleableHeaderPadding:.5rem 1.25rem;\n\n$panelHeaderHoverBg:$shade200;\n$panelHeaderHoverBorderColor:$shade300;\n$panelHeaderTextHoverColor:$shade900;\n\n$panelContentBorder:1px solid $shade300;\n$panelContentBg:$shade000;\n$panelContentTextColor:$shade900;\n$panelContentPadding:1.25rem;\n\n$panelFooterBorder:1px solid $shade300;\n$panelFooterBg:$shade000;\n$panelFooterTextColor:$shade900;\n$panelFooterPadding:.5rem 1.25rem;\n\n//accordion\n$accordionSpacing:0;\n$accordionHeaderBorder:$panelHeaderBorder;\n$accordionHeaderBg:$panelHeaderBg;\n$accordionHeaderTextColor:$panelHeaderTextColor;\n$accordionHeaderFontWeight:$panelHeaderFontWeight;\n$accordionHeaderPadding:$panelHeaderPadding;\n\n$accordionHeaderHoverBg:$shade200;\n$accordionHeaderHoverBorderColor:$shade300;\n$accordionHeaderTextHoverColor:$shade900;\n\n$accordionHeaderActiveBg:$panelHeaderBg;\n$accordionHeaderActiveBorderColor:$shade300;\n$accordionHeaderTextActiveColor:$shade900;\n\n$accordionHeaderActiveHoverBg:$shade200;\n$accordionHeaderActiveHoverBorderColor:$shade300;\n$accordionHeaderTextActiveHoverColor:$shade900;\n\n$accordionContentBorder:$panelContentBorder;\n$accordionContentBg:$panelContentBg;\n$accordionContentTextColor:$panelContentTextColor;\n$accordionContentPadding:$panelContentPadding;\n\n//tabview\n$tabviewNavBorder:1px solid #dee2e6;\n$tabviewNavBorderWidth:0 0 1px 0;\n$tabviewNavBg:transparent;\n\n$tabviewHeaderSpacing:0;\n$tabviewHeaderBorder:solid;\n$tabviewHeaderBorderWidth:1px;\n$tabviewHeaderBorderColor:$shade000 $shade000 #dee2e6 $shade000;\n$tabviewHeaderBg:$shade000;\n$tabviewHeaderTextColor:$shade600;\n$tabviewHeaderFontWeight:$panelHeaderFontWeight;\n$tabviewHeaderPadding:.75rem 1rem;\n$tabviewHeaderMargin:0 0 -1px 0;\n\n$tabviewHeaderHoverBg:$shade000;\n$tabviewHeaderHoverBorderColor:#dee2e6;\n$tabviewHeaderTextHoverColor:$shade600;\n\n$tabviewHeaderActiveBg:$shade000;\n$tabviewHeaderActiveBorderColor:#dee2e6 #dee2e6 $shade000 #dee2e6;\n$tabviewHeaderTextActiveColor:$shade700;\n\n$tabviewContentBorder:0 none;\n$tabviewContentBg:$panelContentBg;\n$tabviewContentTextColor:$panelContentTextColor;\n$tabviewContentPadding:$panelContentPadding;\n\n//upload\n$fileUploadProgressBarHeight:.25rem;\n$fileUploadContentPadding:2rem 1rem;\n\n//scrollpanel\n$scrollPanelTrackBorder:0 none;\n$scrollPanelTrackBg:$shade100;\n\n//card\n$cardBodyPadding:1.5rem;\n$cardTitleFontSize:1.5rem;\n$cardTitleFontWeight:700;\n$cardSubTitleFontWeight:400;\n$cardSubTitleColor:$shade600;\n$cardContentPadding:1rem 0;\n$cardFooterPadding:1rem 0 0 0;\n$cardShadow:0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);\n\n//editor\n$editorToolbarBg:$panelHeaderBg;\n$editorToolbarBorder:$panelHeaderBorder;\n$editorToolbarPadding:$panelHeaderPadding;\n$editorToolbarIconColor:$textSecondaryColor;\n$editorToolbarIconHoverColor:$textColor;\n$editorIconActiveColor:$primaryColor;\n$editorContentBorder:$panelContentBorder;\n$editorContentBg:$panelContentBg;\n\n//paginator\n$paginatorBg:$shade000;\n$paginatorTextColor:$primaryColor;\n$paginatorBorder:solid $shade300;\n$paginatorBorderWidth:0;\n$paginatorPadding:.75rem;\n$paginatorElementWidth:$buttonIconOnlyWidth;\n$paginatorElementHeight:$buttonIconOnlyWidth;\n$paginatorElementBg:$shade000;\n$paginatorElementBorder:1px solid #dee2e6;\n$paginatorElementIconColor:$primaryColor;\n$paginatorElementHoverBg:$shade200;\n$paginatorElementHoverBorderColor:#dee2e6;\n$paginatorElementIconHoverColor:$primaryColor;\n$paginatorElementBorderRadius:0;\n$paginatorElementMargin:0 0 0 -1px;\n$paginatorElementPadding:0;\n\n//table\n$tableHeaderBorder:solid #dee2e6;\n$tableHeaderBorderWidth:1px 0 0 0;\n$tableHeaderBg:$shade100;\n$tableHeaderTextColor:$shade900;\n$tableHeaderFontWeight:600;\n$tableHeaderPadding:1rem 1rem;\n\n$tableHeaderCellPadding:1rem 1rem;\n$tableHeaderCellBg:$shade000;\n$tableHeaderCellTextColor:$shade900;\n$tableHeaderCellFontWeight:600;\n$tableHeaderCellBorder:1px solid #dee2e6;\n$tableHeaderCellBorderWidth:1px 0 2px 0;\n$tableHeaderCellHoverBg:$shade200;\n$tableHeaderCellTextHoverColor:$shade900;\n$tableHeaderCellIconColor:$shade600;\n$tableHeaderCellIconHoverColor:$shade600;\n$tableHeaderCellHighlightBg:$shade000;\n$tableHeaderCellHighlightTextColor:$primaryColor;\n$tableHeaderCellHighlightHoverBg:$shade200;\n$tableHeaderCellHighlightTextHoverColor:$primaryColor;\n$tableSortableColumnBadgeSize:1.143rem;\n\n$tableBodyRowBg:$shade000;\n$tableBodyRowTextColor:$shade900;\n$tableBodyRowEvenBg:rgba(0,0,0,.05);\n$tableBodyRowHoverBg:$shade200;\n$tableBodyRowTextHoverColor:$shade900;\n$tableBodyCellBorder:1px solid #dee2e6;\n$tableBodyCellBorderWidth:1px 0 0 0;\n$tableBodyCellPadding:1rem 1rem;\n\n$tableFooterCellPadding:1rem 1rem;\n$tableFooterCellBg:$shade000;\n$tableFooterCellTextColor:$shade900;\n$tableFooterCellFontWeight:600;\n$tableFooterCellBorder:1px solid #dee2e6;\n$tableFooterCellBorderWidth:1px 0 1px 0;\n$tableResizerHelperBg:$primaryColor;\n\n$tableFooterBorder:1px solid #dee2e6;\n$tableFooterBorderWidth:1px 0 1px 0;\n$tableFooterBg:$shade100;\n$tableFooterTextColor:$shade900;\n$tableFooterFontWeight:600;\n$tableFooterPadding:1rem 1rem;\n\n$tableCellContentAlignment:left;\n$tableTopPaginatorBorderWidth:1px 0 0 0;\n$tableBottomPaginatorBorderWidth:1px 0 0 0;\n\n$tableScaleSM:0.5;\n$tableScaleLG:1.25;\n\n//dataview\n$dataViewContentPadding:0;\n$dataViewContentBorder:0 none;\n$dataViewListItemBorder:1px solid $shade300;\n$dataViewListItemBorderWidth:1px 0 0 0;\n\n//orderlist, picklist\n$orderListBreakpoint:769px;\n$pickListBreakpoint:769px;\n\n//schedule\n$fullCalendarEventBg:$primaryDarkColor;\n$fullCalendarEventBorder:1px solid $primaryDarkColor;\n$fullCalendarEventTextColor:$primaryTextColor;\n\n//tree\n$treeContainerPadding:0.286rem;\n$treeNodePadding:0.143rem;\n$treeNodeContentPadding:.5rem;\n$treeNodeChildrenPadding:0 0 0 1rem;\n$treeNodeIconColor:$shade600;\n\n//org chart\n$organizationChartConnectorColor:$shade300;\n\n//message\n$messageMargin:1rem 0;\n$messagePadding:1rem 1.25rem;\n$messageBorderWidth:1px;\n$messageIconFontSize:1.5rem;\n$messageTextFontSize:1rem;\n$messageTextFontWeight:500;\n\n//inline message\n$inlineMessagePadding:$inputPadding;\n$inlineMessageMargin:0;\n$inlineMessageIconFontSize:1rem;\n$inlineMessageTextFontSize:1rem;\n$inlineMessageBorderWidth:0px;\n\n//toast\n$toastIconFontSize:2rem;\n$toastMessageTextMargin:0 0 0 1rem;\n$toastMargin:0 0 1rem 0;\n$toastPadding:1rem;\n$toastBorderWidth:0;\n$toastShadow:0 0.25rem 0.75rem rgba(0,0,0,.1);\n$toastOpacity:1;\n$toastTitleFontWeight:700;\n$toastDetailMargin:$inlineSpacing 0 0 0;\n\n//severities\n$infoMessageBg:#cce5ff;\n$infoMessageBorder:solid #b8daff;\n$infoMessageTextColor:#004085;\n$infoMessageIconColor:#004085;\n$successMessageBg:#d4edda;\n$successMessageBorder:solid #c3e6cb;\n$successMessageTextColor:#155724;\n$successMessageIconColor:#155724;\n$warningMessageBg:#fff3cd;\n$warningMessageBorder:solid #ffeeba;\n$warningMessageTextColor:#856404;\n$warningMessageIconColor:#856404;\n$errorMessageBg:#f8d7da;\n$errorMessageBorder:solid #f5c6cb;\n$errorMessageTextColor:#721c24;\n$errorMessageIconColor:#721c24;\n\n//overlays\n$overlayContentBorder:1px solid rgba(0,0,0,.2);\n$overlayContentBg:$panelContentBg;\n$overlayContainerShadow:none;\n\n//dialog\n$dialogHeaderBg:$shade000;\n$dialogHeaderBorder:1px solid $shade200;\n$dialogHeaderTextColor:$shade900;\n$dialogHeaderFontWeight:600;\n$dialogHeaderFontSize:1.25rem;\n$dialogHeaderPadding:1rem;\n$dialogContentPadding:1rem;\n$dialogFooterBorder:1px solid $shade200;\n$dialogFooterPadding:1rem;\n\n//tooltip\n$tooltipBg:$shade900;\n$tooltipTextColor:$shade000;\n$tooltipPadding:$inputPadding;\n\n//steps\n$stepsItemBg:transparent;\n$stepsItemBorder:1px solid $shade300;\n$stepsItemTextColor:$shade600;\n$stepsItemNumberWidth:2rem;\n$stepsItemNumberHeight:2rem;\n$stepsItemNumberFontSize:1.143rem;\n$stepsItemNumberColor:$shade900;\n$stepsItemNumberBorderRadius:$borderRadius;\n$stepsItemActiveFontWeight:600;\n\n//progressbar\n$progressBarHeight:1.5rem;\n$progressBarBorder:0 none;\n$progressBarBg:$shade200;\n$progressBarValueBg:$primaryColor;\n\n//menu (e.g. menu, menubar, tieredmenu)\n$menuWidth:12.5rem;\n$menuBg:$shade000;\n$menuBorder:1px solid $shade300;\n$menuTextColor:$shade900;\n$menuitemPadding:.75rem 1rem;\n$menuitemBorderRadius:0;\n$menuitemTextColor:$shade900;\n$menuitemIconColor:$shade900;\n$menuitemTextHoverColor:$shade900;\n$menuitemIconHoverColor:$shade900;\n$menuitemHoverBg:$shade200;\n$menuitemTextActiveColor:$shade900;\n$menuitemIconActiveColor:$shade900;\n$menuitemActiveBg:$shade200;\n$menuitemSubmenuIconFontSize:.875rem;\n$submenuHeaderMargin:0;\n$submenuHeaderPadding:.75rem 1rem;\n$submenuHeaderBg:$shade000;\n$submenuHeaderTextColor:$shade900;\n$submenuHeaderBorderRadius:0;\n$submenuHeaderFontWeight:600;\n$overlayMenuBg:$menuBg;\n$overlayMenuBorder:1px solid rgba(0,0,0,.15);\n$overlayMenuShadow:none;\n$verticalMenuPadding:.5rem 0;\n$menuSeparatorMargin:.5rem 0;\n\n$breadcrumbPadding:1rem;\n$breadcrumbBg:$shade100;\n$breadcrumbBorder:0 none;\n$breadcrumbItemTextColor:$primaryColor;\n$breadcrumbItemIconColor:$primaryColor;\n$breadcrumbLastItemTextColor:$shade600;\n$breadcrumbLastItemIconColor:$shade600;\n$breadcrumbSeparatorColor:$shade600;\n\n$horizontalMenuPadding:.5rem 1rem;\n$horizontalMenuBg:$shade100;\n$horizontalMenuBorder:0 none;\n$horizontalMenuTextColor:rgba(0,0,0,.9);\n$horizontalMenuRootMenuitemPadding:1rem;\n$horizontalMenuRootMenuitemBorderRadius:$borderRadius;\n$horizontalMenuRootMenuitemTextColor:rgba(0,0,0,.5);\n$horizontalMenuRootMenuitemIconColor:rgba(0,0,0,.5);\n$horizontalMenuRootMenuitemTextHoverColor:rgba(0,0,0,.7);\n$horizontalMenuRootMenuitemIconHoverColor:rgba(0,0,0,.7);\n$horizontalMenuRootMenuitemHoverBg:transparent;\n$horizontalMenuRootMenuitemTextActiveColor:rgba(0,0,0,.9);\n$horizontalMenuRootMenuitemIconActiveColor:rgba(0,0,0,.9);\n$horizontalMenuRootMenuitemActiveBg:transparent;\n\n//badge and tag\n$badgeBg:$primaryColor;\n$badgeTextColor:$primaryTextColor;\n$badgeMinWidth:1.5rem;\n$badgeHeight:1.5rem;\n$badgeFontWeight:700;\n$badgeFontSize:.75rem;\n\n$tagPadding:.25rem .4rem;\n\n//carousel\n$carouselIndicatorsPadding:1rem;\n$carouselIndicatorBg:$shade200;\n$carouselIndicatorHoverBg:$shade300;\n$carouselIndicatorBorderRadius:0;\n$carouselIndicatorWidth:2rem;\n$carouselIndicatorHeight:.5rem;\n\n//galleria\n$galleriaMaskBg:rgba(0,0,0,0.9);\n$galleriaCloseIconMargin:.5rem;\n$galleriaCloseIconFontSize:2rem;\n$galleriaCloseIconBg:transparent;\n$galleriaCloseIconColor:$shade100;\n$galleriaCloseIconHoverBg:rgba(255,255,255,0.1);\n$galleriaCloseIconHoverColor:$shade100;\n$galleriaCloseIconWidth:4rem;\n$galleriaCloseIconHeight:4rem;\n$galleriaCloseIconBorderRadius:$borderRadius;\n\n$galleriaItemNavigatorBg:transparent;\n$galleriaItemNavigatorColor:$shade100;\n$galleriaItemNavigatorMargin:0 .5rem;\n$galleriaItemNavigatorFontSize:2rem;\n$galleriaItemNavigatorHoverBg:rgba(255,255,255,0.1);\n$galleriaItemNavigatorHoverColor:$shade100;\n$galleriaItemNavigatorWidth:4rem;\n$galleriaItemNavigatorHeight:4rem;\n$galleriaItemNavigatorBorderRadius:$borderRadius;\n\n$galleriaCaptionBg:rgba(0,0,0,.5);\n$galleriaCaptionTextColor:$shade100;\n$galleriaCaptionPadding:1rem;\n\n$galleriaIndicatorsPadding:1rem;\n$galleriaIndicatorBg:$shade200;\n$galleriaIndicatorHoverBg:$shade300;\n$galleriaIndicatorBorderRadius:$borderRadius;\n$galleriaIndicatorWidth:1rem;\n$galleriaIndicatorHeight:1rem;\n$galleriaIndicatorsBgOnItem:rgba(0,0,0,.5);\n$galleriaIndicatorBgOnItem:rgba(255,255,255,.4);\n$galleriaIndicatorHoverBgOnItem:rgba(255,255,255,.6);\n\n$galleriaThumbnailContainerBg:rgba(0,0,0,.9);\n$galleriaThumbnailContainerPadding:1rem .25rem;\n$galleriaThumbnailNavigatorBg:transparent;\n$galleriaThumbnailNavigatorColor:$shade100;\n$galleriaThumbnailNavigatorHoverBg:rgba(255,255,255,0.1);\n$galleriaThumbnailNavigatorHoverColor:$shade100;\n$galleriaThumbnailNavigatorBorderRadius:$borderRadius;\n$galleriaThumbnailNavigatorWidth:2rem;\n$galleriaThumbnailNavigatorHeight:2rem;\n\n//divider\n$dividerHorizontalMargin:1rem 0;\n$dividerHorizontalPadding:0 1rem;\n$dividerVerticalMargin:0 1rem;\n$dividerVerticalPadding:1rem 0;\n$dividerSize:1px;\n$dividerColor:$shade300;\n\n//avatar\n$avatarBg:$shade300;\n$avatarTextColor:$textColor;\n\n//chip\n$chipBg:$shade300;\n$chipTextColor:$textColor;\n$chipBorderRadius: 16px;\n\n//scrollTop\n$scrollTopBg:rgba(0,0,0,0.7);\n$scrollTopHoverBg:rgba(0,0,0,0.8);\n$scrollTopWidth:3rem;\n$scrollTopHeight:3rem;\n$scrollTopBorderRadius:$borderRadius;\n$scrollTopFontSize:1.5rem;\n$scrollTopTextColor:$shade100;\n\n//skeleton\n$skeletonBg:$shade200;\n$skeletonAnimationBg:rgba(255,255,255,0.4);\n\n//splitter\n$splitterGutterBg:$shade100;\n$splitterGutterHandleBg:$shade300;\n\n:root &#123;\n    --surface-a:#&#123;$shade000&#125;;\n    --surface-b:#&#123;$shade100&#125;;\n    --surface-c:#&#123;$shade200&#125;;\n    --surface-d:#&#123;$shade300&#125;;\n    --surface-e:#&#123;$shade000&#125;;\n    --surface-f:#&#123;$shade000&#125;;\n    --text-color:#&#123;$shade900&#125;;\n    --text-color-secondary:#&#123;$shade600&#125;;\n    --primary-color:#&#123;$primaryColor&#125;;\n    --primary-color-text:#&#123;$primaryTextColor&#125;;\n    --font-family:#&#123;$fontFamily&#125;;\n&#125;\n</app-code>\n</div>\n\n            <h4>Menu Modes</h4>\n            <p>Menu has 4 modes, static, overlay, slim and horizontal. Layout container element in application.html is used to define which mode to use by adding specific classes. List\n            below indicates the style classes for each mode. In addition menu</p>\n            <ul>\n                <li>Static: \"layout-wrapper menu-layout-static\"</li>\n                <li>Overlay: \"layout-wrapper menu-layout-overlay\"</li>\n                <li>Slim: \"layout-wrapper menu-layout-static menu-layout-slim\"</li>\n                <li>Horizontal: \"layout-wrapper menu-layout-static menu-layout-horizontal\"</li>\n            </ul>\n\n            <p>For example to create a horizontal menu, the div element should be in following form;</p>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"javascript\">\n&lt;div class=\"layout-wrapper menu-layout-static menu-layout-horizontal\"&gt;\n</app-code>\n\n            <p>It is also possible to leave the choice to the user by keeping the preference at a component and using an expression to bind it so that user can switch between modes. Sample\n            application has an example implementation of such use case. Refer to app.component.ts for an example.</p>\n\n            <h4>Dark Menu</h4>\n            <p>Default color scheme of menu is light and alternative dark mode can be activated by adding layout-menu-dark style class to the menu container that\n                is an element having .layout-menu as its class.</p>\n<app-code ngPreserveWhitespaces ngNonBindable lang=\"javascript\">\n&lt;div class=\"layout-menu-container layout-menu-dark\"&gt;\n</app-code>\n\n            <h4>Profile Modes</h4>\n            <p>There are two possible locations for the user profile menu, first version is inline located inside the main menu and second option is the topbar menu. For inline mode,\n            profile content should be placed above the menu and for inline mode content goes in topbar-items list. The sample demo application provides examples for\n            both cases.</p>\n\n            <h4>Grid CSS</h4>\n            <p>Avalon uses PrimeNG Flex Grid CSS throughout the demos such as Dashboard, however any Grid library can be used with it since Ultima Layout itself does not depend on PrimeFlex CSS.</p>\n\n            <h4>Customizing Styles</h4>\n            <p>It is suggested to add your customizations in the following sass files under the override folder instead of adding them to the\n                scss files under sass folder to avoid maintenance issues after an update.</p>\n\n            <ul>\n                <li><b>_layout_variables</b>: Variables of the layout.</li>\n                <li><b>_layout_styles</b>: Styles for the layout.</li>\n                <li><b>_theme_variables</b>: Variables of the theme.</li>\n                <li><b>_theme_styles</b>: Styles for the theme.</li>\n            </ul>\n\n            <h4>Migration Guide</h4>\n            <p>Every change is included in <b>CHANGELOG.md</b> file at the root folder of the distribution along with the instructions to update.</p>\n        </div>\n    </div>\n</div>\n";
+      /***/
+    },
+
+    /***/
+    "aFPW":
+    /*!************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/profil/profil.component.html ***!
+      \************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function aFPW(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n    \n         \n<p-panel header=\"Profil Uitlisateur\" class=\"panel-work\">\n    <button pButton type=\"button\" label=\"Deconnexion\" (click)=\"logout()\" class=\"p-button-raised p-button-rounded\"></button>\n </p-panel>\n     \n     <p-panel header=\"Profil Uitlisateur\" class=\"panel-work\">\n         \n         <p-messages [(value)]=\"msgs\"></p-messages>\n         <div class=\"p-fluid forms-grid\" style=\"margin: 1em 0\">\n             <div class=\"row\">\n                 <div class=\"col-lg-5 col-md-6 col-lg-offset-1\">\n                     <B> VOTRE NOM : </B> {{profil.name}}\n                 </div>\n                 <div class=\"col-lg-6 col-md-6\">\n                     <B>PSEUDO UTILISATEUR :  </B> {{profil.username}}\n                 </div>\n             </div> \n             <br/>\n         \n             <div class=\"row\">\n                 <div class=\"col-lg-5 col-md-6 col-lg-offset-1\">\n                     <B> VOTRE ROLE  : </B> <span  *ngFor=\"let role of profil.roles\"> {{role.name }} -  </span>\n                 </div>\n                 <div class=\"col-lg-6 col-md-6\">\n                     <B>Mise à jour le  :  </B> {{profil.updated}}\n                 </div>\n             </div>\n             <hr/>\n             <p-fieldset legend=\"Mise à jour de votre mot de passe \">\n                 \n                 <form [formGroup]=\"passwordForm\" (ngSubmit)=\"updatePassword(passwordForm.value)\">\n                             <div class=\"row\"> \n                             </div>\n                             <div class=\"row\">\n                                 <div class=\"col-lg-2\"><b>Ancien Password *</b></div>\n                                 <div class=\"col-lg-6\">\n                                     <input pInputText type=\"password\" class=\"form-control\" formControlName=\"ancienpassword\" name=\"ancienpassword\" placeholder=\"Obligatoire - Min(6)\"/>\n                                 </div>\n                                 <div class=\"col-lg-4\">\n                                 <p-message severity=\"error\" [text]=\"passwordForm.controls['ancienpassword'].errors['required'] ? 'Ancien mot de passe est obligatoire' : passwordForm.controls['ancienpassword'].errors['minlength'] ? 'doit etre superieur ou egal à 6 caractere' : ''\" \n                                 *ngIf=\"!passwordForm.controls['ancienpassword'].valid&&passwordForm.controls['ancienpassword'].dirty\"></p-message>\n                                 </div>\n                             </div>\n                             <br/>\n                             <div class=\"row\">\n                                 <div class=\"col-lg-2\"><b>Password *</b></div>\n                                 <div class=\"col-lg-6\">\n                                     <input pInputText type=\"password\" class=\"form-control\" formControlName=\"password\" name=\"password\" placeholder=\"Obligatoire - Min(6)\"/>\n                                 </div>\n                                 <div class=\"col-lg-4\">\n                                     <p-message severity=\"error\" [text]=\"passwordForm.controls['password'].errors['required'] ? 'Password est obligatoire' : passwordForm.controls['password'].errors['minlength'] ? 'doit etre superieur ou egal à 6 caractere' : ''\" \n                                     *ngIf=\"!passwordForm.controls['password'].valid&&passwordForm.controls['password'].dirty\"></p-message>\n                                 </div>\n                             </div>\n                             <br/>\n                             <div class=\"row\">\n                                 <div class=\"col-lg-2\"><b>Confirmation Password * </b></div>\n                                 <div class=\"col-lg-6\">\n                                     <input pInputText type=\"password\" class=\"form-control\" formControlName=\"confirmationpassword\" name=\"confirmationpassword\" placeholder=\"Obligatoire - Min(6)\"/>\n                                 </div>\n                                 <div class=\"col-lg-4\">\n                                     <p-message severity=\"error\" [text]=\"passwordForm.controls['confirmationpassword'].errors['required'] ? 'La confirmation est obligatoire' : passwordForm.controls['confirmationpassword'].errors['minlength'] ? 'doit etre superieur ou egal à 6 caractere' : ''\" \n                                     *ngIf=\"!passwordForm.controls['confirmationpassword'].valid&&passwordForm.controls['confirmationpassword'].dirty\"></p-message>\n                                 </div>\n                             </div>\n                             <br/>\n                             <div>\n                                 <button  class=\"col-lg-8\" pButton type=\"submit\" label=\"Submit\" [disabled]=\"!passwordForm.valid\"></button>\n                             </div>\n                       \n                 </form>\n             </p-fieldset>\n     </div>\n     </p-panel>\n \n \n ";
       /***/
     },
 
@@ -9736,7 +10165,7 @@
         _createClass(NouveauemsreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this35 = this;
+            var _this39 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -9764,24 +10193,24 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this35.typeactivites = [];
+              _this39.typeactivites = [];
               response.forEach(function (element) {
                 console.log(element);
 
                 if (element['name'] == 'EMS - EE') {
-                  _this35.typeactivite = {
+                  _this39.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this35.typeactivites.push({
+                _this39.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this35.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this39.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
             /**
             *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -9793,21 +10222,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this35.countries = [];
+              _this39.countries = [];
               response.forEach(function (element) {
-                _this35.countries.push({
+                _this39.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this35.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this39.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this36 = this;
+            var _this40 = this;
 
             /*
               let amontsection = emsForm['reference'].substring(0,2);
@@ -9829,38 +10258,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this36.receptiondto.reference = emsForm['reference'];
-                _this36.receptiondto.name = 'EMS - EXPRESS MAIL SERVICE';
-                _this36.receptiondto.type = emsForm['typearticle'];
-                _this36.receptiondto.adresse = emsForm['adresse'];
-                _this36.receptiondto.nomsender = emsForm['nomsender'];
-                _this36.receptiondto.telexpediteur = emsForm['telexpediteur'];
-                _this36.receptiondto.namerecipient = emsForm['namerecipient'];
-                _this36.receptiondto.telrecipient = emsForm['telrecipient'];
-                _this36.receptiondto.email = emsForm['email'];
-                _this36.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(emsForm['datereception'], format, locale);
-                _this36.receptiondto.typearticle = _this36.typeactivite.code;
-                _this36.receptiondto.dommage = _this36.dommage;
-                _this36.receptiondto.commentaire = emsForm['commentaire'];
-                _this36.receptiondto.envoisms = _this36.envoisms;
-                _this36.receptiondto.paysrecipient = _this36.selectedCountrydestinateur['code'];
-                _this36.receptiondto.paysexpediteur = _this36.selectedCountryexpediteur['code'];
+                _this40.receptiondto.reference = emsForm['reference'];
+                _this40.receptiondto.name = 'EMS - EXPRESS MAIL SERVICE';
+                _this40.receptiondto.type = emsForm['typearticle'];
+                _this40.receptiondto.adresse = emsForm['adresse'];
+                _this40.receptiondto.nomsender = emsForm['nomsender'];
+                _this40.receptiondto.telexpediteur = emsForm['telexpediteur'];
+                _this40.receptiondto.namerecipient = emsForm['namerecipient'];
+                _this40.receptiondto.telrecipient = emsForm['telrecipient'];
+                _this40.receptiondto.email = emsForm['email'];
+                _this40.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(emsForm['datereception'], format, locale);
+                _this40.receptiondto.typearticle = _this40.typeactivite.code;
+                _this40.receptiondto.dommage = _this40.dommage;
+                _this40.receptiondto.commentaire = emsForm['commentaire'];
+                _this40.receptiondto.envoisms = _this40.envoisms;
+                _this40.receptiondto.paysrecipient = _this40.selectedCountrydestinateur['code'];
+                _this40.receptiondto.paysexpediteur = _this40.selectedCountryexpediteur['code'];
 
-                _this36.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this36.receptiondto, {
+                _this40.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this40.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this36.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this40.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this36.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                  _this40.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                 }, function (error) {
-                  _this36.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                  _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
                 });
               } else {
-                _this36.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this40.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this36.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -10080,10 +10509,10 @@
         _createClass(EditionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this37 = this;
+            var _this41 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this37.value = params.id;
+              _this41.value = params.id;
             });
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -10099,21 +10528,21 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this37.envoidto.reference = response['reference'];
-              _this37.envoidto.type = response['type'];
-              _this37.envoidto.adresse = response['adresse'];
-              _this37.envoidto.nomsender = response['nomsender'];
-              _this37.envoidto.telexpediteur = response['telexpediteur'];
-              _this37.envoidto.namerecipient = response['namerecipient'];
-              _this37.envoidto.telrecipient = response['telrecipient'];
+              _this41.envoidto.reference = response['reference'];
+              _this41.envoidto.type = response['type'];
+              _this41.envoidto.adresse = response['adresse'];
+              _this41.envoidto.nomsender = response['nomsender'];
+              _this41.envoidto.telexpediteur = response['telexpediteur'];
+              _this41.envoidto.namerecipient = response['namerecipient'];
+              _this41.envoidto.telrecipient = response['telrecipient'];
             }, function (error) {
-              _this37.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
+              _this41.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this38 = this;
+            var _this42 = this;
 
             var amontsection = emsForm['reference'].substring(0, 2);
             var numbersection = Number(emsForm['reference'].substring(2, 11));
@@ -10135,9 +10564,9 @@
                     'Authorization': 'Bearer ' + this.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this38.showSuccess("L'article a été mise à jour avec success !!! ");
+                  _this42.showSuccess("L'article a été mise à jour avec success !!! ");
                 }, function (error) {
-                  _this38.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                  _this42.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                 });
               } else {
                 this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/reference?reference=" + emsForm['reference'], {
@@ -10146,27 +10575,27 @@
                   })
                 }).subscribe(function (response) {
                   if (response == null) {
-                    _this38.envoidto.reference = emsForm['reference'];
-                    _this38.envoidto.adresse = emsForm['adresse'];
-                    _this38.envoidto.nomsender = emsForm['nomsender'];
-                    _this38.envoidto.telexpediteur = emsForm['telexpediteur'];
-                    _this38.envoidto.namerecipient = emsForm['namerecipient'];
-                    _this38.envoidto.telrecipient = emsForm['telrecipient'];
+                    _this42.envoidto.reference = emsForm['reference'];
+                    _this42.envoidto.adresse = emsForm['adresse'];
+                    _this42.envoidto.nomsender = emsForm['nomsender'];
+                    _this42.envoidto.telexpediteur = emsForm['telexpediteur'];
+                    _this42.envoidto.namerecipient = emsForm['namerecipient'];
+                    _this42.envoidto.telrecipient = emsForm['telrecipient'];
 
-                    _this38.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + _this38.value, _this38.envoidto, {
+                    _this42.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + _this42.value, _this42.envoidto, {
                       headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                        'Authorization': 'Bearer ' + _this38.tokenStorage.getToken()
+                        'Authorization': 'Bearer ' + _this42.tokenStorage.getToken()
                       })
                     }).subscribe(function (response) {
-                      _this38.showSuccess("L'article a été mise à jour avec success !!! ");
+                      _this42.showSuccess("L'article a été mise à jour avec success !!! ");
                     }, function (error) {
-                      _this38.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                      _this42.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                     });
                   } else {
-                    _this38.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                    _this42.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                   }
                 }, function (error) {
-                  _this38.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                  _this42.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
                 });
               }
             }
@@ -10410,7 +10839,7 @@
         _createClass(NouveauordinaireComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this39 = this;
+            var _this43 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -10431,28 +10860,28 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this39.typeactivites = [];
+              _this43.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'ORDINAIRE') {
-                  _this39.typeactivite = {
+                  _this43.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this39.typeactivites.push({
+                _this43.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this39.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this43.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this40 = this;
+            var _this44 = this;
 
             var amontsection = emsForm['reference'].substring(0, 2);
             var numbersection = Number(emsForm['reference'].substring(2, 11));
@@ -10469,31 +10898,31 @@
                 })
               }).subscribe(function (response) {
                 if (response == null) {
-                  _this40.envoidto.reference = emsForm['reference'];
-                  _this40.envoidto.name = 'ORDINAIRE';
-                  _this40.envoidto.type = emsForm['typearticle'];
-                  _this40.envoidto.adresse = emsForm['adresse'];
-                  _this40.envoidto.nomsender = emsForm['nomsender'];
-                  _this40.envoidto.telexpediteur = emsForm['telexpediteur'];
-                  _this40.envoidto.namerecipient = emsForm['namerecipient'];
-                  _this40.envoidto.telrecipient = emsForm['telrecipient'];
-                  _this40.envoidto.typearticle = _this40.typeactivite.code;
+                  _this44.envoidto.reference = emsForm['reference'];
+                  _this44.envoidto.name = 'ORDINAIRE';
+                  _this44.envoidto.type = emsForm['typearticle'];
+                  _this44.envoidto.adresse = emsForm['adresse'];
+                  _this44.envoidto.nomsender = emsForm['nomsender'];
+                  _this44.envoidto.telexpediteur = emsForm['telexpediteur'];
+                  _this44.envoidto.namerecipient = emsForm['namerecipient'];
+                  _this44.envoidto.telrecipient = emsForm['telrecipient'];
+                  _this44.envoidto.typearticle = _this44.typeactivite.code;
 
-                  _this40.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this40.envoidto, {
+                  _this44.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this44.envoidto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this40.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this44.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this40.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                    _this44.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                   }, function (error) {
-                    _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                    _this44.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                   });
                 } else {
-                  _this40.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this44.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
               }, function (error) {
-                _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this44.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -10765,7 +11194,7 @@
         _createClass(ColisComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this41 = this;
+            var _this45 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -10775,10 +11204,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this41.listcolis = response;
-              console.log(_this41.listcolis);
+              _this45.listcolis = response;
+              console.log(_this45.listcolis);
             }, function (error) {
-              _this41.showWarn("Les article  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this45.showWarn("Les article  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -10954,13 +11383,13 @@
         }, {
           key: "getAuthorities",
           value: function getAuthorities() {
-            var _this42 = this;
+            var _this46 = this;
 
             this.roles = [];
 
             if (sessionStorage.getItem(TOKEN_KEY)) {
               JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(function (authority) {
-                _this42.roles.push(authority.authority);
+                _this46.roles.push(authority.authority);
               });
             }
 
@@ -11106,10 +11535,10 @@
         _createClass(AppCalendarComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this43 = this;
+            var _this47 = this;
 
             this.eventService.getEvents().then(function (events) {
-              _this43.events = events;
+              _this47.events = events;
             });
             this.changedEvent = {
               title: '',
@@ -11127,11 +11556,11 @@
               },
               editable: true,
               eventClick: function eventClick(e) {
-                _this43.eventDialog = true;
-                _this43.clickedEvent = e.event;
-                _this43.changedEvent.title = _this43.clickedEvent.title;
-                _this43.changedEvent.start = _this43.clickedEvent.start;
-                _this43.changedEvent.end = _this43.clickedEvent.end;
+                _this47.eventDialog = true;
+                _this47.clickedEvent = e.event;
+                _this47.changedEvent.title = _this47.clickedEvent.title;
+                _this47.changedEvent.start = _this47.clickedEvent.start;
+                _this47.changedEvent.end = _this47.clickedEvent.end;
               }
             };
           }
@@ -12039,7 +12468,7 @@
         _createClass(OrdinaireenvoiComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this44 = this;
+            var _this48 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -12049,10 +12478,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this44.listems = response;
-              console.log(_this44.listems);
+              _this48.listems = response;
+              console.log(_this48.listems);
             }, function (error) {
-              _this44.showWarn("Les articles Ordinaire  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this48.showWarn("Les articles Ordinaire  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -12203,7 +12632,7 @@
 
       var AppMenuitemComponent = /*#__PURE__*/function () {
         function AppMenuitemComponent(appMain, router, cd, menuService) {
-          var _this45 = this;
+          var _this49 = this;
 
           _classCallCheck(this, AppMenuitemComponent);
 
@@ -12214,23 +12643,23 @@
           this.active = false;
           this.menuSourceSubscription = this.menuService.menuSource$.subscribe(function (key) {
             // deactivate current active menu
-            if (_this45.active && _this45.key !== key && key.indexOf(_this45.key) !== 0) {
-              _this45.active = false;
+            if (_this49.active && _this49.key !== key && key.indexOf(_this49.key) !== 0) {
+              _this49.active = false;
             }
           });
           this.menuResetSubscription = this.menuService.resetSource$.subscribe(function () {
-            _this45.active = false;
+            _this49.active = false;
           });
           this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (event) {
             return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"];
           })).subscribe(function (params) {
-            if (_this45.appMain.isHorizontal() || _this45.appMain.isSlim()) {
-              _this45.active = false;
+            if (_this49.appMain.isHorizontal() || _this49.appMain.isSlim()) {
+              _this49.active = false;
             } else {
-              if (_this45.item.routerLink) {
-                _this45.updateActiveStateFromRoute();
+              if (_this49.item.routerLink) {
+                _this49.updateActiveStateFromRoute();
               } else {
-                _this45.active = false;
+                _this49.active = false;
               }
             }
           });
@@ -12531,12 +12960,12 @@
         _createClass(RechercheComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this46 = this;
+            var _this50 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this46.parametre = params.id;
+              _this50.parametre = params.id;
 
-              _this46.serchByreferenceReceiveinparam(_this46.parametre);
+              _this50.serchByreferenceReceiveinparam(_this50.parametre);
             });
             this.rechercheForm = this.formBuilder.group({
               'reference': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required)
@@ -12545,7 +12974,7 @@
         }, {
           key: "serchByreferenceReceiveinparam",
           value: function serchByreferenceReceiveinparam(value) {
-            var _this47 = this;
+            var _this51 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche/resultat?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12553,11 +12982,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this47.article = response;
+              _this51.article = response;
 
-              _this47.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this51.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this47.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this51.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/historique?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12565,11 +12994,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this47.historiques = response;
+              _this51.historiques = response;
 
-              _this47.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this51.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this47.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this51.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/alarme?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12577,11 +13006,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this47.alarmes = response;
+              _this51.alarmes = response;
 
-              _this47.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this51.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this47.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this51.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
           }
           /**
@@ -12592,7 +13021,7 @@
         }, {
           key: "searchByReference",
           value: function searchByReference(event) {
-            var _this48 = this;
+            var _this52 = this;
 
             console.log(event);
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche?param=' + event.query, {
@@ -12601,15 +13030,15 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this48.string = response;
+              _this52.string = response;
             }, function (err) {
-              _this48.showError("La recherche n'est pas operationnel car une erreur c'est produit. Veuillez verifier que tout les services sont operationnels.*** voici l'erreur generer par le systeme :" + err.message);
+              _this52.showError("La recherche n'est pas operationnel car une erreur c'est produit. Veuillez verifier que tout les services sont operationnels.*** voici l'erreur generer par le systeme :" + err.message);
             });
           }
         }, {
           key: "findResultat",
           value: function findResultat(reference) {
-            var _this49 = this;
+            var _this53 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche/resultat?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12617,11 +13046,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this49.article = response;
+              _this53.article = response;
 
-              _this49.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this53.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this49.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this53.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/historique?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12629,11 +13058,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this49.historiques = response;
+              _this53.historiques = response;
 
-              _this49.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this53.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this49.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this53.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/alarme?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12641,11 +13070,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this49.alarmes = response;
+              _this53.alarmes = response;
 
-              _this49.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this53.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this49.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this53.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
           }
           /**
@@ -13020,7 +13449,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Commentaire </th>\n\n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td>  {{livre.commentaire}} </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(livre)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Commentaire </th>\n\n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td>  {{livre.commentaire}} </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n                        <!--\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(livre)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                        -->\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -13133,7 +13562,7 @@
         _createClass(EnstockComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this50 = this;
+            var _this54 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -13143,10 +13572,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this50.liststocks = response;
-              console.log(_this50.liststocks);
+              _this54.liststocks = response;
+              console.log(_this54.liststocks);
             }, function (error) {
-              _this50.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this54.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
         }, {
@@ -13339,7 +13768,7 @@
         _createClass(TableaubordComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this51 = this;
+            var _this55 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord1", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -13357,7 +13786,7 @@
                 colors.push(element['color']);
                 i++;
               });
-              _this51.tableaubord1 = {
+              _this55.tableaubord1 = {
                 labels: [].concat(labels),
                 datasets: [{
                   data: [].concat(results),
@@ -13366,7 +13795,7 @@
                 }]
               };
             }, function (error) {
-              _this51.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this55.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord2", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -13399,13 +13828,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this51.basicData = {
+                _this55.basicData = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this51.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this55.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -13416,10 +13845,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this51.listems = response;
-              console.log(_this51.listems);
+              _this55.listems = response;
+              console.log(_this55.listems);
             }, function (error) {
-              _this51.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this55.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -13597,7 +14026,7 @@
         _createClass(NouveauComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this52 = this;
+            var _this56 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -13618,28 +14047,28 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this52.typeactivites = [];
+              _this56.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'EMS - EE') {
-                  _this52.typeactivite = {
+                  _this56.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this52.typeactivites.push({
+                _this56.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this52.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this56.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this53 = this;
+            var _this57 = this;
 
             console.log(emsForm);
             var amontsection = emsForm['reference'].substring(0, 2);
@@ -13656,31 +14085,31 @@
                 })
               }).subscribe(function (response) {
                 if (response == null) {
-                  _this53.envoidto.reference = emsForm['reference'];
-                  _this53.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
-                  _this53.envoidto.type = emsForm['typearticle'];
-                  _this53.envoidto.adresse = emsForm['adresse'];
-                  _this53.envoidto.nomsender = emsForm['nomsender'];
-                  _this53.envoidto.telexpediteur = emsForm['telexpediteur'];
-                  _this53.envoidto.namerecipient = emsForm['namerecipient'];
-                  _this53.envoidto.telrecipient = emsForm['telrecipient'];
-                  _this53.envoidto.typearticle = _this53.typeactivite.code;
+                  _this57.envoidto.reference = emsForm['reference'];
+                  _this57.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
+                  _this57.envoidto.type = emsForm['typearticle'];
+                  _this57.envoidto.adresse = emsForm['adresse'];
+                  _this57.envoidto.nomsender = emsForm['nomsender'];
+                  _this57.envoidto.telexpediteur = emsForm['telexpediteur'];
+                  _this57.envoidto.namerecipient = emsForm['namerecipient'];
+                  _this57.envoidto.telrecipient = emsForm['telrecipient'];
+                  _this57.envoidto.typearticle = _this57.typeactivite.code;
 
-                  _this53.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this53.envoidto, {
+                  _this57.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this57.envoidto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this53.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this57.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this53.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                    _this57.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                   }, function (error) {
-                    _this53.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                    _this57.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                   });
                 } else {
-                  _this53.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this57.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
               }, function (error) {
-                _this53.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this57.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -13934,7 +14363,7 @@
         _createClass(ColisreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this54 = this;
+            var _this58 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -13944,10 +14373,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this54.listems = response;
-              console.log(_this54.listems);
+              _this58.listems = response;
+              console.log(_this58.listems);
             }, function (error) {
-              _this54.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this58.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -14262,14 +14691,14 @@
           this.httpClient = httpClient;
           this.router = router;
           this.tokenStorage = tokenStorage;
-          this.msgs = [];
           this.listems = undefined;
+          this.msgs = [];
         }
 
         _createClass(EmsComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this55 = this;
+            var _this59 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -14279,10 +14708,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this55.listems = response;
-              console.log(_this55.listems);
+              _this59.listems = response;
+              console.log(_this59.listems);
             }, function (error) {
-              _this55.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this59.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -14636,7 +15065,7 @@
         _createClass(LivraisonreussiComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this56 = this;
+            var _this60 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -14646,11 +15075,16 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this56.liste = response;
-              console.log(_this56.liste);
+              _this60.liste = response;
+              console.log(_this60.liste);
             }, function (error) {
-              _this56.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.getMessage());
+              _this60.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.getMessage());
             });
+          }
+        }, {
+          key: "editer",
+          value: function editer(livraison) {
+            console.log(livraison);
           }
           /**
           *  costumisation des erreurs
@@ -14901,7 +15335,7 @@
         _createClass(EmsreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this57 = this;
+            var _this61 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -14911,10 +15345,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this57.listems = response;
-              console.log(_this57.listems);
+              _this61.listems = response;
+              console.log(_this61.listems);
             }, function (error) {
-              _this57.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this61.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -15322,6 +15756,12 @@
       var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(
       /*! ./apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component */
       "bUil");
+      /* harmony import */
+
+
+      var _profil_profil_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(
+      /*! ./profil/profil.component */
+      "8IyQ");
 
       var AppRoutingModule = function AppRoutingModule() {
         _classCallCheck(this, AppRoutingModule);
@@ -15343,6 +15783,9 @@
           }, {
             path: 'documentation',
             component: _demo_view_documentation_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationComponent"]
+          }, {
+            path: 'profil',
+            component: _profil_profil_component__WEBPACK_IMPORTED_MODULE_47__["ProfilComponent"]
           },
           /**
            *  Routing Gestion de colis
@@ -15822,7 +16265,7 @@
         _createClass(NouveauordinairereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this58 = this;
+            var _this62 = this;
 
             this.ordinaireForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -15850,22 +16293,22 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this58.typeactivites = [];
+              _this62.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'ORDINAIRE - N/A') {
-                  _this58.typeactivite = {
+                  _this62.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this58.typeactivites.push({
+                _this62.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this58.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - ordinaire ");
+              _this62.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - ordinaire ");
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -15877,21 +16320,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this58.countries = [];
+              _this62.countries = [];
               response.forEach(function (element) {
-                _this58.countries.push({
+                _this62.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this58.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this62.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(ordinaireForm) {
-            var _this59 = this;
+            var _this63 = this;
 
             /*
             let amontsection = ordinaireForm['reference'].substring(0,2);
@@ -15913,38 +16356,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this59.receptiondto.reference = ordinaireForm['reference'];
-                _this59.receptiondto.name = 'ordinaire - EXPRESS MAIL SERVICE';
-                _this59.receptiondto.type = ordinaireForm['typearticle'];
-                _this59.receptiondto.adresse = ordinaireForm['adresse'];
-                _this59.receptiondto.nomsender = ordinaireForm['nomsender'];
-                _this59.receptiondto.telexpediteur = ordinaireForm['telexpediteur'];
-                _this59.receptiondto.namerecipient = ordinaireForm['namerecipient'];
-                _this59.receptiondto.telrecipient = ordinaireForm['telrecipient'];
-                _this59.receptiondto.email = ordinaireForm['email'];
-                _this59.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(ordinaireForm['datereception'], format, locale);
-                _this59.receptiondto.typearticle = _this59.typeactivite.code;
-                _this59.receptiondto.dommage = _this59.dommage;
-                _this59.receptiondto.commentaire = ordinaireForm['commentaire'];
-                _this59.receptiondto.envoisms = _this59.envoisms;
-                _this59.receptiondto.paysrecipient = _this59.selectedCountrydestinateur['code'];
-                _this59.receptiondto.paysexpediteur = _this59.selectedCountryexpediteur['code'];
+                _this63.receptiondto.reference = ordinaireForm['reference'];
+                _this63.receptiondto.name = 'ordinaire - EXPRESS MAIL SERVICE';
+                _this63.receptiondto.type = ordinaireForm['typearticle'];
+                _this63.receptiondto.adresse = ordinaireForm['adresse'];
+                _this63.receptiondto.nomsender = ordinaireForm['nomsender'];
+                _this63.receptiondto.telexpediteur = ordinaireForm['telexpediteur'];
+                _this63.receptiondto.namerecipient = ordinaireForm['namerecipient'];
+                _this63.receptiondto.telrecipient = ordinaireForm['telrecipient'];
+                _this63.receptiondto.email = ordinaireForm['email'];
+                _this63.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(ordinaireForm['datereception'], format, locale);
+                _this63.receptiondto.typearticle = _this63.typeactivite.code;
+                _this63.receptiondto.dommage = _this63.dommage;
+                _this63.receptiondto.commentaire = ordinaireForm['commentaire'];
+                _this63.receptiondto.envoisms = _this63.envoisms;
+                _this63.receptiondto.paysrecipient = _this63.selectedCountrydestinateur['code'];
+                _this63.receptiondto.paysexpediteur = _this63.selectedCountryexpediteur['code'];
 
-                _this59.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this59.receptiondto, {
+                _this63.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this63.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this59.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this63.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this59.showSuccess("Vous avez enregistrer avec success votre ordinaire  !!! ");
+                  _this63.showSuccess("Vous avez enregistrer avec success votre ordinaire  !!! ");
                 }, function (error) {
-                  _this59.showError(" une erreur c'est produit et le système n'a pas enregitré votre ordinaire - La raison est voici : " + error.message);
+                  _this63.showError(" une erreur c'est produit et le système n'a pas enregitré votre ordinaire - La raison est voici : " + error.message);
                 });
               } else {
-                _this59.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this63.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this59.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this63.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -16155,13 +16598,13 @@
         _createClass(DashboardDemoComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this60 = this;
+            var _this64 = this;
 
             this.productService.getProducts().then(function (data) {
-              return _this60.products = data;
+              return _this64.products = data;
             });
             this.eventService.getEvents().then(function (events) {
-              _this60.events = events;
+              _this64.events = events;
             });
             this.cities = [];
             this.cities.push({

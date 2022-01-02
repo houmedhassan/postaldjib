@@ -38,6 +38,7 @@ public class TypeVente {
 	private  double prix;
 	private double penalite;
 	
+	
 	@OneToMany @JoinColumn(name="typevente")
 	private Set<TypeVenteItems> items;
 	

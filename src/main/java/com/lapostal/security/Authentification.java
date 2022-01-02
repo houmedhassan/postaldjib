@@ -1,13 +1,16 @@
 package com.lapostal.security;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lapostal.beans.Pays;
@@ -80,6 +84,48 @@ public class Authentification {
 	    return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	  }
 	  
+	  @RequestMapping(value="/profil", method= RequestMethod.GET)
+	  public ResponseEntity<User> profil(Principal principal)
+	  {
+		  try {
+			  //System.out.println(principal.getName());
+			  Optional<User> user= userRepository.findByUsername(principal.getName());
+			  return new ResponseEntity<User>(user.get(), HttpStatus.OK);
+		  }catch(Exception ex)
+		  {
+			  ex.printStackTrace();
+			  return new ResponseEntity<User>(HttpStatus.FORBIDDEN);
+		  }
+	  }
+	  
+	  
+		@RequestMapping(value="/update/password", method=RequestMethod.POST)
+		public ResponseEntity<User> updatepassword(@RequestBody JSONObject json,  Principal principal)
+		{
+			try {
+				System.out.println(json.get("ancienpassword").toString());			
+				Optional<User> user= userRepository.findByUsername(principal.getName());
+				
+			    Authentication authentication = authenticationManager.authenticate(
+			            new UsernamePasswordAuthenticationToken(user.get().getUsername(), json.get("ancienpassword").toString()));
+				
+				if(authentication == null)
+				{
+					return new ResponseEntity<User>(HttpStatus.UNAUTHORIZED);
+					
+				}
+				User user1 = userRepository.findByUsername(principal.getName()).get();
+				user1.setPassword(encoder.encode(json.get("password").toString()));
+				userRepository.save(user1);
+				
+				return new ResponseEntity<User>(user1, HttpStatus.OK);
+			}catch(Exception ex )
+			{
+				ex.printStackTrace();
+				return new ResponseEntity<User>(HttpStatus.FORBIDDEN);
+			}
+		}
+	  
 	  @GetMapping("/first/save")
 		public ResponseEntity<String> save_users()
 		{
@@ -111,8 +157,8 @@ public class Authentification {
 		}
 	  
 	  	
-	  	/*
-	  
+	  	
+
 		@Autowired
 		private TypeArticleRepository typearticleRepository;
 		
@@ -123,9 +169,9 @@ public class Authentification {
 						
 					User user = userRepository.findByUsername("Admin").get();
 					
-					TypeArticle article = new TypeArticle();
+					TypeArticle article = typearticleRepository.findByName(" EMS - EE");
 					
-					article.setName(" EMS - EE");
+					article.setName("EMS - EE");
 					article.setCreated(user);
 					article.setUpdated(user);
 					
@@ -134,7 +180,7 @@ public class Authentification {
 					
 					typearticleRepository.save(article);
 					
-article = new TypeArticle();
+article = typearticleRepository.findByName("RECOMMANDE - RR");
 					
 					article.setName("RECOMMANDE - RR");
 					article.setCreated(user);
@@ -187,6 +233,7 @@ article = new TypeArticle();
 					
 					typeReceptionRepository.save(article);
 					
+					/*
 					article = new TypeReception();
 					
 					article.setName("RECOMMANDE - RR");
@@ -233,7 +280,7 @@ article = new TypeArticle();
 					article.setUpdatedat(LocalDateTime.now());
 					
 					typeReceptionRepository.save(article);
-					
+					*/
 					return new ResponseEntity<String>(HttpStatus.OK);
 					
 				}catch(Exception ex)
@@ -771,5 +818,5 @@ article = new TypeArticle();
 					ex.printStackTrace();
 					return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
 				}
-			}*/
+			}
 }

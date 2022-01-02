@@ -14,5 +14,7 @@ public interface TypeVenteRepository extends JpaRepository<TypeVente, Integer>{
 	
 	
 	
+	
+	
 
 }

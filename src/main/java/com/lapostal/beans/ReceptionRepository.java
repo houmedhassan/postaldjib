@@ -83,23 +83,23 @@ public interface ReceptionRepository extends JpaRepository<Reception, Integer>{
 	 * 
 	 * @return
 	 */
-	@Query(value="SELECT count(*) AS COUNT, type, color  FROM [epostal].[dbo].reception  group by type, color ", nativeQuery = true)
+	@Query(value="SELECT count(*) AS COUNT, type, color  FROM reception  group by type, color ", nativeQuery = true)
 	List<JSONObject> tableaudebord();
 	
 	/**
 	 * 
 	 * @return
 	 */
-	@Query(value="SELECT COUNT(*) COUNT,   type, color,  MONTH(updatedat) AS updatedat  FROM [epostal].[dbo].reception  group by type, color, MONTH(updatedat)", nativeQuery = true)
+	@Query(value="SELECT COUNT(*) COUNT,   type, color,   MONTH(updatedat) AS updatedat  FROM reception  group by type, color, MONTH(updatedat)", nativeQuery = true)
 	List<JSONObject> tableaudebord2();
 	
 	
 	
-	@Query(value="SELECT COUNT(*) COUNT,   type, color,  MONTH(updatedat) AS updatedat  FROM [epostal].[dbo].reception where dommage = 1  group by type, color, MONTH(updatedat)", nativeQuery = true)
+	@Query(value="SELECT COUNT(*) COUNT,   type, color,  MONTH(updatedat) AS updatedat  FROM reception where dommage = 1  group by type, color, MONTH(updatedat)", nativeQuery = true)
 	List<JSONObject> tableaudebord3();	
 	
 	
-	@Query(value="SELECT COUNT(*) COUNT,   type, color,  MONTH(updatedat) AS updatedat  FROM [epostal].[dbo].reception where dommage = 0  group by type, color, MONTH(updatedat)", nativeQuery = true)
+	@Query(value="SELECT COUNT(*) COUNT,   type, color,  MONTH(updatedat) AS updatedat  FROM reception where dommage = 0  group by type, color, MONTH(updatedat)", nativeQuery = true)
 	List<JSONObject> tableaudebord4();
 	
 }

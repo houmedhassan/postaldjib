@@ -51,14 +51,14 @@ public interface EnvoiRepository extends JpaRepository<Envoi, Integer> {
 	 * 
 	 * @return
 	 */
-	@Query(value="SELECT count(*) AS COUNT, type  FROM [epostal].[dbo].[envoi]  group by type ", nativeQuery = true)
+	@Query(value="SELECT count(*) AS COUNT, type  FROM envoi  group by type ", nativeQuery = true)
 	List<JSONObject> tableaudebord();
 
 	/**
 	 * 
 	 * @return
 	 */
-	@Query(value="SELECT COUNT(*) COUNT,   type, color,  MONTH(updatedat) AS updatedat  FROM [epostal].[dbo].envoi  group by type, color, MONTH(updatedat)", nativeQuery = true)
+	@Query(value="SELECT COUNT(*) COUNT,   type, color,  MONTH(updatedat) AS updatedat  FROM envoi  group by type, color, MONTH(updatedat)", nativeQuery = true)
 	List<JSONObject> tableaudebord2();
 
 }

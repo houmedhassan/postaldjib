@@ -20,5 +20,13 @@ public interface VenteRepository extends JpaRepository<Vente, Integer> {
 	 */
 	List<Vente> findByDateventeOrderByIdDesc(LocalDate date);
 	
+	/**
+	 * 
+	 * @param annee
+	 * @param month
+	 * @return
+	 */
+	List<Vente> findByAnneeAndMonthOrderByItemstypevente(int annee, int month);
+	
 	
 }

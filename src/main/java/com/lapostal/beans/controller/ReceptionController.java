@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,6 @@ import com.lapostal.beans.AlarmeAnomalie;
 import com.lapostal.beans.AlarmeAnomalieRepository;
 import com.lapostal.beans.AlarmeEnum;
 import com.lapostal.beans.ChartLineByMonthDTO;
-import com.lapostal.beans.Envoi;
 import com.lapostal.beans.Livraison;
 import com.lapostal.beans.LivraisonRepository;
 import com.lapostal.beans.Pays;
@@ -37,7 +36,6 @@ import com.lapostal.beans.Reception;
 import com.lapostal.beans.ReceptionHistorique;
 import com.lapostal.beans.ReceptionHistoriqueRepository;
 import com.lapostal.beans.ReceptionRepository;
-import com.lapostal.beans.TypeArticle;
 import com.lapostal.beans.TypeReception;
 import com.lapostal.beans.TypeReceptionRepository;
 import com.lapostal.beans.dto.LivraisonEchoueDTO;
@@ -544,6 +542,7 @@ public class ReceptionController {
 	{
 		try {
 			
+			
 			Map<String, List<ChartLineByMonthDTO>> envois = new HashMap<String, List<ChartLineByMonthDTO>>();
 			
 			for(TypeReception article : typeReceptionRepository.findAll())
@@ -636,7 +635,7 @@ public class ReceptionController {
 				}
 			}
 
-			/**
+			/**884395
 			 * Recupration de la liste par mois
 			 */
 			
@@ -646,16 +645,25 @@ public class ReceptionController {
 				List<ChartLineByMonthDTO> chart =  envois.get(json.get("type").toString());				
 					
 				ChartLineByMonthDTO month = new ChartLineByMonthDTO();
-				month = chart.get(Integer.parseInt(json.get("updatedat").toString())-1);	
-				month.setValue(Integer.parseInt(json.get("COUNT").toString()));
+				month = chart.get((int)Double.parseDouble(json.get("updatedat").toString())-1);	
+				month.setValue((json.get("COUNT")== null ) ? 0 : (int)Double.parseDouble(json.get("COUNT").toString()));
 				month.setColor((json.get("color") == null) ? "#0000":json.get("color").toString());
 				
-				chart.set(Integer.parseInt(json.get("updatedat").toString())-1, month);	
-
+				chart.set((int)Double.parseDouble(json.get("updatedat").toString())-1, month);	
+				System.out.println((int)Double.parseDouble(json.get("updatedat").toString())-1 +" ***************  "+json.get("COUNT"));
 				envois.replace(json.get("type").toString(), chart);	
 				
 			}
 			
+			
+			for(Entry<String, List<ChartLineByMonthDTO>> envoi : envois.entrySet())
+			{
+				for(ChartLineByMonthDTO chart : envoi.getValue())
+				{
+					System.out.println(" ****** "+chart.getMonthname() + " ******* "+chart.getValue());
+				}
+			}
+				
 						
 			return new ResponseEntity<Map<String, List<ChartLineByMonthDTO>>>(envois, HttpStatus.OK);
 		}catch(Exception ex)
