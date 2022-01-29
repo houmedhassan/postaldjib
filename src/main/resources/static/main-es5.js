@@ -4411,7 +4411,7 @@
 
       var environment = {
         production: false,
-        url: 'http://https://lapostedjib.herokuapp.com'
+        url: 'https://lapostedjib.herokuapp.com'
       };
       /***/
     },
@@ -12374,7 +12374,7 @@
 
       var environment = {
         production: true,
-        url: 'http://https://lapostedjib.herokuapp.com'
+        url: 'https://lapostedjib.herokuapp.com'
       };
       /***/
     },
