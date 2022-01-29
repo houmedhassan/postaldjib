@@ -2848,7 +2848,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of which env maps to which file can be found in `angular-cli.json`.
 const environment = {
     production: false,
-    url: 'http://localhost:8845'
+    url: 'http://https://lapostedjib.herokuapp.com'
 };
 
 
@@ -7804,7 +7804,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 const environment = {
     production: true,
-    url: 'http://localhost:8845'
+    url: 'http://https://lapostedjib.herokuapp.com'
 };
 
 

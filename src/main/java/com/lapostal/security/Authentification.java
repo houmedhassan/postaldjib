@@ -132,21 +132,23 @@ public class Authentification {
 		{
 			try {
 					RoleUser role_msc = new RoleUser();
-					role_msc.setName(RoleName.ROLE_ADMIN);
+					role_msc.setName(RoleName.ROLE_STAFF_RECETTE);
 					roleRepository.save(role_msc);
 					
 					User user = new User(); 
-					user.setName("ADMINISTRATEUR ");
-					user.setUsername("Admin");
-					user.setEmail("admin.postal@laposte.dj");
+					user.setName("RECETTE  ");
+					user.setUsername("recettte");
+					user.setEmail("recette.postal@laposte.dj");
 					 encoder = new BCryptPasswordEncoder(12);
 					
-					user.setPassword(encoder.encode("admin"));
+					user.setPassword(encoder.encode("123456"));
 					Set<RoleUser> rolesevergreen = new HashSet<RoleUser>();
 					rolesevergreen.add(role_msc);
 					user.setRoles(rolesevergreen);
 					
 					userRepository.save(user);	
+					
+					
 				
 				return new ResponseEntity<String>(HttpStatus.OK);
 				
@@ -181,7 +183,7 @@ public class Authentification {
 					
 					typearticleRepository.save(article);
 					
-article = typearticleRepository.findByName("RECOMMANDE - RR");
+						article = typearticleRepository.findByName("RECOMMANDE - RR");
 					
 					article.setName("RECOMMANDE - RR");
 					article.setCreated(user);
@@ -193,7 +195,7 @@ article = typearticleRepository.findByName("RECOMMANDE - RR");
 					typearticleRepository.save(article);
 					
 					
-article = new TypeArticle();
+					article = new TypeArticle();
 					
 					article.setName("COLIS - CP");
 					article.setCreated(user);
@@ -225,7 +227,7 @@ article = new TypeArticle();
 					
 					TypeReception article = new TypeReception();
 					
-					article.setName("EMS - EE");
+					article.setName("COLIS - CP");
 					article.setCreated(user);
 					article.setUpdated(user);
 					
