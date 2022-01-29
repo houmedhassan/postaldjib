@@ -473,9 +473,10 @@ pre[class*="language-"] {
 	position: relative;
 	margin: .5em 0;
 	overflow: visible;
-	padding: 0;
-}pre[class*="language-"]>code {
+	padding: 1px;
+}pre[class*="language-"] > code {
 	position: relative;
+	z-index: 1;
 	border-left: 10px solid #358ccb;
 	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
 	background-color: #fdfdfd;
@@ -483,7 +484,7 @@ pre[class*="language-"] {
 	background-size: 3em 3em;
 	background-origin: content-box;
 	background-attachment: local;
-}code[class*="language"] {
+}code[class*="language-"] {
 	max-height: inherit;
 	height: inherit;
 	padding: 0 1em;
@@ -505,7 +506,6 @@ pre[class*="language-"] {
 }pre[class*="language-"]:before,
 pre[class*="language-"]:after {
 	content: '';
-	z-index: -2;
 	display: block;
 	position: absolute;
 	bottom: 0.75em;
@@ -515,8 +515,7 @@ pre[class*="language-"]:after {
 	max-height: 13em;
 	box-shadow: 0px 13px 8px #979797;
 	transform: rotate(-2deg);
-}:not(pre) > code[class*="language-"]:after,
-pre[class*="language-"]:after {
+}pre[class*="language-"]:after {
 	right: 0.75em;
 	left: auto;
 	transform: rotate(2deg);
@@ -580,10 +579,6 @@ pre[class*="language-"]:after {
 		box-shadow: none;
 	}
 
-}/* Plugin styles */.token.tab:not(:empty):before,
-.token.cr:before,
-.token.lf:before {
-	color: #e0d7d1;
 }/* Plugin styles: Line Numbers */pre[class*="language-"].line-numbers.line-numbers {
 	padding-left: 0;
 }pre[class*="language-"].line-numbers.line-numbers code {
@@ -4557,4 +4552,30 @@ Docs & License: https://fullcalendar.io/
   font-weight: bold;
 }tr:nth-child(even) {
   background-color: #f2f2f2 !important;
+}.layout-wrapper .layout-menu-container.layout-menu-dark {
+  background-image: linear-gradient(to right, #5aaaff, #5aaaff) !important;
+}.layout-wrapper .topbar .topbar-left {
+  background-image: linear-gradient(to right, #5aaaff, #5aaaff) !important;
+}.layout-wrapper .topbar .topbar-right {
+  padding: 15px;
+  height: 60px;
+  background-color: #2b32b2;
+  background-image: -webkit-gradient(linear, left top, right top, from(#5aaaff), to(#1488cc)) !important;
+}.p-datatable .p-datatable-header {
+  background: #5aaaff !important;
+  color: #f9f9f9;
+  border: solid #dee2e6;
+  border-width: 1px 0 0 0;
+  padding: 1rem 1rem;
+  font-weight: 600;
+}.layout-wrapper .topbar .topbar-left .topbar-logo {
+  margin-top: -15px !important;
+  height: 80px !important;
+  width: 150px !important;
+}.p-datatable .p-datatable-tbody > tr > td {
+  border: 1px solid #a7d2fd !important;
+}.p-datatable .p-datatable-thead > tr > th {
+  border: 2px solid #71b8ff !important;
+}.login-body .login-panel {
+  height: 90% !important;
 }

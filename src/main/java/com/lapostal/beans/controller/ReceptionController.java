@@ -71,7 +71,6 @@ public class ReceptionController {
 	LivraisonRepository livraisonRepository;
 	
 	@GetMapping("/all")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<List<Reception>> findAllReceptions(Principal principal)
 	{
 		try {
@@ -84,7 +83,6 @@ public class ReceptionController {
 	}
 	
 	@GetMapping("/reference")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<Reception> findByReference(@RequestParam("reference") String reference, Principal principal)
 	{
 		try {
@@ -102,7 +100,6 @@ public class ReceptionController {
 	 * @return
 	 */
 	@GetMapping("/pays/all")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<List<Pays>> findAllPays(Principal principal)
 	{
 		try {
@@ -121,7 +118,7 @@ public class ReceptionController {
 	 * @return
 	 */
 	@GetMapping("/ems")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_EMS') or hasRole('ROLE_STAFF_RECEPTION') ")
 	public ResponseEntity<List<Reception>> findAll(Principal principal)
 	{
 		try {
@@ -140,7 +137,7 @@ public class ReceptionController {
 	 * @return
 	 */
 	@GetMapping("/colis")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_COLIS') or hasRole('ROLE_STAFF_RECEPTION') ")
 	public ResponseEntity<List<Reception>> findAllColis(Principal principal)
 	{
 		try {
@@ -158,7 +155,7 @@ public class ReceptionController {
 	 * @return
 	 */
 	@GetMapping("/recommande")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_RECOMMANDE') or hasRole('ROLE_STAFF_RECEPTION') ")
 	public ResponseEntity<List<Reception>> findAllRecommande(Principal principal)
 	{
 		try {
@@ -176,7 +173,7 @@ public class ReceptionController {
 	 * @return
 	 */
 	@GetMapping("/ordinaire")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_ORDINAIRE') or hasRole('ROLE_STAFF_RECEPTION') ")
 	public ResponseEntity<List<Reception>> findAllOrdinaire(Principal principal)
 	{
 		try {
@@ -194,7 +191,7 @@ public class ReceptionController {
 	 * @return
 	 */
 	@GetMapping("/esuuq")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_ESUUQ') or hasRole('ROLE_STAFF_RECEPTION') ")
 	public ResponseEntity<List<Reception>> findAllEsuuq(Principal principal)
 	{
 		try {
@@ -207,7 +204,7 @@ public class ReceptionController {
 	}
 
 	@PostMapping("/save")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_EMS') or hasRole('ROLE_STAFF_COLIS') or hasRole('ROLE_STAFF_RECOMMANDE') or hasRole('ROLE_STAFF_ESUUQ') or hasRole('ROLE_STAFF_ORDINAIRE') or hasRole('ROLE_STAFF_RECEPTION') ")
 	public ResponseEntity<String> saveEnvoi(@RequestBody ReceptionDTO envoidto, Principal principal)
 	{
 		try {
@@ -302,7 +299,7 @@ public class ReceptionController {
 	
 	
 	@GetMapping("/edit")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_EMS') or hasRole('ROLE_STAFF_COLIS') or hasRole('ROLE_STAFF_RECOMMANDE') or hasRole('ROLE_STAFF_ESUUQ') or hasRole('ROLE_STAFF_ORDINAIRE') or hasRole('ROLE_STAFF_RECEPTION') ")
 	public ResponseEntity<Reception> findOne(@RequestParam("gkey") String gkey, Principal principal)
 	{
 		try {
@@ -389,7 +386,7 @@ public class ReceptionController {
 	
 	
 	@GetMapping("/historique")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_EMS') or hasRole('ROLE_STAFF_COLIS') or hasRole('ROLE_STAFF_RECOMMANDE') or hasRole('ROLE_STAFF_ESUUQ') or hasRole('ROLE_STAFF_ORDINAIRE') or hasRole('ROLE_STAFF_RECEPTION') ")
 	public ResponseEntity<List<ReceptionHistorique>> findHistorique(@RequestParam("param") String param, Principal principal)
 	{
 		try {
@@ -407,7 +404,6 @@ public class ReceptionController {
 	
 	
 	@GetMapping("/alarme")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<List<AlarmeAnomalie>> findalarme(@RequestParam("param") String param, Principal principal)
 	{
 		try {
@@ -423,7 +419,6 @@ public class ReceptionController {
 
 	
 	@GetMapping("/livraison/sucess")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<String> livraison(@RequestParam("param") String param, Principal principal)
 	{
 		try {
@@ -471,7 +466,6 @@ public class ReceptionController {
 	
 	
 	@PostMapping("/livraison/echec")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<String> livraisonechoue(@RequestBody LivraisonEchoueDTO livraiondto, Principal principal)
 	{
 		try {
@@ -523,7 +517,6 @@ public class ReceptionController {
 
 	
 	@GetMapping("/tableau/bord1")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<List<JSONObject>> tableaudebord1()
 	{
 		try {
@@ -537,7 +530,6 @@ public class ReceptionController {
 
 	
 	@GetMapping("/tableau/bord2")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<Map<String, List<ChartLineByMonthDTO>>> tableaudebord2()
 	{
 		try {

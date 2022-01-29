@@ -174,7 +174,7 @@ NouveaucolisComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"dashboard p-grid\">     \n\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '200%'}\"></p-chart>\n    </div>\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"dashboard p-grid\">     \n\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '200%'}\"></p-chart>\n    </div>\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"datereception\">Date <p-sortIcon field=\"datereception\"></p-sortIcon></th>\n                        <th pSortableColumn=\"dommage\"> Etat <p-sortIcon field=\"dommage\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur <p-sortIcon field=\"namerecipient\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telrecipient\"> Telephone 2 <p-sortIcon field=\"telrecipient\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"show(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -187,7 +187,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"dashboard p-grid\">     \n\n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire des produit non-defaillance\">\n            <p-chart type=\"bar\" [data]=\"basicData2\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire de defaillance\">\n            <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/recommande/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception RECOMMANDE - RR \"class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"dashboard p-grid\">     \n\n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire des produit non-defaillance\">\n            <p-chart type=\"bar\" [data]=\"basicData2\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire de livraison\">\n            <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                           \n                        <span class=\"p-input-icon-left\">\n                            \n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                           \n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>     \n                        <th style=\"width: 12%;\" pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th style=\"width: 6%;\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"etat\"> Statut  <p-sortIcon field=\"etat\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th  style=\"width: 15%;\" pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon></th>\n                        \n                        <th  style=\"width: 10%;\" pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td > {{ems.reference}} </td>\n                        <td style=\"width: 8rem\"> {{ems.datereception}} </td>\n                        <td style=\"width: 8rem\">  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td> {{ems.etat}} </td>\n                        <td style=\"width: 10rem\">  {{ems.type}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n\n                        <td style=\"width: 8rem\">  {{ems.updated.username}} </td>\n                        <td style=\"width: 10rem\">  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"search(ems)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>");
 
 /***/ }),
 
@@ -755,6 +755,8 @@ let TableaubordreceptionComponent = class TableaubordreceptionComponent {
         this.tableaubord1 = undefined;
         this.basicData = undefined;
         this.listems = undefined;
+        this.ems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/tableau/bord1", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -842,6 +844,88 @@ let TableaubordreceptionComponent = class TableaubordreceptionComponent {
         }, error => {
             this.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    customSort(event) {
+        event.data.sort((data1, data2) => {
+            let value1 = data1[event.field];
+            let value2 = data2[event.field];
+            let result = null;
+            if (value1 == null && value2 != null)
+                result = -1;
+            else if (value1 != null && value2 == null)
+                result = 1;
+            else if (value1 == null && value2 == null)
+                result = 0;
+            else if (typeof value1 === 'string' && typeof value2 === 'string')
+                result = value1.localeCompare(value2);
+            else
+                result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+            return (event.order * result);
+        });
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let reception of this.listems) {
+            let receptiondto = {};
+            receptiondto.reference = reception['reference'];
+            receptiondto.type = reception['type'];
+            receptiondto.name = reception['name'];
+            receptiondto.adresse = reception['adresse'];
+            receptiondto.email = reception['email'];
+            receptiondto.nomsender = reception['nomsender'];
+            receptiondto.telexpediteur = reception['telexpediteur'];
+            receptiondto.paysexpediteur = reception['paysexpediteur'];
+            receptiondto.namerecipient = reception['namerecipient'];
+            receptiondto.telrecipient = reception['telrecipient'];
+            receptiondto.paysrecipient = reception['telrecipient'];
+            receptiondto.datereception = reception['telrecipient'];
+            receptiondto.datesortie = reception['telrecipient'];
+            receptiondto.etat = reception['telrecipient'];
+            receptiondto.reception = reception['telrecipient'];
+            receptiondto.createdat = reception['createdat']['name'];
+            receptiondto.createdat = reception['createdat'];
+            receptiondto.created = reception['created']['name'];
+            receptiondto.updatedat = reception['updatedat'];
+            receptiondto.updated = reception['updated']['name'];
+            receptiondto.dommage = reception['dommage'];
+            receptiondto.envoisms = reception['envoisms'];
+            receptiondto.commentaire = reception['commentaire'];
+            datas.push(receptiondto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -1295,27 +1379,26 @@ AppTopBarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         template: `
         <div class="topbar clearfix">
             <div class="topbar-left">
-                <a routerLink="/">
-                    <img src="assets/layout/images/logo.png" class="topbar-logo" routerLink="/" />
-                </a>
-
-    
+                <div class="row" style="height:60px;">
+                    <a routerLink="/" >
+                       <!-- <img src="assets/layout/images/logo.png" class="topbar-logo" routerLink="/" /> -->
+                    </a>
+                </div>    
             </div>
 
-            <div class="topbar-right">
+             <div class="topbar-right">
 
-            
-                &nbsp;&nbsp;&nbsp;&nbsp;
-
-                <a routerLink="/">
-                    <img src="assets/layout/images/esuuq.PNG" class="topbar-logo-right" routerLink="/"   style="width: 50px; margin-top: -10px;" />
-                </a>
-
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                <a routerLink="/">
-                <img src="assets/layout/images/ems.PNG" class="topbar-logo-right" routerLink="/"   style="width: 50px; margin-top: -10px;" />
-            </a>
+              <!-- <span style="
+               color: white;
+               padding-left: 5%;
+               font-size: 40px;
+               font-family: sans-serif;
+               font-style: oblique;
+               font-weight: 800;"> 
+               
+               E-POSTAL 
+               
+               </span> -->
 
                 <a id="menu-button" href="#" (click)="appMain.onMenuButtonClick($event)"
                    [ngClass]="{'menu-button-rotate': appMain.rotateMenuButton}">
@@ -1949,6 +2032,7 @@ let DefaillantComponent = class DefaillantComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.liststocks = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -1969,6 +2053,39 @@ let DefaillantComponent = class DefaillantComponent {
         this.router.navigate(['gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869'], {
             queryParams: { id: '' + value["reference"] + '' }
         });
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        return this.liststocks;
     }
     /**
      *  costumisation des erreurs
@@ -2731,7 +2848,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of which env maps to which file can be found in `angular-cli.json`.
 const environment = {
     production: false,
-    url: 'https://lapostedjib.herokuapp.com'
+    url: 'http://localhost:8845'
 };
 
 
@@ -2746,7 +2863,7 @@ const environment = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/colis/nouveau?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception COLIS - CP \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/colis/nouveau?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception COLIS - CP \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>      \n                                 \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th  style=\"width: 10rem\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th  style=\"width: 8rem\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th style=\"width: 10rem\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td style=\"width: 10rem\"> {{ems.datereception}} </td>\n                        <td style=\"width: 8rem\">  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td style=\"width: 10rem\">  {{ems.type}} </td>\n\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>  &nbsp;\n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -2799,6 +2916,8 @@ let OrdinaireComponent = class OrdinaireComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.listems = undefined;
+        this.ems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -2822,6 +2941,70 @@ let OrdinaireComponent = class OrdinaireComponent {
         this.router.navigate(['gestion/reception/edition?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let reception of this.listems) {
+            let receptiondto = {};
+            receptiondto.reference = reception['reference'];
+            receptiondto.type = reception['type'];
+            receptiondto.name = reception['name'];
+            receptiondto.adresse = reception['adresse'];
+            receptiondto.email = reception['email'];
+            receptiondto.nomsender = reception['nomsender'];
+            receptiondto.telexpediteur = reception['telexpediteur'];
+            receptiondto.paysexpediteur = reception['paysexpediteur'];
+            receptiondto.namerecipient = reception['namerecipient'];
+            receptiondto.telrecipient = reception['telrecipient'];
+            receptiondto.paysrecipient = reception['telrecipient'];
+            receptiondto.datereception = reception['telrecipient'];
+            receptiondto.datesortie = reception['telrecipient'];
+            receptiondto.etat = reception['telrecipient'];
+            receptiondto.reception = reception['telrecipient'];
+            receptiondto.createdat = reception['createdat']['name'];
+            receptiondto.createdat = reception['createdat'];
+            receptiondto.created = reception['created']['name'];
+            receptiondto.updatedat = reception['updatedat'];
+            receptiondto.updated = reception['updated']['name'];
+            receptiondto.dommage = reception['dommage'];
+            receptiondto.envoisms = reception['envoisms'];
+            receptiondto.commentaire = reception['commentaire'];
+            datas.push(receptiondto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -2996,167 +3179,526 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppMenuComponent", function() { return AppMenuComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _auth_token_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth/token-storage.service */ "dZLz");
+
 
 
 let AppMenuComponent = class AppMenuComponent {
+    constructor(token) {
+        this.token = token;
+        this.roleadmin = false;
+        this.roleems = false;
+        this.rolecolis = false;
+        this.rolerecommande = false;
+        this.rolelivraison = false;
+        this.roleInventaire = false;
+        this.rolerecette = false;
+        this.model = [];
+    }
     ngOnInit() {
-        this.model = [
-            {
-                label: 'Favorites', icon: 'pi pi-home',
-                items: [
-                    { label: 'Dashboards', icon: 'pi pi-fw pi-home', routerLink: ['/dashboards'],
-                        items: [
-                            { label: 'Generic', icon: 'pi pi-fw pi-home', routerLink: ['/dashboards/generic'] },
-                        ]
-                    },
-                    {
-                        label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
-                    },
-                ]
-            },
-            /*
-            {
-                label: 'Start', icon: 'pi pi-download',
-                items: [
-                    {
-                        label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', routerLink: ['/login']
-                    },
-                    {
-                        label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
-                    }
-                ]
-            },
-            */
-            /**
-             * Gestion de parametrage
-             */
-            /*{
-                label: 'Parametrage', icon: 'pi pi-step-forward-alt',
-                items: [
-                    {
-                        label: 'Utilisateurs', icon: 'pi pi-fw pi-forward',  routerLink: ['/parametrage/utilisateurs']
-                    },
-                    {
-                        label: 'Gestion d\'access ', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/gestion/access']
-                    },
-                    {
-                        label: 'Categorie', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/categorie']
-                    }
-                ]
+        this.roles = this.token.getAuthorities();
+        this.roles.every(role => {
+            if (role === 'ROLE_ADMIN') {
+                this.authority = 'ROLE_ADMIN';
+                this.roleadmin = true;
+                return false;
             }
-            ,*/
-            /**
-             * Gestion d'envoi
-             */
-            {
-                label: 'Envoie de Colis', icon: 'pi pi-step-forward-alt',
-                items: [
-                    {
-                        label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
-                    },
-                    {
-                        label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/colis?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb']
-                    },
-                    {
-                        label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
-                    },
-                    {
-                        label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
-                    },
-                    {
-                        label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
-                    }
-                ]
-            },
-            /**
-             * Gestion de reception
-             */
-            {
-                label: 'Reception', icon: 'pi pi-step-forward-alt',
-                items: [
-                    {
-                        label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
-                    },
-                    {
-                        label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
-                    },
-                    {
-                        label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                    },
-                    {
-                        label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
-                    },
-                    {
-                        label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                    },
-                    {
-                        label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-                    }
-                ]
-            },
-            /**
-             * Gestion de reception
-             */
-            {
-                label: 'Inventaire', icon: 'pi pi-step-forward-alt',
-                items: [
-                    {
-                        label: 'Recherche un produit', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-                    },
-                    {
-                        label: 'Produit en stock', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-                    },
-                    {
-                        label: 'Produit defaillant', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-                    },
-                    {
-                        label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                    }
-                ]
-            },
-            /**
-             * Gestion de reception--
-             */
-            {
-                label: 'Livraison', icon: 'pi pi-step-forward-alt',
-                items: [
-                    {
-                        label: 'Nouveau Livraison', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/reception/livraison/nouveau?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                    },
-                    {
-                        label: 'Livraison Reussi', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                    },
-                    {
-                        label: 'Livraison echoué / rejeté', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                    },
-                    {
-                        label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/colis en stocks']
-                    }
-                ]
-            },
-            /**
-             * Gestion d'inventaire
-             */
-            {
-                label: 'Recette', icon: 'pi pi-step-forward-alt',
-                items: [
-                    {
-                        label: 'Parametrage', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                    },
-                    {
-                        label: 'Nouveau recettes', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                    },
-                    {
-                        label: 'Rapports', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                    },
-                    {
-                        label: 'Tabbleau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                    }
-                ]
+            else if (role === 'ROLE_STAFF_EMS') {
+                this.authority = 'ROLE_STAFF_EMS';
+                return false;
             }
-        ];
+            else if (role === 'ROLE_STAFF_COLIS') {
+                this.authority = 'ROLE_STAFF_COLIS';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_RECOMMANDE') {
+                this.authority = 'ROLE_STAFF_RECOMMANDE';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_ORDINAIRE') {
+                this.authority = 'ROLE_STAFF_ORDINAIRE';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_ESUUQ') {
+                this.authority = 'ROLE_STAFF_ESUUQ';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_LIVRAISON') {
+                this.authority = 'ROLE_STAFF_LIVRAISON';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_LIVRAISON') {
+                this.authority = 'ROLE_STAFF_LIVRAISON';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_RECEPTION') {
+                this.authority = 'ROLE_STAFF_RECEPTION';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_ENVOI') {
+                this.authority = 'ROLE_STAFF_ENVOI';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_RECETTE') {
+                this.authority = 'ROLE_STAFF_RECETTE';
+                return false;
+            }
+            else if (role === 'ROLE_STAFF_TABLEAUBORD') {
+                this.authority = 'ROLE_STAFF_TABLEAUBORD';
+                return false;
+            }
+            else {
+                this.authority = 'user';
+                return true;
+            }
+        });
+        if (this.roleadmin == true) {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
+                        },
+                    ]
+                },
+                /**
+                 * Gestion de parametrage
+                 */
+                /*{
+                    label: 'Parametrage', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Utilisateurs', icon: 'pi pi-fw pi-forward',  routerLink: ['/parametrage/utilisateurs']
+                        },
+                        {
+                            label: 'Gestion d\'access ', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/gestion/access']
+                        },
+                        {
+                            label: 'Categorie', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/categorie']
+                        }
+                    ]
+                }
+                ,*/
+                /**
+                 * Gestion d'envoi
+                 */
+                /*{
+                    label: 'Envoie', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                        },
+                        {
+                            label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/colis?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb']
+                        },
+                        {
+                            label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
+                        },
+                        {
+                            label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                        }
+                    ]
+                },*/
+                /**
+                 * Gestion de reception
+                 */
+                {
+                    label: 'Reception', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        /*{
+                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                        },*/
+                        {
+                            label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                        },
+                    ]
+                },
+                /**
+                 * Gestion de reception
+                 */
+                {
+                    label: 'Inventaire', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Recherche un produit', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                        },
+                        {
+                            label: 'Produit en stock', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                        },
+                        {
+                            label: 'Produit defaillant', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        }
+                    ]
+                },
+                /**
+                 * Gestion de reception--
+                 */
+                {
+                    label: 'Livraison', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Nouveau Livraison', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/reception/livraison/nouveau?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        },
+                        {
+                            label: 'Livraison Reussi', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        },
+                        {
+                            label: 'Livraison echoué / rejeté', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        }
+                    ]
+                },
+                /**
+                 * Gestion d'inventaire
+                 */
+                {
+                    label: 'Recette', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Parametrage', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                        },
+                        {
+                            label: 'Nouveau recettes', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                        },
+                        {
+                            label: 'Rapports', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                        },
+                        {
+                            label: 'Tabbleau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                        }
+                    ]
+                }
+            ];
+        } /*else if(this.authority == "ROLE_STAFF_EMS")
+        {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                        },
+                    ]
+                },
+                {
+                    label: 'Envoie ', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                        }
+                    ]
+                },
+                {
+                    label: 'Reception', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                        }
+                    ]
+                }
+            ];
+
+        }else if(this.authority == "ROLE_STAFF_COLIS")
+        {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                        },
+                    ]
+                },
+                {
+                    label: 'Envoie de Colis', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                        }
+                    ]
+                },
+                {
+                    label: 'Reception', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                        }
+                    ]
+                }
+            ];
+
+        }else if(this.authority == "ROLE_STAFF_RECOMMANDE")
+        {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                        },
+                    ]
+                },
+                {
+                    label: 'Envoie Recommandé', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                        }
+                    ]
+                },
+                {
+                    label: 'Reception Recommandé', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                        }
+                    ]
+                }
+            ];
+
+        }else if(this.authority == "ROLE_STAFF_ORDINAIRE")
+        {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                        },
+                    ]
+                },
+                {
+                    label: 'Envoie Ordinaire', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                        }
+                    ]
+                },
+                {
+                    label: 'Reception Ordinaire', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                        }
+                    ]
+                }
+            ];
+
+        }else if(this.authority == "ROLE_STAFF_ESUUQ")
+        {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                        },
+                    ]
+                },
+                
+                {
+                    label: 'Reception Esuuq', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                        }
+                    ]
+                }
+
+            ];
+
+        }*/
+        else if (this.authority == "ROLE_STAFF_LIVRAISON") {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
+                        },
+                    ]
+                },
+                {
+                    label: 'Inventaire', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Recherche un produit', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                        },
+                        {
+                            label: 'Produit en stock', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                        },
+                        {
+                            label: 'Produit defaillant', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        }
+                    ]
+                },
+                {
+                    label: 'Livraison', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Nouveau Livraison', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/reception/livraison/nouveau?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        },
+                        {
+                            label: 'Livraison Reussi', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        },
+                        {
+                            label: 'Livraison echoué / rejeté', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                        }
+                    ]
+                }
+            ];
+        }
+        else if (this.authority == "ROLE_STAFF_RECEPTION") {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
+                        },
+                    ]
+                },
+                {
+                    label: 'Reception', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        /*{
+                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                        },*/
+                        {
+                            label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                        },
+                        /*{
+                            label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                        },
+                        {
+                            label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                        },
+                        {
+                            label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                        },  */
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                        }
+                    ]
+                }
+            ];
+        } /*else if(this.authority == "ROLE_STAFF_ENVOI")
+        {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                        },
+                    ]
+                },
+                
+                {
+                    label: 'Reception', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                        },
+                        {
+                            label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                        },
+                        {
+                            label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                        },
+                        {
+                            label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                        },
+                        {
+                            label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                        }
+                    ]
+                }
+            ];
+        }*/
+        else if (this.authority == "ROLE_STAFF_RECETTE") {
+            this.model = [
+                {
+                    label: 'Favorites', icon: 'pi pi-home',
+                    items: [
+                        {
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
+                        },
+                    ]
+                },
+                {
+                    label: 'Recette', icon: 'pi pi-step-forward-alt',
+                    items: [
+                        {
+                            label: 'Nouveau recettes', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                        },
+                        {
+                            label: 'Rapports', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                        },
+                        {
+                            label: 'Tabbleau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                        }
+                    ]
+                }
+            ];
+        }
     }
 };
+AppMenuComponent.ctorParameters = () => [
+    { type: _auth_token_storage_service__WEBPACK_IMPORTED_MODULE_2__["TokenStorageService"] }
+];
 AppMenuComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-menu',
@@ -3181,7 +3723,7 @@ AppMenuComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Articles en stocks \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div> \n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th style=\"width: 10%;\"> Reference </th>\n                        <th style=\"width: 8%;\">Date </th>\n                        <th style=\"width: 5%;\"> Etat </th>\n                        <th style=\"width: 10%;\"> Type </th>\n                        <th style=\"width: 15%;\"> Adresse </th>\n                        <th style=\"width: 10%;\"> Expediteur </th>\n                        <th  style=\"width: 10%;\"> Destinateur </th>\n                        <th  style=\"width: 10%;\"> Telephone 2 </th>\n                        \n                        <th  style=\"width: 10%;\"> Editeur </th>\n                        <th style=\"width: 10%;\"> Edition </th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.adresse}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n                        <td>  {{stocks.telrecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                      \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div> \n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>     \n                        <th style=\"width: 10%;\" pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th style=\"width: 8%;\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon></th>\n                        <th style=\"width: 5%;\" pSortableColumn=\"endommage\"> Etat  <p-sortIcon field=\"endommage\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th  style=\"width: 10%;\" pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon></th>\n                        \n                        <th  style=\"width: 10%;\" pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -3220,7 +3762,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <!--\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(livre)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                        -->\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                     <ng-template pTemplate=\"caption\">\n                        <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                            \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                                \n                            <span class=\"p-input-icon-left\">\n                                \n                        <i class=\"pi pi-search\"></i>\n                        <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                                <\n                    </span>\n                        </div>\n                    </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>                   \n                        <th  pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th   pSortableColumn=\"reception.datesortie\">Date  <p-sortIcon field=\"reception.datesortie\"></p-sortIcon></th>\n                        <th   pSortableColumn=\"etat\"> Etat <p-sortIcon field=\"etat\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.type\"> Type  <p-sortIcon field=\"reception.type\"></p-sortIcon></th>\n\n                        <th  pSortableColumn=\"reception.namerecipient\"> Destinateur <p-sortIcon field=\"reception.namerecipient\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.telrecipient\"> Telephone 2  <p-sortIcon field=\"reception.telrecipient\"></p-sortIcon></th>\n                        \n                        <th  pSortableColumn=\"commentaire\"> Commentaire <p-sortIcon field=\"commentaire\"></p-sortIcon> </th>\n\n                        <th  pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td > {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(livre)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -3246,7 +3788,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur E-Postal Djibouti</h2>\n                        <span class=\"guest-sign-in\">Connecté vous sur le reseau e-postal </span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <!-- <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/> -->\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur le plateForme Stock <!-- E-Postal Djibouti --></h2>\n                        <span class=\"guest-sign-in\">Connectez-vous sur le reseau</span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n");
 
 /***/ }),
 
@@ -3286,6 +3828,8 @@ let EsuuqComponent = class EsuuqComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.listesuuq = undefined;
+        this.ems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -3309,6 +3853,70 @@ let EsuuqComponent = class EsuuqComponent {
         this.router.navigate(['gestion/reception/edition?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let reception of this.listesuuq) {
+            let receptiondto = {};
+            receptiondto.reference = reception['reference'];
+            receptiondto.type = reception['type'];
+            receptiondto.name = reception['name'];
+            receptiondto.adresse = reception['adresse'];
+            receptiondto.email = reception['email'];
+            receptiondto.nomsender = reception['nomsender'];
+            receptiondto.telexpediteur = reception['telexpediteur'];
+            receptiondto.paysexpediteur = reception['paysexpediteur'];
+            receptiondto.namerecipient = reception['namerecipient'];
+            receptiondto.telrecipient = reception['telrecipient'];
+            receptiondto.paysrecipient = reception['telrecipient'];
+            receptiondto.datereception = reception['telrecipient'];
+            receptiondto.datesortie = reception['telrecipient'];
+            receptiondto.etat = reception['telrecipient'];
+            receptiondto.reception = reception['telrecipient'];
+            receptiondto.createdat = reception['createdat']['name'];
+            receptiondto.createdat = reception['createdat'];
+            receptiondto.created = reception['created']['name'];
+            receptiondto.updatedat = reception['updatedat'];
+            receptiondto.updated = reception['updated']['name'];
+            receptiondto.dommage = reception['dommage'];
+            receptiondto.envoisms = reception['envoisms'];
+            receptiondto.commentaire = reception['commentaire'];
+            datas.push(receptiondto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -3402,6 +4010,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primeng/api */ "7zfz");
 /* harmony import */ var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/auth/token-storage.service */ "dZLz");
 /* harmony import */ var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/environments/environment.prod */ "cxbk");
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! file-saver */ "Iab2");
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var exceljs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! exceljs */ "6K47");
+/* harmony import */ var exceljs__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(exceljs__WEBPACK_IMPORTED_MODULE_12__);
+
+
 
 
 
@@ -3473,6 +4087,65 @@ let RapportsventeComponent = class RapportsventeComponent {
         }, error => {
         });
     }
+    exportExcel() {
+        let Aplhabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'];
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            let workbook = new exceljs__WEBPACK_IMPORTED_MODULE_12__["Workbook"]();
+            this.rapportVentes.forEach(element => {
+                console.log(element);
+                const title = element.month;
+                let entete = [];
+                //const header = element.entete
+                //const data = element.
+                //console.log(title); console.log(header);
+                element.entete.forEach(element2 => {
+                    console.log(element2);
+                    entete.push({ header: element2, key: element2, width: 10, style: { font: { name: 'Trebuchet MS', size: 12 } } });
+                });
+                let worksheet = workbook.addWorksheet(title);
+                let titre = 'VENTE ' + title + '2021.';
+                worksheet.getCell('A1').alignment = { horizontal: 'center' };
+                /** Ajout du titre au fichier excel */
+                worksheet.columns = [...entete];
+                /**
+                 * Ajout des données au fichier excel
+                 */
+                element.ventes.forEach(e => {
+                    worksheet.addRow([e.date, ...e.ventes], 'n');
+                });
+                const row = worksheet.lastRow;
+                worksheet.getRows(1, 32).forEach(ee => {
+                    ee.eachCell(function (cell, colNumber) {
+                        cell.border = {
+                            top: { style: 'thin' },
+                            left: { style: 'thin' },
+                            bottom: { style: 'thin' },
+                            right: { style: 'thin' }
+                        };
+                    });
+                });
+            });
+            workbook.xlsx.writeBuffer().then((data) => {
+                let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
+                file_saver__WEBPACK_IMPORTED_MODULE_11__["saveAs"](blob, 'ProductData.xlsx');
+            });
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        console.log(this.rapportVentes);
+        return datas;
+    }
 };
 RapportsventeComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"] },
@@ -3503,7 +4176,7 @@ RapportsventeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ems/nouveau?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ems/nouveau?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                      \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>          \n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>&nbsp;                             \n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -3529,7 +4202,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie Recommande</h5>\n            <p-table #dt [value]=\"listrecommande\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/recommande/nouveau?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie recommande -RR \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-recommande>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{recommande.reference}} </td>\n                        <td>  {{recommande.name}} </td>\n                        <td>  {{recommande.type}} </td>\n                        <td>  {{recommande.adresse}} </td>\n                        <td>  {{recommande.nomsender}} </td>\n                        <td>  {{recommande.telexpediteur}} </td>\n                        <td>  {{recommande.namerecipient}} </td>\n                        <td>  {{recommande.telrecipient}} </td>\n\n                        <td>  {{recommande.updated.username}} </td>\n                        <td>  {{recommande.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(recommande)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie Recommande</h5>\n            <p-table #dt [value]=\"listrecommande\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/recommande/nouveau?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie recommande -RR \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>  \n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-recommande>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{recommande.reference}} </td>\n                        <td>  {{recommande.type}} </td>\n                        <td>  {{recommande.nomsender}} </td>\n                        <td>  {{recommande.telexpediteur}} </td>\n\n                        <td>  {{recommande.updated.username}} </td>\n                        <td>  {{recommande.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(recommande)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button> &nbsp;                            \n                            <button (click)=\"show(recommande)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -3568,7 +4241,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n                <p-fieldset legend=\"Rapports  de recette \">\n                    <form [formGroup]=\"rapportForm\" (ngSubmit)=\"saveRapport(rapportForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                           \n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">     \n                                                       <label> Date debut <span class=\"required\">*</span></label>    \n                                                       <p-calendar name=\"datedebut\" formControlName=\"datedebut\" class=\"form-control\"></p-calendar>                           \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <label> Date fin <span class=\"required\">*</span></label>  \n                                                        <p-calendar name=\"datefin\"  formControlName=\"datefin\" class=\"form-control\"></p-calendar>                               \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    \n                                    <div class=\"p-col-2\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        &nbsp; \n                                                        <button pButton type=\"submit\" label=\"Valider\" class=\"p-button-raised p-button-rounded\" [disabled]=\"!rapportForm.valid\"></button>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <hr/>\n                            </div>\n                        </div>\n                    </form>\n\n                    <p-tabView>\n                        <p-tabPanel *ngFor=\"let vente of rapportVentes\" header=\"{{vente.month}}\">\n                           \n                            <p-table [value]=\"vente.ventes\" responsiveLayout=\"scroll\">\n                                <ng-template pTemplate=\"caption\">\n                                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\" style=\"text-align: center;\">\n                                        Vente du mois - {{vente.month}}\n                                    </div>\n                                </ng-template>\n                                <ng-template pTemplate=\"header\">                                    \n                                    <tr> <th *ngFor=\"let entente of vente.entete\"> {{entente}} </th> </tr>\n                                </ng-template>\n                                <ng-template pTemplate=\"body\" let-vtee>\n                                  \n                                    <tr>\n                                        <td> {{vtee.date}}</td>\n                                        <td *ngFor=\"let vt of vtee.ventes\"> {{vt}}</td>\n                                    </tr>\n                                </ng-template>\n                                \n                            </p-table>\n\n\n                        </p-tabPanel>\n\n                    </p-tabView>\n\n                </p-fieldset>\n\n\n               ");
+/* harmony default export */ __webpack_exports__["default"] = ("\n                <p-fieldset legend=\"Rapports  de recette \">\n                    <form [formGroup]=\"rapportForm\" (ngSubmit)=\"saveRapport(rapportForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                           \n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">     \n                                                       <label> Date debut <span class=\"required\">*</span></label>    \n                                                       <p-calendar name=\"datedebut\" formControlName=\"datedebut\" class=\"form-control\"></p-calendar>                           \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <label> Date fin <span class=\"required\">*</span></label>  \n                                                        <p-calendar name=\"datefin\"  formControlName=\"datefin\" class=\"form-control\"></p-calendar>                               \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    \n                                    <div class=\"p-col-2\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        &nbsp; \n                                                        <button pButton type=\"submit\" label=\"Valider\" class=\"p-button-raised p-button-rounded\" [disabled]=\"!rapportForm.valid\"></button>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <hr/>\n                            </div>\n                        </div>\n                    </form>\n\n                    <p-tabView style=\"text-align: left; font-size: 10px !important;\">\n                        <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                      \n                        <p-tabPanel *ngFor=\"let vente of rapportVentes\" header=\"{{vente.month}}\">\n                           \n                            <p-table [value]=\"vente.ventes\" responsiveLayout=\"scroll\">\n                                <ng-template pTemplate=\"caption\">\n                                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\" style=\"text-align: center;\">\n                                        Vente du mois - {{vente.month}}\n                                    </div>\n                                </ng-template>\n                                <ng-template pTemplate=\"header\">                                    \n                                    <tr style=\"font-size: 11.5px;\"> <th *ngFor=\"let entente of vente.entete\"> {{entente}} </th> </tr>\n                                </ng-template>\n                                <ng-template pTemplate=\"body\" let-vtee>\n                                  \n                                    <tr>\n                                        <td> {{vtee.date}}</td>\n                                        <td *ngFor=\"let vt of vtee.ventes\"> {{vt}}</td>\n                                    </tr>\n                                </ng-template>\n                                \n                            </p-table>\n\n\n                        </p-tabPanel>\n\n                    </p-tabView>\n\n                </p-fieldset>\n\n\n               ");
 
 /***/ }),
 
@@ -3844,7 +4517,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n\n\n\n<div class=\"dashboard p-grid\">    \n \n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '40%'}\"></p-chart>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n    <div class=\"p-col-12 p-lg-12\">\n        <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n\n\n\n<div class=\"dashboard p-grid\">    \n \n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '40%'}\"></p-chart>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n    <div class=\"p-col-12 p-lg-12\">\n        <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                     </span>\n                     <span class=\"p-input-icon-right\">\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>  \n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"show(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -3901,9 +4574,10 @@ let TableaubordstocksComponent = class TableaubordstocksComponent {
         this.basicData = undefined;
         this.basicData2 = undefined;
         this.listems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
-        this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/stock/tableau/bord2", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+        this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/livraison/tableau/bord2", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
             })
         }).subscribe((response) => {
@@ -3992,6 +4666,45 @@ let TableaubordstocksComponent = class TableaubordstocksComponent {
             this.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
         });
     }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        return this.listems;
+    }
+    search(value) {
+        console.log(value);
+        this.router.navigate(['gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869'], {
+            queryParams: { id: '' + value["reference"] + '' }
+        });
+    }
     /**
      *  costumisation des erreurs
      */
@@ -4041,7 +4754,7 @@ TableaubordstocksComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decora
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception esuuq</h5>\n            <p-table #dt [value]=\"listesuuq\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/esuuq/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception esuuq -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-esuuq>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{esuuq.reference}} </td>\n                        <td> {{esuuq.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"esuuq.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{esuuq.type}} </td>\n                        <td>  {{esuuq.adresse}} </td>\n                        <td>  {{esuuq.nomsender}} </td>\n                        <td>  {{esuuq.namerecipient}} </td>\n                        <td>  {{esuuq.telrecipient}} </td>\n\n                        <td>  {{esuuq.updated.username}} </td>\n                        <td>  {{esuuq.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(esuuq)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception esuuq</h5>\n            <p-table #dt [value]=\"listesuuq\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/esuuq/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception esuuq -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                    \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th  style=\"width: 10rem\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th  style=\"width: 8rem\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th style=\"width: 10rem\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-esuuq>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{esuuq.reference}} </td>\n                        <td> {{esuuq.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"esuuq.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{esuuq.type}} </td>\n                        <td>  {{esuuq.nomsender}} </td>\n                        <td>  {{esuuq.namerecipient}} </td>\n\n                        <td>  {{esuuq.updated.username}} </td>\n                        <td>  {{esuuq.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(esuuq)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button> &nbsp;\n                            <button (click)=\"show(esuuq)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>                        \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -4067,7 +4780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception Ordinaire - N/A \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception Ordinaire - N/A \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>  \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th  style=\"width: 10rem\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th  style=\"width: 8rem\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th style=\"width: 10rem\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button> &nbsp;\n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>      \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -4170,6 +4883,7 @@ let LivraisonechoueComponent = class LivraisonechoueComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.liste = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -4184,6 +4898,44 @@ let LivraisonechoueComponent = class LivraisonechoueComponent {
         }, error => {
             this.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
         });
+    }
+    search(value) {
+        this.router.navigate(['gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869'], {
+            queryParams: { id: '' + value["reference"] + '' }
+        });
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "livraison_echoue");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        return this.liste;
     }
     /**
    *  costumisation des erreurs
@@ -4337,7 +5089,7 @@ AppProfileComponent.ctorParameters = () => [
 AppProfileComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-inline-profile',
-        template: `
+        template: ` 
         <!--
         <div class="profile" [ngClass]="{'profile-expanded':active}">
             <a href="#" (click)="onClick($event)">
@@ -4695,7 +5447,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ems/nouveau?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ems/nouveau?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>      \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th  style=\"width: 10rem\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th  style=\"width: 8rem\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th style=\"width: 10rem\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td style=\"width: 10rem\"> {{ems.datereception}} </td>\n                        <td style=\"width: 8rem\">  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td style=\"width: 10rem\">  {{ems.type}} </td>\n\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>  &nbsp;\n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -5147,6 +5899,8 @@ let RecommandeComponent = class RecommandeComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.listrecommande = undefined;
+        this.ems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -5170,6 +5924,63 @@ let RecommandeComponent = class RecommandeComponent {
         this.router.navigate(['gestion/envoi/ems/edition?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let envoi of this.listrecommande) {
+            let envoiedto = {};
+            envoiedto.reference = envoi['reference'];
+            envoiedto.type = envoi['type'];
+            envoiedto.name = envoi['name'];
+            envoiedto.adresse = envoi['adresse'];
+            envoiedto.email = envoi['email'];
+            envoiedto.nomsender = envoi['nomsender'];
+            envoiedto.telexpediteur = envoi['telexpediteur'];
+            envoiedto.pays = envoi['pays'];
+            envoiedto.namerecipient = envoi['namerecipient'];
+            envoiedto.telrecipient = envoi['telrecipient'];
+            envoiedto.createdat = envoi['createdat']['name'];
+            envoiedto.createdat = envoi['createdat'];
+            envoiedto.created = envoi['created']['name'];
+            envoiedto.updatedat = envoi['updatedat'];
+            envoiedto.updated = envoi['updated']['name'];
+            console.log(envoi);
+            datas.push(envoiedto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -5310,7 +6121,7 @@ NodeService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/recommande/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception RECOMMANDE - RR \"class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/recommande/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception RECOMMANDE - RR \"class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button> &nbsp;\n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>     \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -5350,6 +6161,8 @@ let RecommandereceptionComponent = class RecommandereceptionComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.listems = undefined;
+        this.ems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -5373,6 +6186,70 @@ let RecommandereceptionComponent = class RecommandereceptionComponent {
         this.router.navigate(['gestion/reception/edition?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let reception of this.listems) {
+            let receptiondto = {};
+            receptiondto.reference = reception['reference'];
+            receptiondto.type = reception['type'];
+            receptiondto.name = reception['name'];
+            receptiondto.adresse = reception['adresse'];
+            receptiondto.email = reception['email'];
+            receptiondto.nomsender = reception['nomsender'];
+            receptiondto.telexpediteur = reception['telexpediteur'];
+            receptiondto.paysexpediteur = reception['paysexpediteur'];
+            receptiondto.namerecipient = reception['namerecipient'];
+            receptiondto.telrecipient = reception['telrecipient'];
+            receptiondto.paysrecipient = reception['telrecipient'];
+            receptiondto.datereception = reception['telrecipient'];
+            receptiondto.datesortie = reception['telrecipient'];
+            receptiondto.etat = reception['telrecipient'];
+            receptiondto.reception = reception['telrecipient'];
+            receptiondto.createdat = reception['createdat']['name'];
+            receptiondto.createdat = reception['createdat'];
+            receptiondto.created = reception['created']['name'];
+            receptiondto.updatedat = reception['updatedat'];
+            receptiondto.updated = reception['updated']['name'];
+            receptiondto.dommage = reception['dommage'];
+            receptiondto.envoisms = reception['envoisms'];
+            receptiondto.commentaire = reception['commentaire'];
+            datas.push(receptiondto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -6927,7 +7804,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 const environment = {
     production: true,
-    url: 'https://lapostedjib.herokuapp.com'
+    url: 'http://localhost:8845'
 };
 
 
@@ -6969,6 +7846,7 @@ let ColisComponent = class ColisComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.listcolis = undefined;
+        this.ems = undefined;
     }
     ngOnInit() {
         /**
@@ -6992,6 +7870,63 @@ let ColisComponent = class ColisComponent {
         this.router.navigate(['gestion/envoi/ems/edition?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let envoi of this.listcolis) {
+            let envoiedto = {};
+            envoiedto.reference = envoi['reference'];
+            envoiedto.type = envoi['type'];
+            envoiedto.name = envoi['name'];
+            envoiedto.adresse = envoi['adresse'];
+            envoiedto.email = envoi['email'];
+            envoiedto.nomsender = envoi['nomsender'];
+            envoiedto.telexpediteur = envoi['telexpediteur'];
+            envoiedto.pays = envoi['pays'];
+            envoiedto.namerecipient = envoi['namerecipient'];
+            envoiedto.telrecipient = envoi['telrecipient'];
+            envoiedto.createdat = envoi['createdat']['name'];
+            envoiedto.createdat = envoi['createdat'];
+            envoiedto.created = envoi['created']['name'];
+            envoiedto.updatedat = envoi['updatedat'];
+            envoiedto.updated = envoi['updated']['name'];
+            console.log(envoi);
+            datas.push(envoiedto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -7321,7 +8256,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Articles en stocks \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th style=\"width: 10%;\"> Reference </th>\n                        <th style=\"width: 8%;\">Date </th>\n                        <th style=\"width: 5%;\"> Etat </th>\n                        <th style=\"width: 10%;\"> Type </th>\n                        <th style=\"width: 15%;\"> Adresse </th>\n                        <th style=\"width: 10%;\"> Expediteur </th>\n                        <th  style=\"width: 10%;\"> Destinateur </th>\n                        <th  style=\"width: 10%;\"> Telephone 2 </th>\n                        \n                        <th  style=\"width: 10%;\"> Editeur </th>\n                        <th style=\"width: 10%;\"> Edition </th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.adresse}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n                        <td>  {{stocks.telrecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                     \n                        <span class=\"p-input-icon-left\">  \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                            <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                            \n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th style=\"width: 10%;\" pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th style=\"width: 8%;\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon></th>\n                        <th style=\"width: 5%;\" pSortableColumn=\"endommage\"> Etat  <p-sortIcon field=\"endommage\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th  style=\"width: 10%;\" pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon></th>\n                        \n                        <th  style=\"width: 10%;\" pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -7481,7 +8416,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie de type Ordinaire </h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ordinaire/nouveau?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Ordinaire \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie de type Ordinaire </h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ordinaire/nouveau?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Ordinaire \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\"> \n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>  \n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>&nbsp;                             \n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 
@@ -7571,7 +8506,7 @@ let AppConfigComponent = class AppConfigComponent {
             { name: 'Pink', file: 'pink', color: '#E83E8C' },
             { name: 'Lime', file: 'lime', color: '#74CD32' },
         ];
-        this.changeLayout('joomla', false);
+        this.changeLayout('firewatch', true);
     }
     changeLayout(layout, special) {
         if (special) {
@@ -7794,6 +8729,8 @@ let OrdinaireenvoiComponent = class OrdinaireenvoiComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.listems = undefined;
+        this.ems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -7817,6 +8754,63 @@ let OrdinaireenvoiComponent = class OrdinaireenvoiComponent {
         this.router.navigate(['gestion/envoi/ordinaire/nouveau?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let envoi of this.listems) {
+            let envoiedto = {};
+            envoiedto.reference = envoi['reference'];
+            envoiedto.type = envoi['type'];
+            envoiedto.name = envoi['name'];
+            envoiedto.adresse = envoi['adresse'];
+            envoiedto.email = envoi['email'];
+            envoiedto.nomsender = envoi['nomsender'];
+            envoiedto.telexpediteur = envoi['telexpediteur'];
+            envoiedto.pays = envoi['pays'];
+            envoiedto.namerecipient = envoi['namerecipient'];
+            envoiedto.telrecipient = envoi['telrecipient'];
+            envoiedto.createdat = envoi['createdat']['name'];
+            envoiedto.createdat = envoi['createdat'];
+            envoiedto.created = envoi['created']['name'];
+            envoiedto.updatedat = envoi['updatedat'];
+            envoiedto.updated = envoi['updated']['name'];
+            console.log(envoi);
+            datas.push(envoiedto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -8462,7 +9456,7 @@ AppMainComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Commentaire </th>\n\n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td>  {{livre.commentaire}} </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n                        <!--\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(livre)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                        -->\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  Echoue / Rejeté </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                    <ng-template pTemplate=\"caption\">\n                        <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                            \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                                \n                            <span class=\"p-input-icon-left\">\n                                \n                        <i class=\"pi pi-search\"></i>\n                        <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                                <\n                    </span>\n                        </div>\n                    </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th  pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th   pSortableColumn=\"reception.datesortie\">Date  <p-sortIcon field=\"reception.datesortie\"></p-sortIcon></th>\n                        <th   pSortableColumn=\"etat\"> Etat <p-sortIcon field=\"etat\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.type\"> Type  <p-sortIcon field=\"reception.type\"></p-sortIcon></th>\n\n                        <th  pSortableColumn=\"reception.namerecipient\"> Destinateur <p-sortIcon field=\"reception.namerecipient\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.telrecipient\"> Telephone 2  <p-sortIcon field=\"reception.telrecipient\"></p-sortIcon></th>\n                        \n                        <th  pSortableColumn=\"commentaire\"> Commentaire <p-sortIcon field=\"commentaire\"></p-sortIcon> </th>\n\n                        <th  pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        <th style=\"width: 5%;\"> </th>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td>  {{livre.commentaire}} </td>\n                        <td>                             \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n                        </td>\n                        <td>                             \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n                       \n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(livre)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -8515,6 +9509,7 @@ let EnstockComponent = class EnstockComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.liststocks = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -8535,6 +9530,75 @@ let EnstockComponent = class EnstockComponent {
         this.router.navigate(['gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869'], {
             queryParams: { id: '' + value["reference"] + '' }
         });
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        console.log(this.liststocks);
+        /*for(let reception of this.liststocks) {
+          let receptiondto : ReceptionListDTO = {};
+          receptiondto.reference = reception['reference'];
+          receptiondto.type = reception['type'];
+          
+          receptiondto.name = reception['name'];
+          receptiondto.adresse = reception['adresse'];
+          receptiondto.email = reception['email'];
+          
+          receptiondto.nomsender = reception['nomsender'];
+          receptiondto.telexpediteur = reception['telexpediteur'];
+    
+          
+          receptiondto.paysexpediteur = reception['paysexpediteur'];
+          receptiondto.namerecipient = reception['namerecipient'];
+          receptiondto.telrecipient = reception['telrecipient'];
+          receptiondto.paysrecipient = reception['telrecipient'];
+          
+          receptiondto.datereception = reception['telrecipient'];
+          receptiondto.datesortie = reception['telrecipient'];
+          receptiondto.etat = reception['telrecipient'];
+          receptiondto.reception = reception['telrecipient'];
+    
+          receptiondto.createdat = reception['createdat']['name'];
+          receptiondto.createdat = reception['createdat'];
+          receptiondto.created = reception['created']['name'];
+          receptiondto.updatedat = reception['updatedat'];
+          receptiondto.updated = reception['updated']['name'];
+    
+          receptiondto.dommage = reception['dommage'];
+          receptiondto.envoisms = reception['envoisms'];
+          receptiondto.commentaire = reception['commentaire'];
+          
+          datas.push(receptiondto);
+        }*/
+        return this.liststocks;
     }
     /**
      *  costumisation des erreurs
@@ -8627,6 +9691,7 @@ let TableaubordComponent = class TableaubordComponent {
         this.tableaubord1 = undefined;
         this.basicData = undefined;
         this.listems = undefined;
+        this.ems = undefined;
     }
     ngOnInit() {
         this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord1", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -8650,7 +9715,9 @@ let TableaubordComponent = class TableaubordComponent {
                     {
                         data: [...results],
                         backgroundColor: [
-                            ...colors
+                            "#64B5F6",
+                            "#81C784",
+                            "#FFB74D"
                         ],
                         hoverBackgroundColor: [
                             "#64B5F6",
@@ -8714,6 +9781,52 @@ let TableaubordComponent = class TableaubordComponent {
         }, error => {
             this.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let envoi of this.listems) {
+            let envoiedto = {};
+            envoiedto.reference = envoi['reference'];
+            envoiedto.type = envoi['type'];
+            envoiedto.name = envoi['name'];
+            envoiedto.adresse = envoi['adresse'];
+            envoiedto.email = envoi['email'];
+            envoiedto.nomsender = envoi['nomsender'];
+            envoiedto.telexpediteur = envoi['telexpediteur'];
+            envoiedto.pays = envoi['pays'];
+            envoiedto.namerecipient = envoi['namerecipient'];
+            envoiedto.telrecipient = envoi['telrecipient'];
+            envoiedto.createdat = envoi['createdat']['name'];
+            envoiedto.createdat = envoi['createdat'];
+            envoiedto.created = envoi['created']['name'];
+            envoiedto.updatedat = envoi['updatedat'];
+            envoiedto.updated = envoi['updated']['name'];
+            console.log(envoi);
+            datas.push(envoiedto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -8997,6 +10110,8 @@ let ColisreceptionComponent = class ColisreceptionComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.listems = undefined;
+        this.ems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -9020,6 +10135,70 @@ let ColisreceptionComponent = class ColisreceptionComponent {
         this.router.navigate(['gestion/reception/edition?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let reception of this.listems) {
+            let receptiondto = {};
+            receptiondto.reference = reception['reference'];
+            receptiondto.type = reception['type'];
+            receptiondto.name = reception['name'];
+            receptiondto.adresse = reception['adresse'];
+            receptiondto.email = reception['email'];
+            receptiondto.nomsender = reception['nomsender'];
+            receptiondto.telexpediteur = reception['telexpediteur'];
+            receptiondto.paysexpediteur = reception['paysexpediteur'];
+            receptiondto.namerecipient = reception['namerecipient'];
+            receptiondto.telrecipient = reception['telrecipient'];
+            receptiondto.paysrecipient = reception['telrecipient'];
+            receptiondto.datereception = reception['telrecipient'];
+            receptiondto.datesortie = reception['telrecipient'];
+            receptiondto.etat = reception['telrecipient'];
+            receptiondto.reception = reception['telrecipient'];
+            receptiondto.createdat = reception['createdat']['name'];
+            receptiondto.createdat = reception['createdat'];
+            receptiondto.created = reception['created']['name'];
+            receptiondto.updatedat = reception['updatedat'];
+            receptiondto.updated = reception['updated']['name'];
+            receptiondto.dommage = reception['dommage'];
+            receptiondto.envoisms = reception['envoisms'];
+            receptiondto.commentaire = reception['commentaire'];
+            datas.push(receptiondto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -9181,6 +10360,7 @@ let EmsComponent = class EmsComponent {
         this.router = router;
         this.tokenStorage = tokenStorage;
         this.listems = undefined;
+        this.ems = undefined;
         this.msgs = [];
     }
     ngOnInit() {
@@ -9205,6 +10385,63 @@ let EmsComponent = class EmsComponent {
         this.router.navigate(['gestion/envoi/ems/edition?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let envoi of this.listems) {
+            let envoiedto = {};
+            envoiedto.reference = envoi['reference'];
+            envoiedto.type = envoi['type'];
+            envoiedto.name = envoi['name'];
+            envoiedto.adresse = envoi['adresse'];
+            envoiedto.email = envoi['email'];
+            envoiedto.nomsender = envoi['nomsender'];
+            envoiedto.telexpediteur = envoi['telexpediteur'];
+            envoiedto.pays = envoi['pays'];
+            envoiedto.namerecipient = envoi['namerecipient'];
+            envoiedto.telrecipient = envoi['telrecipient'];
+            envoiedto.createdat = envoi['createdat']['name'];
+            envoiedto.createdat = envoi['createdat'];
+            envoiedto.created = envoi['created']['name'];
+            envoiedto.updatedat = envoi['updatedat'];
+            envoiedto.updated = envoi['updated']['name'];
+            console.log(envoi);
+            datas.push(envoiedto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -9379,6 +10616,7 @@ let LivraisonreussiComponent = class LivraisonreussiComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.liste = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -9396,6 +10634,44 @@ let LivraisonreussiComponent = class LivraisonreussiComponent {
     }
     editer(livraison) {
         console.log(livraison);
+    }
+    search(value) {
+        this.router.navigate(['gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869'], {
+            queryParams: { id: '' + value["reference"] + '' }
+        });
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "livraison_echoue");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        return this.liste;
     }
     /**
    *  costumisation des erreurs
@@ -9531,6 +10807,8 @@ let EmsreceptionComponent = class EmsreceptionComponent {
         this.tokenStorage = tokenStorage;
         this.msgs = [];
         this.listems = undefined;
+        this.ems = undefined;
+        this.exportColumns = [];
     }
     ngOnInit() {
         /**
@@ -9554,6 +10832,70 @@ let EmsreceptionComponent = class EmsreceptionComponent {
         this.router.navigate(['gestion/reception/edition?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4'], {
             queryParams: { id: '' + rowData["idcrypt"] + '' }
         });
+    }
+    show(ems) {
+        this.displayMaximizable = true;
+        this.ems = ems;
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        let datas = [];
+        for (let reception of this.listems) {
+            let receptiondto = {};
+            receptiondto.reference = reception['reference'];
+            receptiondto.type = reception['type'];
+            receptiondto.name = reception['name'];
+            receptiondto.adresse = reception['adresse'];
+            receptiondto.email = reception['email'];
+            receptiondto.nomsender = reception['nomsender'];
+            receptiondto.telexpediteur = reception['telexpediteur'];
+            receptiondto.paysexpediteur = reception['paysexpediteur'];
+            receptiondto.namerecipient = reception['namerecipient'];
+            receptiondto.telrecipient = reception['telrecipient'];
+            receptiondto.paysrecipient = reception['telrecipient'];
+            receptiondto.datereception = reception['telrecipient'];
+            receptiondto.datesortie = reception['telrecipient'];
+            receptiondto.etat = reception['telrecipient'];
+            receptiondto.reception = reception['telrecipient'];
+            receptiondto.createdat = reception['createdat']['name'];
+            receptiondto.createdat = reception['createdat'];
+            receptiondto.created = reception['created']['name'];
+            receptiondto.updatedat = reception['updatedat'];
+            receptiondto.updated = reception['updated']['name'];
+            receptiondto.dommage = reception['dommage'];
+            receptiondto.envoisms = reception['envoisms'];
+            receptiondto.commentaire = reception['commentaire'];
+            datas.push(receptiondto);
+        }
+        return datas;
     }
     /**
      *  costumisation des erreurs
@@ -9904,7 +11246,7 @@ PhotoService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie colis</h5>\n            <p-table #dt [value]=\"listcolis\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/colis/nouveau?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Colis - CP \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                            <i class=\"pi pi-search\"></i>\n                            <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                        </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>    \n\n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>                        \n                        <th style=\"width: 8rem\"></th>\n\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-colis>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{colis.reference}} </td>\n                        <td>  {{colis.name}} </td>\n                        <td>  {{colis.type}} </td>\n                        <td>  {{colis.adresse}} </td>\n                        <td>  {{colis.nomsender}} </td>\n                        <td>  {{colis.telexpediteur}} </td>\n                        <td>  {{colis.namerecipient}} </td>\n                        <td>  {{colis.telrecipient}} </td>\n\n                        <td>  {{colis.updated.username}} </td>\n                        <td>  {{colis.updatedat}} </td>\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(colis)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie colis</h5>\n            <p-table #dt [value]=\"listcolis\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/colis/nouveau?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Colis - CP \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                            <i class=\"pi pi-search\"></i>\n                    \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em;\" class=\"ui-button-success\"></button>\n                            <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                            \n                            <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                        </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>    \n\n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>                        \n                        <th style=\"width: 8rem\"></th>\n\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-colis>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{colis.reference}} </td>\n                        <td>  {{colis.type}} </td>\n                        <td>  {{colis.nomsender}} </td>\n                        <td>  {{colis.telexpediteur}} </td>\n\n                        <td>  {{colis.updated.username}} </td>\n                        <td>  {{colis.updatedat}} </td>\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(colis)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>&nbsp;                             \n                            <button (click)=\"show(colis)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>");
 
 /***/ }),
 

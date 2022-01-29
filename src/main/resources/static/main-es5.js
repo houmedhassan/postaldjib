@@ -3,11 +3,13 @@
 
   function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
   function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
   function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -317,7 +319,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"dashboard p-grid\">     \n\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '200%'}\"></p-chart>\n    </div>\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>";
+      __webpack_exports__["default"] = "<div class=\"dashboard p-grid\">     \n\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '200%'}\"></p-chart>\n    </div>\n    \n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"datereception\">Date <p-sortIcon field=\"datereception\"></p-sortIcon></th>\n                        <th pSortableColumn=\"dommage\"> Etat <p-sortIcon field=\"dommage\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur <p-sortIcon field=\"namerecipient\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telrecipient\"> Telephone 2 <p-sortIcon field=\"telrecipient\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"show(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -337,7 +339,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"dashboard p-grid\">     \n\n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire des produit non-defaillance\">\n            <p-chart type=\"bar\" [data]=\"basicData2\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire de defaillance\">\n            <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/recommande/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception RECOMMANDE - RR \"class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>";
+      __webpack_exports__["default"] = "<div class=\"dashboard p-grid\">     \n\n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire des produit non-defaillance\">\n            <p-chart type=\"bar\" [data]=\"basicData2\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-panel header=\"Inventaire de livraison\">\n            <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n        </p-panel>\n    </div>\n    <hr/>\n\n    \n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                           \n                        <span class=\"p-input-icon-left\">\n                            \n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                           \n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>     \n                        <th style=\"width: 12%;\" pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th style=\"width: 6%;\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"etat\"> Statut  <p-sortIcon field=\"etat\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th  style=\"width: 15%;\" pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon></th>\n                        \n                        <th  style=\"width: 10%;\" pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td > {{ems.reference}} </td>\n                        <td style=\"width: 8rem\"> {{ems.datereception}} </td>\n                        <td style=\"width: 8rem\">  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td> {{ems.etat}} </td>\n                        <td style=\"width: 10rem\">  {{ems.type}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n\n                        <td style=\"width: 8rem\">  {{ems.updated.username}} </td>\n                        <td style=\"width: 10rem\">  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"search(ems)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n\n</div>";
       /***/
     },
 
@@ -1315,6 +1317,8 @@
           this.tableaubord1 = undefined;
           this.basicData = undefined;
           this.listems = undefined;
+          this.ems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(TableaubordreceptionComponent, [{
@@ -1401,6 +1405,130 @@
             }, function (error) {
               _this10.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "customSort",
+          value: function customSort(event) {
+            event.data.sort(function (data1, data2) {
+              var value1 = data1[event.field];
+              var value2 = data2[event.field];
+              var result = null;
+              if (value1 == null && value2 != null) result = -1;else if (value1 != null && value2 == null) result = 1;else if (value1 == null && value2 == null) result = 0;else if (typeof value1 === 'string' && typeof value2 === 'string') result = value1.localeCompare(value2);else result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
+              return event.order * result;
+            });
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this11 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this11.exportColumns, _this11.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this12 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this12.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this12.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator = _createForOfIteratorHelper(this.listems),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var reception = _step.value;
+                var receptiondto = {};
+                receptiondto.reference = reception['reference'];
+                receptiondto.type = reception['type'];
+                receptiondto.name = reception['name'];
+                receptiondto.adresse = reception['adresse'];
+                receptiondto.email = reception['email'];
+                receptiondto.nomsender = reception['nomsender'];
+                receptiondto.telexpediteur = reception['telexpediteur'];
+                receptiondto.paysexpediteur = reception['paysexpediteur'];
+                receptiondto.namerecipient = reception['namerecipient'];
+                receptiondto.telrecipient = reception['telrecipient'];
+                receptiondto.paysrecipient = reception['telrecipient'];
+                receptiondto.datereception = reception['telrecipient'];
+                receptiondto.datesortie = reception['telrecipient'];
+                receptiondto.etat = reception['telrecipient'];
+                receptiondto.reception = reception['telrecipient'];
+                receptiondto.createdat = reception['createdat']['name'];
+                receptiondto.createdat = reception['createdat'];
+                receptiondto.created = reception['created']['name'];
+                receptiondto.updatedat = reception['updatedat'];
+                receptiondto.updated = reception['updated']['name'];
+                receptiondto.dommage = reception['dommage'];
+                receptiondto.envoisms = reception['envoisms'];
+                receptiondto.commentaire = reception['commentaire'];
+                datas.push(receptiondto);
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -1569,11 +1697,11 @@
         _createClass(IconService, [{
           key: "getIcons",
           value: function getIcons() {
-            var _this11 = this;
+            var _this13 = this;
 
             return this.http.get(this.apiUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (response) {
-              _this11.icons = response.icons;
-              return _this11.icons;
+              _this13.icons = response.icons;
+              return _this13.icons;
             }));
           }
         }]);
@@ -1744,7 +1872,7 @@
         _createClass(NouveaurecommandereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this12 = this;
+            var _this14 = this;
 
             this.recommandeForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -1772,22 +1900,22 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this12.typeactivites = [];
+              _this14.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'RECOMMANDE - RR') {
-                  _this12.typeactivite = {
+                  _this14.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this12.typeactivites.push({
+                _this14.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this12.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - recommande ");
+              _this14.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - recommande ");
             });
             /**
             *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -1799,21 +1927,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this12.countries = [];
+              _this14.countries = [];
               response.forEach(function (element) {
-                _this12.countries.push({
+                _this14.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this12.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this14.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(recommandeForm) {
-            var _this13 = this;
+            var _this15 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + recommandeForm['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
@@ -1824,38 +1952,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this13.receptiondto.reference = recommandeForm['reference'];
-                _this13.receptiondto.name = 'recommande - EXPRESS MAIL SERVICE';
-                _this13.receptiondto.type = recommandeForm['typearticle'];
-                _this13.receptiondto.adresse = recommandeForm['adresse'];
-                _this13.receptiondto.nomsender = recommandeForm['nomsender'];
-                _this13.receptiondto.telexpediteur = recommandeForm['telexpediteur'];
-                _this13.receptiondto.namerecipient = recommandeForm['namerecipient'];
-                _this13.receptiondto.telrecipient = recommandeForm['telrecipient'];
-                _this13.receptiondto.email = recommandeForm['email'];
-                _this13.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(recommandeForm['datereception'], format, locale);
-                _this13.receptiondto.typearticle = _this13.typeactivite.code;
-                _this13.receptiondto.dommage = _this13.dommage;
-                _this13.receptiondto.commentaire = recommandeForm['commentaire'];
-                _this13.receptiondto.envoisms = _this13.envoisms;
-                _this13.receptiondto.paysrecipient = _this13.selectedCountrydestinateur['code'];
-                _this13.receptiondto.paysexpediteur = _this13.selectedCountryexpediteur['code'];
+                _this15.receptiondto.reference = recommandeForm['reference'];
+                _this15.receptiondto.name = 'recommande - EXPRESS MAIL SERVICE';
+                _this15.receptiondto.type = recommandeForm['typearticle'];
+                _this15.receptiondto.adresse = recommandeForm['adresse'];
+                _this15.receptiondto.nomsender = recommandeForm['nomsender'];
+                _this15.receptiondto.telexpediteur = recommandeForm['telexpediteur'];
+                _this15.receptiondto.namerecipient = recommandeForm['namerecipient'];
+                _this15.receptiondto.telrecipient = recommandeForm['telrecipient'];
+                _this15.receptiondto.email = recommandeForm['email'];
+                _this15.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(recommandeForm['datereception'], format, locale);
+                _this15.receptiondto.typearticle = _this15.typeactivite.code;
+                _this15.receptiondto.dommage = _this15.dommage;
+                _this15.receptiondto.commentaire = recommandeForm['commentaire'];
+                _this15.receptiondto.envoisms = _this15.envoisms;
+                _this15.receptiondto.paysrecipient = _this15.selectedCountrydestinateur['code'];
+                _this15.receptiondto.paysexpediteur = _this15.selectedCountryexpediteur['code'];
 
-                _this13.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this13.receptiondto, {
+                _this15.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this15.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this13.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this15.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this13.showSuccess("Vous avez enregistrer avec success votre recommande  !!! ");
+                  _this15.showSuccess("Vous avez enregistrer avec success votre recommande  !!! ");
                 }, function (error) {
-                  _this13.showError(" une erreur c'est produit et le système n'a pas enregitré votre recommande - La raison est voici : " + error.message);
+                  _this15.showError(" une erreur c'est produit et le système n'a pas enregitré votre recommande - La raison est voici : " + error.message);
                 });
               } else {
-                _this13.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this15.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this13.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this15.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -2174,7 +2302,7 @@
 
       AppTopBarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-topbar',
-        template: "\n        <div class=\"topbar clearfix\">\n            <div class=\"topbar-left\">\n                <a routerLink=\"/\">\n                    <img src=\"assets/layout/images/logo.png\" class=\"topbar-logo\" routerLink=\"/\" />\n                </a>\n\n    \n            </div>\n\n            <div class=\"topbar-right\">\n\n            \n                &nbsp;&nbsp;&nbsp;&nbsp;\n\n                <a routerLink=\"/\">\n                    <img src=\"assets/layout/images/esuuq.PNG\" class=\"topbar-logo-right\" routerLink=\"/\"   style=\"width: 50px; margin-top: -10px;\" />\n                </a>\n\n                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n\n                <a routerLink=\"/\">\n                <img src=\"assets/layout/images/ems.PNG\" class=\"topbar-logo-right\" routerLink=\"/\"   style=\"width: 50px; margin-top: -10px;\" />\n            </a>\n\n                <a id=\"menu-button\" href=\"#\" (click)=\"appMain.onMenuButtonClick($event)\"\n                   [ngClass]=\"{'menu-button-rotate': appMain.rotateMenuButton}\">\n                    <i class=\"pi pi-angle-left\"></i>\n                </a>\n\n                <a id=\"topbar-menu-button\" href=\"#\" (click)=\"appMain.onTopbarMenuButtonClick($event)\">\n                    <i class=\"pi pi-bars\"></i>\n                </a>\n\n                <ul class=\"topbar-items fadeInDown\" [ngClass]=\"{'topbar-items-visible': appMain.topbarMenuActive}\">\n                    <li #profile class=\"profile-item\" *ngIf=\"app.profileMode==='top'|| appMain.isHorizontal()\"\n                        [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === profile}\">\n\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,profile)\">\n                            <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                            <span class=\"topbar-item-name\">Houmed Hassan</span>\n                            <span class=\"topbar-item-role\">Marketing</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-user\"></i>\n                                    <span>Profile</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Privacy</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-cog\"></i>\n                                    <span>Settings</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\"  (click)=\"logout($event)\">\n                                    <i class=\"pi pi-fw pi-sign-out\"></i>\n                                    <span>Logout</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <!--\n                    <li #settings [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === settings}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,settings)\">\n                            <i class=\"topbar-icon pi pi-cog\"></i>\n                            <span class=\"topbar-item-name\">Settings</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-palette\"></i>\n                                    <span>Change Theme</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-star-o\"></i>\n                                    <span>Favorites</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Lock Screen</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-image\"></i>\n                                    <span>Wallpaper</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #messages [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === messages}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,messages)\">\n                            <i class=\"topbar-icon animated swing pi pi-fw pi-envelope\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">5</span>\n                            <span class=\"topbar-item-name\">Messages</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar1.png\" width=\"35\"/>\n                                    <span>Give me a call</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Sales reports attached</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar3.png\" width=\"35\"/>\n                                    <span>About your invoice</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Meeting today at 10pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar4.png\" width=\"35\"/>\n                                    <span>Out of office</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #notifications [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === notifications}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,notifications)\">\n                            <i class=\"topbar-icon pi pi-fw pi-bell\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">4</span>\n                            <span class=\"topbar-item-name\">Notifications</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-sliders-h\"></i>\n                                    <span>Pending tasks</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-calendar\"></i>\n                                    <span>Meeting today at 3pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-download\"></i>\n                                    <span>Download documents</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-bookmark\"></i>\n                                    <span>Book flight</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #search class=\"search-item\" [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === search}\"\n                        (click)=\"appMain.onTopbarItemClick($event,search)\">\n                        <div class=\"topbar-search\">\n                            <input type=\"text\" placeholder=\"Search\" />\n                            <i class=\"pi pi-search\"></i>\n                        </div>\n                    </li>\n                    -->\n                </ul>\n            </div>\n        </div>\n    "
+        template: "\n        <div class=\"topbar clearfix\">\n            <div class=\"topbar-left\">\n                <div class=\"row\" style=\"height:60px;\">\n                    <a routerLink=\"/\" >\n                       <!-- <img src=\"assets/layout/images/logo.png\" class=\"topbar-logo\" routerLink=\"/\" /> -->\n                    </a>\n                </div>    \n            </div>\n\n             <div class=\"topbar-right\">\n\n              <!-- <span style=\"\n               color: white;\n               padding-left: 5%;\n               font-size: 40px;\n               font-family: sans-serif;\n               font-style: oblique;\n               font-weight: 800;\"> \n               \n               E-POSTAL \n               \n               </span> -->\n\n                <a id=\"menu-button\" href=\"#\" (click)=\"appMain.onMenuButtonClick($event)\"\n                   [ngClass]=\"{'menu-button-rotate': appMain.rotateMenuButton}\">\n                    <i class=\"pi pi-angle-left\"></i>\n                </a>\n\n                <a id=\"topbar-menu-button\" href=\"#\" (click)=\"appMain.onTopbarMenuButtonClick($event)\">\n                    <i class=\"pi pi-bars\"></i>\n                </a>\n\n                <ul class=\"topbar-items fadeInDown\" [ngClass]=\"{'topbar-items-visible': appMain.topbarMenuActive}\">\n                    <li #profile class=\"profile-item\" *ngIf=\"app.profileMode==='top'|| appMain.isHorizontal()\"\n                        [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === profile}\">\n\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,profile)\">\n                            <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                            <span class=\"topbar-item-name\">Houmed Hassan</span>\n                            <span class=\"topbar-item-role\">Marketing</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-user\"></i>\n                                    <span>Profile</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Privacy</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-cog\"></i>\n                                    <span>Settings</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\"  (click)=\"logout($event)\">\n                                    <i class=\"pi pi-fw pi-sign-out\"></i>\n                                    <span>Logout</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <!--\n                    <li #settings [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === settings}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,settings)\">\n                            <i class=\"topbar-icon pi pi-cog\"></i>\n                            <span class=\"topbar-item-name\">Settings</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-palette\"></i>\n                                    <span>Change Theme</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-star-o\"></i>\n                                    <span>Favorites</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Lock Screen</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-image\"></i>\n                                    <span>Wallpaper</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #messages [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === messages}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,messages)\">\n                            <i class=\"topbar-icon animated swing pi pi-fw pi-envelope\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">5</span>\n                            <span class=\"topbar-item-name\">Messages</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar1.png\" width=\"35\"/>\n                                    <span>Give me a call</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Sales reports attached</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar3.png\" width=\"35\"/>\n                                    <span>About your invoice</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Meeting today at 10pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar4.png\" width=\"35\"/>\n                                    <span>Out of office</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #notifications [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === notifications}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,notifications)\">\n                            <i class=\"topbar-icon pi pi-fw pi-bell\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">4</span>\n                            <span class=\"topbar-item-name\">Notifications</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-sliders-h\"></i>\n                                    <span>Pending tasks</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-calendar\"></i>\n                                    <span>Meeting today at 3pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-download\"></i>\n                                    <span>Download documents</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-bookmark\"></i>\n                                    <span>Book flight</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #search class=\"search-item\" [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === search}\"\n                        (click)=\"appMain.onTopbarItemClick($event,search)\">\n                        <div class=\"topbar-search\">\n                            <input type=\"text\" placeholder=\"Search\" />\n                            <i class=\"pi pi-search\"></i>\n                        </div>\n                    </li>\n                    -->\n                </ul>\n            </div>\n        </div>\n    "
       })], AppTopBarComponent);
       /***/
     },
@@ -2292,7 +2420,7 @@
         _createClass(NouveaucolisreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this14 = this;
+            var _this16 = this;
 
             this.colisForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -2320,22 +2448,22 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this14.typeactivites = [];
+              _this16.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'COLIS - CP') {
-                  _this14.typeactivite = {
+                  _this16.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this14.typeactivites.push({
+                _this16.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this14.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - colis ");
+              _this16.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - colis ");
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -2347,15 +2475,15 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this14.countries = [];
+              _this16.countries = [];
               response.forEach(function (element) {
-                _this14.countries.push({
+                _this16.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this14.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this16.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
           /**
@@ -2376,7 +2504,7 @@
         }, {
           key: "save",
           value: function save(colisForm) {
-            var _this15 = this;
+            var _this17 = this;
 
             console.log(colisForm);
             var regex = /\d/;
@@ -2396,38 +2524,38 @@
                   var format = 'yyyy-MM-dd';
                   var format_date = 'dd';
                   var locale = 'en-US';
-                  _this15.receptiondto.reference = colisForm['reference'];
-                  _this15.receptiondto.name = 'COLIS - PERSONNEL';
-                  _this15.receptiondto.type = colisForm['typearticle'];
-                  _this15.receptiondto.adresse = colisForm['adresse'];
-                  _this15.receptiondto.nomsender = colisForm['nomsender'];
-                  _this15.receptiondto.telexpediteur = colisForm['telexpediteur'];
-                  _this15.receptiondto.namerecipient = colisForm['namerecipient'];
-                  _this15.receptiondto.telrecipient = colisForm['telrecipient'];
-                  _this15.receptiondto.email = colisForm['email'];
-                  _this15.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(colisForm['datereception'], format, locale);
-                  _this15.receptiondto.typearticle = _this15.typeactivite.code;
-                  _this15.receptiondto.dommage = _this15.dommage;
-                  _this15.receptiondto.commentaire = colisForm['commentaire'];
-                  _this15.receptiondto.envoisms = _this15.envoisms;
-                  _this15.receptiondto.paysrecipient = _this15.selectedCountrydestinateur['code'];
-                  _this15.receptiondto.paysexpediteur = _this15.selectedCountryexpediteur['code'];
+                  _this17.receptiondto.reference = colisForm['reference'];
+                  _this17.receptiondto.name = 'COLIS - PERSONNEL';
+                  _this17.receptiondto.type = colisForm['typearticle'];
+                  _this17.receptiondto.adresse = colisForm['adresse'];
+                  _this17.receptiondto.nomsender = colisForm['nomsender'];
+                  _this17.receptiondto.telexpediteur = colisForm['telexpediteur'];
+                  _this17.receptiondto.namerecipient = colisForm['namerecipient'];
+                  _this17.receptiondto.telrecipient = colisForm['telrecipient'];
+                  _this17.receptiondto.email = colisForm['email'];
+                  _this17.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(colisForm['datereception'], format, locale);
+                  _this17.receptiondto.typearticle = _this17.typeactivite.code;
+                  _this17.receptiondto.dommage = _this17.dommage;
+                  _this17.receptiondto.commentaire = colisForm['commentaire'];
+                  _this17.receptiondto.envoisms = _this17.envoisms;
+                  _this17.receptiondto.paysrecipient = _this17.selectedCountrydestinateur['code'];
+                  _this17.receptiondto.paysexpediteur = _this17.selectedCountryexpediteur['code'];
 
-                  _this15.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this15.receptiondto, {
+                  _this17.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this17.receptiondto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this15.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this17.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this15.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
+                    _this17.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
                   }, function (error) {
-                    _this15.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
+                    _this17.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
                   });
                 } else {
-                  _this15.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this17.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
               }, function (error) {
-                _this15.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this17.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -2716,7 +2844,7 @@
         }, {
           key: "save",
           value: function save(typevente) {
-            var _this16 = this;
+            var _this18 = this;
 
             var typeVente = {};
             typeVente.nom = typevente['type'];
@@ -2728,23 +2856,23 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this16.venteForm.patchValue({
+              _this18.venteForm.patchValue({
                 type: undefined
               });
 
-              _this16.venteForm.patchValue({
+              _this18.venteForm.patchValue({
                 prix: undefined
               });
 
-              _this16.venteForm.patchValue({
+              _this18.venteForm.patchValue({
                 penalite: undefined
               });
 
-              _this16.items = [];
+              _this18.items = [];
 
-              _this16.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
+              _this18.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
             }, function (error) {
-              _this16.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
+              _this18.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
             });
           }
           /**
@@ -2962,12 +3090,13 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.liststocks = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(DefaillantComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this17 = this;
+            var _this19 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -2977,10 +3106,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this17.liststocks = response;
-              console.log(_this17.liststocks);
+              _this19.liststocks = response;
+              console.log(_this19.liststocks);
             }, function (error) {
-              _this17.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this19.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
         }, {
@@ -2992,6 +3121,74 @@
                 id: '' + value["reference"] + ''
               }
             });
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this20 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this20.exportColumns, _this20.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this21 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this21.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this21.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+            return this.liststocks;
           }
           /**
            *  costumisation des erreurs
@@ -3170,7 +3367,7 @@
         _createClass(ProfilComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this18 = this;
+            var _this22 = this;
 
             /*this.userService.getUserBoard().subscribe(
               data => {
@@ -3186,12 +3383,12 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (res) {
-              _this18.profil = res;
-              console.log(_this18.profil);
+              _this22.profil = res;
+              console.log(_this22.profil);
             }, function (err) {
               console.log(" rr " + err.message);
 
-              _this18.showError("message d'erreur ");
+              _this22.showError("message d'erreur ");
             });
             this.passwordForm = this.formBuilder.group({
               'ancienpassword': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(6)])),
@@ -3214,7 +3411,7 @@
         }, {
           key: "updatePassword",
           value: function updatePassword(value) {
-            var _this19 = this;
+            var _this23 = this;
 
             console.log(value);
 
@@ -3228,31 +3425,31 @@
                 })
               }).subscribe(function (res) {
                 console.log(res);
-                _this19.loginInfo = new _auth_models_login_info__WEBPACK_IMPORTED_MODULE_9__["AuthLoginInfo"](_this19.profil['username'], value['password']);
+                _this23.loginInfo = new _auth_models_login_info__WEBPACK_IMPORTED_MODULE_9__["AuthLoginInfo"](_this23.profil['username'], value['password']);
 
-                _this19.authService.attemptAuth(_this19.loginInfo).subscribe(function (data) {
-                  _this19.tokenStorage.saveToken(data.accessToken);
+                _this23.authService.attemptAuth(_this23.loginInfo).subscribe(function (data) {
+                  _this23.tokenStorage.saveToken(data.accessToken);
 
-                  _this19.tokenStorage.saveUsername(data.username);
+                  _this23.tokenStorage.saveUsername(data.username);
 
-                  _this19.tokenStorage.saveAuthorities(data.authorities); //            this.reloadPage();
+                  _this23.tokenStorage.saveAuthorities(data.authorities); //            this.reloadPage();
 
                 }, function (error) {
-                  _this19.errorMessage = error.error.message;
+                  _this23.errorMessage = error.error.message;
 
-                  _this19.showError(_this19.errorMessage); //this.isLoginFailed = true;
+                  _this23.showError(_this23.errorMessage); //this.isLoginFailed = true;
 
                 });
 
-                _this19.showSuccess("Vous avez mis à jour avec success votre mot de passe. Merci !");
+                _this23.showSuccess("Vous avez mis à jour avec success votre mot de passe. Merci !");
 
-                _this19.passwordForm.reset(); //this.profil = res;
+                _this23.passwordForm.reset(); //this.profil = res;
 
               }, function (err) {
                 if (err.status === 401) {
-                  _this19.showError(" Vous n'etes pas autorisé à effectuer cette modification, veuillez vous deconnectez et vous reconnectez");
+                  _this23.showError(" Vous n'etes pas autorisé à effectuer cette modification, veuillez vous deconnectez et vous reconnectez");
                 } else {
-                  _this19.showError("message d'erreur " + err.message);
+                  _this23.showError("message d'erreur " + err.message);
                 }
               });
             }
@@ -3510,10 +3707,10 @@
         _createClass(EditreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this20 = this;
+            var _this24 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this20.value = params.id;
+              _this24.value = params.id;
             });
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -3543,37 +3740,37 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this20.receptiondto.reference = response['reference'];
-              _this20.receptiondto.type = response['type'];
-              _this20.receptiondto.adresse = response['adresse'];
-              _this20.dommage = response['dommage'];
-              _this20.envoisms = response['envoisms'];
-              _this20.datereception = new Date(response['datereception']);
-              console.log(_this20.datereception);
-              _this20.receptiondto.nomsender = response['nomsender'];
-              _this20.receptiondto.telexpediteur = response['telexpediteur'];
-              _this20.receptiondto.namerecipient = response['namerecipient'];
-              _this20.receptiondto.telrecipient = response['telrecipient'];
-              _this20.receptiondto.dommage = _this20.dommage;
-              _this20.receptiondto.commentaire = response['commentaire'];
-              _this20.receptiondto.envoisms = _this20.envoisms;
+              _this24.receptiondto.reference = response['reference'];
+              _this24.receptiondto.type = response['type'];
+              _this24.receptiondto.adresse = response['adresse'];
+              _this24.dommage = response['dommage'];
+              _this24.envoisms = response['envoisms'];
+              _this24.datereception = new Date(response['datereception']);
+              console.log(_this24.datereception);
+              _this24.receptiondto.nomsender = response['nomsender'];
+              _this24.receptiondto.telexpediteur = response['telexpediteur'];
+              _this24.receptiondto.namerecipient = response['namerecipient'];
+              _this24.receptiondto.telrecipient = response['telrecipient'];
+              _this24.receptiondto.dommage = _this24.dommage;
+              _this24.receptiondto.commentaire = response['commentaire'];
+              _this24.receptiondto.envoisms = _this24.envoisms;
               /*
               this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
               this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
               */
 
-              _this20.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/pays/all", {
+              _this24.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/pays/all", {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                  'Authorization': 'Bearer ' + _this20.tokenStorage.getToken()
+                  'Authorization': 'Bearer ' + _this24.tokenStorage.getToken()
                 })
               }).subscribe(function () {
                 var response2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
                 console.log(response2);
-                _this20.countries = [];
+                _this24.countries = [];
                 response2.forEach(function (element) {
                   if (element['code'] == response['paysexpediteur']) {
                     console.log(" je suis i dans selectedCountry expediteur");
-                    _this20.selectedCountryexpediteur = {
+                    _this24.selectedCountryexpediteur = {
                       name: element['name'],
                       code: element['code']
                     };
@@ -3581,22 +3778,22 @@
 
                   if (element['code'] == response['paysrecipient']) {
                     console.log(" je suis i dans selectedCountry destinateur");
-                    _this20.selectedCountrydestinateur = {
+                    _this24.selectedCountrydestinateur = {
                       name: element['name'],
                       code: element['code']
                     };
                   }
 
-                  _this20.countries.push({
+                  _this24.countries.push({
                     name: element['name'],
                     code: element['code']
                   });
                 });
               }, function (error) {
-                _this20.showWarn("La liste des pays n'a pas pu etre chargé ");
+                _this24.showWarn("La liste des pays n'a pas pu etre chargé ");
               });
             }, function (error) {
-              _this20.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
+              _this24.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -3607,7 +3804,7 @@
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this21 = this;
+            var _this25 = this;
 
             console.log(emsForm);
 
@@ -3635,9 +3832,9 @@
                   'Authorization': 'Bearer ' + this.tokenStorage.getToken()
                 })
               }).subscribe(function (response) {
-                _this21.showSuccess("L'article a été mise à jour avec success !!! ");
+                _this25.showSuccess("L'article a été mise à jour avec success !!! ");
               }, function (error) {
-                _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                _this25.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
               });
             } else {
               this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + emsForm['reference'], {
@@ -3649,36 +3846,36 @@
                   var _format = 'yyyy-MM-dd';
                   var _format_date = 'dd';
                   var _locale = 'en-US';
-                  _this21.receptiondto.reference = emsForm['reference'];
-                  _this21.receptiondto.type = emsForm['typearticle'];
-                  _this21.receptiondto.adresse = emsForm['adresse'];
-                  _this21.receptiondto.nomsender = emsForm['nomsender'];
-                  _this21.receptiondto.telexpediteur = emsForm['telexpediteur'];
-                  _this21.receptiondto.namerecipient = emsForm['namerecipient'];
-                  _this21.receptiondto.telrecipient = emsForm['telrecipient'];
-                  _this21.receptiondto.email = emsForm['email'];
-                  _this21.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(_this21.datereception, _format, _locale);
-                  _this21.receptiondto.dommage = _this21.dommage;
-                  _this21.receptiondto.commentaire = emsForm['commentaire'];
-                  _this21.receptiondto.envoisms = _this21.envoisms;
-                  _this21.receptiondto.paysrecipient = _this21.selectedCountrydestinateur['code'];
-                  _this21.receptiondto.paysexpediteur = _this21.selectedCountryexpediteur['code'];
-                  console.log(_this21.receptiondto);
+                  _this25.receptiondto.reference = emsForm['reference'];
+                  _this25.receptiondto.type = emsForm['typearticle'];
+                  _this25.receptiondto.adresse = emsForm['adresse'];
+                  _this25.receptiondto.nomsender = emsForm['nomsender'];
+                  _this25.receptiondto.telexpediteur = emsForm['telexpediteur'];
+                  _this25.receptiondto.namerecipient = emsForm['namerecipient'];
+                  _this25.receptiondto.telrecipient = emsForm['telrecipient'];
+                  _this25.receptiondto.email = emsForm['email'];
+                  _this25.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(_this25.datereception, _format, _locale);
+                  _this25.receptiondto.dommage = _this25.dommage;
+                  _this25.receptiondto.commentaire = emsForm['commentaire'];
+                  _this25.receptiondto.envoisms = _this25.envoisms;
+                  _this25.receptiondto.paysrecipient = _this25.selectedCountrydestinateur['code'];
+                  _this25.receptiondto.paysexpediteur = _this25.selectedCountryexpediteur['code'];
+                  console.log(_this25.receptiondto);
 
-                  var _reponse = _this21.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + _this21.value, _this21.receptiondto, {
+                  var _reponse = _this25.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + _this25.value, _this25.receptiondto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this21.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this25.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this21.showSuccess("L'article a été mise à jour avec success !!! ");
+                    _this25.showSuccess("L'article a été mise à jour avec success !!! ");
                   }, function (error) {
-                    _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                    _this25.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
                   });
                 } else {
-                  _this21.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this25.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 }
               }, function (error) {
-                _this21.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this25.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -3930,7 +4127,7 @@
         _createClass(NouveauesuuqComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this22 = this;
+            var _this26 = this;
 
             this.esuuqForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -3958,24 +4155,24 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this22.typeactivites = [];
+              _this26.typeactivites = [];
               response.forEach(function (element) {
                 console.log(element);
 
                 if (element['name'] == 'ESUUQ') {
-                  _this22.typeactivite = {
+                  _this26.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this22.typeactivites.push({
+                _this26.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this22.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - esuuq ");
+              _this26.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - esuuq ");
             });
             /**
             *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -3987,21 +4184,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this22.countries = [];
+              _this26.countries = [];
               response.forEach(function (element) {
-                _this22.countries.push({
+                _this26.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this22.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this26.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(esuuqForm) {
-            var _this23 = this;
+            var _this27 = this;
 
             /*
             let amontsection = esuuqForm['reference'].substring(0,2);
@@ -4023,38 +4220,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this23.receptiondto.reference = esuuqForm['reference'];
-                _this23.receptiondto.name = 'ESUUQ';
-                _this23.receptiondto.type = esuuqForm['typearticle'];
-                _this23.receptiondto.adresse = esuuqForm['adresse'];
-                _this23.receptiondto.nomsender = esuuqForm['nomsender'];
-                _this23.receptiondto.telexpediteur = esuuqForm['telexpediteur'];
-                _this23.receptiondto.namerecipient = esuuqForm['namerecipient'];
-                _this23.receptiondto.telrecipient = esuuqForm['telrecipient'];
-                _this23.receptiondto.email = esuuqForm['email'];
-                _this23.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(esuuqForm['datereception'], format, locale);
-                _this23.receptiondto.typearticle = _this23.typeactivite.code;
-                _this23.receptiondto.dommage = _this23.dommage;
-                _this23.receptiondto.commentaire = esuuqForm['commentaire'];
-                _this23.receptiondto.envoisms = _this23.envoisms;
-                _this23.receptiondto.paysrecipient = _this23.selectedCountrydestinateur['code'];
-                _this23.receptiondto.paysexpediteur = _this23.selectedCountryexpediteur['code'];
+                _this27.receptiondto.reference = esuuqForm['reference'];
+                _this27.receptiondto.name = 'ESUUQ';
+                _this27.receptiondto.type = esuuqForm['typearticle'];
+                _this27.receptiondto.adresse = esuuqForm['adresse'];
+                _this27.receptiondto.nomsender = esuuqForm['nomsender'];
+                _this27.receptiondto.telexpediteur = esuuqForm['telexpediteur'];
+                _this27.receptiondto.namerecipient = esuuqForm['namerecipient'];
+                _this27.receptiondto.telrecipient = esuuqForm['telrecipient'];
+                _this27.receptiondto.email = esuuqForm['email'];
+                _this27.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(esuuqForm['datereception'], format, locale);
+                _this27.receptiondto.typearticle = _this27.typeactivite.code;
+                _this27.receptiondto.dommage = _this27.dommage;
+                _this27.receptiondto.commentaire = esuuqForm['commentaire'];
+                _this27.receptiondto.envoisms = _this27.envoisms;
+                _this27.receptiondto.paysrecipient = _this27.selectedCountrydestinateur['code'];
+                _this27.receptiondto.paysexpediteur = _this27.selectedCountryexpediteur['code'];
 
-                _this23.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this23.receptiondto, {
+                _this27.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this27.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this23.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this27.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this23.showSuccess("Vous avez enregistrer avec success votre esuuq  !!! ");
+                  _this27.showSuccess("Vous avez enregistrer avec success votre esuuq  !!! ");
                 }, function (error) {
-                  _this23.showError(" une erreur c'est produit et le système n'a pas enregitré votre esuuq - La raison est voici : " + error.message);
+                  _this27.showError(" une erreur c'est produit et le système n'a pas enregitré votre esuuq - La raison est voici : " + error.message);
                 });
               } else {
-                _this23.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this27.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this23.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this27.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -4214,7 +4411,7 @@
 
       var environment = {
         production: false,
-        url: 'https://lapostedjib.herokuapp.com'
+        url: 'http://localhost:8845'
       };
       /***/
     },
@@ -4235,7 +4432,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/colis/nouveau?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception COLIS - CP \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/colis/nouveau?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception COLIS - CP \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>      \n                                 \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th  style=\"width: 10rem\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th  style=\"width: 8rem\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th style=\"width: 10rem\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td style=\"width: 10rem\"> {{ems.datereception}} </td>\n                        <td style=\"width: 8rem\">  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td style=\"width: 10rem\">  {{ems.type}} </td>\n\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>  &nbsp;\n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -4343,12 +4540,14 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.listems = undefined;
+          this.ems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(OrdinaireComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this24 = this;
+            var _this28 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -4358,10 +4557,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this24.listems = response;
-              console.log(_this24.listems);
+              _this28.listems = response;
+              console.log(_this28.listems);
             }, function (error) {
-              _this24.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this28.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -4377,6 +4576,119 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this29 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this29.exportColumns, _this29.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this30 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this30.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this30.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator2 = _createForOfIteratorHelper(this.listems),
+                _step2;
+
+            try {
+              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                var reception = _step2.value;
+                var receptiondto = {};
+                receptiondto.reference = reception['reference'];
+                receptiondto.type = reception['type'];
+                receptiondto.name = reception['name'];
+                receptiondto.adresse = reception['adresse'];
+                receptiondto.email = reception['email'];
+                receptiondto.nomsender = reception['nomsender'];
+                receptiondto.telexpediteur = reception['telexpediteur'];
+                receptiondto.paysexpediteur = reception['paysexpediteur'];
+                receptiondto.namerecipient = reception['namerecipient'];
+                receptiondto.telrecipient = reception['telrecipient'];
+                receptiondto.paysrecipient = reception['telrecipient'];
+                receptiondto.datereception = reception['telrecipient'];
+                receptiondto.datesortie = reception['telrecipient'];
+                receptiondto.etat = reception['telrecipient'];
+                receptiondto.reception = reception['telrecipient'];
+                receptiondto.createdat = reception['createdat']['name'];
+                receptiondto.createdat = reception['createdat'];
+                receptiondto.created = reception['created']['name'];
+                receptiondto.updatedat = reception['updatedat'];
+                receptiondto.updated = reception['updated']['name'];
+                receptiondto.dommage = reception['dommage'];
+                receptiondto.envoisms = reception['envoisms'];
+                receptiondto.commentaire = reception['commentaire'];
+                datas.push(receptiondto);
+              }
+            } catch (err) {
+              _iterator2.e(err);
+            } finally {
+              _iterator2.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -4687,204 +4999,551 @@
       var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
+      /* harmony import */
+
+
+      var _auth_token_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./auth/token-storage.service */
+      "dZLz");
 
       var AppMenuComponent = /*#__PURE__*/function () {
-        function AppMenuComponent() {
+        function AppMenuComponent(token) {
           _classCallCheck(this, AppMenuComponent);
+
+          this.token = token;
+          this.roleadmin = false;
+          this.roleems = false;
+          this.rolecolis = false;
+          this.rolerecommande = false;
+          this.rolelivraison = false;
+          this.roleInventaire = false;
+          this.rolerecette = false;
+          this.model = [];
         }
 
         _createClass(AppMenuComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            this.model = [{
-              label: 'Favorites',
-              icon: 'pi pi-home',
-              items: [{
-                label: 'Dashboards',
-                icon: 'pi pi-fw pi-home',
-                routerLink: ['/dashboards'],
+            var _this31 = this;
+
+            this.roles = this.token.getAuthorities();
+            this.roles.every(function (role) {
+              if (role === 'ROLE_ADMIN') {
+                _this31.authority = 'ROLE_ADMIN';
+                _this31.roleadmin = true;
+                return false;
+              } else if (role === 'ROLE_STAFF_EMS') {
+                _this31.authority = 'ROLE_STAFF_EMS';
+                return false;
+              } else if (role === 'ROLE_STAFF_COLIS') {
+                _this31.authority = 'ROLE_STAFF_COLIS';
+                return false;
+              } else if (role === 'ROLE_STAFF_RECOMMANDE') {
+                _this31.authority = 'ROLE_STAFF_RECOMMANDE';
+                return false;
+              } else if (role === 'ROLE_STAFF_ORDINAIRE') {
+                _this31.authority = 'ROLE_STAFF_ORDINAIRE';
+                return false;
+              } else if (role === 'ROLE_STAFF_ESUUQ') {
+                _this31.authority = 'ROLE_STAFF_ESUUQ';
+                return false;
+              } else if (role === 'ROLE_STAFF_LIVRAISON') {
+                _this31.authority = 'ROLE_STAFF_LIVRAISON';
+                return false;
+              } else if (role === 'ROLE_STAFF_LIVRAISON') {
+                _this31.authority = 'ROLE_STAFF_LIVRAISON';
+                return false;
+              } else if (role === 'ROLE_STAFF_RECEPTION') {
+                _this31.authority = 'ROLE_STAFF_RECEPTION';
+                return false;
+              } else if (role === 'ROLE_STAFF_ENVOI') {
+                _this31.authority = 'ROLE_STAFF_ENVOI';
+                return false;
+              } else if (role === 'ROLE_STAFF_RECETTE') {
+                _this31.authority = 'ROLE_STAFF_RECETTE';
+                return false;
+              } else if (role === 'ROLE_STAFF_TABLEAUBORD') {
+                _this31.authority = 'ROLE_STAFF_TABLEAUBORD';
+                return false;
+              } else {
+                _this31.authority = 'user';
+                return true;
+              }
+            });
+
+            if (this.roleadmin == true) {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
                 items: [{
-                  label: 'Generic',
-                  icon: 'pi pi-fw pi-home',
-                  routerLink: ['/dashboards/generic']
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
                 }]
-              }, {
-                label: 'Profil',
-                icon: 'pi pi-fw pi-forward',
-                routerLink: ['/profil']
-              }]
-            },
-            /*
-            {
-                label: 'Start', icon: 'pi pi-download',
-                items: [
-                    {
-                        label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', routerLink: ['/login']
-                    },
-                    {
-                        label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
-                    }
-                ]
-            },
-            */
+              },
+              /**
+               * Gestion de parametrage
+               */
 
-            /**
-             * Gestion de parametrage
-             */
+              /*{
+                  label: 'Parametrage', icon: 'pi pi-step-forward-alt',
+                  items: [
+                      {
+                          label: 'Utilisateurs', icon: 'pi pi-fw pi-forward',  routerLink: ['/parametrage/utilisateurs']
+                      },
+                      {
+                          label: 'Gestion d\'access ', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/gestion/access']
+                      },
+                      {
+                          label: 'Categorie', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/categorie']
+                      }
+                  ]
+              }
+              ,*/
 
-            /*{
-                label: 'Parametrage', icon: 'pi pi-step-forward-alt',
+              /**
+               * Gestion d'envoi
+               */
+
+              /*{
+                  label: 'Envoie', icon: 'pi pi-step-forward-alt',
+                  items: [
+                      {
+                          label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                      },
+                      {
+                          label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/colis?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb']
+                      },
+                      {
+                          label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
+                      },
+                      {
+                          label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
+                      },
+                      {
+                          label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                      }
+                  ]
+              },*/
+
+              /**
+               * Gestion de reception
+               */
+              {
+                label: 'Reception',
+                icon: 'pi pi-step-forward-alt',
                 items: [
-                    {
-                        label: 'Utilisateurs', icon: 'pi pi-fw pi-forward',  routerLink: ['/parametrage/utilisateurs']
-                    },
-                    {
-                        label: 'Gestion d\'access ', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/gestion/access']
-                    },
-                    {
-                        label: 'Categorie', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/categorie']
-                    }
-                ]
+                /*{
+                    label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                },*/
+                {
+                  label: 'Colis',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                }]
+              },
+              /**
+               * Gestion de reception
+               */
+              {
+                label: 'Inventaire',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Recherche un produit',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                }, {
+                  label: 'Produit en stock',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                }, {
+                  label: 'Produit defaillant',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }]
+              },
+              /**
+               * Gestion de reception--
+               */
+              {
+                label: 'Livraison',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Nouveau Livraison',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/reception/livraison/nouveau?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }, {
+                  label: 'Livraison Reussi',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }, {
+                  label: 'Livraison echoué / rejeté',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }]
+              },
+              /**
+               * Gestion d'inventaire
+               */
+              {
+                label: 'Recette',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Parametrage',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                }, {
+                  label: 'Nouveau recettes',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                }, {
+                  label: 'Rapports',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                }, {
+                  label: 'Tabbleau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                }]
+              }];
             }
-            ,*/
-
-            /**
-             * Gestion d'envoi
-             */
+            /*else if(this.authority == "ROLE_STAFF_EMS")
             {
-              label: 'Envoie de Colis',
-              icon: 'pi pi-step-forward-alt',
-              items: [{
-                label: 'EMS',
-                icon: 'pi pi-fw pi-forward',
-                routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
-              }, {
-                label: 'Colis',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/envoi/colis?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb']
-              }, {
-                label: 'Recommandé',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
-              }, {
-                label: 'Ordinaire',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
-              }, {
-                label: 'Tableau de bord',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
-              }]
-            },
-            /**
-             * Gestion de reception
-             */
+              this.model = [
+                  {
+                      label: 'Favorites', icon: 'pi pi-home',
+                      
+                      items: [
+                          {
+                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                          },
+                      ]
+                  },
+                  {
+                      label: 'Envoie ', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                          }
+                      ]
+                  },
+                  {
+                      label: 'Reception', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                          }
+                      ]
+                  }
+              ];
+            }else if(this.authority == "ROLE_STAFF_COLIS")
             {
-              label: 'Reception',
-              icon: 'pi pi-step-forward-alt',
-              items: [{
-                label: 'EMS',
-                icon: 'pi pi-fw pi-forward',
-                routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
-              }, {
-                label: 'Colis',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
-              }, {
-                label: 'Recommandé',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-              }, {
-                label: 'Ordinaire',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
-              }, {
-                label: 'Esuuq',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-              }, {
-                label: 'Tableau de bord',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-              }]
-            },
-            /**
-             * Gestion de reception
-             */
+              this.model = [
+                  {
+                      label: 'Favorites', icon: 'pi pi-home',
+                      
+                      items: [
+                          {
+                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                          },
+                      ]
+                  },
+                  {
+                      label: 'Envoie de Colis', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                          }
+                      ]
+                  },
+                  {
+                      label: 'Reception', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                          }
+                      ]
+                  }
+              ];
+            }else if(this.authority == "ROLE_STAFF_RECOMMANDE")
             {
-              label: 'Inventaire',
-              icon: 'pi pi-step-forward-alt',
-              items: [{
-                label: 'Recherche un produit',
-                icon: 'pi pi-fw pi-forward',
-                routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-              }, {
-                label: 'Produit en stock',
-                icon: 'pi pi-fw pi-forward',
-                routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-              }, {
-                label: 'Produit defaillant',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-              }, {
-                label: 'Tableau de bord',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-              }]
-            },
-            /**
-             * Gestion de reception--
-             */
+              this.model = [
+                  {
+                      label: 'Favorites', icon: 'pi pi-home',
+                      
+                      items: [
+                          {
+                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                          },
+                      ]
+                  },
+                  {
+                      label: 'Envoie Recommandé', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                          }
+                      ]
+                  },
+                  {
+                      label: 'Reception Recommandé', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                          }
+                      ]
+                  }
+              ];
+            }else if(this.authority == "ROLE_STAFF_ORDINAIRE")
             {
-              label: 'Livraison',
-              icon: 'pi pi-step-forward-alt',
-              items: [{
-                label: 'Nouveau Livraison',
-                icon: 'pi pi-fw pi-forward',
-                routerLink: ['/gestion/reception/livraison/nouveau?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-              }, {
-                label: 'Livraison Reussi',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-              }, {
-                label: 'Livraison echoué / rejeté',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-              }, {
-                label: 'Tableau de bord',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/colis en stocks']
-              }]
-            },
-            /**
-             * Gestion d'inventaire
-             */
+              this.model = [
+                  {
+                      label: 'Favorites', icon: 'pi pi-home',
+                      
+                      items: [
+                          {
+                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                          },
+                      ]
+                  },
+                  {
+                      label: 'Envoie Ordinaire', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                          }
+                      ]
+                  },
+                  {
+                      label: 'Reception Ordinaire', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                          }
+                      ]
+                  }
+              ];
+            }else if(this.authority == "ROLE_STAFF_ESUUQ")
             {
-              label: 'Recette',
-              icon: 'pi pi-step-forward-alt',
-              items: [{
-                label: 'Parametrage',
-                icon: 'pi pi-fw pi-forward',
-                routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-              }, {
-                label: 'Nouveau recettes',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-              }, {
-                label: 'Rapports',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-              }, {
-                label: 'Tabbleau de bord',
-                icon: 'pi pi-fw pi-fast-backward',
-                routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-              }]
-            }];
+              this.model = [
+                  {
+                      label: 'Favorites', icon: 'pi pi-home',
+                      
+                      items: [
+                          {
+                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                          },
+                      ]
+                  },
+                  
+                  {
+                      label: 'Reception Esuuq', icon: 'pi pi-step-forward-alt',
+                      items: [
+                          {
+                              label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                          },
+                          {
+                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                          }
+                      ]
+                  }
+                ];
+            }*/
+            else if (this.authority == "ROLE_STAFF_LIVRAISON") {
+                this.model = [{
+                  label: 'Favorites',
+                  icon: 'pi pi-home',
+                  items: [{
+                    label: 'Profil',
+                    icon: 'pi pi-fw pi-forward',
+                    routerLink: ['/profil']
+                  }]
+                }, {
+                  label: 'Inventaire',
+                  icon: 'pi pi-step-forward-alt',
+                  items: [{
+                    label: 'Recherche un produit',
+                    icon: 'pi pi-fw pi-forward',
+                    routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                  }, {
+                    label: 'Produit en stock',
+                    icon: 'pi pi-fw pi-forward',
+                    routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                  }, {
+                    label: 'Produit defaillant',
+                    icon: 'pi pi-fw pi-fast-backward',
+                    routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                  }, {
+                    label: 'Tableau de bord',
+                    icon: 'pi pi-fw pi-fast-backward',
+                    routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                  }]
+                }, {
+                  label: 'Livraison',
+                  icon: 'pi pi-step-forward-alt',
+                  items: [{
+                    label: 'Nouveau Livraison',
+                    icon: 'pi pi-fw pi-forward',
+                    routerLink: ['/gestion/reception/livraison/nouveau?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                  }, {
+                    label: 'Livraison Reussi',
+                    icon: 'pi pi-fw pi-fast-backward',
+                    routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                  }, {
+                    label: 'Livraison echoué / rejeté',
+                    icon: 'pi pi-fw pi-fast-backward',
+                    routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                  }, {
+                    label: 'Tableau de bord',
+                    icon: 'pi pi-fw pi-fast-backward',
+                    routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                  }]
+                }];
+              } else if (this.authority == "ROLE_STAFF_RECEPTION") {
+                this.model = [{
+                  label: 'Favorites',
+                  icon: 'pi pi-home',
+                  items: [{
+                    label: 'Profil',
+                    icon: 'pi pi-fw pi-forward',
+                    routerLink: ['/profil']
+                  }]
+                }, {
+                  label: 'Reception',
+                  icon: 'pi pi-step-forward-alt',
+                  items: [
+                  /*{
+                      label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                  },*/
+                  {
+                    label: 'Colis',
+                    icon: 'pi pi-fw pi-fast-backward',
+                    routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                  },
+                  /*{
+                      label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                  },
+                  {
+                      label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                  },
+                  {
+                      label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                  },  */
+                  {
+                    label: 'Tableau de bord',
+                    icon: 'pi pi-fw pi-fast-backward',
+                    routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                  }]
+                }];
+              }
+              /*else if(this.authority == "ROLE_STAFF_ENVOI")
+              {
+                this.model = [
+                    {
+                        label: 'Favorites', icon: 'pi pi-home',
+                        
+                        items: [
+                            {
+                                label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                            },
+                        ]
+                    },
+                    
+                    {
+                        label: 'Reception', icon: 'pi pi-step-forward-alt',
+                        items: [
+                            {
+                                label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                            },
+                            {
+                                label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                            },
+                            {
+                                label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                            },
+                            {
+                                label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                            },
+                            {
+                                label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                            },
+                            {
+                                label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                            }
+                        ]
+                    }
+                ];
+              }*/
+              else if (this.authority == "ROLE_STAFF_RECETTE") {
+                  this.model = [{
+                    label: 'Favorites',
+                    icon: 'pi pi-home',
+                    items: [{
+                      label: 'Profil',
+                      icon: 'pi pi-fw pi-forward',
+                      routerLink: ['/profil']
+                    }]
+                  }, {
+                    label: 'Recette',
+                    icon: 'pi pi-step-forward-alt',
+                    items: [{
+                      label: 'Nouveau recettes',
+                      icon: 'pi pi-fw pi-fast-backward',
+                      routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                    }, {
+                      label: 'Rapports',
+                      icon: 'pi pi-fw pi-fast-backward',
+                      routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                    }, {
+                      label: 'Tabbleau de bord',
+                      icon: 'pi pi-fw pi-fast-backward',
+                      routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                    }]
+                  }];
+                }
           }
         }]);
 
         return AppMenuComponent;
       }();
+
+      AppMenuComponent.ctorParameters = function () {
+        return [{
+          type: _auth_token_storage_service__WEBPACK_IMPORTED_MODULE_2__["TokenStorageService"]
+        }];
+      };
 
       AppMenuComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-menu',
@@ -4909,7 +5568,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Articles en stocks \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div> \n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th style=\"width: 10%;\"> Reference </th>\n                        <th style=\"width: 8%;\">Date </th>\n                        <th style=\"width: 5%;\"> Etat </th>\n                        <th style=\"width: 10%;\"> Type </th>\n                        <th style=\"width: 15%;\"> Adresse </th>\n                        <th style=\"width: 10%;\"> Expediteur </th>\n                        <th  style=\"width: 10%;\"> Destinateur </th>\n                        <th  style=\"width: 10%;\"> Telephone 2 </th>\n                        \n                        <th  style=\"width: 10%;\"> Editeur </th>\n                        <th style=\"width: 10%;\"> Edition </th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.adresse}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n                        <td>  {{stocks.telrecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                      \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div> \n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>     \n                        <th style=\"width: 10%;\" pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th style=\"width: 8%;\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon></th>\n                        <th style=\"width: 5%;\" pSortableColumn=\"endommage\"> Etat  <p-sortIcon field=\"endommage\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th  style=\"width: 10%;\" pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon></th>\n                        \n                        <th  style=\"width: 10%;\" pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -4969,7 +5628,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <!--\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(livre)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                        -->\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                     <ng-template pTemplate=\"caption\">\n                        <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                            \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                                \n                            <span class=\"p-input-icon-left\">\n                                \n                        <i class=\"pi pi-search\"></i>\n                        <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                                <\n                    </span>\n                        </div>\n                    </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>                   \n                        <th  pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th   pSortableColumn=\"reception.datesortie\">Date  <p-sortIcon field=\"reception.datesortie\"></p-sortIcon></th>\n                        <th   pSortableColumn=\"etat\"> Etat <p-sortIcon field=\"etat\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.type\"> Type  <p-sortIcon field=\"reception.type\"></p-sortIcon></th>\n\n                        <th  pSortableColumn=\"reception.namerecipient\"> Destinateur <p-sortIcon field=\"reception.namerecipient\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.telrecipient\"> Telephone 2  <p-sortIcon field=\"reception.telrecipient\"></p-sortIcon></th>\n                        \n                        <th  pSortableColumn=\"commentaire\"> Commentaire <p-sortIcon field=\"commentaire\"></p-sortIcon> </th>\n\n                        <th  pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td > {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(livre)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -5009,7 +5668,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur E-Postal Djibouti</h2>\n                        <span class=\"guest-sign-in\">Connecté vous sur le reseau e-postal </span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
+      __webpack_exports__["default"] = "<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <!-- <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/> -->\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur le plateForme Stock <!-- E-Postal Djibouti --></h2>\n                        <span class=\"guest-sign-in\">Connectez-vous sur le reseau</span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
       /***/
     },
 
@@ -5097,12 +5756,14 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.listesuuq = undefined;
+          this.ems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(EsuuqComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this25 = this;
+            var _this32 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -5112,10 +5773,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this25.listesuuq = response;
-              console.log(_this25.listesuuq);
+              _this32.listesuuq = response;
+              console.log(_this32.listesuuq);
             }, function (error) {
-              _this25.showWarn("Les articles esuuq  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this32.showWarn("Les articles esuuq  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -5131,6 +5792,119 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this33 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this33.exportColumns, _this33.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this34 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this34.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this34.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator3 = _createForOfIteratorHelper(this.listesuuq),
+                _step3;
+
+            try {
+              for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                var reception = _step3.value;
+                var receptiondto = {};
+                receptiondto.reference = reception['reference'];
+                receptiondto.type = reception['type'];
+                receptiondto.name = reception['name'];
+                receptiondto.adresse = reception['adresse'];
+                receptiondto.email = reception['email'];
+                receptiondto.nomsender = reception['nomsender'];
+                receptiondto.telexpediteur = reception['telexpediteur'];
+                receptiondto.paysexpediteur = reception['paysexpediteur'];
+                receptiondto.namerecipient = reception['namerecipient'];
+                receptiondto.telrecipient = reception['telrecipient'];
+                receptiondto.paysrecipient = reception['telrecipient'];
+                receptiondto.datereception = reception['telrecipient'];
+                receptiondto.datesortie = reception['telrecipient'];
+                receptiondto.etat = reception['telrecipient'];
+                receptiondto.reception = reception['telrecipient'];
+                receptiondto.createdat = reception['createdat']['name'];
+                receptiondto.createdat = reception['createdat'];
+                receptiondto.created = reception['created']['name'];
+                receptiondto.updatedat = reception['updatedat'];
+                receptiondto.updated = reception['updated']['name'];
+                receptiondto.dommage = reception['dommage'];
+                receptiondto.envoisms = reception['envoisms'];
+                receptiondto.commentaire = reception['commentaire'];
+                datas.push(receptiondto);
+              }
+            } catch (err) {
+              _iterator3.e(err);
+            } finally {
+              _iterator3.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -5347,6 +6121,26 @@
       var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! src/environments/environment.prod */
       "cxbk");
+      /* harmony import */
+
+
+      var file_saver__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! file-saver */
+      "Iab2");
+      /* harmony import */
+
+
+      var file_saver__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_11__);
+      /* harmony import */
+
+
+      var exceljs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! exceljs */
+      "6K47");
+      /* harmony import */
+
+
+      var exceljs__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(exceljs__WEBPACK_IMPORTED_MODULE_12__);
 
       var RapportsventeComponent = /*#__PURE__*/function () {
         /**
@@ -5371,7 +6165,7 @@
         _createClass(RapportsventeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this26 = this;
+            var _this35 = this;
 
             this.rapportForm = this.formBuilder.group({
               //'nom': new FormControl('', Validators.required),
@@ -5390,7 +6184,7 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this26.rapportVentes = response;
+              _this35.rapportVentes = response;
             }, function (error) {});
           }
           /**
@@ -5401,7 +6195,7 @@
         }, {
           key: "saveRapport",
           value: function saveRapport(value) {
-            var _this27 = this;
+            var _this36 = this;
 
             console.log('je suis');
             console.log(value);
@@ -5417,8 +6211,108 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this27.rapportVentes = response;
+              _this36.rapportVentes = response;
             }, function (error) {});
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this37 = this;
+
+            var Aplhabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'];
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var workbook = new exceljs__WEBPACK_IMPORTED_MODULE_12__["Workbook"]();
+
+              _this37.rapportVentes.forEach(function (element) {
+                console.log(element);
+                var title = element.month;
+                var entete = []; //const header = element.entete
+                //const data = element.
+                //console.log(title); console.log(header);
+
+                element.entete.forEach(function (element2) {
+                  console.log(element2);
+                  entete.push({
+                    header: element2,
+                    key: element2,
+                    width: 10,
+                    style: {
+                      font: {
+                        name: 'Trebuchet MS',
+                        size: 12
+                      }
+                    }
+                  });
+                });
+                var worksheet = workbook.addWorksheet(title);
+                var titre = 'VENTE ' + title + '2021.';
+                worksheet.getCell('A1').alignment = {
+                  horizontal: 'center'
+                };
+                /** Ajout du titre au fichier excel */
+
+                worksheet.columns = [].concat(entete);
+                /**
+                 * Ajout des données au fichier excel
+                 */
+
+                element.ventes.forEach(function (e) {
+                  worksheet.addRow([e.date].concat(_toConsumableArray(e.ventes)), 'n');
+                });
+                var row = worksheet.lastRow;
+                worksheet.getRows(1, 32).forEach(function (ee) {
+                  ee.eachCell(function (cell, colNumber) {
+                    cell.border = {
+                      top: {
+                        style: 'thin'
+                      },
+                      left: {
+                        style: 'thin'
+                      },
+                      bottom: {
+                        style: 'thin'
+                      },
+                      right: {
+                        style: 'thin'
+                      }
+                    };
+                  });
+                });
+              });
+
+              workbook.xlsx.writeBuffer().then(function (data) {
+                var blob = new Blob([data], {
+                  type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
+                });
+                file_saver__WEBPACK_IMPORTED_MODULE_11__["saveAs"](blob, 'ProductData.xlsx');
+              });
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+            console.log(this.rapportVentes);
+            return datas;
           }
         }]);
 
@@ -5464,7 +6358,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ems/nouveau?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ems/nouveau?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                      \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>          \n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>&nbsp;                             \n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -5504,7 +6398,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie Recommande</h5>\n            <p-table #dt [value]=\"listrecommande\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/recommande/nouveau?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie recommande -RR \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-recommande>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{recommande.reference}} </td>\n                        <td>  {{recommande.name}} </td>\n                        <td>  {{recommande.type}} </td>\n                        <td>  {{recommande.adresse}} </td>\n                        <td>  {{recommande.nomsender}} </td>\n                        <td>  {{recommande.telexpediteur}} </td>\n                        <td>  {{recommande.namerecipient}} </td>\n                        <td>  {{recommande.telrecipient}} </td>\n\n                        <td>  {{recommande.updated.username}} </td>\n                        <td>  {{recommande.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(recommande)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie Recommande</h5>\n            <p-table #dt [value]=\"listrecommande\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/recommande/nouveau?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie recommande -RR \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>  \n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-recommande>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{recommande.reference}} </td>\n                        <td>  {{recommande.type}} </td>\n                        <td>  {{recommande.nomsender}} </td>\n                        <td>  {{recommande.telexpediteur}} </td>\n\n                        <td>  {{recommande.updated.username}} </td>\n                        <td>  {{recommande.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(recommande)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button> &nbsp;                            \n                            <button (click)=\"show(recommande)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -5564,7 +6458,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "\n                <p-fieldset legend=\"Rapports  de recette \">\n                    <form [formGroup]=\"rapportForm\" (ngSubmit)=\"saveRapport(rapportForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                           \n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">     \n                                                       <label> Date debut <span class=\"required\">*</span></label>    \n                                                       <p-calendar name=\"datedebut\" formControlName=\"datedebut\" class=\"form-control\"></p-calendar>                           \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <label> Date fin <span class=\"required\">*</span></label>  \n                                                        <p-calendar name=\"datefin\"  formControlName=\"datefin\" class=\"form-control\"></p-calendar>                               \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    \n                                    <div class=\"p-col-2\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        &nbsp; \n                                                        <button pButton type=\"submit\" label=\"Valider\" class=\"p-button-raised p-button-rounded\" [disabled]=\"!rapportForm.valid\"></button>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <hr/>\n                            </div>\n                        </div>\n                    </form>\n\n                    <p-tabView>\n                        <p-tabPanel *ngFor=\"let vente of rapportVentes\" header=\"{{vente.month}}\">\n                           \n                            <p-table [value]=\"vente.ventes\" responsiveLayout=\"scroll\">\n                                <ng-template pTemplate=\"caption\">\n                                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\" style=\"text-align: center;\">\n                                        Vente du mois - {{vente.month}}\n                                    </div>\n                                </ng-template>\n                                <ng-template pTemplate=\"header\">                                    \n                                    <tr> <th *ngFor=\"let entente of vente.entete\"> {{entente}} </th> </tr>\n                                </ng-template>\n                                <ng-template pTemplate=\"body\" let-vtee>\n                                  \n                                    <tr>\n                                        <td> {{vtee.date}}</td>\n                                        <td *ngFor=\"let vt of vtee.ventes\"> {{vt}}</td>\n                                    </tr>\n                                </ng-template>\n                                \n                            </p-table>\n\n\n                        </p-tabPanel>\n\n                    </p-tabView>\n\n                </p-fieldset>\n\n\n               ";
+      __webpack_exports__["default"] = "\n                <p-fieldset legend=\"Rapports  de recette \">\n                    <form [formGroup]=\"rapportForm\" (ngSubmit)=\"saveRapport(rapportForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <span class=\"required\">* : champs obligatoire à remplir</span> \n                           \n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">     \n                                                       <label> Date debut <span class=\"required\">*</span></label>    \n                                                       <p-calendar name=\"datedebut\" formControlName=\"datedebut\" class=\"form-control\"></p-calendar>                           \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n\n                                    <div class=\"p-col-4\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">   \n                                                        <label> Date fin <span class=\"required\">*</span></label>  \n                                                        <p-calendar name=\"datefin\"  formControlName=\"datefin\" class=\"form-control\"></p-calendar>                               \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    \n                                    <div class=\"p-col-2\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-10\">\n                                                <div class=\"p-field p-grid\">\n                                                    <div class=\"p-col-9 p-p-md-9\">  \n                                                        &nbsp; \n                                                        <button pButton type=\"submit\" label=\"Valider\" class=\"p-button-raised p-button-rounded\" [disabled]=\"!rapportForm.valid\"></button>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                <hr/>\n                            </div>\n                        </div>\n                    </form>\n\n                    <p-tabView style=\"text-align: left; font-size: 10px !important;\">\n                        <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                      \n                        <p-tabPanel *ngFor=\"let vente of rapportVentes\" header=\"{{vente.month}}\">\n                           \n                            <p-table [value]=\"vente.ventes\" responsiveLayout=\"scroll\">\n                                <ng-template pTemplate=\"caption\">\n                                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\" style=\"text-align: center;\">\n                                        Vente du mois - {{vente.month}}\n                                    </div>\n                                </ng-template>\n                                <ng-template pTemplate=\"header\">                                    \n                                    <tr style=\"font-size: 11.5px;\"> <th *ngFor=\"let entente of vente.entete\"> {{entente}} </th> </tr>\n                                </ng-template>\n                                <ng-template pTemplate=\"body\" let-vtee>\n                                  \n                                    <tr>\n                                        <td> {{vtee.date}}</td>\n                                        <td *ngFor=\"let vt of vtee.ventes\"> {{vt}}</td>\n                                    </tr>\n                                </ng-template>\n                                \n                            </p-table>\n\n\n                        </p-tabPanel>\n\n                    </p-tabView>\n\n                </p-fieldset>\n\n\n               ";
       /***/
     },
 
@@ -5712,7 +6606,7 @@
         _createClass(NouveauventeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this28 = this;
+            var _this38 = this;
 
             this.typepaiement = {
               code: 'CASH',
@@ -5744,37 +6638,37 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this28.typeventes = [];
+              _this38.typeventes = [];
               response.forEach(function (element) {
-                _this28.typeventes.push({
+                _this38.typeventes.push({
                   code: element,
                   name: element['nom']
                 });
               });
             }, function (error) {
-              _this28.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
+              _this38.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this28.listventes = response;
+              _this38.listventes = response;
             }, function (error) {
-              _this28.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
+              _this38.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
             });
           }
         }, {
           key: "change",
           value: function change($event) {
-            var _this29 = this;
+            var _this39 = this;
 
             /**
              *  -- liste items
              */
             this.itemstypeventes = [];
             $event.value.code['items'].forEach(function (element) {
-              _this29.itemstypeventes.push({
+              _this39.itemstypeventes.push({
                 code: element,
                 name: element['nom']
               });
@@ -5795,7 +6689,7 @@
         }, {
           key: "save",
           value: function save(value) {
-            var _this30 = this;
+            var _this40 = this;
 
             console.log(value);
             var format = 'yyyy-MM-dd';
@@ -5824,34 +6718,34 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this30.venteForm.patchValue({
+              _this40.venteForm.patchValue({
                 type: undefined
               });
 
-              _this30.venteForm.patchValue({
+              _this40.venteForm.patchValue({
                 prix: undefined
               });
 
-              _this30.venteForm.patchValue({
+              _this40.venteForm.patchValue({
                 penalite: undefined
               });
 
-              _this30.typevente = undefined;
-              _this30.itemstypevente = undefined; //this.items = [];
+              _this40.typevente = undefined;
+              _this40.itemstypevente = undefined; //this.items = [];
 
-              _this30.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
+              _this40.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                  'Authorization': 'Bearer ' + _this30.tokenStorage.getToken()
+                  'Authorization': 'Bearer ' + _this40.tokenStorage.getToken()
                 })
               }).subscribe(function (response) {
-                _this30.listventes = response;
+                _this40.listventes = response;
               }, function (error) {
-                _this30.showError(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+                _this40.showError(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
               });
 
-              _this30.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
+              _this40.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
             }, function (error) {
-              _this30.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
+              _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
             });
           }
           /**
@@ -6022,7 +6916,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "\n\n\n\n<div class=\"dashboard p-grid\">    \n \n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '40%'}\"></p-chart>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n    <div class=\"p-col-12 p-lg-12\">\n        <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n</div>\n";
+      __webpack_exports__["default"] = "\n\n\n\n<div class=\"dashboard p-grid\">    \n \n\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"pie\" [data]=\"tableaubord1\" [options]=\"chartOptions\"  [style]=\"{'width': '40%'}\"></p-chart>\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n    <hr/>\n    <div class=\"p-col-12 p-lg-12\">\n        <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                     </span>\n                     <span class=\"p-input-icon-right\">\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>  \n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"show(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -6132,14 +7026,15 @@
           this.basicData = undefined;
           this.basicData2 = undefined;
           this.listems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(TableaubordstocksComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this31 = this;
+            var _this41 = this;
 
-            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/stock/tableau/bord2", {
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/livraison/tableau/bord2", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
@@ -6169,13 +7064,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this31.basicData2 = {
+                _this41.basicData2 = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this31.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this41.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/stock/tableau/bord1", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -6207,13 +7102,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this31.basicData = {
+                _this41.basicData = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this31.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this41.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -6224,10 +7119,88 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this31.listems = response;
-              console.log(_this31.listems);
+              _this41.listems = response;
+              console.log(_this41.listems);
             }, function (error) {
-              _this31.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this41.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+            });
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this42 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this42.exportColumns, _this42.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this43 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this43.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this43.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+            return this.listems;
+          }
+        }, {
+          key: "search",
+          value: function search(value) {
+            console.log(value);
+            this.router.navigate(['gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869'], {
+              queryParams: {
+                id: '' + value["reference"] + ''
+              }
             });
           }
           /**
@@ -6318,7 +7291,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception esuuq</h5>\n            <p-table #dt [value]=\"listesuuq\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/esuuq/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception esuuq -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-esuuq>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{esuuq.reference}} </td>\n                        <td> {{esuuq.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"esuuq.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{esuuq.type}} </td>\n                        <td>  {{esuuq.adresse}} </td>\n                        <td>  {{esuuq.nomsender}} </td>\n                        <td>  {{esuuq.namerecipient}} </td>\n                        <td>  {{esuuq.telrecipient}} </td>\n\n                        <td>  {{esuuq.updated.username}} </td>\n                        <td>  {{esuuq.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(esuuq)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception esuuq</h5>\n            <p-table #dt [value]=\"listesuuq\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/esuuq/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception esuuq -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                    \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th  style=\"width: 10rem\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th  style=\"width: 8rem\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th style=\"width: 10rem\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-esuuq>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{esuuq.reference}} </td>\n                        <td> {{esuuq.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"esuuq.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{esuuq.type}} </td>\n                        <td>  {{esuuq.nomsender}} </td>\n                        <td>  {{esuuq.namerecipient}} </td>\n\n                        <td>  {{esuuq.updated.username}} </td>\n                        <td>  {{esuuq.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(esuuq)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button> &nbsp;\n                            <button (click)=\"show(esuuq)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>                        \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -6358,7 +7331,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception Ordinaire - N/A \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception Ordinaire - N/A \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>  \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th  style=\"width: 10rem\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th  style=\"width: 8rem\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th style=\"width: 10rem\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button> &nbsp;\n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>      \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -6560,12 +7533,13 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.liste = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(LivraisonechoueComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this32 = this;
+            var _this44 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -6575,11 +7549,88 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this32.liste = response;
-              console.log(_this32.liste);
+              _this44.liste = response;
+              console.log(_this44.liste);
             }, function (error) {
-              _this32.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
+              _this44.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
             });
+          }
+        }, {
+          key: "search",
+          value: function search(value) {
+            this.router.navigate(['gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869'], {
+              queryParams: {
+                id: '' + value["reference"] + ''
+              }
+            });
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this45 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this45.exportColumns, _this45.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this46 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this46.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this46.saveAsExcelFile(excelBuffer, "livraison_echoue");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+            return this.liste;
           }
           /**
           *  costumisation des erreurs
@@ -6874,7 +7925,7 @@
 
       AppProfileComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-inline-profile',
-        template: "\n        <!--\n        <div class=\"profile\" [ngClass]=\"{'profile-expanded':active}\">\n            <a href=\"#\" (click)=\"onClick($event)\">\n                <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                <span class=\"profile-name\">Houmed Hassan Mohamed </span>\n                <i class=\"pi pi-fw pi-chevron-down\"></i>\n                <span class=\"profile-role\">Marketing</span>\n            </a>\n        </div>\n\n        <ul id=\"profile-menu\" class=\"layout-menu\" [@menu]=\"active ? 'visible' : 'hidden'\">\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-user\"></i>\n                    <span>Profile</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Profile</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-fw pi-lock\"></i>\n                    <span>Privacy</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Privacy</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-cog\"></i>\n                    <span>Settings</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Settings</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a  (onClick)=\"logout()\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-sign-out\"></i>\n                    <span>Logout</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Logout</div>\n                </div>\n            </li>\n        </ul>\n        -->\n    ",
+        template: " \n        <!--\n        <div class=\"profile\" [ngClass]=\"{'profile-expanded':active}\">\n            <a href=\"#\" (click)=\"onClick($event)\">\n                <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                <span class=\"profile-name\">Houmed Hassan Mohamed </span>\n                <i class=\"pi pi-fw pi-chevron-down\"></i>\n                <span class=\"profile-role\">Marketing</span>\n            </a>\n        </div>\n\n        <ul id=\"profile-menu\" class=\"layout-menu\" [@menu]=\"active ? 'visible' : 'hidden'\">\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-user\"></i>\n                    <span>Profile</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Profile</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-fw pi-lock\"></i>\n                    <span>Privacy</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Privacy</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a href=\"#\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-cog\"></i>\n                    <span>Settings</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Settings</div>\n                </div>\n            </li>\n            <li role=\"menuitem\">\n                <a  (onClick)=\"logout()\" [attr.tabindex]=\"!active ? '-1' : null\">\n                    <i class=\"pi pi-sign-out\"></i>\n                    <span>Logout</span>\n                </a>\n                <div class=\"layout-menu-tooltip\">\n                    <div class=\"layout-menu-tooltip-arrow\"></div>\n                    <div class=\"layout-menu-tooltip-text\">Logout</div>\n                </div>\n            </li>\n        </ul>\n        -->\n    ",
         animations: [Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["trigger"])('menu', [Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["state"])('hidden', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["style"])({
           height: '0px'
         })), Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["state"])('visible', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["style"])({
@@ -7038,27 +8089,27 @@
         }, {
           key: "connexion",
           value: function connexion(value) {
-            var _this33 = this;
+            var _this47 = this;
 
             this.loginInfo = new _auth_models_login_info__WEBPACK_IMPORTED_MODULE_8__["AuthLoginInfo"](value['username'], value['password']);
             this.authService.attemptAuth(this.loginInfo).subscribe(function (data) {
-              _this33.tokenStorage.saveToken(data.accessToken);
+              _this47.tokenStorage.saveToken(data.accessToken);
 
-              _this33.tokenStorage.saveUsername(data.username);
+              _this47.tokenStorage.saveUsername(data.username);
 
-              _this33.tokenStorage.saveAuthorities(data.authorities);
+              _this47.tokenStorage.saveAuthorities(data.authorities);
 
-              _this33.isLoginFailed = false;
-              _this33.isLoggedIn = true;
-              _this33.roles = _this33.tokenStorage.getAuthorities(); //this.reloadPage();
+              _this47.isLoginFailed = false;
+              _this47.isLoggedIn = true;
+              _this47.roles = _this47.tokenStorage.getAuthorities(); //this.reloadPage();
 
-              _this33.router.navigate(['/accueil']);
+              _this47.router.navigate(['/accueil']);
             }, function (error) {
-              _this33.errorMessage = error.error.message;
+              _this47.errorMessage = error.error.message;
 
-              _this33.showError(_this33.errorMessage);
+              _this47.showError(_this47.errorMessage);
 
-              _this33.isLoginFailed = true;
+              _this47.isLoginFailed = true;
             });
           }
         }, {
@@ -7365,7 +8416,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ems/nouveau?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ems/nouveau?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception EMS -EE \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>      \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th  style=\"width: 10rem\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th  style=\"width: 8rem\" pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th style=\"width: 10rem\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td style=\"width: 10rem\"> {{ems.datereception}} </td>\n                        <td style=\"width: 8rem\">  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td style=\"width: 10rem\">  {{ems.type}} </td>\n\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>  &nbsp;\n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -7961,12 +9012,14 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.listrecommande = undefined;
+          this.ems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(RecommandeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this34 = this;
+            var _this48 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -7976,10 +9029,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this34.listrecommande = response;
-              console.log(_this34.listrecommande);
+              _this48.listrecommande = response;
+              console.log(_this48.listrecommande);
             }, function (error) {
-              _this34.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this48.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -7995,6 +9048,112 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this49 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this49.exportColumns, _this49.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this50 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this50.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this50.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator4 = _createForOfIteratorHelper(this.listrecommande),
+                _step4;
+
+            try {
+              for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                var envoi = _step4.value;
+                var envoiedto = {};
+                envoiedto.reference = envoi['reference'];
+                envoiedto.type = envoi['type'];
+                envoiedto.name = envoi['name'];
+                envoiedto.adresse = envoi['adresse'];
+                envoiedto.email = envoi['email'];
+                envoiedto.nomsender = envoi['nomsender'];
+                envoiedto.telexpediteur = envoi['telexpediteur'];
+                envoiedto.pays = envoi['pays'];
+                envoiedto.namerecipient = envoi['namerecipient'];
+                envoiedto.telrecipient = envoi['telrecipient'];
+                envoiedto.createdat = envoi['createdat']['name'];
+                envoiedto.createdat = envoi['createdat'];
+                envoiedto.created = envoi['created']['name'];
+                envoiedto.updatedat = envoi['updatedat'];
+                envoiedto.updated = envoi['updated']['name'];
+                console.log(envoi);
+                datas.push(envoiedto);
+              }
+            } catch (err) {
+              _iterator4.e(err);
+            } finally {
+              _iterator4.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -8230,7 +9389,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/recommande/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception RECOMMANDE - RR \"class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception EMS</h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/recommande/nouveau?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Reception RECOMMANDE - RR \"class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon>  </th>\n                        <th pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"dommage\"> Etat  <p-sortIcon field=\"dommage\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon> </th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon> </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td> {{ems.datereception}} </td>\n                        <td>  <span *ngIf=\"ems.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n                        </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button> &nbsp;\n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>     \n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n\n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\">   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                        \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"reference\" pInputText   [disabled]=\"true\"  class=\"form-control\" value=\"{{ems?.reference}}\">                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n                                <p-calendar [(ngModel)]=\"dateactuel\" name=\"datereception\" class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.datereception}}\"></p-calendar>                                \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\"    value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">                                                                      \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                            <div class=\"p-col-12 p-md-12\">   \n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.telexpediteur}}\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\"> \n\n                                <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\"  [disabled]=\"true\"   value=\"{{ems?.paysexpediteur}}\" >                                    \n                            \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <hr/>\n        \n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">                               \n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-md-12\">      \n                    <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" value=\"{{ems?.adresse}}\"  [disabled]=\"true\" >                                    \n                </div>\n            </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse mail </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"email\" pInputText   class=\"form-control\"  value=\"{{ems?.email}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\"  value=\"{{ems?.namerecipient}}\"  [disabled]=\"true\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\"> \n                <div class=\"p-field p-grid\">\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                            <div class=\"p-col-12 p-p-md-9\">   \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.telrecipient}}\"  [disabled]=\"true\" >                                    \n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"p-col-6\">\n                        <div class=\"p-field p-grid\">\n                            <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                            <div class=\"p-col-12 p-p-md-9\">  \n                                <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" value=\"{{ems?.paysdestinateur}}\"  [disabled]=\"true\" >  \n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis endommagé</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.dommage}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"   value=\"{{ems?.envoisms}}\"  [disabled]=\"true\" >    \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-12\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez fourni un commentaire sur le dommage <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" value=\"{{ems?.commentaire}}\"  [disabled]=\"true\" ></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -8318,12 +9477,14 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.listems = undefined;
+          this.ems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(RecommandereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this35 = this;
+            var _this51 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -8333,10 +9494,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this35.listems = response;
-              console.log(_this35.listems);
+              _this51.listems = response;
+              console.log(_this51.listems);
             }, function (error) {
-              _this35.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this51.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -8352,6 +9513,119 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this52 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this52.exportColumns, _this52.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this53 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this53.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this53.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator5 = _createForOfIteratorHelper(this.listems),
+                _step5;
+
+            try {
+              for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+                var reception = _step5.value;
+                var receptiondto = {};
+                receptiondto.reference = reception['reference'];
+                receptiondto.type = reception['type'];
+                receptiondto.name = reception['name'];
+                receptiondto.adresse = reception['adresse'];
+                receptiondto.email = reception['email'];
+                receptiondto.nomsender = reception['nomsender'];
+                receptiondto.telexpediteur = reception['telexpediteur'];
+                receptiondto.paysexpediteur = reception['paysexpediteur'];
+                receptiondto.namerecipient = reception['namerecipient'];
+                receptiondto.telrecipient = reception['telrecipient'];
+                receptiondto.paysrecipient = reception['telrecipient'];
+                receptiondto.datereception = reception['telrecipient'];
+                receptiondto.datesortie = reception['telrecipient'];
+                receptiondto.etat = reception['telrecipient'];
+                receptiondto.reception = reception['telrecipient'];
+                receptiondto.createdat = reception['createdat']['name'];
+                receptiondto.createdat = reception['createdat'];
+                receptiondto.created = reception['created']['name'];
+                receptiondto.updatedat = reception['updatedat'];
+                receptiondto.updated = reception['updated']['name'];
+                receptiondto.dommage = reception['dommage'];
+                receptiondto.envoisms = reception['envoisms'];
+                receptiondto.commentaire = reception['commentaire'];
+                datas.push(receptiondto);
+              }
+            } catch (err) {
+              _iterator5.e(err);
+            } finally {
+              _iterator5.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -8580,10 +9854,10 @@
         _createClass(AppCrudComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this36 = this;
+            var _this54 = this;
 
             this.productService.getProducts().then(function (data) {
-              return _this36.products = data;
+              return _this54.products = data;
             });
             this.cols = [{
               field: 'name',
@@ -8612,19 +9886,19 @@
         }, {
           key: "deleteSelectedProducts",
           value: function deleteSelectedProducts() {
-            var _this37 = this;
+            var _this55 = this;
 
             this.confirmationService.confirm({
               message: 'Are you sure you want to delete the selected products?',
               header: 'Confirm',
               icon: 'pi pi-exclamation-triangle',
               accept: function accept() {
-                _this37.products = _this37.products.filter(function (val) {
-                  return !_this37.selectedProducts.includes(val);
+                _this55.products = _this55.products.filter(function (val) {
+                  return !_this55.selectedProducts.includes(val);
                 });
-                _this37.selectedProducts = null;
+                _this55.selectedProducts = null;
 
-                _this37.messageService.add({
+                _this55.messageService.add({
                   severity: 'success',
                   summary: 'Successful',
                   detail: 'Products Deleted',
@@ -8642,19 +9916,19 @@
         }, {
           key: "deleteProduct",
           value: function deleteProduct(product) {
-            var _this38 = this;
+            var _this56 = this;
 
             this.confirmationService.confirm({
               message: 'Are you sure you want to delete ' + product.name + '?',
               header: 'Confirm',
               icon: 'pi pi-exclamation-triangle',
               accept: function accept() {
-                _this38.products = _this38.products.filter(function (val) {
+                _this56.products = _this56.products.filter(function (val) {
                   return val.id !== product.id;
                 });
-                _this38.product = {};
+                _this56.product = {};
 
-                _this38.messageService.add({
+                _this56.messageService.add({
                   severity: 'success',
                   summary: 'Successful',
                   detail: 'Product Deleted',
@@ -10165,7 +11439,7 @@
         _createClass(NouveauemsreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this39 = this;
+            var _this57 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -10193,24 +11467,24 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this39.typeactivites = [];
+              _this57.typeactivites = [];
               response.forEach(function (element) {
                 console.log(element);
 
                 if (element['name'] == 'EMS - EE') {
-                  _this39.typeactivite = {
+                  _this57.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this39.typeactivites.push({
+                _this57.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this39.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this57.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
             /**
             *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -10222,21 +11496,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this39.countries = [];
+              _this57.countries = [];
               response.forEach(function (element) {
-                _this39.countries.push({
+                _this57.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this39.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this57.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this40 = this;
+            var _this58 = this;
 
             /*
               let amontsection = emsForm['reference'].substring(0,2);
@@ -10258,38 +11532,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this40.receptiondto.reference = emsForm['reference'];
-                _this40.receptiondto.name = 'EMS - EXPRESS MAIL SERVICE';
-                _this40.receptiondto.type = emsForm['typearticle'];
-                _this40.receptiondto.adresse = emsForm['adresse'];
-                _this40.receptiondto.nomsender = emsForm['nomsender'];
-                _this40.receptiondto.telexpediteur = emsForm['telexpediteur'];
-                _this40.receptiondto.namerecipient = emsForm['namerecipient'];
-                _this40.receptiondto.telrecipient = emsForm['telrecipient'];
-                _this40.receptiondto.email = emsForm['email'];
-                _this40.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(emsForm['datereception'], format, locale);
-                _this40.receptiondto.typearticle = _this40.typeactivite.code;
-                _this40.receptiondto.dommage = _this40.dommage;
-                _this40.receptiondto.commentaire = emsForm['commentaire'];
-                _this40.receptiondto.envoisms = _this40.envoisms;
-                _this40.receptiondto.paysrecipient = _this40.selectedCountrydestinateur['code'];
-                _this40.receptiondto.paysexpediteur = _this40.selectedCountryexpediteur['code'];
+                _this58.receptiondto.reference = emsForm['reference'];
+                _this58.receptiondto.name = 'EMS - EXPRESS MAIL SERVICE';
+                _this58.receptiondto.type = emsForm['typearticle'];
+                _this58.receptiondto.adresse = emsForm['adresse'];
+                _this58.receptiondto.nomsender = emsForm['nomsender'];
+                _this58.receptiondto.telexpediteur = emsForm['telexpediteur'];
+                _this58.receptiondto.namerecipient = emsForm['namerecipient'];
+                _this58.receptiondto.telrecipient = emsForm['telrecipient'];
+                _this58.receptiondto.email = emsForm['email'];
+                _this58.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(emsForm['datereception'], format, locale);
+                _this58.receptiondto.typearticle = _this58.typeactivite.code;
+                _this58.receptiondto.dommage = _this58.dommage;
+                _this58.receptiondto.commentaire = emsForm['commentaire'];
+                _this58.receptiondto.envoisms = _this58.envoisms;
+                _this58.receptiondto.paysrecipient = _this58.selectedCountrydestinateur['code'];
+                _this58.receptiondto.paysexpediteur = _this58.selectedCountryexpediteur['code'];
 
-                _this40.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this40.receptiondto, {
+                _this58.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this58.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this40.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this58.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this40.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                  _this58.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                 }, function (error) {
-                  _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                  _this58.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
                 });
               } else {
-                _this40.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this58.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this58.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -10509,10 +11783,10 @@
         _createClass(EditionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this41 = this;
+            var _this59 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this41.value = params.id;
+              _this59.value = params.id;
             });
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -10528,21 +11802,21 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this41.envoidto.reference = response['reference'];
-              _this41.envoidto.type = response['type'];
-              _this41.envoidto.adresse = response['adresse'];
-              _this41.envoidto.nomsender = response['nomsender'];
-              _this41.envoidto.telexpediteur = response['telexpediteur'];
-              _this41.envoidto.namerecipient = response['namerecipient'];
-              _this41.envoidto.telrecipient = response['telrecipient'];
+              _this59.envoidto.reference = response['reference'];
+              _this59.envoidto.type = response['type'];
+              _this59.envoidto.adresse = response['adresse'];
+              _this59.envoidto.nomsender = response['nomsender'];
+              _this59.envoidto.telexpediteur = response['telexpediteur'];
+              _this59.envoidto.namerecipient = response['namerecipient'];
+              _this59.envoidto.telrecipient = response['telrecipient'];
             }, function (error) {
-              _this41.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
+              _this59.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this42 = this;
+            var _this60 = this;
 
             var amontsection = emsForm['reference'].substring(0, 2);
             var numbersection = Number(emsForm['reference'].substring(2, 11));
@@ -10564,9 +11838,9 @@
                     'Authorization': 'Bearer ' + this.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this42.showSuccess("L'article a été mise à jour avec success !!! ");
+                  _this60.showSuccess("L'article a été mise à jour avec success !!! ");
                 }, function (error) {
-                  _this42.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                  _this60.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                 });
               } else {
                 this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/reference?reference=" + emsForm['reference'], {
@@ -10575,27 +11849,27 @@
                   })
                 }).subscribe(function (response) {
                   if (response == null) {
-                    _this42.envoidto.reference = emsForm['reference'];
-                    _this42.envoidto.adresse = emsForm['adresse'];
-                    _this42.envoidto.nomsender = emsForm['nomsender'];
-                    _this42.envoidto.telexpediteur = emsForm['telexpediteur'];
-                    _this42.envoidto.namerecipient = emsForm['namerecipient'];
-                    _this42.envoidto.telrecipient = emsForm['telrecipient'];
+                    _this60.envoidto.reference = emsForm['reference'];
+                    _this60.envoidto.adresse = emsForm['adresse'];
+                    _this60.envoidto.nomsender = emsForm['nomsender'];
+                    _this60.envoidto.telexpediteur = emsForm['telexpediteur'];
+                    _this60.envoidto.namerecipient = emsForm['namerecipient'];
+                    _this60.envoidto.telrecipient = emsForm['telrecipient'];
 
-                    _this42.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + _this42.value, _this42.envoidto, {
+                    _this60.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + _this60.value, _this60.envoidto, {
                       headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                        'Authorization': 'Bearer ' + _this42.tokenStorage.getToken()
+                        'Authorization': 'Bearer ' + _this60.tokenStorage.getToken()
                       })
                     }).subscribe(function (response) {
-                      _this42.showSuccess("L'article a été mise à jour avec success !!! ");
+                      _this60.showSuccess("L'article a été mise à jour avec success !!! ");
                     }, function (error) {
-                      _this42.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                      _this60.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                     });
                   } else {
-                    _this42.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                    _this60.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                   }
                 }, function (error) {
-                  _this42.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                  _this60.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
                 });
               }
             }
@@ -10839,7 +12113,7 @@
         _createClass(NouveauordinaireComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this43 = this;
+            var _this61 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -10860,28 +12134,28 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this43.typeactivites = [];
+              _this61.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'ORDINAIRE') {
-                  _this43.typeactivite = {
+                  _this61.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this43.typeactivites.push({
+                _this61.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this43.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this61.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this44 = this;
+            var _this62 = this;
 
             var amontsection = emsForm['reference'].substring(0, 2);
             var numbersection = Number(emsForm['reference'].substring(2, 11));
@@ -10898,31 +12172,31 @@
                 })
               }).subscribe(function (response) {
                 if (response == null) {
-                  _this44.envoidto.reference = emsForm['reference'];
-                  _this44.envoidto.name = 'ORDINAIRE';
-                  _this44.envoidto.type = emsForm['typearticle'];
-                  _this44.envoidto.adresse = emsForm['adresse'];
-                  _this44.envoidto.nomsender = emsForm['nomsender'];
-                  _this44.envoidto.telexpediteur = emsForm['telexpediteur'];
-                  _this44.envoidto.namerecipient = emsForm['namerecipient'];
-                  _this44.envoidto.telrecipient = emsForm['telrecipient'];
-                  _this44.envoidto.typearticle = _this44.typeactivite.code;
+                  _this62.envoidto.reference = emsForm['reference'];
+                  _this62.envoidto.name = 'ORDINAIRE';
+                  _this62.envoidto.type = emsForm['typearticle'];
+                  _this62.envoidto.adresse = emsForm['adresse'];
+                  _this62.envoidto.nomsender = emsForm['nomsender'];
+                  _this62.envoidto.telexpediteur = emsForm['telexpediteur'];
+                  _this62.envoidto.namerecipient = emsForm['namerecipient'];
+                  _this62.envoidto.telrecipient = emsForm['telrecipient'];
+                  _this62.envoidto.typearticle = _this62.typeactivite.code;
 
-                  _this44.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this44.envoidto, {
+                  _this62.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this62.envoidto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this44.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this62.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this44.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                    _this62.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                   }, function (error) {
-                    _this44.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                    _this62.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                   });
                 } else {
-                  _this44.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this62.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
               }, function (error) {
-                _this44.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this62.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -11100,7 +12374,7 @@
 
       var environment = {
         production: true,
-        url: 'https://lapostedjib.herokuapp.com'
+        url: 'http://localhost:8845'
       };
       /***/
     },
@@ -11189,12 +12463,13 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.listcolis = undefined;
+          this.ems = undefined;
         }
 
         _createClass(ColisComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this45 = this;
+            var _this63 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -11204,10 +12479,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this45.listcolis = response;
-              console.log(_this45.listcolis);
+              _this63.listcolis = response;
+              console.log(_this63.listcolis);
             }, function (error) {
-              _this45.showWarn("Les article  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this63.showWarn("Les article  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -11223,6 +12498,112 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this64 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this64.exportColumns, _this64.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this65 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this65.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this65.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator6 = _createForOfIteratorHelper(this.listcolis),
+                _step6;
+
+            try {
+              for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+                var envoi = _step6.value;
+                var envoiedto = {};
+                envoiedto.reference = envoi['reference'];
+                envoiedto.type = envoi['type'];
+                envoiedto.name = envoi['name'];
+                envoiedto.adresse = envoi['adresse'];
+                envoiedto.email = envoi['email'];
+                envoiedto.nomsender = envoi['nomsender'];
+                envoiedto.telexpediteur = envoi['telexpediteur'];
+                envoiedto.pays = envoi['pays'];
+                envoiedto.namerecipient = envoi['namerecipient'];
+                envoiedto.telrecipient = envoi['telrecipient'];
+                envoiedto.createdat = envoi['createdat']['name'];
+                envoiedto.createdat = envoi['createdat'];
+                envoiedto.created = envoi['created']['name'];
+                envoiedto.updatedat = envoi['updatedat'];
+                envoiedto.updated = envoi['updated']['name'];
+                console.log(envoi);
+                datas.push(envoiedto);
+              }
+            } catch (err) {
+              _iterator6.e(err);
+            } finally {
+              _iterator6.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -11383,13 +12764,13 @@
         }, {
           key: "getAuthorities",
           value: function getAuthorities() {
-            var _this46 = this;
+            var _this66 = this;
 
             this.roles = [];
 
             if (sessionStorage.getItem(TOKEN_KEY)) {
               JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(function (authority) {
-                _this46.roles.push(authority.authority);
+                _this66.roles.push(authority.authority);
               });
             }
 
@@ -11535,10 +12916,10 @@
         _createClass(AppCalendarComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this47 = this;
+            var _this67 = this;
 
             this.eventService.getEvents().then(function (events) {
-              _this47.events = events;
+              _this67.events = events;
             });
             this.changedEvent = {
               title: '',
@@ -11556,11 +12937,11 @@
               },
               editable: true,
               eventClick: function eventClick(e) {
-                _this47.eventDialog = true;
-                _this47.clickedEvent = e.event;
-                _this47.changedEvent.title = _this47.clickedEvent.title;
-                _this47.changedEvent.start = _this47.clickedEvent.start;
-                _this47.changedEvent.end = _this47.clickedEvent.end;
+                _this67.eventDialog = true;
+                _this67.clickedEvent = e.event;
+                _this67.changedEvent.title = _this67.clickedEvent.title;
+                _this67.changedEvent.start = _this67.clickedEvent.start;
+                _this67.changedEvent.end = _this67.clickedEvent.end;
               }
             };
           }
@@ -11772,7 +13153,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/reception/ordinaire/nouveau?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Articles en stocks \" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th style=\"width: 10%;\"> Reference </th>\n                        <th style=\"width: 8%;\">Date </th>\n                        <th style=\"width: 5%;\"> Etat </th>\n                        <th style=\"width: 10%;\"> Type </th>\n                        <th style=\"width: 15%;\"> Adresse </th>\n                        <th style=\"width: 10%;\"> Expediteur </th>\n                        <th  style=\"width: 10%;\"> Destinateur </th>\n                        <th  style=\"width: 10%;\"> Telephone 2 </th>\n                        \n                        <th  style=\"width: 10%;\"> Editeur </th>\n                        <th style=\"width: 10%;\"> Edition </th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.adresse}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n                        <td>  {{stocks.telrecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Reception stocks</h5>\n            <p-table #dt [value]=\"liststocks\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                     \n                        <span class=\"p-input-icon-left\">  \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                            <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                            \n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th style=\"width: 10%;\" pSortableColumn=\"reference\"> Reference  <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th style=\"width: 8%;\" pSortableColumn=\"datereception\">Date  <p-sortIcon field=\"datereception\"></p-sortIcon></th>\n                        <th style=\"width: 5%;\" pSortableColumn=\"endommage\"> Etat  <p-sortIcon field=\"endommage\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"type\"> Type  <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"nomsender\"> Expediteur  <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th  style=\"width: 10%;\" pSortableColumn=\"namerecipient\"> Destinateur  <p-sortIcon field=\"namerecipient\"></p-sortIcon></th>\n                        \n                        <th  style=\"width: 10%;\" pSortableColumn=\"updated.username\"> Editeur  <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                        <th style=\"width: 10%;\" pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        \n                        <th style=\"width: 5%\" ></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-stocks>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{stocks.reference}} </td>\n                        <td> {{stocks.datereception}} </td>\n                        <td>\n                            <span *ngIf=\"stocks.dommage; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span  class=\"endommage\">Endommagé </span></ng-template>\n                            <ng-template #elseBlock><span  class=\"nonendommage\">Normal </span></ng-template>\n\n                        </td>\n                        <td>  {{stocks.type}} </td>\n                        <td>  {{stocks.nomsender}} </td>\n                        <td>  {{stocks.namerecipient}} </td>\n\n                        <td>  {{stocks.updated.username}} </td>\n                        <td style=\"width: 8%;\">  {{stocks.updatedat}} </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(stocks)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -12028,7 +13409,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie de type Ordinaire </h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ordinaire/nouveau?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Ordinaire \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.name}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.adresse}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n                        <td>  {{ems.namerecipient}} </td>\n                        <td>  {{ems.telrecipient}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie de type Ordinaire </h5>\n            <p-table #dt [value]=\"listems\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/ordinaire/nouveau?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Ordinaire \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                    <i class=\"pi pi-search\"></i>\n                    \n                    <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em;\" class=\"ui-button-success\"></button>\n                    <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                    \n                    <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                           placeholder=\"Global Search\"/>\n                </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\"> \n                    <tr>               \n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>  \n                        \n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-ems>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{ems.reference}} </td>\n                        <td>  {{ems.type}} </td>\n                        <td>  {{ems.nomsender}} </td>\n                        <td>  {{ems.telexpediteur}} </td>\n\n                        <td>  {{ems.updated.username}} </td>\n                        <td>  {{ems.updatedat}} </td>\n\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(ems)\" class=\"p-button-success\" pButton type=\"button\"  icon=\"pi pi-cog\"></button>&nbsp;                             \n                            <button (click)=\"show(ems)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -12283,7 +13664,7 @@
               file: 'lime',
               color: '#74CD32'
             }];
-            this.changeLayout('joomla', false);
+            this.changeLayout('firewatch', true);
           }
         }, {
           key: "changeLayout",
@@ -12463,12 +13844,14 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.listems = undefined;
+          this.ems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(OrdinaireenvoiComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this48 = this;
+            var _this68 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -12478,10 +13861,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this48.listems = response;
-              console.log(_this48.listems);
+              _this68.listems = response;
+              console.log(_this68.listems);
             }, function (error) {
-              _this48.showWarn("Les articles Ordinaire  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this68.showWarn("Les articles Ordinaire  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -12497,6 +13880,112 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this69 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this69.exportColumns, _this69.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this70 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this70.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this70.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator7 = _createForOfIteratorHelper(this.listems),
+                _step7;
+
+            try {
+              for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+                var envoi = _step7.value;
+                var envoiedto = {};
+                envoiedto.reference = envoi['reference'];
+                envoiedto.type = envoi['type'];
+                envoiedto.name = envoi['name'];
+                envoiedto.adresse = envoi['adresse'];
+                envoiedto.email = envoi['email'];
+                envoiedto.nomsender = envoi['nomsender'];
+                envoiedto.telexpediteur = envoi['telexpediteur'];
+                envoiedto.pays = envoi['pays'];
+                envoiedto.namerecipient = envoi['namerecipient'];
+                envoiedto.telrecipient = envoi['telrecipient'];
+                envoiedto.createdat = envoi['createdat']['name'];
+                envoiedto.createdat = envoi['createdat'];
+                envoiedto.created = envoi['created']['name'];
+                envoiedto.updatedat = envoi['updatedat'];
+                envoiedto.updated = envoi['updated']['name'];
+                console.log(envoi);
+                datas.push(envoiedto);
+              }
+            } catch (err) {
+              _iterator7.e(err);
+            } finally {
+              _iterator7.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -12632,7 +14121,7 @@
 
       var AppMenuitemComponent = /*#__PURE__*/function () {
         function AppMenuitemComponent(appMain, router, cd, menuService) {
-          var _this49 = this;
+          var _this71 = this;
 
           _classCallCheck(this, AppMenuitemComponent);
 
@@ -12643,23 +14132,23 @@
           this.active = false;
           this.menuSourceSubscription = this.menuService.menuSource$.subscribe(function (key) {
             // deactivate current active menu
-            if (_this49.active && _this49.key !== key && key.indexOf(_this49.key) !== 0) {
-              _this49.active = false;
+            if (_this71.active && _this71.key !== key && key.indexOf(_this71.key) !== 0) {
+              _this71.active = false;
             }
           });
           this.menuResetSubscription = this.menuService.resetSource$.subscribe(function () {
-            _this49.active = false;
+            _this71.active = false;
           });
           this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (event) {
             return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"];
           })).subscribe(function (params) {
-            if (_this49.appMain.isHorizontal() || _this49.appMain.isSlim()) {
-              _this49.active = false;
+            if (_this71.appMain.isHorizontal() || _this71.appMain.isSlim()) {
+              _this71.active = false;
             } else {
-              if (_this49.item.routerLink) {
-                _this49.updateActiveStateFromRoute();
+              if (_this71.item.routerLink) {
+                _this71.updateActiveStateFromRoute();
               } else {
-                _this49.active = false;
+                _this71.active = false;
               }
             }
           });
@@ -12960,12 +14449,12 @@
         _createClass(RechercheComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this50 = this;
+            var _this72 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this50.parametre = params.id;
+              _this72.parametre = params.id;
 
-              _this50.serchByreferenceReceiveinparam(_this50.parametre);
+              _this72.serchByreferenceReceiveinparam(_this72.parametre);
             });
             this.rechercheForm = this.formBuilder.group({
               'reference': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required)
@@ -12974,7 +14463,7 @@
         }, {
           key: "serchByreferenceReceiveinparam",
           value: function serchByreferenceReceiveinparam(value) {
-            var _this51 = this;
+            var _this73 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche/resultat?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12982,11 +14471,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this51.article = response;
+              _this73.article = response;
 
-              _this51.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this73.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this51.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this73.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/historique?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -12994,11 +14483,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this51.historiques = response;
+              _this73.historiques = response;
 
-              _this51.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this73.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this51.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this73.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/alarme?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -13006,11 +14495,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this51.alarmes = response;
+              _this73.alarmes = response;
 
-              _this51.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this73.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this51.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this73.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
           }
           /**
@@ -13021,7 +14510,7 @@
         }, {
           key: "searchByReference",
           value: function searchByReference(event) {
-            var _this52 = this;
+            var _this74 = this;
 
             console.log(event);
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche?param=' + event.query, {
@@ -13030,15 +14519,15 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this52.string = response;
+              _this74.string = response;
             }, function (err) {
-              _this52.showError("La recherche n'est pas operationnel car une erreur c'est produit. Veuillez verifier que tout les services sont operationnels.*** voici l'erreur generer par le systeme :" + err.message);
+              _this74.showError("La recherche n'est pas operationnel car une erreur c'est produit. Veuillez verifier que tout les services sont operationnels.*** voici l'erreur generer par le systeme :" + err.message);
             });
           }
         }, {
           key: "findResultat",
           value: function findResultat(reference) {
-            var _this53 = this;
+            var _this75 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche/resultat?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -13046,11 +14535,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this53.article = response;
+              _this75.article = response;
 
-              _this53.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this75.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this53.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this75.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/historique?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -13058,11 +14547,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this53.historiques = response;
+              _this75.historiques = response;
 
-              _this53.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this75.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this53.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this75.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/alarme?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -13070,11 +14559,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this53.alarmes = response;
+              _this75.alarmes = response;
 
-              _this53.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this75.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this53.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this75.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
           }
           /**
@@ -13449,7 +14938,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th> Reference </th>\n                        <th>Date </th>\n                        <th> Etat </th>\n                        <th> Type </th>\n\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Commentaire </th>\n\n                        <th> Editeur </th>\n                        <th> Edition </th>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td>  {{livre.commentaire}} </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n                        <!--\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(livre)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                        -->\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  Echoue / Rejeté </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                    <ng-template pTemplate=\"caption\">\n                        <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                            \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                                \n                            <span class=\"p-input-icon-left\">\n                                \n                        <i class=\"pi pi-search\"></i>\n                        <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                                <\n                    </span>\n                        </div>\n                    </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>               \n                        <th  pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th   pSortableColumn=\"reception.datesortie\">Date  <p-sortIcon field=\"reception.datesortie\"></p-sortIcon></th>\n                        <th   pSortableColumn=\"etat\"> Etat <p-sortIcon field=\"etat\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.type\"> Type  <p-sortIcon field=\"reception.type\"></p-sortIcon></th>\n\n                        <th  pSortableColumn=\"reception.namerecipient\"> Destinateur <p-sortIcon field=\"reception.namerecipient\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.telrecipient\"> Telephone 2  <p-sortIcon field=\"reception.telrecipient\"></p-sortIcon></th>\n                        \n                        <th  pSortableColumn=\"commentaire\"> Commentaire <p-sortIcon field=\"commentaire\"></p-sortIcon> </th>\n\n                        <th  pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        <th style=\"width: 5%;\"> </th>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td>  {{livre.commentaire}} </td>\n                        <td>                             \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n                        </td>\n                        <td>                             \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n                       \n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(livre)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -13557,12 +15046,13 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.liststocks = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(EnstockComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this54 = this;
+            var _this76 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -13572,10 +15062,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this54.liststocks = response;
-              console.log(_this54.liststocks);
+              _this76.liststocks = response;
+              console.log(_this76.liststocks);
             }, function (error) {
-              _this54.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this76.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
         }, {
@@ -13587,6 +15077,108 @@
                 id: '' + value["reference"] + ''
               }
             });
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this77 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this77.exportColumns, _this77.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this78 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this78.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this78.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+            console.log(this.liststocks);
+            /*for(let reception of this.liststocks) {
+              let receptiondto : ReceptionListDTO = {};
+              receptiondto.reference = reception['reference'];
+              receptiondto.type = reception['type'];
+              
+              receptiondto.name = reception['name'];
+              receptiondto.adresse = reception['adresse'];
+              receptiondto.email = reception['email'];
+              
+              receptiondto.nomsender = reception['nomsender'];
+              receptiondto.telexpediteur = reception['telexpediteur'];
+                    
+              receptiondto.paysexpediteur = reception['paysexpediteur'];
+              receptiondto.namerecipient = reception['namerecipient'];
+              receptiondto.telrecipient = reception['telrecipient'];
+              receptiondto.paysrecipient = reception['telrecipient'];
+              
+              receptiondto.datereception = reception['telrecipient'];
+              receptiondto.datesortie = reception['telrecipient'];
+              receptiondto.etat = reception['telrecipient'];
+              receptiondto.reception = reception['telrecipient'];
+                    receptiondto.createdat = reception['createdat']['name'];
+              receptiondto.createdat = reception['createdat'];
+              receptiondto.created = reception['created']['name'];
+              receptiondto.updatedat = reception['updatedat'];
+              receptiondto.updated = reception['updated']['name'];
+                    receptiondto.dommage = reception['dommage'];
+              receptiondto.envoisms = reception['envoisms'];
+              receptiondto.commentaire = reception['commentaire'];
+              
+              datas.push(receptiondto);
+            }*/
+
+            return this.liststocks;
           }
           /**
            *  costumisation des erreurs
@@ -13763,12 +15355,13 @@
           this.tableaubord1 = undefined;
           this.basicData = undefined;
           this.listems = undefined;
+          this.ems = undefined;
         }
 
         _createClass(TableaubordComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this55 = this;
+            var _this79 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord1", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -13786,16 +15379,16 @@
                 colors.push(element['color']);
                 i++;
               });
-              _this55.tableaubord1 = {
+              _this79.tableaubord1 = {
                 labels: [].concat(labels),
                 datasets: [{
                   data: [].concat(results),
-                  backgroundColor: [].concat(colors),
+                  backgroundColor: ["#64B5F6", "#81C784", "#FFB74D"],
                   hoverBackgroundColor: ["#64B5F6", "#81C784", "#FFB74D"]
                 }]
               };
             }, function (error) {
-              _this55.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this79.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord2", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -13828,13 +15421,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this55.basicData = {
+                _this79.basicData = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this55.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this79.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -13845,11 +15438,94 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this55.listems = response;
-              console.log(_this55.listems);
+              _this79.listems = response;
+              console.log(_this79.listems);
             }, function (error) {
-              _this55.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this79.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this80 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this80.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this80.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator8 = _createForOfIteratorHelper(this.listems),
+                _step8;
+
+            try {
+              for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+                var envoi = _step8.value;
+                var envoiedto = {};
+                envoiedto.reference = envoi['reference'];
+                envoiedto.type = envoi['type'];
+                envoiedto.name = envoi['name'];
+                envoiedto.adresse = envoi['adresse'];
+                envoiedto.email = envoi['email'];
+                envoiedto.nomsender = envoi['nomsender'];
+                envoiedto.telexpediteur = envoi['telexpediteur'];
+                envoiedto.pays = envoi['pays'];
+                envoiedto.namerecipient = envoi['namerecipient'];
+                envoiedto.telrecipient = envoi['telrecipient'];
+                envoiedto.createdat = envoi['createdat']['name'];
+                envoiedto.createdat = envoi['createdat'];
+                envoiedto.created = envoi['created']['name'];
+                envoiedto.updatedat = envoi['updatedat'];
+                envoiedto.updated = envoi['updated']['name'];
+                console.log(envoi);
+                datas.push(envoiedto);
+              }
+            } catch (err) {
+              _iterator8.e(err);
+            } finally {
+              _iterator8.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -14026,7 +15702,7 @@
         _createClass(NouveauComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this56 = this;
+            var _this81 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -14047,28 +15723,28 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this56.typeactivites = [];
+              _this81.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'EMS - EE') {
-                  _this56.typeactivite = {
+                  _this81.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this56.typeactivites.push({
+                _this81.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this56.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this81.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this57 = this;
+            var _this82 = this;
 
             console.log(emsForm);
             var amontsection = emsForm['reference'].substring(0, 2);
@@ -14085,31 +15761,31 @@
                 })
               }).subscribe(function (response) {
                 if (response == null) {
-                  _this57.envoidto.reference = emsForm['reference'];
-                  _this57.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
-                  _this57.envoidto.type = emsForm['typearticle'];
-                  _this57.envoidto.adresse = emsForm['adresse'];
-                  _this57.envoidto.nomsender = emsForm['nomsender'];
-                  _this57.envoidto.telexpediteur = emsForm['telexpediteur'];
-                  _this57.envoidto.namerecipient = emsForm['namerecipient'];
-                  _this57.envoidto.telrecipient = emsForm['telrecipient'];
-                  _this57.envoidto.typearticle = _this57.typeactivite.code;
+                  _this82.envoidto.reference = emsForm['reference'];
+                  _this82.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
+                  _this82.envoidto.type = emsForm['typearticle'];
+                  _this82.envoidto.adresse = emsForm['adresse'];
+                  _this82.envoidto.nomsender = emsForm['nomsender'];
+                  _this82.envoidto.telexpediteur = emsForm['telexpediteur'];
+                  _this82.envoidto.namerecipient = emsForm['namerecipient'];
+                  _this82.envoidto.telrecipient = emsForm['telrecipient'];
+                  _this82.envoidto.typearticle = _this82.typeactivite.code;
 
-                  _this57.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this57.envoidto, {
+                  _this82.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this82.envoidto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this57.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this82.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this57.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                    _this82.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                   }, function (error) {
-                    _this57.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                    _this82.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                   });
                 } else {
-                  _this57.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this82.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
               }, function (error) {
-                _this57.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this82.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -14358,12 +16034,14 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.listems = undefined;
+          this.ems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(ColisreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this58 = this;
+            var _this83 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -14373,10 +16051,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this58.listems = response;
-              console.log(_this58.listems);
+              _this83.listems = response;
+              console.log(_this83.listems);
             }, function (error) {
-              _this58.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this83.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -14392,6 +16070,119 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this84 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this84.exportColumns, _this84.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this85 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this85.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this85.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator9 = _createForOfIteratorHelper(this.listems),
+                _step9;
+
+            try {
+              for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
+                var reception = _step9.value;
+                var receptiondto = {};
+                receptiondto.reference = reception['reference'];
+                receptiondto.type = reception['type'];
+                receptiondto.name = reception['name'];
+                receptiondto.adresse = reception['adresse'];
+                receptiondto.email = reception['email'];
+                receptiondto.nomsender = reception['nomsender'];
+                receptiondto.telexpediteur = reception['telexpediteur'];
+                receptiondto.paysexpediteur = reception['paysexpediteur'];
+                receptiondto.namerecipient = reception['namerecipient'];
+                receptiondto.telrecipient = reception['telrecipient'];
+                receptiondto.paysrecipient = reception['telrecipient'];
+                receptiondto.datereception = reception['telrecipient'];
+                receptiondto.datesortie = reception['telrecipient'];
+                receptiondto.etat = reception['telrecipient'];
+                receptiondto.reception = reception['telrecipient'];
+                receptiondto.createdat = reception['createdat']['name'];
+                receptiondto.createdat = reception['createdat'];
+                receptiondto.created = reception['created']['name'];
+                receptiondto.updatedat = reception['updatedat'];
+                receptiondto.updated = reception['updated']['name'];
+                receptiondto.dommage = reception['dommage'];
+                receptiondto.envoisms = reception['envoisms'];
+                receptiondto.commentaire = reception['commentaire'];
+                datas.push(receptiondto);
+              }
+            } catch (err) {
+              _iterator9.e(err);
+            } finally {
+              _iterator9.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -14692,13 +16483,14 @@
           this.router = router;
           this.tokenStorage = tokenStorage;
           this.listems = undefined;
+          this.ems = undefined;
           this.msgs = [];
         }
 
         _createClass(EmsComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this59 = this;
+            var _this86 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -14708,10 +16500,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this59.listems = response;
-              console.log(_this59.listems);
+              _this86.listems = response;
+              console.log(_this86.listems);
             }, function (error) {
-              _this59.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this86.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -14727,6 +16519,112 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this87 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this87.exportColumns, _this87.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this88 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this88.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this88.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator10 = _createForOfIteratorHelper(this.listems),
+                _step10;
+
+            try {
+              for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
+                var envoi = _step10.value;
+                var envoiedto = {};
+                envoiedto.reference = envoi['reference'];
+                envoiedto.type = envoi['type'];
+                envoiedto.name = envoi['name'];
+                envoiedto.adresse = envoi['adresse'];
+                envoiedto.email = envoi['email'];
+                envoiedto.nomsender = envoi['nomsender'];
+                envoiedto.telexpediteur = envoi['telexpediteur'];
+                envoiedto.pays = envoi['pays'];
+                envoiedto.namerecipient = envoi['namerecipient'];
+                envoiedto.telrecipient = envoi['telrecipient'];
+                envoiedto.createdat = envoi['createdat']['name'];
+                envoiedto.createdat = envoi['createdat'];
+                envoiedto.created = envoi['created']['name'];
+                envoiedto.updatedat = envoi['updatedat'];
+                envoiedto.updated = envoi['updated']['name'];
+                console.log(envoi);
+                datas.push(envoiedto);
+              }
+            } catch (err) {
+              _iterator10.e(err);
+            } finally {
+              _iterator10.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -15060,12 +16958,13 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.liste = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(LivraisonreussiComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this60 = this;
+            var _this89 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -15075,16 +16974,93 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this60.liste = response;
-              console.log(_this60.liste);
+              _this89.liste = response;
+              console.log(_this89.liste);
             }, function (error) {
-              _this60.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.getMessage());
+              _this89.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.getMessage());
             });
           }
         }, {
           key: "editer",
           value: function editer(livraison) {
             console.log(livraison);
+          }
+        }, {
+          key: "search",
+          value: function search(value) {
+            this.router.navigate(['gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869'], {
+              queryParams: {
+                id: '' + value["reference"] + ''
+              }
+            });
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this90 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this90.exportColumns, _this90.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this91 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this91.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this91.saveAsExcelFile(excelBuffer, "livraison_echoue");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+            return this.liste;
           }
           /**
           *  costumisation des erreurs
@@ -15330,12 +17306,14 @@
           this.tokenStorage = tokenStorage;
           this.msgs = [];
           this.listems = undefined;
+          this.ems = undefined;
+          this.exportColumns = [];
         }
 
         _createClass(EmsreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this61 = this;
+            var _this92 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -15345,10 +17323,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this61.listems = response;
-              console.log(_this61.listems);
+              _this92.listems = response;
+              console.log(_this92.listems);
             }, function (error) {
-              _this61.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this92.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -15364,6 +17342,119 @@
                 id: '' + rowData["idcrypt"] + ''
               }
             });
+          }
+        }, {
+          key: "show",
+          value: function show(ems) {
+            this.displayMaximizable = true;
+            this.ems = ems;
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this93 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this93.exportColumns, _this93.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this94 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this94.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this94.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            var datas = [];
+
+            var _iterator11 = _createForOfIteratorHelper(this.listems),
+                _step11;
+
+            try {
+              for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
+                var reception = _step11.value;
+                var receptiondto = {};
+                receptiondto.reference = reception['reference'];
+                receptiondto.type = reception['type'];
+                receptiondto.name = reception['name'];
+                receptiondto.adresse = reception['adresse'];
+                receptiondto.email = reception['email'];
+                receptiondto.nomsender = reception['nomsender'];
+                receptiondto.telexpediteur = reception['telexpediteur'];
+                receptiondto.paysexpediteur = reception['paysexpediteur'];
+                receptiondto.namerecipient = reception['namerecipient'];
+                receptiondto.telrecipient = reception['telrecipient'];
+                receptiondto.paysrecipient = reception['telrecipient'];
+                receptiondto.datereception = reception['telrecipient'];
+                receptiondto.datesortie = reception['telrecipient'];
+                receptiondto.etat = reception['telrecipient'];
+                receptiondto.reception = reception['telrecipient'];
+                receptiondto.createdat = reception['createdat']['name'];
+                receptiondto.createdat = reception['createdat'];
+                receptiondto.created = reception['created']['name'];
+                receptiondto.updatedat = reception['updatedat'];
+                receptiondto.updated = reception['updated']['name'];
+                receptiondto.dommage = reception['dommage'];
+                receptiondto.envoisms = reception['envoisms'];
+                receptiondto.commentaire = reception['commentaire'];
+                datas.push(receptiondto);
+              }
+            } catch (err) {
+              _iterator11.e(err);
+            } finally {
+              _iterator11.f();
+            }
+
+            return datas;
           }
           /**
            *  costumisation des erreurs
@@ -16128,7 +18219,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie colis</h5>\n            <p-table #dt [value]=\"listcolis\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/colis/nouveau?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Colis - CP \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                            <i class=\"pi pi-search\"></i>\n                            <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                        </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>    \n\n                        <th> Reference </th>\n                        <th> Nom </th>\n                        <th> Type </th>\n                        <th> Adresse </th>\n                        <th> Expediteur </th>\n                        <th> Telephone 1 </th>\n                        <th> Destinateur </th>\n                        <th> Telephone 2 </th>\n                        \n                        <th> Editeur </th>\n                        <th> Edition </th>                        \n                        <th style=\"width: 8rem\"></th>\n\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-colis>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{colis.reference}} </td>\n                        <td>  {{colis.name}} </td>\n                        <td>  {{colis.type}} </td>\n                        <td>  {{colis.adresse}} </td>\n                        <td>  {{colis.nomsender}} </td>\n                        <td>  {{colis.telexpediteur}} </td>\n                        <td>  {{colis.namerecipient}} </td>\n                        <td>  {{colis.telrecipient}} </td>\n\n                        <td>  {{colis.updated.username}} </td>\n                        <td>  {{colis.updatedat}} </td>\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(colis)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Envoie colis</h5>\n            <p-table #dt [value]=\"listcolis\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['Reference','type','nomsender','namerecipient', 'telrecipient']\">\n                <ng-template pTemplate=\"caption\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                       \n                        <a routerLink=\"/gestion/envoi/colis/nouveau?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb\" routerLinkActive=\"active\">\n                            <button pButton pRipple type=\"button\" label=\"Nouvelle Envoie Colis - CP \" (click)=\"new()\" class=\"p-button-rounded p-mr-2 p-mb-2\"></button>\n                        </a>\n                        <span class=\"p-input-icon-left\">\n                            <i class=\"pi pi-search\"></i>\n                    \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em;\" class=\"ui-button-success\"></button>\n                            <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                            \n                            <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                        </span>\n                    </div>\n                </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>    \n\n                        <th pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon></th>\n                        <th pSortableColumn=\"type\"> Type <p-sortIcon field=\"type\"></p-sortIcon></th>\n                        <th pSortableColumn=\"nomsender\"> Expediteur <p-sortIcon field=\"nomsender\"></p-sortIcon></th>\n                        <th pSortableColumn=\"telexpediteur\"> Telephone 1 <p-sortIcon field=\"telexpediteur\"></p-sortIcon></th>\n                        \n                        <th pSortableColumn=\"updated.username\"> Editeur<p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>                        \n                        <th style=\"width: 8rem\"></th>\n\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-colis>\n                    <tr class=\"p-selectable-row\">\n                        <td> {{colis.reference}} </td>\n                        <td>  {{colis.type}} </td>\n                        <td>  {{colis.nomsender}} </td>\n                        <td>  {{colis.telexpediteur}} </td>\n\n                        <td>  {{colis.updated.username}} </td>\n                        <td>  {{colis.updatedat}} </td>\n                        <td style=\"text-align: center\">\n                            <button (click)=\"editer(colis)\" pButton type=\"button\" class=\"p-button-success\" icon=\"pi pi-cog\"></button>&nbsp;                             \n                            <button (click)=\"show(colis)\" class=\"p-button-primary\" pButton type=\"button\"  icon=\"pi pi-eye\"></button>\n                        </td>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>\n\n\n<p-dialog header=\"Affichage \" [(visible)]=\"displayMaximizable\" [modal]=\"true\" [style]=\"{width: '50vw'}\" [maximizable]=\"true\" [baseZIndex]=\"10000\"\n    [draggable]=\"false\" [resizable]=\"false\">\n    \n    \n    <div class=\"p-fluid\">\n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\"> \n                        <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.type}}\" >   \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Reference</label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.reference}}\"  >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\"  [disabled]=\"true\" value=\"{{ems?.nomsender}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                    <div class=\"p-col-12 p-md-12\">   \n                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telexpediteur}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n                \n        <div class=\"p-field p-grid\">\n            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n            <div class=\"p-col-12 p-md-12\">      \n                <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.adresse}}\" >                                    \n            </div>\n        </div>\n        \n        <div class=\"p-field p-grid\">\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                    <div class=\"p-col-12 p-p-md-9\">      \n                        <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.namerecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n            <div class=\"p-col-6\">\n                <div class=\"p-field p-grid\">\n                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur </label>\n                    <div class=\"p-col-12 p-p-md-9\">   \n                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" [disabled]=\"true\" value=\"{{ems?.telrecipient}}\" >                                    \n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n        <p-footer>\n\n            <button type=\"button\" pButton icon=\"pi pi-times\" (click)=\"displayMaximizable=false\" label=\"Fermer\" class=\"ui-button-secondary\"></button>\n        </p-footer>\n</p-dialog>";
       /***/
     },
 
@@ -16265,7 +18356,7 @@
         _createClass(NouveauordinairereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this62 = this;
+            var _this95 = this;
 
             this.ordinaireForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -16293,22 +18384,22 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this62.typeactivites = [];
+              _this95.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'ORDINAIRE - N/A') {
-                  _this62.typeactivite = {
+                  _this95.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this62.typeactivites.push({
+                _this95.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this62.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - ordinaire ");
+              _this95.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - ordinaire ");
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -16320,21 +18411,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this62.countries = [];
+              _this95.countries = [];
               response.forEach(function (element) {
-                _this62.countries.push({
+                _this95.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this62.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this95.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(ordinaireForm) {
-            var _this63 = this;
+            var _this96 = this;
 
             /*
             let amontsection = ordinaireForm['reference'].substring(0,2);
@@ -16356,38 +18447,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this63.receptiondto.reference = ordinaireForm['reference'];
-                _this63.receptiondto.name = 'ordinaire - EXPRESS MAIL SERVICE';
-                _this63.receptiondto.type = ordinaireForm['typearticle'];
-                _this63.receptiondto.adresse = ordinaireForm['adresse'];
-                _this63.receptiondto.nomsender = ordinaireForm['nomsender'];
-                _this63.receptiondto.telexpediteur = ordinaireForm['telexpediteur'];
-                _this63.receptiondto.namerecipient = ordinaireForm['namerecipient'];
-                _this63.receptiondto.telrecipient = ordinaireForm['telrecipient'];
-                _this63.receptiondto.email = ordinaireForm['email'];
-                _this63.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(ordinaireForm['datereception'], format, locale);
-                _this63.receptiondto.typearticle = _this63.typeactivite.code;
-                _this63.receptiondto.dommage = _this63.dommage;
-                _this63.receptiondto.commentaire = ordinaireForm['commentaire'];
-                _this63.receptiondto.envoisms = _this63.envoisms;
-                _this63.receptiondto.paysrecipient = _this63.selectedCountrydestinateur['code'];
-                _this63.receptiondto.paysexpediteur = _this63.selectedCountryexpediteur['code'];
+                _this96.receptiondto.reference = ordinaireForm['reference'];
+                _this96.receptiondto.name = 'ordinaire - EXPRESS MAIL SERVICE';
+                _this96.receptiondto.type = ordinaireForm['typearticle'];
+                _this96.receptiondto.adresse = ordinaireForm['adresse'];
+                _this96.receptiondto.nomsender = ordinaireForm['nomsender'];
+                _this96.receptiondto.telexpediteur = ordinaireForm['telexpediteur'];
+                _this96.receptiondto.namerecipient = ordinaireForm['namerecipient'];
+                _this96.receptiondto.telrecipient = ordinaireForm['telrecipient'];
+                _this96.receptiondto.email = ordinaireForm['email'];
+                _this96.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(ordinaireForm['datereception'], format, locale);
+                _this96.receptiondto.typearticle = _this96.typeactivite.code;
+                _this96.receptiondto.dommage = _this96.dommage;
+                _this96.receptiondto.commentaire = ordinaireForm['commentaire'];
+                _this96.receptiondto.envoisms = _this96.envoisms;
+                _this96.receptiondto.paysrecipient = _this96.selectedCountrydestinateur['code'];
+                _this96.receptiondto.paysexpediteur = _this96.selectedCountryexpediteur['code'];
 
-                _this63.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this63.receptiondto, {
+                _this96.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this96.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this63.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this96.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this63.showSuccess("Vous avez enregistrer avec success votre ordinaire  !!! ");
+                  _this96.showSuccess("Vous avez enregistrer avec success votre ordinaire  !!! ");
                 }, function (error) {
-                  _this63.showError(" une erreur c'est produit et le système n'a pas enregitré votre ordinaire - La raison est voici : " + error.message);
+                  _this96.showError(" une erreur c'est produit et le système n'a pas enregitré votre ordinaire - La raison est voici : " + error.message);
                 });
               } else {
-                _this63.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this96.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this63.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this96.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -16598,13 +18689,13 @@
         _createClass(DashboardDemoComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this64 = this;
+            var _this97 = this;
 
             this.productService.getProducts().then(function (data) {
-              return _this64.products = data;
+              return _this97.products = data;
             });
             this.eventService.getEvents().then(function (events) {
-              _this64.events = events;
+              _this97.events = events;
             });
             this.cities = [];
             this.cities.push({

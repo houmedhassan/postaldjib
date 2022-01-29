@@ -57,7 +57,7 @@ public class VenteController {
 	
 	
 	@PostMapping("/parametrage/save")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<String> saveTypeVente(@RequestBody TypeVente ventes, Principal principal)
 	{
 		try {
@@ -107,12 +107,12 @@ public class VenteController {
 	
 	
 	@PostMapping("/save")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_RECETTE')")
 	public ResponseEntity<String> savevente(@RequestBody Vente ventes, Principal principal)
 	{
 		try {
 			
-			System.out.println(ventes.getItemstypevente().getIditems());
+			
 			Optional<User> user = userRepository.findByUsername(principal.getName()); 
 			
 			Vente vente = new Vente();
@@ -154,7 +154,7 @@ public class VenteController {
 	
 	
 	@GetMapping("/parametrage/all")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<TypeVente>> findAllTypeVente(Principal principal)
 	{
 		try {
@@ -172,7 +172,6 @@ public class VenteController {
 	 * @return
 	 */
 	@GetMapping("/by/day")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<List<Vente>> FindSaleByDay(Principal principal)
 	{
 		try {
@@ -201,7 +200,6 @@ public class VenteController {
 	 * @return
 	 */
 	@PostMapping("/rapports")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<List<RapportsVenteDTO> > rapports(@RequestBody rapportVenteForm rapportForm, Principal principal)
 	{
 		try {

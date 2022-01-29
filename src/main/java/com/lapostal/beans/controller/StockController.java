@@ -46,7 +46,6 @@ public class StockController {
 		 * @return
 		 */
 		@GetMapping("/all")
-		@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 		public ResponseEntity<List<Reception>> findAll(Principal principal)
 		{
 			try {
@@ -61,7 +60,6 @@ public class StockController {
 		}
 		
 		@GetMapping("/defaillant/all")
-		@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 		public ResponseEntity<List<Reception>> findAllDefaillant(Principal principal)
 		{
 			try {
@@ -82,7 +80,6 @@ public class StockController {
 		 * @return
 		 */
 		@GetMapping("/recherche")
-		@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 		public ResponseEntity<List<String>> recherche(@RequestParam("param") String param, Principal principal)
 		{
 			try {			
@@ -112,7 +109,6 @@ public class StockController {
 		 * @return
 		 */
 		@GetMapping("/recherche/livraison")
-		@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 		public ResponseEntity<List<String>> recherchelivraison(@RequestParam("param") String param, Principal principal)
 		{
 			try {			
@@ -156,7 +152,6 @@ public class StockController {
 		
 		
 		@GetMapping("/tableau/bord1")
-		@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 		public ResponseEntity<Map<String, List<ChartLineByMonthDTO>>> tableaudebord2()
 		{
 			try {
@@ -285,7 +280,6 @@ public class StockController {
 		
 		
 		@GetMapping("/tableau/bord2")
-		@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 		public ResponseEntity<Map<String, List<ChartLineByMonthDTO>>> tableaudebord3()
 		{
 			try {

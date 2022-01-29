@@ -52,7 +52,6 @@ public class EnvoiController {
 	
 
 	@GetMapping("/reference")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<Envoi> findByReference(@RequestParam("reference") String reference, Principal principal)
 	{
 		try {
@@ -66,7 +65,7 @@ public class EnvoiController {
 	
 	
 	@GetMapping("/ems")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_EMS') or hasRole('ROLE_STAFF_ENVOI') ")
 	public ResponseEntity<List<Envoi>> findAll(Principal principal)
 	{
 		try {
@@ -79,7 +78,7 @@ public class EnvoiController {
 	}
 	
 	@GetMapping("/colis")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN')  or hasRole('ROLE_STAFF_COLIS') or hasRole('ROLE_STAFF_ENVOI') ")
 	public ResponseEntity<List<Envoi>> findAllColis(Principal principal)
 	{
 		try {
@@ -93,7 +92,7 @@ public class EnvoiController {
 	
 	
 	@GetMapping("/recommande")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN')  or hasRole('ROLE_STAFF_RECOMMANDE') or hasRole('ROLE_STAFF_ENVOI') ")
 	public ResponseEntity<List<Envoi>> findAllRecommande(Principal principal)
 	{
 		try {
@@ -107,7 +106,7 @@ public class EnvoiController {
 	
 	
 	@GetMapping("/ordinaire")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN')  or hasRole('ROLE_STAFF_ORDINAIRE') or hasRole('ROLE_STAFF_ENVOI') ")
 	public ResponseEntity<List<Envoi>> findAllOrdinaire(Principal principal)
 	{
 		try {
@@ -120,7 +119,7 @@ public class EnvoiController {
 	}
 	
 	@PostMapping("/save")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PreAuthorize("hasRole('ADMIN')  or hasRole('ROLE_STAFF_EMS') or hasRole('ROLE_STAFF_COLIS') or hasRole('ROLE_STAFF_RECOMMANDE') or hasRole('ROLE_STAFF_ORDINAIRE')  or hasRole('ROLE_STAFF_ENVOI')")
 	public ResponseEntity<String> saveEnvoi(@RequestBody EnvoieDTO envoidto, Principal principal)
 	{
 		try {
@@ -171,8 +170,8 @@ public class EnvoiController {
 	
 	
 	
-	@GetMapping("/edit")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@GetMapping("/edit")	
+	@PreAuthorize("hasRole('ADMIN')  or hasRole('ROLE_STAFF_EMS') or hasRole('ROLE_STAFF_COLIS') or hasRole('ROLE_STAFF_RECOMMANDE') or hasRole('ROLE_STAFF_ORDINAIRE')  or hasRole('ROLE_STAFF_ENVOI')")
 	public ResponseEntity<Envoi> findOne(@RequestParam("gkey") String gkey, Principal principal)
 	{
 		try {
@@ -185,8 +184,8 @@ public class EnvoiController {
 	}
 	
 	
-	@PostMapping("/edit")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
+	@PostMapping("/edit")	
+	@PreAuthorize("hasRole('ADMIN')  or hasRole('ROLE_STAFF_EMS') or hasRole('ROLE_STAFF_COLIS') or hasRole('ROLE_STAFF_RECOMMANDE') or hasRole('ROLE_STAFF_ORDINAIRE')  or hasRole('ROLE_STAFF_ENVOI')")
 	public ResponseEntity<String> editEnvoi(@RequestBody EnvoieDTO envoidto, @RequestParam("id") String id, Principal principal)
 	{
 		try {
@@ -225,7 +224,6 @@ public class EnvoiController {
 
 	
 	@GetMapping("/tableau/bord1")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<List<JSONObject>> tableaudebord1()
 	{
 		try {
@@ -239,7 +237,6 @@ public class EnvoiController {
 	
 	
 	@GetMapping("/tableau/bord2")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ROLE_STAFF_CONTROL') or hasRole('ROLE_STAFF_DLS') or hasRole('ROLE_STAFF_DLS')")
 	public ResponseEntity<Map<String, List<ChartLineByMonthDTO>>> tableaudebord2()
 	{
 		try {

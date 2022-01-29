@@ -73,6 +73,7 @@ public class Authentification {
 	  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 	 
 		  System.out.println("**************** je suis ciiiiii ************** ");
+		  System.out.println(loginRequest.getUsername()+" *** "+loginRequest.getPassword());
 	    Authentication authentication = authenticationManager.authenticate(
 	        new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 	 
@@ -88,7 +89,7 @@ public class Authentification {
 	  public ResponseEntity<User> profil(Principal principal)
 	  {
 		  try {
-			  //System.out.println(principal.getName());
+			  System.out.println(principal.getName());
 			  Optional<User> user= userRepository.findByUsername(principal.getName());
 			  return new ResponseEntity<User>(user.get(), HttpStatus.OK);
 		  }catch(Exception ex)
