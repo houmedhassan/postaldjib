@@ -748,75 +748,6 @@
     },
 
     /***/
-    "1jHi":
-    /*!*************************************************************************!*\
-      !*** ./src/app/apps/parametrage/utilisateurs/utilisateurs.component.ts ***!
-      \*************************************************************************/
-
-    /*! exports provided: UtilisateursComponent */
-
-    /***/
-    function jHi(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "UtilisateursComponent", function () {
-        return UtilisateursComponent;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-      /* harmony import */
-
-
-      var _raw_loader_utilisateurs_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! raw-loader!./utilisateurs.component.html */
-      "hNcx");
-      /* harmony import */
-
-
-      var _utilisateurs_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./utilisateurs.component.css */
-      "DBnK");
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! @angular/core */
-      "fXoL");
-
-      var UtilisateursComponent = /*#__PURE__*/function () {
-        function UtilisateursComponent() {
-          _classCallCheck(this, UtilisateursComponent);
-        }
-
-        _createClass(UtilisateursComponent, [{
-          key: "ngOnInit",
-          value: function ngOnInit() {}
-        }]);
-
-        return UtilisateursComponent;
-      }();
-
-      UtilisateursComponent.ctorParameters = function () {
-        return [];
-      };
-
-      UtilisateursComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
-        selector: 'app-utilisateurs',
-        template: _raw_loader_utilisateurs_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
-        styles: [_utilisateurs_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
-      })], UtilisateursComponent);
-      /***/
-    },
-
-    /***/
     "1sSu":
     /*!*******************************************************************************!*\
       !*** ./src/app/apps/livraison/nouveaulivraison/nouveaulivraison.component.ts ***!
@@ -1169,6 +1100,26 @@
         providers: [primeng_api__WEBPACK_IMPORTED_MODULE_7__["MessageService"], primeng_api__WEBPACK_IMPORTED_MODULE_7__["ConfirmationService"]],
         styles: [_nouveaulivraison_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], NouveaulivraisonComponent);
+      /***/
+    },
+
+    /***/
+    "2wp+":
+    /*!*****************************************************************************!*\
+      !*** ./src/app/parametrage/gestion/utilisateurs/utilisateurs.component.css ***!
+      \*****************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function wp(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ1dGlsaXNhdGV1cnMuY29tcG9uZW50LmNzcyJ9 */";
       /***/
     },
 
@@ -2302,7 +2253,7 @@
 
       AppTopBarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-topbar',
-        template: "\n        <div class=\"topbar clearfix\">\n            <div class=\"topbar-left\">\n                <div class=\"row\" style=\"height:60px;\">\n                    <a routerLink=\"/\" >\n                       <!-- <img src=\"assets/layout/images/logo.png\" class=\"topbar-logo\" routerLink=\"/\" /> -->\n                    </a>\n                </div>    \n            </div>\n\n             <div class=\"topbar-right\">\n\n              <!-- <span style=\"\n               color: white;\n               padding-left: 5%;\n               font-size: 40px;\n               font-family: sans-serif;\n               font-style: oblique;\n               font-weight: 800;\"> \n               \n               E-POSTAL \n               \n               </span> -->\n\n                <a id=\"menu-button\" href=\"#\" (click)=\"appMain.onMenuButtonClick($event)\"\n                   [ngClass]=\"{'menu-button-rotate': appMain.rotateMenuButton}\">\n                    <i class=\"pi pi-angle-left\"></i>\n                </a>\n\n                <a id=\"topbar-menu-button\" href=\"#\" (click)=\"appMain.onTopbarMenuButtonClick($event)\">\n                    <i class=\"pi pi-bars\"></i>\n                </a>\n\n                <ul class=\"topbar-items fadeInDown\" [ngClass]=\"{'topbar-items-visible': appMain.topbarMenuActive}\">\n                    <li #profile class=\"profile-item\" *ngIf=\"app.profileMode==='top'|| appMain.isHorizontal()\"\n                        [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === profile}\">\n\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,profile)\">\n                            <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                            <span class=\"topbar-item-name\">Houmed Hassan</span>\n                            <span class=\"topbar-item-role\">Marketing</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-user\"></i>\n                                    <span>Profile</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Privacy</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-cog\"></i>\n                                    <span>Settings</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\"  (click)=\"logout($event)\">\n                                    <i class=\"pi pi-fw pi-sign-out\"></i>\n                                    <span>Logout</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <!--\n                    <li #settings [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === settings}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,settings)\">\n                            <i class=\"topbar-icon pi pi-cog\"></i>\n                            <span class=\"topbar-item-name\">Settings</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-palette\"></i>\n                                    <span>Change Theme</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-star-o\"></i>\n                                    <span>Favorites</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Lock Screen</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-image\"></i>\n                                    <span>Wallpaper</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #messages [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === messages}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,messages)\">\n                            <i class=\"topbar-icon animated swing pi pi-fw pi-envelope\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">5</span>\n                            <span class=\"topbar-item-name\">Messages</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar1.png\" width=\"35\"/>\n                                    <span>Give me a call</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Sales reports attached</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar3.png\" width=\"35\"/>\n                                    <span>About your invoice</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Meeting today at 10pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar4.png\" width=\"35\"/>\n                                    <span>Out of office</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #notifications [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === notifications}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,notifications)\">\n                            <i class=\"topbar-icon pi pi-fw pi-bell\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">4</span>\n                            <span class=\"topbar-item-name\">Notifications</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-sliders-h\"></i>\n                                    <span>Pending tasks</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-calendar\"></i>\n                                    <span>Meeting today at 3pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-download\"></i>\n                                    <span>Download documents</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-bookmark\"></i>\n                                    <span>Book flight</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #search class=\"search-item\" [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === search}\"\n                        (click)=\"appMain.onTopbarItemClick($event,search)\">\n                        <div class=\"topbar-search\">\n                            <input type=\"text\" placeholder=\"Search\" />\n                            <i class=\"pi pi-search\"></i>\n                        </div>\n                    </li>\n                    -->\n                </ul>\n            </div>\n        </div>\n    "
+        template: "\n        <div class=\"topbar clearfix\">\n            <div class=\"topbar-left\">\n                <div class=\"row\" style=\"height:60px;\">\n                    <a routerLink=\"/\" >\n                        <img src=\"assets/layout/images/logo.png\" class=\"topbar-logo\" routerLink=\"/\" />\n                    </a>\n                </div>    \n            </div>\n\n            <div class=\"topbar-right\">\n\n               <span style=\"\n               color: white;\n               padding-left: 35%;\n               font-size: 40px;\n               font-family: sans-serif;\n               font-style: oblique;\n               font-weight: 800;\"> \n               \n               E-POSTAL \n               \n               </span>\n\n                <a id=\"menu-button\" href=\"#\" (click)=\"appMain.onMenuButtonClick($event)\"\n                   [ngClass]=\"{'menu-button-rotate': appMain.rotateMenuButton}\">\n                    <i class=\"pi pi-angle-left\"></i>\n                </a>\n\n                <a id=\"topbar-menu-button\" href=\"#\" (click)=\"appMain.onTopbarMenuButtonClick($event)\">\n                    <i class=\"pi pi-bars\"></i>\n                </a>\n\n                <ul class=\"topbar-items fadeInDown\" [ngClass]=\"{'topbar-items-visible': appMain.topbarMenuActive}\">\n                    <li #profile class=\"profile-item\" *ngIf=\"app.profileMode==='top'|| appMain.isHorizontal()\"\n                        [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === profile}\">\n\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,profile)\">\n                            <img class=\"profile-image\" src=\"assets/layout/images/avatar.jpg\" />\n                            <span class=\"topbar-item-name\">Houmed Hassan</span>\n                            <span class=\"topbar-item-role\">Marketing</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-user\"></i>\n                                    <span>Profile</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Privacy</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-cog\"></i>\n                                    <span>Settings</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\"  (click)=\"logout($event)\">\n                                    <i class=\"pi pi-fw pi-sign-out\"></i>\n                                    <span>Logout</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <!--\n                    <li #settings [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === settings}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,settings)\">\n                            <i class=\"topbar-icon pi pi-cog\"></i>\n                            <span class=\"topbar-item-name\">Settings</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-palette\"></i>\n                                    <span>Change Theme</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-star-o\"></i>\n                                    <span>Favorites</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-lock\"></i>\n                                    <span>Lock Screen</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-image\"></i>\n                                    <span>Wallpaper</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #messages [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === messages}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,messages)\">\n                            <i class=\"topbar-icon animated swing pi pi-fw pi-envelope\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">5</span>\n                            <span class=\"topbar-item-name\">Messages</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar1.png\" width=\"35\"/>\n                                    <span>Give me a call</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Sales reports attached</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar3.png\" width=\"35\"/>\n                                    <span>About your invoice</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar2.png\" width=\"35\"/>\n                                    <span>Meeting today at 10pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" class=\"topbar-message\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <img src=\"assets/layout/images/avatar4.png\" width=\"35\"/>\n                                    <span>Out of office</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #notifications [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === notifications}\">\n                        <a href=\"#\" (click)=\"appMain.onTopbarItemClick($event,notifications)\">\n                            <i class=\"topbar-icon pi pi-fw pi-bell\"></i>\n                            <span class=\"topbar-badge animated rubberBand\">4</span>\n                            <span class=\"topbar-item-name\">Notifications</span>\n                        </a>\n                        <ul class=\"layout-menu\" [ngClass]=\"{'fadeInDown':!appMain.isMobile()}\">\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-sliders-h\"></i>\n                                    <span>Pending tasks</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-calendar\"></i>\n                                    <span>Meeting today at 3pm</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-download\"></i>\n                                    <span>Download documents</span>\n                                </a>\n                            </li>\n                            <li role=\"menuitem\">\n                                <a href=\"#\" (click)=\"appMain.onTopbarSubItemClick($event)\">\n                                    <i class=\"pi pi-fw pi-bookmark\"></i>\n                                    <span>Book flight</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li #search class=\"search-item\" [ngClass]=\"{'active-top-menu':appMain.activeTopbarItem === search}\"\n                        (click)=\"appMain.onTopbarItemClick($event,search)\">\n                        <div class=\"topbar-search\">\n                            <input type=\"text\" placeholder=\"Search\" />\n                            <i class=\"pi pi-search\"></i>\n                        </div>\n                    </li>\n                    -->\n                </ul>\n            </div>\n        </div>\n    "
       })], AppTopBarComponent);
       /***/
     },
@@ -3562,30 +3513,315 @@
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common */
+      "ofXK");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/common/http */
+      "tk/3");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var primeng_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! primeng/api */
+      "7zfz");
+      /* harmony import */
+
+
+      var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! src/app/auth/token-storage.service */
+      "dZLz");
+      /* harmony import */
+
+
+      var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! src/environments/environment.prod */
+      "cxbk");
 
       var TableaubordventeComponent = /*#__PURE__*/function () {
-        function TableaubordventeComponent() {
+        function TableaubordventeComponent(formBuilder, messageService, httpClient, router, tokenStorage) {
           _classCallCheck(this, TableaubordventeComponent);
+
+          this.formBuilder = formBuilder;
+          this.messageService = messageService;
+          this.httpClient = httpClient;
+          this.router = router;
+          this.tokenStorage = tokenStorage;
+          this.basicData = undefined;
+          this.basicData2 = undefined;
+          this.rapports = undefined;
+          this.rapportFormObject = {};
+          this.exportColumns = [];
+          /**
+          *  costumisation des erreurs
+          */
+
+          this.msgs = [];
         }
 
         _createClass(TableaubordventeComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            var _this24 = this;
+
+            var format = 'yyyy-MM-dd';
+            var format_date = 'dd';
+            var locale = 'en-US';
+            console.log(new Date().getUTCFullYear());
+            this.rapportFormObject.datedebut = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])('01/01/' + new Date().getUTCFullYear(), format, locale);
+            this.rapportFormObject.datefin = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])('12/31/' + new Date().getUTCFullYear(), format, locale);
+            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/tableau/bord", this.rapportFormObject, {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              console.log(response);
+              var datas = [];
+              var result = Object.keys(response).forEach(function (key) {
+                var obj1 = response[key];
+                console.log('key is ' + key);
+                var _postsArray = [];
+                var _postsColor = [];
+                var sousresult = Object.keys(obj1).forEach(function (key1) {
+                  _postsArray.push(obj1[key1]['value']);
+
+                  _postsColor.push(obj1[key1]['color']);
+                });
+                console.log(_postsArray);
+                Promise.all(['sousresult']).then(function () {
+                  datas.push({
+                    label: '' + key,
+                    data: [].concat(_postsArray),
+                    fill: false,
+                    backgroundColor: _postsColor[0],
+                    borderColor: _postsColor[0],
+                    tension: .4
+                  });
+                });
+              });
+              Promise.all(['result']).then(function () {
+                console.log(datas);
+                _this24.basicData = {
+                  labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                  datasets: [{
+                    label: 'Ventes par mois',
+                    backgroundColor: '#42A5F5',
+                    data: _toConsumableArray(response)
+                  }]
+                };
+              });
+            }, function (error) {
+              _this24.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+            });
+            /**
+             *  VALUE
+             */
+
+            this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/tableau/bord/ventes", this.rapportFormObject, {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              console.log(response);
+              var datas = [];
+              var result = Object.keys(response).forEach(function (key) {
+                var obj1 = response[key];
+                console.log('key is ' + key);
+                var _postsArray = [];
+                var _postsColor = [];
+                var sousresult = Object.keys(obj1).forEach(function (key1) {
+                  _postsArray.push(obj1[key1]['value']);
+
+                  _postsColor.push(obj1[key1]['color']);
+                });
+                console.log(_postsArray);
+                Promise.all(['sousresult']).then(function () {
+                  datas.push({
+                    label: '' + key,
+                    data: [].concat(_postsArray),
+                    backgroundColor: _postsColor[0],
+                    borderColor: _postsColor[0],
+                    tension: .4,
+                    fill: false
+                  });
+                });
+              });
+              Promise.all(['result']).then(function () {
+                console.log(datas);
+                _this24.basicData2 = {
+                  labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                  datasets: [].concat(datas)
+                };
+              });
+            }, function (error) {
+              _this24.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+            });
+            /**
+             * Rapport de ventes
+             */
+
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/rapports/all", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              _this24.rapports = response;
+              console.log(_this24.rapports);
+            }, function (error) {
+              _this24.showError(" une erreur c'est produit lors de chargement des rapports");
+            });
+          }
+        }, {
+          key: "exportPdf",
+          value: function exportPdf() {
+            var _this25 = this;
+
+            __webpack_require__.e(
+            /*! import() | jspdf */
+            "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null,
+            /*! jspdf */
+            "i680")).then(function (jsPDF) {
+              Promise.all(
+              /*! import() | jspdf-autotable */
+              [__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null,
+              /*! jspdf-autotable */
+              "DaQG", 7)).then(function (x) {
+                var doc = new jsPDF["default"]({
+                  orientation: "landscape"
+                });
+                doc.autoTable(_this25.exportColumns, _this25.getDatas());
+                doc.save('primengTable.pdf');
+              });
+            });
+          }
+        }, {
+          key: "exportExcel",
+          value: function exportExcel() {
+            var _this26 = this;
+
+            __webpack_require__.e(
+            /*! import() | xlsx */
+            "xlsx").then(__webpack_require__.t.bind(null,
+            /*! xlsx */
+            "YaGY", 7)).then(function (xlsx) {
+              var worksheet = xlsx.utils.json_to_sheet(_this26.getDatas());
+              var workbook = {
+                Sheets: {
+                  'data': worksheet
+                },
+                SheetNames: ['data']
+              };
+              var excelBuffer = xlsx.write(workbook, {
+                bookType: 'xlsx',
+                type: 'array'
+              });
+
+              _this26.saveAsExcelFile(excelBuffer, "primengTable");
+            });
+          }
+        }, {
+          key: "saveAsExcelFile",
+          value: function saveAsExcelFile(buffer, fileName) {
+            Promise.resolve().then(__webpack_require__.t.bind(null,
+            /*! file-saver */
+            "Iab2", 7)).then(function (FileSaver) {
+              var EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+              var EXCEL_EXTENSION = '.xlsx';
+              var data = new Blob([buffer], {
+                type: EXCEL_TYPE
+              });
+              FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+            });
+          }
+        }, {
+          key: "getDatas",
+          value: function getDatas() {
+            return this.rapports;
+          }
+        }, {
+          key: "showSuccess",
+          value: function showSuccess(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'success',
+              summary: 'Message de success :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showInfo",
+          value: function showInfo(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'info',
+              summary: 'Message Info :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showWarn",
+          value: function showWarn(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Message d\'avertissement :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showError",
+          value: function showError(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Message d\'erreur ',
+              detail: '' + message
+            });
+          }
         }]);
 
         return TableaubordventeComponent;
       }();
 
       TableaubordventeComponent.ctorParameters = function () {
-        return [];
+        return [{
+          type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"]
+        }, {
+          type: primeng_api__WEBPACK_IMPORTED_MODULE_8__["MessageService"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]
+        }, {
+          type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_9__["TokenStorageService"]
+        }];
       };
 
-      TableaubordventeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+      TableaubordventeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["Component"])({
         selector: 'app-tableaubordvente',
         template: _raw_loader_tableaubordvente_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_8__["MessageService"]],
         styles: [_tableaubordvente_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], TableaubordventeComponent);
       /***/
@@ -3707,10 +3943,10 @@
         _createClass(EditreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this24 = this;
+            var _this27 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this24.value = params.id;
+              _this27.value = params.id;
             });
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -3740,37 +3976,37 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this24.receptiondto.reference = response['reference'];
-              _this24.receptiondto.type = response['type'];
-              _this24.receptiondto.adresse = response['adresse'];
-              _this24.dommage = response['dommage'];
-              _this24.envoisms = response['envoisms'];
-              _this24.datereception = new Date(response['datereception']);
-              console.log(_this24.datereception);
-              _this24.receptiondto.nomsender = response['nomsender'];
-              _this24.receptiondto.telexpediteur = response['telexpediteur'];
-              _this24.receptiondto.namerecipient = response['namerecipient'];
-              _this24.receptiondto.telrecipient = response['telrecipient'];
-              _this24.receptiondto.dommage = _this24.dommage;
-              _this24.receptiondto.commentaire = response['commentaire'];
-              _this24.receptiondto.envoisms = _this24.envoisms;
+              _this27.receptiondto.reference = response['reference'];
+              _this27.receptiondto.type = response['type'];
+              _this27.receptiondto.adresse = response['adresse'];
+              _this27.dommage = response['dommage'];
+              _this27.envoisms = response['envoisms'];
+              _this27.datereception = new Date(response['datereception']);
+              console.log(_this27.datereception);
+              _this27.receptiondto.nomsender = response['nomsender'];
+              _this27.receptiondto.telexpediteur = response['telexpediteur'];
+              _this27.receptiondto.namerecipient = response['namerecipient'];
+              _this27.receptiondto.telrecipient = response['telrecipient'];
+              _this27.receptiondto.dommage = _this27.dommage;
+              _this27.receptiondto.commentaire = response['commentaire'];
+              _this27.receptiondto.envoisms = _this27.envoisms;
               /*
               this.receptiondto.paysrecipient = this.selectedCountrydestinateur['code'];
               this.receptiondto.paysexpediteur = this.selectedCountryexpediteur['code'];
               */
 
-              _this24.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/pays/all", {
+              _this27.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/pays/all", {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                  'Authorization': 'Bearer ' + _this24.tokenStorage.getToken()
+                  'Authorization': 'Bearer ' + _this27.tokenStorage.getToken()
                 })
               }).subscribe(function () {
                 var response2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
                 console.log(response2);
-                _this24.countries = [];
+                _this27.countries = [];
                 response2.forEach(function (element) {
                   if (element['code'] == response['paysexpediteur']) {
                     console.log(" je suis i dans selectedCountry expediteur");
-                    _this24.selectedCountryexpediteur = {
+                    _this27.selectedCountryexpediteur = {
                       name: element['name'],
                       code: element['code']
                     };
@@ -3778,22 +4014,22 @@
 
                   if (element['code'] == response['paysrecipient']) {
                     console.log(" je suis i dans selectedCountry destinateur");
-                    _this24.selectedCountrydestinateur = {
+                    _this27.selectedCountrydestinateur = {
                       name: element['name'],
                       code: element['code']
                     };
                   }
 
-                  _this24.countries.push({
+                  _this27.countries.push({
                     name: element['name'],
                     code: element['code']
                   });
                 });
               }, function (error) {
-                _this24.showWarn("La liste des pays n'a pas pu etre chargé ");
+                _this27.showWarn("La liste des pays n'a pas pu etre chargé ");
               });
             }, function (error) {
-              _this24.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
+              _this27.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -3804,7 +4040,7 @@
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this25 = this;
+            var _this28 = this;
 
             console.log(emsForm);
 
@@ -3832,9 +4068,9 @@
                   'Authorization': 'Bearer ' + this.tokenStorage.getToken()
                 })
               }).subscribe(function (response) {
-                _this25.showSuccess("L'article a été mise à jour avec success !!! ");
+                _this28.showSuccess("L'article a été mise à jour avec success !!! ");
               }, function (error) {
-                _this25.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                _this28.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
               });
             } else {
               this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/reference?reference=" + emsForm['reference'], {
@@ -3846,36 +4082,36 @@
                   var _format = 'yyyy-MM-dd';
                   var _format_date = 'dd';
                   var _locale = 'en-US';
-                  _this25.receptiondto.reference = emsForm['reference'];
-                  _this25.receptiondto.type = emsForm['typearticle'];
-                  _this25.receptiondto.adresse = emsForm['adresse'];
-                  _this25.receptiondto.nomsender = emsForm['nomsender'];
-                  _this25.receptiondto.telexpediteur = emsForm['telexpediteur'];
-                  _this25.receptiondto.namerecipient = emsForm['namerecipient'];
-                  _this25.receptiondto.telrecipient = emsForm['telrecipient'];
-                  _this25.receptiondto.email = emsForm['email'];
-                  _this25.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(_this25.datereception, _format, _locale);
-                  _this25.receptiondto.dommage = _this25.dommage;
-                  _this25.receptiondto.commentaire = emsForm['commentaire'];
-                  _this25.receptiondto.envoisms = _this25.envoisms;
-                  _this25.receptiondto.paysrecipient = _this25.selectedCountrydestinateur['code'];
-                  _this25.receptiondto.paysexpediteur = _this25.selectedCountryexpediteur['code'];
-                  console.log(_this25.receptiondto);
+                  _this28.receptiondto.reference = emsForm['reference'];
+                  _this28.receptiondto.type = emsForm['typearticle'];
+                  _this28.receptiondto.adresse = emsForm['adresse'];
+                  _this28.receptiondto.nomsender = emsForm['nomsender'];
+                  _this28.receptiondto.telexpediteur = emsForm['telexpediteur'];
+                  _this28.receptiondto.namerecipient = emsForm['namerecipient'];
+                  _this28.receptiondto.telrecipient = emsForm['telrecipient'];
+                  _this28.receptiondto.email = emsForm['email'];
+                  _this28.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(_this28.datereception, _format, _locale);
+                  _this28.receptiondto.dommage = _this28.dommage;
+                  _this28.receptiondto.commentaire = emsForm['commentaire'];
+                  _this28.receptiondto.envoisms = _this28.envoisms;
+                  _this28.receptiondto.paysrecipient = _this28.selectedCountrydestinateur['code'];
+                  _this28.receptiondto.paysexpediteur = _this28.selectedCountryexpediteur['code'];
+                  console.log(_this28.receptiondto);
 
-                  var _reponse = _this25.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + _this25.value, _this25.receptiondto, {
+                  var _reponse = _this28.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/edit?id=" + _this28.value, _this28.receptiondto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this25.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this28.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this25.showSuccess("L'article a été mise à jour avec success !!! ");
+                    _this28.showSuccess("L'article a été mise à jour avec success !!! ");
                   }, function (error) {
-                    _this25.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                    _this28.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
                   });
                 } else {
-                  _this25.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this28.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 }
               }, function (error) {
-                _this25.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this28.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -4010,7 +4246,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<p>tableaubordvente works!</p>\n";
+      __webpack_exports__["default"] = "<div class=\" card dashboard p-grid\">    \n \n\n    <div class=\"p-col-12 p-lg-6\">\n        \n        <p-chart type=\"line\" [data]=\"basicData2\" [options]=\"multiAxisOptions\"></p-chart>\n\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n  \n    <div class=\"col-lg-12\">\n        <p-table #dt [value]=\"rapports\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n        styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n        [filterDelay]=\"0\" [globalFilterFields]=\"['annee','nom','typepaiement','namerecipient', 'telrecipient']\">\n            <ng-template pTemplate=\"caption\">\n                <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                    \n                    <span class=\"p-input-icon-left\">\n                <i class=\"pi pi-search\"></i>\n                \n                <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                \n                <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                        placeholder=\"Global Search\"/>\n            </span>\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"header\">\n                <tr>               \n                    <th pSortableColumn=\"annee\"> Annee <p-sortIcon field=\"annee\"></p-sortIcon> </th>\n                    <th pSortableColumn=\"datevente\">Date <p-sortIcon field=\"datevente\"></p-sortIcon></th>\n                    <th pSortableColumn=\"nom\"> Nom <p-sortIcon field=\"nom\"></p-sortIcon></th>\n                    <th pSortableColumn=\"prixtotal\"> Montant <p-sortIcon field=\"prixtotal\"></p-sortIcon></th>\n                    \n                    <th pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                    <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                    \n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-ems>\n                <tr class=\"p-selectable-row\">\n                    <td> {{ems.annee}} </td>\n                    <td> {{ems.datevente}} </td>\n                    \n                    <td>  {{ems.nom}} </td>\n                    <td>  {{ems.prixtotal}} </td>\n                    <td>  {{ems.updated.username}} </td>\n                    <td>  {{ems.updatedat}} </td>\n\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td colspan=\"8\">Aucune données.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n</div>";
       /***/
     },
 
@@ -4127,7 +4363,7 @@
         _createClass(NouveauesuuqComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this26 = this;
+            var _this29 = this;
 
             this.esuuqForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -4155,24 +4391,24 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this26.typeactivites = [];
+              _this29.typeactivites = [];
               response.forEach(function (element) {
                 console.log(element);
 
                 if (element['name'] == 'ESUUQ') {
-                  _this26.typeactivite = {
+                  _this29.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this26.typeactivites.push({
+                _this29.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this26.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - esuuq ");
+              _this29.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - esuuq ");
             });
             /**
             *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -4184,21 +4420,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this26.countries = [];
+              _this29.countries = [];
               response.forEach(function (element) {
-                _this26.countries.push({
+                _this29.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this26.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this29.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(esuuqForm) {
-            var _this27 = this;
+            var _this30 = this;
 
             /*
             let amontsection = esuuqForm['reference'].substring(0,2);
@@ -4220,38 +4456,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this27.receptiondto.reference = esuuqForm['reference'];
-                _this27.receptiondto.name = 'ESUUQ';
-                _this27.receptiondto.type = esuuqForm['typearticle'];
-                _this27.receptiondto.adresse = esuuqForm['adresse'];
-                _this27.receptiondto.nomsender = esuuqForm['nomsender'];
-                _this27.receptiondto.telexpediteur = esuuqForm['telexpediteur'];
-                _this27.receptiondto.namerecipient = esuuqForm['namerecipient'];
-                _this27.receptiondto.telrecipient = esuuqForm['telrecipient'];
-                _this27.receptiondto.email = esuuqForm['email'];
-                _this27.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(esuuqForm['datereception'], format, locale);
-                _this27.receptiondto.typearticle = _this27.typeactivite.code;
-                _this27.receptiondto.dommage = _this27.dommage;
-                _this27.receptiondto.commentaire = esuuqForm['commentaire'];
-                _this27.receptiondto.envoisms = _this27.envoisms;
-                _this27.receptiondto.paysrecipient = _this27.selectedCountrydestinateur['code'];
-                _this27.receptiondto.paysexpediteur = _this27.selectedCountryexpediteur['code'];
+                _this30.receptiondto.reference = esuuqForm['reference'];
+                _this30.receptiondto.name = 'ESUUQ';
+                _this30.receptiondto.type = esuuqForm['typearticle'];
+                _this30.receptiondto.adresse = esuuqForm['adresse'];
+                _this30.receptiondto.nomsender = esuuqForm['nomsender'];
+                _this30.receptiondto.telexpediteur = esuuqForm['telexpediteur'];
+                _this30.receptiondto.namerecipient = esuuqForm['namerecipient'];
+                _this30.receptiondto.telrecipient = esuuqForm['telrecipient'];
+                _this30.receptiondto.email = esuuqForm['email'];
+                _this30.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(esuuqForm['datereception'], format, locale);
+                _this30.receptiondto.typearticle = _this30.typeactivite.code;
+                _this30.receptiondto.dommage = _this30.dommage;
+                _this30.receptiondto.commentaire = esuuqForm['commentaire'];
+                _this30.receptiondto.envoisms = _this30.envoisms;
+                _this30.receptiondto.paysrecipient = _this30.selectedCountrydestinateur['code'];
+                _this30.receptiondto.paysexpediteur = _this30.selectedCountryexpediteur['code'];
 
-                _this27.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this27.receptiondto, {
+                _this30.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this30.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this27.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this30.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this27.showSuccess("Vous avez enregistrer avec success votre esuuq  !!! ");
+                  _this30.showSuccess("Vous avez enregistrer avec success votre esuuq  !!! ");
                 }, function (error) {
-                  _this27.showError(" une erreur c'est produit et le système n'a pas enregitré votre esuuq - La raison est voici : " + error.message);
+                  _this30.showError(" une erreur c'est produit et le système n'a pas enregitré votre esuuq - La raison est voici : " + error.message);
                 });
               } else {
-                _this27.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this30.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this27.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this30.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -4411,7 +4647,7 @@
 
       var environment = {
         production: false,
-        url: 'https://lapostedjib.herokuapp.com'
+        url: 'http://192.168.0.58:8845'
       };
       /***/
     },
@@ -4547,7 +4783,7 @@
         _createClass(OrdinaireComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this28 = this;
+            var _this31 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -4557,10 +4793,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this28.listems = response;
-              console.log(_this28.listems);
+              _this31.listems = response;
+              console.log(_this31.listems);
             }, function (error) {
-              _this28.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this31.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -4586,7 +4822,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this29 = this;
+            var _this32 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -4601,7 +4837,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this29.exportColumns, _this29.getDatas());
+                doc.autoTable(_this32.exportColumns, _this32.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -4609,14 +4845,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this30 = this;
+            var _this33 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this30.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this33.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -4628,7 +4864,7 @@
                 type: 'array'
               });
 
-              _this30.saveAsExcelFile(excelBuffer, "primengTable");
+              _this33.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -4949,26 +5185,6 @@
     },
 
     /***/
-    "DBnK":
-    /*!**************************************************************************!*\
-      !*** ./src/app/apps/parametrage/utilisateurs/utilisateurs.component.css ***!
-      \**************************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function DBnK(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ1dGlsaXNhdGV1cnMuY29tcG9uZW50LmNzcyJ9 */";
-      /***/
-    },
-
-    /***/
     "DByU":
     /*!***************************************!*\
       !*** ./src/app/app.menu.component.ts ***!
@@ -5024,49 +5240,49 @@
         _createClass(AppMenuComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this31 = this;
+            var _this34 = this;
 
             this.roles = this.token.getAuthorities();
             this.roles.every(function (role) {
               if (role === 'ROLE_ADMIN') {
-                _this31.authority = 'ROLE_ADMIN';
-                _this31.roleadmin = true;
+                _this34.authority = 'ROLE_ADMIN';
+                _this34.roleadmin = true;
                 return false;
               } else if (role === 'ROLE_STAFF_EMS') {
-                _this31.authority = 'ROLE_STAFF_EMS';
+                _this34.authority = 'ROLE_STAFF_EMS';
                 return false;
               } else if (role === 'ROLE_STAFF_COLIS') {
-                _this31.authority = 'ROLE_STAFF_COLIS';
+                _this34.authority = 'ROLE_STAFF_COLIS';
                 return false;
               } else if (role === 'ROLE_STAFF_RECOMMANDE') {
-                _this31.authority = 'ROLE_STAFF_RECOMMANDE';
+                _this34.authority = 'ROLE_STAFF_RECOMMANDE';
                 return false;
               } else if (role === 'ROLE_STAFF_ORDINAIRE') {
-                _this31.authority = 'ROLE_STAFF_ORDINAIRE';
+                _this34.authority = 'ROLE_STAFF_ORDINAIRE';
                 return false;
               } else if (role === 'ROLE_STAFF_ESUUQ') {
-                _this31.authority = 'ROLE_STAFF_ESUUQ';
+                _this34.authority = 'ROLE_STAFF_ESUUQ';
                 return false;
               } else if (role === 'ROLE_STAFF_LIVRAISON') {
-                _this31.authority = 'ROLE_STAFF_LIVRAISON';
+                _this34.authority = 'ROLE_STAFF_LIVRAISON';
                 return false;
               } else if (role === 'ROLE_STAFF_LIVRAISON') {
-                _this31.authority = 'ROLE_STAFF_LIVRAISON';
+                _this34.authority = 'ROLE_STAFF_LIVRAISON';
                 return false;
               } else if (role === 'ROLE_STAFF_RECEPTION') {
-                _this31.authority = 'ROLE_STAFF_RECEPTION';
+                _this34.authority = 'ROLE_STAFF_RECEPTION';
                 return false;
               } else if (role === 'ROLE_STAFF_ENVOI') {
-                _this31.authority = 'ROLE_STAFF_ENVOI';
+                _this34.authority = 'ROLE_STAFF_ENVOI';
                 return false;
               } else if (role === 'ROLE_STAFF_RECETTE') {
-                _this31.authority = 'ROLE_STAFF_RECETTE';
+                _this34.authority = 'ROLE_STAFF_RECETTE';
                 return false;
               } else if (role === 'ROLE_STAFF_TABLEAUBORD') {
-                _this31.authority = 'ROLE_STAFF_TABLEAUBORD';
+                _this34.authority = 'ROLE_STAFF_TABLEAUBORD';
                 return false;
               } else {
-                _this31.authority = 'user';
+                _this34.authority = 'user';
                 return true;
               }
             });
@@ -5084,62 +5300,84 @@
               /**
                * Gestion de parametrage
                */
-
-              /*{
-                  label: 'Parametrage', icon: 'pi pi-step-forward-alt',
-                  items: [
-                      {
-                          label: 'Utilisateurs', icon: 'pi pi-fw pi-forward',  routerLink: ['/parametrage/utilisateurs']
-                      },
-                      {
-                          label: 'Gestion d\'access ', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/gestion/access']
-                      },
-                      {
-                          label: 'Categorie', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/categorie']
-                      }
-                  ]
-              }
-              ,*/
-
+              {
+                label: 'Parametrage',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Utilisateurs',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/parametrage/gestion/access']
+                },
+                /*{
+                    label: 'Gestion d\'access ', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/gestion/access']
+                },
+                {
+                    label: 'Categorie', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/categorie']
+                }*/
+                {
+                  label: 'Recette',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                }]
+              },
               /**
                * Gestion d'envoi
                */
-
-              /*{
-                  label: 'Envoie', icon: 'pi pi-step-forward-alt',
-                  items: [
-                      {
-                          label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
-                      },
-                      {
-                          label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/colis?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb']
-                      },
-                      {
-                          label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
-                      },
-                      {
-                          label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
-                      },
-                      {
-                          label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
-                      }
-                  ]
-              },*/
-
+              {
+                label: 'Envoie',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'EMS',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                }, {
+                  label: 'Colis',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/colis?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb']
+                }, {
+                  label: 'Recommandé',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
+                }, {
+                  label: 'Ordinaire',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                }]
+              },
               /**
                * Gestion de reception
                */
               {
                 label: 'Reception',
                 icon: 'pi pi-step-forward-alt',
-                items: [
-                /*{
-                    label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
-                },*/
-                {
+                items: [{
+                  label: 'EMS',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                }, {
                   label: 'Colis',
                   icon: 'pi pi-fw pi-fast-backward',
                   routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                }, {
+                  label: 'Recommandé',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                }, {
+                  label: 'Ordinaire',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                }, {
+                  label: 'Esuuq',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
                 }]
               },
               /**
@@ -5197,10 +5435,6 @@
                 label: 'Recette',
                 icon: 'pi pi-step-forward-alt',
                 items: [{
-                  label: 'Parametrage',
-                  icon: 'pi pi-fw pi-forward',
-                  routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                }, {
                   label: 'Nouveau recettes',
                   icon: 'pi pi-fw pi-fast-backward',
                   routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
@@ -5209,330 +5443,322 @@
                   icon: 'pi pi-fw pi-fast-backward',
                   routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
                 }, {
-                  label: 'Tabbleau de bord',
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_EMS") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Envoie ',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'EMS',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                }]
+              }, {
+                label: 'Reception',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'EMS',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_COLIS") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Envoie de Colis',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'EMS',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                }]
+              }, {
+                label: 'Reception',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Colis',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_RECOMMANDE") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Envoie Recommandé',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Recommandé',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                }]
+              }, {
+                label: 'Reception Recommandé',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Recommandé',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_ORDINAIRE") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Envoie Ordinaire',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Ordinaire',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
+                }]
+              }, {
+                label: 'Reception Ordinaire',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Ordinaire',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_ESUUQ") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Reception Esuuq',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Esuuq',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_LIVRAISON") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Inventaire',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Recherche un produit',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                }, {
+                  label: 'Produit en stock',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                }, {
+                  label: 'Produit defaillant',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }]
+              }, {
+                label: 'Livraison',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Nouveau Livraison',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/reception/livraison/nouveau?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }, {
+                  label: 'Livraison Reussi',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }, {
+                  label: 'Livraison echoué / rejeté',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_RECEPTION") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Reception',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'EMS',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                }, {
+                  label: 'Colis',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                }, {
+                  label: 'Recommandé',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                }, {
+                  label: 'Ordinaire',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                }, {
+                  label: 'Esuuq',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_ENVOI") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Reception',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'EMS',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                }, {
+                  label: 'Colis',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
+                }, {
+                  label: 'Recommandé',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                }, {
+                  label: 'Ordinaire',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                }, {
+                  label: 'Esuuq',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                }, {
+                  label: 'Tableau de bord',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                }]
+              }];
+            } else if (this.authority == "ROLE_STAFF_RECETTE") {
+              this.model = [{
+                label: 'Favorites',
+                icon: 'pi pi-home',
+                items: [{
+                  label: 'Profil',
+                  icon: 'pi pi-fw pi-forward',
+                  routerLink: ['/profil']
+                }]
+              }, {
+                label: 'Recette',
+                icon: 'pi pi-step-forward-alt',
+                items: [{
+                  label: 'Nouveau recettes',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                }, {
+                  label: 'Rapports',
+                  icon: 'pi pi-fw pi-fast-backward',
+                  routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                }, {
+                  label: 'Tableau de bord',
                   icon: 'pi pi-fw pi-fast-backward',
                   routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
                 }]
               }];
             }
-            /*else if(this.authority == "ROLE_STAFF_EMS")
-            {
-              this.model = [
-                  {
-                      label: 'Favorites', icon: 'pi pi-home',
-                      
-                      items: [
-                          {
-                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
-                          },
-                      ]
-                  },
-                  {
-                      label: 'Envoie ', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
-                          }
-                      ]
-                  },
-                  {
-                      label: 'Reception', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-                          }
-                      ]
-                  }
-              ];
-            }else if(this.authority == "ROLE_STAFF_COLIS")
-            {
-              this.model = [
-                  {
-                      label: 'Favorites', icon: 'pi pi-home',
-                      
-                      items: [
-                          {
-                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
-                          },
-                      ]
-                  },
-                  {
-                      label: 'Envoie de Colis', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
-                          }
-                      ]
-                  },
-                  {
-                      label: 'Reception', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-                          }
-                      ]
-                  }
-              ];
-            }else if(this.authority == "ROLE_STAFF_RECOMMANDE")
-            {
-              this.model = [
-                  {
-                      label: 'Favorites', icon: 'pi pi-home',
-                      
-                      items: [
-                          {
-                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
-                          },
-                      ]
-                  },
-                  {
-                      label: 'Envoie Recommandé', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/recommande?b592fc0e8889a74aa96f3d2ff8999acc1fd6bfba03f6c8d05d0ec19c3454a136']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
-                          }
-                      ]
-                  },
-                  {
-                      label: 'Reception Recommandé', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-                          }
-                      ]
-                  }
-              ];
-            }else if(this.authority == "ROLE_STAFF_ORDINAIRE")
-            {
-              this.model = [
-                  {
-                      label: 'Favorites', icon: 'pi pi-home',
-                      
-                      items: [
-                          {
-                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
-                          },
-                      ]
-                  },
-                  {
-                      label: 'Envoie Ordinaire', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/ordinaire?a06057302f859b52fc7ed77ef5dfb5e5ad2e6e2cc9187d25510f74499d0c1dab']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
-                          }
-                      ]
-                  },
-                  {
-                      label: 'Reception Ordinaire', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-                          }
-                      ]
-                  }
-              ];
-            }else if(this.authority == "ROLE_STAFF_ESUUQ")
-            {
-              this.model = [
-                  {
-                      label: 'Favorites', icon: 'pi pi-home',
-                      
-                      items: [
-                          {
-                              label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
-                          },
-                      ]
-                  },
-                  
-                  {
-                      label: 'Reception Esuuq', icon: 'pi pi-step-forward-alt',
-                      items: [
-                          {
-                              label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                          },
-                          {
-                              label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-                          }
-                      ]
-                  }
-                ];
-            }*/
-            else if (this.authority == "ROLE_STAFF_LIVRAISON") {
-                this.model = [{
-                  label: 'Favorites',
-                  icon: 'pi pi-home',
-                  items: [{
-                    label: 'Profil',
-                    icon: 'pi pi-fw pi-forward',
-                    routerLink: ['/profil']
-                  }]
-                }, {
-                  label: 'Inventaire',
-                  icon: 'pi pi-step-forward-alt',
-                  items: [{
-                    label: 'Recherche un produit',
-                    icon: 'pi pi-fw pi-forward',
-                    routerLink: ['/gestion/stocks/recherche?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-                  }, {
-                    label: 'Produit en stock',
-                    icon: 'pi pi-fw pi-forward',
-                    routerLink: ['/gestion/stocks/en stock?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-                  }, {
-                    label: 'Produit defaillant',
-                    icon: 'pi pi-fw pi-fast-backward',
-                    routerLink: ['/gestion/stocks/defaillant?4aa7d2d064588a6e7db6d69ffcc400f402863af69afdf0b2925cc2e45953c869']
-                  }, {
-                    label: 'Tableau de bord',
-                    icon: 'pi pi-fw pi-fast-backward',
-                    routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                  }]
-                }, {
-                  label: 'Livraison',
-                  icon: 'pi pi-step-forward-alt',
-                  items: [{
-                    label: 'Nouveau Livraison',
-                    icon: 'pi pi-fw pi-forward',
-                    routerLink: ['/gestion/reception/livraison/nouveau?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                  }, {
-                    label: 'Livraison Reussi',
-                    icon: 'pi pi-fw pi-fast-backward',
-                    routerLink: ['/gestion/reception/livraison/reussi?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                  }, {
-                    label: 'Livraison echoué / rejeté',
-                    icon: 'pi pi-fw pi-fast-backward',
-                    routerLink: ['/gestion/reception/livraison/echoue?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                  }, {
-                    label: 'Tableau de bord',
-                    icon: 'pi pi-fw pi-fast-backward',
-                    routerLink: ['/gestion/reception/livraison/tableau de bord?ef2e7680bc9ac5e77c16e54b7491fae317e766113a4fe65fdaa3270e80bbc4ab']
-                  }]
-                }];
-              } else if (this.authority == "ROLE_STAFF_RECEPTION") {
-                this.model = [{
-                  label: 'Favorites',
-                  icon: 'pi pi-home',
-                  items: [{
-                    label: 'Profil',
-                    icon: 'pi pi-fw pi-forward',
-                    routerLink: ['/profil']
-                  }]
-                }, {
-                  label: 'Reception',
-                  icon: 'pi pi-step-forward-alt',
-                  items: [
-                  /*{
-                      label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
-                  },*/
-                  {
-                    label: 'Colis',
-                    icon: 'pi pi-fw pi-fast-backward',
-                    routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
-                  },
-                  /*{
-                      label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                  },
-                  {
-                      label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
-                  },
-                  {
-                      label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                  },  */
-                  {
-                    label: 'Tableau de bord',
-                    icon: 'pi pi-fw pi-fast-backward',
-                    routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-                  }]
-                }];
-              }
-              /*else if(this.authority == "ROLE_STAFF_ENVOI")
-              {
-                this.model = [
-                    {
-                        label: 'Favorites', icon: 'pi pi-home',
-                        
-                        items: [
-                            {
-                                label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
-                            },
-                        ]
-                    },
-                    
-                    {
-                        label: 'Reception', icon: 'pi pi-step-forward-alt',
-                        items: [
-                            {
-                                label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
-                            },
-                            {
-                                label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
-                            },
-                            {
-                                label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                            },
-                            {
-                                label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
-                            },
-                            {
-                                label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                            },
-                            {
-                                label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
-                            }
-                        ]
-                    }
-                ];
-              }*/
-              else if (this.authority == "ROLE_STAFF_RECETTE") {
-                  this.model = [{
-                    label: 'Favorites',
-                    icon: 'pi pi-home',
-                    items: [{
-                      label: 'Profil',
-                      icon: 'pi pi-fw pi-forward',
-                      routerLink: ['/profil']
-                    }]
-                  }, {
-                    label: 'Recette',
-                    icon: 'pi pi-step-forward-alt',
-                    items: [{
-                      label: 'Nouveau recettes',
-                      icon: 'pi pi-fw pi-fast-backward',
-                      routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                    }, {
-                      label: 'Rapports',
-                      icon: 'pi pi-fw pi-fast-backward',
-                      routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                    }, {
-                      label: 'Tabbleau de bord',
-                      icon: 'pi pi-fw pi-fast-backward',
-                      routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                    }]
-                  }];
-                }
           }
         }]);
 
@@ -5628,7 +5854,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                     <ng-template pTemplate=\"caption\">\n                        <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                            \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                                \n                            <span class=\"p-input-icon-left\">\n                                \n                        <i class=\"pi pi-search\"></i>\n                        <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                                <\n                    </span>\n                        </div>\n                    </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>                   \n                        <th  pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th   pSortableColumn=\"reception.datesortie\">Date  <p-sortIcon field=\"reception.datesortie\"></p-sortIcon></th>\n                        <th   pSortableColumn=\"etat\"> Etat <p-sortIcon field=\"etat\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.type\"> Type  <p-sortIcon field=\"reception.type\"></p-sortIcon></th>\n\n                        <th  pSortableColumn=\"reception.namerecipient\"> Destinateur <p-sortIcon field=\"reception.namerecipient\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.telrecipient\"> Telephone 2  <p-sortIcon field=\"reception.telrecipient\"></p-sortIcon></th>\n                        \n                        <th  pSortableColumn=\"commentaire\"> Commentaire <p-sortIcon field=\"commentaire\"></p-sortIcon> </th>\n\n                        <th  pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td > {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(livre)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
+      __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                     <ng-template pTemplate=\"caption\">\n                        <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                            \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                                \n                            <span class=\"p-input-icon-left\">\n                                \n                        <i class=\"pi pi-search\"></i>\n                        <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                                \n                    </span>\n                        </div>\n                    </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>                   \n                        <th  pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th   pSortableColumn=\"reception.datesortie\">Date  <p-sortIcon field=\"reception.datesortie\"></p-sortIcon></th>\n                        <th   pSortableColumn=\"etat\"> Etat <p-sortIcon field=\"etat\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.type\"> Type  <p-sortIcon field=\"reception.type\"></p-sortIcon></th>\n\n                        <th  pSortableColumn=\"reception.namerecipient\"> Destinateur <p-sortIcon field=\"reception.namerecipient\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.telrecipient\"> Telephone 2  <p-sortIcon field=\"reception.telrecipient\"></p-sortIcon></th>\n                        \n\n                        <th  pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td > {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(livre)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>";
       /***/
     },
 
@@ -5668,7 +5894,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <!-- <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/> -->\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur le plateForme Stock <!-- E-Postal Djibouti --></h2>\n                        <span class=\"guest-sign-in\">Connectez-vous sur le reseau</span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
+      __webpack_exports__["default"] = "<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur E-Postal Djibouti</h2>\n                        <span class=\"guest-sign-in\">Connecté vous sur le reseau e-postal </span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
       /***/
     },
 
@@ -5763,7 +5989,7 @@
         _createClass(EsuuqComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this32 = this;
+            var _this35 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -5773,10 +5999,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this32.listesuuq = response;
-              console.log(_this32.listesuuq);
+              _this35.listesuuq = response;
+              console.log(_this35.listesuuq);
             }, function (error) {
-              _this32.showWarn("Les articles esuuq  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this35.showWarn("Les articles esuuq  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -5802,7 +6028,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this33 = this;
+            var _this36 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -5817,7 +6043,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this33.exportColumns, _this33.getDatas());
+                doc.autoTable(_this36.exportColumns, _this36.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -5825,14 +6051,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this34 = this;
+            var _this37 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this34.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this37.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -5844,7 +6070,7 @@
                 type: 'array'
               });
 
-              _this34.saveAsExcelFile(excelBuffer, "primengTable");
+              _this37.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -6165,7 +6391,7 @@
         _createClass(RapportsventeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this35 = this;
+            var _this38 = this;
 
             this.rapportForm = this.formBuilder.group({
               //'nom': new FormControl('', Validators.required),
@@ -6184,7 +6410,7 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this35.rapportVentes = response;
+              _this38.rapportVentes = response;
             }, function (error) {});
           }
           /**
@@ -6195,7 +6421,7 @@
         }, {
           key: "saveRapport",
           value: function saveRapport(value) {
-            var _this36 = this;
+            var _this39 = this;
 
             console.log('je suis');
             console.log(value);
@@ -6211,13 +6437,13 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this36.rapportVentes = response;
+              _this39.rapportVentes = response;
             }, function (error) {});
           }
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this37 = this;
+            var _this40 = this;
 
             var Aplhabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'];
 
@@ -6228,7 +6454,7 @@
             "YaGY", 7)).then(function (xlsx) {
               var workbook = new exceljs__WEBPACK_IMPORTED_MODULE_12__["Workbook"]();
 
-              _this37.rapportVentes.forEach(function (element) {
+              _this40.rapportVentes.forEach(function (element) {
                 console.log(element);
                 var title = element.month;
                 var entete = []; //const header = element.entete
@@ -6606,7 +6832,7 @@
         _createClass(NouveauventeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this38 = this;
+            var _this41 = this;
 
             this.typepaiement = {
               code: 'CASH',
@@ -6638,37 +6864,37 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this38.typeventes = [];
+              _this41.typeventes = [];
               response.forEach(function (element) {
-                _this38.typeventes.push({
+                _this41.typeventes.push({
                   code: element,
                   name: element['nom']
                 });
               });
             }, function (error) {
-              _this38.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
+              _this41.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this38.listventes = response;
+              _this41.listventes = response;
             }, function (error) {
-              _this38.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
+              _this41.showError(" une erreur c'est produit  - La raison est voici : " + error.message);
             });
           }
         }, {
           key: "change",
           value: function change($event) {
-            var _this39 = this;
+            var _this42 = this;
 
             /**
              *  -- liste items
              */
             this.itemstypeventes = [];
             $event.value.code['items'].forEach(function (element) {
-              _this39.itemstypeventes.push({
+              _this42.itemstypeventes.push({
                 code: element,
                 name: element['nom']
               });
@@ -6689,7 +6915,7 @@
         }, {
           key: "save",
           value: function save(value) {
-            var _this40 = this;
+            var _this43 = this;
 
             console.log(value);
             var format = 'yyyy-MM-dd';
@@ -6718,34 +6944,34 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this40.venteForm.patchValue({
+              _this43.venteForm.patchValue({
                 type: undefined
               });
 
-              _this40.venteForm.patchValue({
+              _this43.venteForm.patchValue({
                 prix: undefined
               });
 
-              _this40.venteForm.patchValue({
+              _this43.venteForm.patchValue({
                 penalite: undefined
               });
 
-              _this40.typevente = undefined;
-              _this40.itemstypevente = undefined; //this.items = [];
+              _this43.typevente = undefined;
+              _this43.itemstypevente = undefined; //this.items = [];
 
-              _this40.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
+              _this43.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/by/day", {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                  'Authorization': 'Bearer ' + _this40.tokenStorage.getToken()
+                  'Authorization': 'Bearer ' + _this43.tokenStorage.getToken()
                 })
               }).subscribe(function (response) {
-                _this40.listventes = response;
+                _this43.listventes = response;
               }, function (error) {
-                _this40.showError(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+                _this43.showError(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
               });
 
-              _this40.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
+              _this43.showSuccess("Vous avez enregistrer avec success votre colis  !!! ");
             }, function (error) {
-              _this40.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
+              _this43.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.message);
             });
           }
           /**
@@ -7032,7 +7258,7 @@
         _createClass(TableaubordstocksComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this41 = this;
+            var _this44 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/livraison/tableau/bord2", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -7064,13 +7290,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this41.basicData2 = {
+                _this44.basicData2 = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this41.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this44.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/reception/stock/tableau/bord1", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -7102,13 +7328,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this41.basicData = {
+                _this44.basicData = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this41.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this44.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -7119,16 +7345,16 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this41.listems = response;
-              console.log(_this41.listems);
+              _this44.listems = response;
+              console.log(_this44.listems);
             }, function (error) {
-              _this41.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this44.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this42 = this;
+            var _this45 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -7143,7 +7369,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this42.exportColumns, _this42.getDatas());
+                doc.autoTable(_this45.exportColumns, _this45.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -7151,14 +7377,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this43 = this;
+            var _this46 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this43.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this46.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -7170,7 +7396,7 @@
                 type: 'array'
               });
 
-              _this43.saveAsExcelFile(excelBuffer, "primengTable");
+              _this46.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -7539,7 +7765,7 @@
         _createClass(LivraisonechoueComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this44 = this;
+            var _this47 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -7549,10 +7775,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this44.liste = response;
-              console.log(_this44.liste);
+              _this47.liste = response;
+              console.log(_this47.liste);
             }, function (error) {
-              _this44.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
+              _this47.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.message);
             });
           }
         }, {
@@ -7567,7 +7793,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this45 = this;
+            var _this48 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -7582,7 +7808,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this45.exportColumns, _this45.getDatas());
+                doc.autoTable(_this48.exportColumns, _this48.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -7590,14 +7816,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this46 = this;
+            var _this49 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this46.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this49.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -7609,7 +7835,7 @@
                 type: 'array'
               });
 
-              _this46.saveAsExcelFile(excelBuffer, "livraison_echoue");
+              _this49.saveAsExcelFile(excelBuffer, "livraison_echoue");
             });
           }
         }, {
@@ -7742,30 +7968,136 @@
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common/http */
+      "tk/3");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var primeng_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! primeng/api */
+      "7zfz");
+      /* harmony import */
+
+
+      var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/auth/token-storage.service */
+      "dZLz");
+      /* harmony import */
+
+
+      var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/environments/environment.prod */
+      "cxbk");
 
       var AccessComponent = /*#__PURE__*/function () {
-        function AccessComponent() {
+        function AccessComponent(messageService, httpClient, router, tokenStorage) {
           _classCallCheck(this, AccessComponent);
+
+          this.messageService = messageService;
+          this.httpClient = httpClient;
+          this.router = router;
+          this.tokenStorage = tokenStorage;
+          this.users = undefined;
+          /**
+          *  costumisation des erreurs
+          */
+
+          this.msgs = [];
         }
 
         _createClass(AccessComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            var _this50 = this;
+
+            /**
+             *
+             */
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__["environment"].url + "/api/postal/security/liste", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              _this50.users = response;
+              console.log(_this50.users);
+            }, function (error) {
+              _this50.showError(" une erreur c est produit : " + error.message);
+            });
+          }
+        }, {
+          key: "showSuccess",
+          value: function showSuccess(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'success',
+              summary: 'Message de success :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showInfo",
+          value: function showInfo(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'info',
+              summary: 'Message Info :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showWarn",
+          value: function showWarn(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Message d\'avertissement :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showError",
+          value: function showError(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Message d\'erreur ',
+              detail: '' + message
+            });
+          }
         }]);
 
         return AccessComponent;
       }();
 
       AccessComponent.ctorParameters = function () {
-        return [];
+        return [{
+          type: primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
+        }, {
+          type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"]
+        }];
       };
 
-      AccessComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+      AccessComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
         selector: 'app-access',
         template: _raw_loader_access_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]],
         styles: [_access_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], AccessComponent);
       /***/
@@ -8089,27 +8421,27 @@
         }, {
           key: "connexion",
           value: function connexion(value) {
-            var _this47 = this;
+            var _this51 = this;
 
             this.loginInfo = new _auth_models_login_info__WEBPACK_IMPORTED_MODULE_8__["AuthLoginInfo"](value['username'], value['password']);
             this.authService.attemptAuth(this.loginInfo).subscribe(function (data) {
-              _this47.tokenStorage.saveToken(data.accessToken);
+              _this51.tokenStorage.saveToken(data.accessToken);
 
-              _this47.tokenStorage.saveUsername(data.username);
+              _this51.tokenStorage.saveUsername(data.username);
 
-              _this47.tokenStorage.saveAuthorities(data.authorities);
+              _this51.tokenStorage.saveAuthorities(data.authorities);
 
-              _this47.isLoginFailed = false;
-              _this47.isLoggedIn = true;
-              _this47.roles = _this47.tokenStorage.getAuthorities(); //this.reloadPage();
+              _this51.isLoginFailed = false;
+              _this51.isLoggedIn = true;
+              _this51.roles = _this51.tokenStorage.getAuthorities(); //this.reloadPage();
 
-              _this47.router.navigate(['/accueil']);
+              _this51.router.navigate(['/accueil']);
             }, function (error) {
-              _this47.errorMessage = error.error.message;
+              _this51.errorMessage = error.error.message;
 
-              _this47.showError(_this47.errorMessage);
+              _this51.showError(_this51.errorMessage);
 
-              _this47.isLoginFailed = true;
+              _this51.isLoginFailed = true;
             });
           }
         }, {
@@ -9019,7 +9351,7 @@
         _createClass(RecommandeComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this48 = this;
+            var _this52 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -9029,10 +9361,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this48.listrecommande = response;
-              console.log(_this48.listrecommande);
+              _this52.listrecommande = response;
+              console.log(_this52.listrecommande);
             }, function (error) {
-              _this48.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this52.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -9058,7 +9390,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this49 = this;
+            var _this53 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -9073,7 +9405,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this49.exportColumns, _this49.getDatas());
+                doc.autoTable(_this53.exportColumns, _this53.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -9081,14 +9413,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this50 = this;
+            var _this54 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this50.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this54.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -9100,7 +9432,7 @@
                 type: 'array'
               });
 
-              _this50.saveAsExcelFile(excelBuffer, "primengTable");
+              _this54.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -9242,6 +9574,181 @@
 
 
       __webpack_exports__["default"] = "<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <p-messages [(value)]=\"msgs\"></p-messages>\n            <p-fieldset legend=\"Formulaire de creation d'un reception\">\n                <form [formGroup]=\"emsForm\" (ngSubmit)=\"save(emsForm.value);\"  style=\"margin: 10px 0px; padding-bottom:10px;\">\n                    <p-panel header=\"Mise à jour  - {{receptiondto.type}}\" class=\"panel-work\">\n                        <div class=\"ui-grid ui-grid-responsive ui-grid-pad ui-fluid\" style=\"margin: 10px 0px;\">\n                            <ul>\n                                <li *ngIf=\"!emsForm.controls['reference'].valid&&emsForm.controls['reference'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir une reference car elle est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['nomsender'].valid&&emsForm.controls['nomsender'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                \n                                <li *ngIf=\"!emsForm.controls['telexpediteur'].valid&&emsForm.controls['telexpediteur'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone de l'expediteur car il est obligatoire\" ></p-message>   </li>\n                                <li *ngIf=\"!emsForm.controls['namerecipient'].valid&&emsForm.controls['namerecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le nom de destinateur car il est obligatoire\" ></p-message>   </li>\n                                                   \n                                <li *ngIf=\"!emsForm.controls['telrecipient'].valid&&emsForm.controls['telrecipient'].dirty\"> <p-message severity=\"error\" text=\"Veuillez fournir le numero de telephone du destinateur car il est obligatoire\" ></p-message>   </li>\n                                                    \n                            </ul>\n                            <div class=\"p-fluid\">\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Categorie  <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\"> \n                                                <input type=\"text\" id=\"disabled-input\" name=\"typearticle\"  pInputText class=\"form-control\" [disabled]=\"disabled\" [(ngModel)]=\"receptiondto.type\" formControlName=\"typearticle\">   \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                        \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Reference <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"reference\" pInputText   class=\"form-control\" formControlName=\"reference\" [(ngModel)]=\"receptiondto.reference\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Date Reception <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-calendar [(ngModel)]=\"datereception\" name=\"datereception\" class=\"form-control\" formControlName=\"datereception\" ></p-calendar>                                \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                               \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom de l'expediteur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"nomsender\" pInputText   class=\"form-control\" formControlName=\"nomsender\"  [(ngModel)]=\"receptiondto.nomsender\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">                                                                      \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone de l'expediteur</label>\n                                                    <div class=\"p-col-12 p-md-12\">   \n                                                        <input type=\"text\" name=\"telexpediteur\" pInputText   class=\"form-control\" formControlName=\"telexpediteur\"  [(ngModel)]=\"receptiondto.telexpediteur\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays Expediteur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\"> \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountryexpediteur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysexpediteur\">\n                                                        </p-dropdown>  \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                        \n                                \n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">                               \n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-4 p-md-4 p-mb-md-0\">Adresse du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-md-12\">      \n                                            <input type=\"text\" name=\"adresse\" pInputText   class=\"form-control\" formControlName=\"adresse\" [(ngModel)]=\"receptiondto.adresse\">                                    \n                                        </div>\n                                    </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"lastname4\" class=\"p-col-12 p-mb-3 p-md-3 p-mb-md-0\">Adresse mail </label>\n                                            <div class=\"p-col-12 p-p-md-9\">   \n                                                <input type=\"text\" name=\"email\" pInputText   class=\"form-control\" formControlName=\"email\" [(ngModel)]=\"receptiondto.email\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Nom du destinateur <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <input type=\"text\" name=\"namerecipient\" pInputText   class=\"form-control\" formControlName=\"namerecipient\" [(ngModel)]=\"receptiondto.namerecipient\">                                    \n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\"> \n                                        <div class=\"p-field p-grid\">\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Telephone du destinateur  <span class=\"required\">*</span> </label>\n                                                    <div class=\"p-col-12 p-p-md-9\">   \n                                                        <input type=\"text\" name=\"telrecipient\" pInputText   class=\"form-control\" formControlName=\"telrecipient\" [(ngModel)]=\"receptiondto.telrecipient\">                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                                            <div class=\"p-col-6\">\n                                                <div class=\"p-field p-grid\">\n                                                    <label for=\"lastname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Pays du destinateur <span class=\"required\">*</span></label>\n                                                    <div class=\"p-col-12 p-p-md-9\">  \n                                                        <p-dropdown [options]=\"countries\" [(ngModel)]=\"selectedCountrydestinateur\" optionLabel=\"name\" [filter]=\"true\" filterBy=\"name\"\n                                                            [showClear]=\"true\" placeholder=\"Select a Country\"  formControlName=\"paysdestinateur\">\n                                                            \n                                                        </p-dropdown>                              \n                                                    </div>\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Colis dommage</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"dommage\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"dommage\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                    <div class=\"p-col-6\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Envoyé un sms de reception du colis</label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <p-checkbox [(ngModel)]=\"envoisms\" binary=\"true\" (onChange)=\"dommageSelect($event)\" inputId=\"binary\" formControlName=\"envoisms\"></p-checkbox>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                                \n                                <div class=\"p-field p-grid\" *ngIf=\"dommage\">\n                                    <div class=\"p-col-12\">\n                                        <div class=\"p-field p-grid\">\n                                            <label for=\"firstname4\" class=\"p-col-12 p-mb-12 p-md-12 p-mb-md-0\">Veuillez commenter le dommage <span class=\"required\">*</span></label>\n                                            <div class=\"p-col-12 p-p-md-9\">      \n                                                <textarea rows=\"5\"  pInputTextarea autoResize=\"autoResize\" [(ngModel)]=\"commentdommage\" formControlName=\"commentaire\"></textarea>\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"p-field p-grid\">   \n                                    <div class=\"p-col-12 p-p-md-12\">  \n                                        <button pButton type=\"submit\" label=\"Enregistrer\" [disabled]=\"!emsForm.valid\"></button>\n                                    </div>\n                                </div> \n                            </div>\n                        </div>\n\n                       \n                    </p-panel>\n                </form>\n            </p-fieldset>\n        </div>\n    </div>\n</div>\n\n<p-toast position=\"center\" key=\"c\" (onClose)=\"onConfirm()\" [baseZIndex]=\"5000\">\n    <ng-template let-message pTemplate=\"message\">\n        <div class=\"p-flex p-flex-column\" style=\"flex: 1\">\n            <div class=\"p-text-center\">\n                <i class=\"pi pi-exclamation-triangle\" style=\"font-size: 3rem\"></i>\n                <h4>{{message.summary}}</h4>\n                <p>{{message.detail}}</p>\n            </div>\n            <div class=\"p-grid p-fluid\">\n                <div class=\"p-col-12\">\n                    <button type=\"button\" pButton (click)=\"onConfirm()\" label=\"Retenu\" class=\"p-button-success\"></button>\n                </div>\n            </div>\n        </div>\n    </ng-template>\n</p-toast>";
+      /***/
+    },
+
+    /***/
+    "UQP5":
+    /*!****************************************************************************!*\
+      !*** ./src/app/parametrage/gestion/utilisateurs/utilisateurs.component.ts ***!
+      \****************************************************************************/
+
+    /*! exports provided: UtilisateursComponent */
+
+    /***/
+    function UQP5(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "UtilisateursComponent", function () {
+        return UtilisateursComponent;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_utilisateurs_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./utilisateurs.component.html */
+      "n2jU");
+      /* harmony import */
+
+
+      var _utilisateurs_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./utilisateurs.component.css */
+      "2wp+");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common/http */
+      "tk/3");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var primeng_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! primeng/api */
+      "7zfz");
+      /* harmony import */
+
+
+      var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/auth/token-storage.service */
+      "dZLz");
+      /* harmony import */
+
+
+      var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/environments/environment.prod */
+      "cxbk");
+
+      var UtilisateursComponent = /*#__PURE__*/function () {
+        function UtilisateursComponent(messageService, httpClient, router, tokenStorage) {
+          _classCallCheck(this, UtilisateursComponent);
+
+          this.messageService = messageService;
+          this.httpClient = httpClient;
+          this.router = router;
+          this.tokenStorage = tokenStorage;
+          this.users = undefined;
+          /**
+          *  costumisation des erreurs
+          */
+
+          this.msgs = [];
+        }
+
+        _createClass(UtilisateursComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            var _this55 = this;
+
+            /**
+             *
+             */
+            this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__["environment"].url + "/api/postal/security/liste", {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+              })
+            }).subscribe(function (response) {
+              _this55.users = response;
+              console.log(_this55.users);
+            }, function (error) {
+              _this55.showError(" une erreur c est produit : " + error.message);
+            });
+          }
+        }, {
+          key: "showSuccess",
+          value: function showSuccess(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'success',
+              summary: 'Message de success :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showInfo",
+          value: function showInfo(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'info',
+              summary: 'Message Info :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showWarn",
+          value: function showWarn(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Message d\'avertissement :',
+              detail: '' + message
+            });
+          }
+        }, {
+          key: "showError",
+          value: function showError(message) {
+            this.msgs = [];
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Message d\'erreur ',
+              detail: '' + message
+            });
+          }
+        }]);
+
+        return UtilisateursComponent;
+      }();
+
+      UtilisateursComponent.ctorParameters = function () {
+        return [{
+          type: primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
+        }, {
+          type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"]
+        }];
+      };
+
+      UtilisateursComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
+        selector: 'app-utilisateurs',
+        template: _raw_loader_utilisateurs_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]],
+        styles: [_utilisateurs_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], UtilisateursComponent);
       /***/
     },
 
@@ -9484,7 +9991,7 @@
         _createClass(RecommandereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this51 = this;
+            var _this56 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -9494,10 +10001,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this51.listems = response;
-              console.log(_this51.listems);
+              _this56.listems = response;
+              console.log(_this56.listems);
             }, function (error) {
-              _this51.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this56.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -9523,7 +10030,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this52 = this;
+            var _this57 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -9538,7 +10045,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this52.exportColumns, _this52.getDatas());
+                doc.autoTable(_this57.exportColumns, _this57.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -9546,14 +10053,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this53 = this;
+            var _this58 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this53.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this58.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -9565,7 +10072,7 @@
                 type: 'array'
               });
 
-              _this53.saveAsExcelFile(excelBuffer, "primengTable");
+              _this58.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -9854,10 +10361,10 @@
         _createClass(AppCrudComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this54 = this;
+            var _this59 = this;
 
             this.productService.getProducts().then(function (data) {
-              return _this54.products = data;
+              return _this59.products = data;
             });
             this.cols = [{
               field: 'name',
@@ -9886,19 +10393,19 @@
         }, {
           key: "deleteSelectedProducts",
           value: function deleteSelectedProducts() {
-            var _this55 = this;
+            var _this60 = this;
 
             this.confirmationService.confirm({
               message: 'Are you sure you want to delete the selected products?',
               header: 'Confirm',
               icon: 'pi pi-exclamation-triangle',
               accept: function accept() {
-                _this55.products = _this55.products.filter(function (val) {
-                  return !_this55.selectedProducts.includes(val);
+                _this60.products = _this60.products.filter(function (val) {
+                  return !_this60.selectedProducts.includes(val);
                 });
-                _this55.selectedProducts = null;
+                _this60.selectedProducts = null;
 
-                _this55.messageService.add({
+                _this60.messageService.add({
                   severity: 'success',
                   summary: 'Successful',
                   detail: 'Products Deleted',
@@ -9916,19 +10423,19 @@
         }, {
           key: "deleteProduct",
           value: function deleteProduct(product) {
-            var _this56 = this;
+            var _this61 = this;
 
             this.confirmationService.confirm({
               message: 'Are you sure you want to delete ' + product.name + '?',
               header: 'Confirm',
               icon: 'pi pi-exclamation-triangle',
               accept: function accept() {
-                _this56.products = _this56.products.filter(function (val) {
+                _this61.products = _this61.products.filter(function (val) {
                   return val.id !== product.id;
                 });
-                _this56.product = {};
+                _this61.product = {};
 
-                _this56.messageService.add({
+                _this61.messageService.add({
                   severity: 'success',
                   summary: 'Successful',
                   detail: 'Product Deleted',
@@ -10753,241 +11260,235 @@
       /* harmony import */
 
 
-      var _apps_parametrage_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_118__ = __webpack_require__(
-      /*! ./apps/parametrage/utilisateurs/utilisateurs.component */
-      "1jHi");
-      /* harmony import */
-
-
-      var _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_119__ = __webpack_require__(
+      var _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_118__ = __webpack_require__(
       /*! ./apps/parametrage/gestion/access/access.component */
       "O2fg");
       /* harmony import */
 
 
-      var _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_120__ = __webpack_require__(
+      var _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_119__ = __webpack_require__(
       /*! ./apps/envoi/ems/ems.component */
       "rbu+");
       /* harmony import */
 
 
-      var _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_121__ = __webpack_require__(
+      var _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_120__ = __webpack_require__(
       /*! ./apps/envoi/colis/colis.component */
       "d4o+");
       /* harmony import */
 
 
-      var _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_122__ = __webpack_require__(
+      var _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_121__ = __webpack_require__(
       /*! ./apps/envoi/recommande/recommande.component */
       "T4wd");
       /* harmony import */
 
 
-      var _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_123__ = __webpack_require__(
+      var _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_122__ = __webpack_require__(
       /*! ./apps/envoi/tableaubord/tableaubord.component */
       "ojSt");
       /* harmony import */
 
 
-      var _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_124__ = __webpack_require__(
+      var _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_123__ = __webpack_require__(
       /*! ./apps/reception/ordinaire/ordinaire.component */
       "BqQa");
       /* harmony import */
 
 
-      var _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_125__ = __webpack_require__(
+      var _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_124__ = __webpack_require__(
       /*! ./apps/reception/emsreception/emsreception.component */
       "urcB");
       /* harmony import */
 
 
-      var _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_126__ = __webpack_require__(
+      var _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_125__ = __webpack_require__(
       /*! ./apps/reception/tableaubordreception/tableaubordreception.component */
       "3e/o");
       /* harmony import */
 
 
-      var _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_127__ = __webpack_require__(
+      var _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_126__ = __webpack_require__(
       /*! ./apps/reception/recommandereception/recommandereception.component */
       "X5gR");
       /* harmony import */
 
 
-      var _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_128__ = __webpack_require__(
+      var _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_127__ = __webpack_require__(
       /*! ./apps/reception/colisreception/colisreception.component */
       "prZE");
       /* harmony import */
 
 
-      var _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_129__ = __webpack_require__(
+      var _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_128__ = __webpack_require__(
       /*! ./apps/envoi/ems/nouveau/nouveau.component */
       "pJhg");
       /* harmony import */
 
 
-      var _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_130__ = __webpack_require__(
+      var _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_129__ = __webpack_require__(
       /*! ./apps/envoi/ems/edition/edition.component */
       "bIAB");
       /* harmony import */
 
 
-      var _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_131__ = __webpack_require__(
+      var _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_130__ = __webpack_require__(
       /*! ./apps/envoi/colis/nouveaucolis/nouveaucolis.component */
       "+34J");
       /* harmony import */
 
 
-      var _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_132__ = __webpack_require__(
+      var _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_131__ = __webpack_require__(
       /*! ./apps/envoi/colis/editioncolis/editioncolis.component */
       "seg4");
       /* harmony import */
 
 
-      var _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_133__ = __webpack_require__(
+      var _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_132__ = __webpack_require__(
       /*! ./apps/envoi/recommande/nouveaurecommande/nouveaurecommande.component */
       "/XrQ");
       /* harmony import */
 
 
-      var _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_134__ = __webpack_require__(
+      var _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_133__ = __webpack_require__(
       /*! ./apps/reception/emsreception/nouveauemsreception/nouveauemsreception.component */
       "bGFz");
       /* harmony import */
 
 
-      var _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_135__ = __webpack_require__(
+      var _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_134__ = __webpack_require__(
       /*! ./apps/reception/editreception/editreception.component */
       "9Sdb");
       /* harmony import */
 
 
-      var _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_136__ = __webpack_require__(
+      var _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_135__ = __webpack_require__(
       /*! ./apps/reception/colisreception/nouveaucolisreception/nouveaucolisreception.component */
       "7RVm");
       /* harmony import */
 
 
-      var _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_137__ = __webpack_require__(
+      var _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_136__ = __webpack_require__(
       /*! ./apps/reception/recommandereception/nouveaurecommandereception/nouveaurecommandereception.component */
       "5ewr");
       /* harmony import */
 
 
-      var _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_138__ = __webpack_require__(
+      var _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_137__ = __webpack_require__(
       /*! ./apps/reception/ordinaire/nouveauordinairereception/nouveauordinairereception.component */
       "y76H");
       /* harmony import */
 
 
-      var _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_139__ = __webpack_require__(
+      var _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_138__ = __webpack_require__(
       /*! ./apps/stocks/suivi/suivi.component */
       "XAKf");
       /* harmony import */
 
 
-      var _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_140__ = __webpack_require__(
+      var _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_139__ = __webpack_require__(
       /*! ./apps/stocks/tableaubordstocks/tableaubordstocks.component */
       "L7Y2");
       /* harmony import */
 
 
-      var _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_141__ = __webpack_require__(
+      var _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_140__ = __webpack_require__(
       /*! ./apps/stocks/recherche/recherche.component */
       "lEO1");
       /* harmony import */
 
 
-      var _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_142__ = __webpack_require__(
+      var _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_141__ = __webpack_require__(
       /*! ./apps/stocks/enstock/enstock.component */
       "odXu");
       /* harmony import */
 
 
-      var _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_143__ = __webpack_require__(
+      var _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_142__ = __webpack_require__(
       /*! ./apps/reception/esuuq/esuuq.component */
       "GFK6");
       /* harmony import */
 
 
-      var _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_144__ = __webpack_require__(
+      var _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_143__ = __webpack_require__(
       /*! ./apps/reception/esuuq/nouveauesuuq/nouveauesuuq.component */
       "A8DN");
       /* harmony import */
 
 
-      var _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_145__ = __webpack_require__(
+      var _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_144__ = __webpack_require__(
       /*! ./apps/stocks/defaillant/defaillant.component */
       "8H/n");
       /* harmony import */
 
 
-      var _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_146__ = __webpack_require__(
+      var _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_145__ = __webpack_require__(
       /*! ./apps/livraison/livraison/livraison.component */
       "6M6E");
       /* harmony import */
 
 
-      var _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_147__ = __webpack_require__(
+      var _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_146__ = __webpack_require__(
       /*! ./apps/livraison/nouveaulivraison/nouveaulivraison.component */
       "1sSu");
       /* harmony import */
 
 
-      var _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_148__ = __webpack_require__(
+      var _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_147__ = __webpack_require__(
       /*! ./apps/livraison/livraisonreussi/livraisonreussi.component */
       "six9");
       /* harmony import */
 
 
-      var _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_149__ = __webpack_require__(
+      var _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_148__ = __webpack_require__(
       /*! ./apps/livraison/livraisonechoue/livraisonechoue.component */
       "Nc2I");
       /* harmony import */
 
 
-      var _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_150__ = __webpack_require__(
+      var _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_149__ = __webpack_require__(
       /*! ./apps/vente/parametrage/parametrage.component */
       "O8Ab");
       /* harmony import */
 
 
-      var _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_151__ = __webpack_require__(
+      var _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_150__ = __webpack_require__(
       /*! ./apps/vente/parametrage-vente/parametrage-vente.component */
       "8Gg0");
       /* harmony import */
 
 
-      var _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_152__ = __webpack_require__(
+      var _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_151__ = __webpack_require__(
       /*! ./apps/vente/nouveauvente/nouveauvente.component */
       "JL6J");
       /* harmony import */
 
 
-      var _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_153__ = __webpack_require__(
+      var _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_152__ = __webpack_require__(
       /*! ./apps/vente/rapportsvente/rapportsvente.component */
       "GgHU");
       /* harmony import */
 
 
-      var _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__ = __webpack_require__(
+      var _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_153__ = __webpack_require__(
       /*! ./apps/vente/tableaubordvente/tableaubordvente.component */
       "8KQc");
       /* harmony import */
 
 
-      var _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_155__ = __webpack_require__(
+      var _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_154__ = __webpack_require__(
       /*! ./apps/envoi/ordinaireenvoi/ordinaireenvoi.component */
       "k7Oa");
       /* harmony import */
 
 
-      var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__ = __webpack_require__(
+      var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_155__ = __webpack_require__(
       /*! ./apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component */
       "bUil");
       /* harmony import */
 
 
-      var _profil_profil_component__WEBPACK_IMPORTED_MODULE_157__ = __webpack_require__(
+      var _profil_profil_component__WEBPACK_IMPORTED_MODULE_156__ = __webpack_require__(
       /*! ./profil/profil.component */
       "8IyQ");
 
@@ -10997,7 +11498,7 @@
 
       AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], primeng_accordion__WEBPACK_IMPORTED_MODULE_8__["AccordionModule"], primeng_autocomplete__WEBPACK_IMPORTED_MODULE_9__["AutoCompleteModule"], primeng_avatar__WEBPACK_IMPORTED_MODULE_10__["AvatarModule"], primeng_avatargroup__WEBPACK_IMPORTED_MODULE_11__["AvatarGroupModule"], primeng_badge__WEBPACK_IMPORTED_MODULE_12__["BadgeModule"], primeng_breadcrumb__WEBPACK_IMPORTED_MODULE_13__["BreadcrumbModule"], primeng_button__WEBPACK_IMPORTED_MODULE_14__["ButtonModule"], primeng_calendar__WEBPACK_IMPORTED_MODULE_15__["CalendarModule"], primeng_card__WEBPACK_IMPORTED_MODULE_16__["CardModule"], primeng_carousel__WEBPACK_IMPORTED_MODULE_17__["CarouselModule"], primeng_cascadeselect__WEBPACK_IMPORTED_MODULE_18__["CascadeSelectModule"], primeng_chart__WEBPACK_IMPORTED_MODULE_19__["ChartModule"], primeng_checkbox__WEBPACK_IMPORTED_MODULE_20__["CheckboxModule"], primeng_chip__WEBPACK_IMPORTED_MODULE_21__["ChipModule"], primeng_chips__WEBPACK_IMPORTED_MODULE_22__["ChipsModule"], primeng_codehighlighter__WEBPACK_IMPORTED_MODULE_23__["CodeHighlighterModule"], primeng_confirmdialog__WEBPACK_IMPORTED_MODULE_24__["ConfirmDialogModule"], primeng_confirmpopup__WEBPACK_IMPORTED_MODULE_25__["ConfirmPopupModule"], primeng_colorpicker__WEBPACK_IMPORTED_MODULE_26__["ColorPickerModule"], primeng_contextmenu__WEBPACK_IMPORTED_MODULE_27__["ContextMenuModule"], primeng_dataview__WEBPACK_IMPORTED_MODULE_28__["DataViewModule"], primeng_dialog__WEBPACK_IMPORTED_MODULE_29__["DialogModule"], primeng_divider__WEBPACK_IMPORTED_MODULE_30__["DividerModule"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_31__["DropdownModule"], primeng_fieldset__WEBPACK_IMPORTED_MODULE_32__["FieldsetModule"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_33__["FileUploadModule"], primeng_fullcalendar__WEBPACK_IMPORTED_MODULE_34__["FullCalendarModule"], primeng_galleria__WEBPACK_IMPORTED_MODULE_35__["GalleriaModule"], primeng_inplace__WEBPACK_IMPORTED_MODULE_36__["InplaceModule"], primeng_inputnumber__WEBPACK_IMPORTED_MODULE_37__["InputNumberModule"], primeng_inputmask__WEBPACK_IMPORTED_MODULE_38__["InputMaskModule"], primeng_inputswitch__WEBPACK_IMPORTED_MODULE_39__["InputSwitchModule"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_40__["InputTextModule"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_41__["InputTextareaModule"], primeng_knob__WEBPACK_IMPORTED_MODULE_42__["KnobModule"], primeng_lightbox__WEBPACK_IMPORTED_MODULE_43__["LightboxModule"], primeng_listbox__WEBPACK_IMPORTED_MODULE_44__["ListboxModule"], primeng_megamenu__WEBPACK_IMPORTED_MODULE_45__["MegaMenuModule"], primeng_menu__WEBPACK_IMPORTED_MODULE_46__["MenuModule"], primeng_menubar__WEBPACK_IMPORTED_MODULE_47__["MenubarModule"], primeng_message__WEBPACK_IMPORTED_MODULE_49__["MessageModule"], primeng_messages__WEBPACK_IMPORTED_MODULE_48__["MessagesModule"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_50__["MultiSelectModule"], primeng_orderlist__WEBPACK_IMPORTED_MODULE_51__["OrderListModule"], primeng_organizationchart__WEBPACK_IMPORTED_MODULE_52__["OrganizationChartModule"], primeng_overlaypanel__WEBPACK_IMPORTED_MODULE_53__["OverlayPanelModule"], primeng_paginator__WEBPACK_IMPORTED_MODULE_54__["PaginatorModule"], primeng_panel__WEBPACK_IMPORTED_MODULE_55__["PanelModule"], primeng_panelmenu__WEBPACK_IMPORTED_MODULE_56__["PanelMenuModule"], primeng_password__WEBPACK_IMPORTED_MODULE_57__["PasswordModule"], primeng_picklist__WEBPACK_IMPORTED_MODULE_58__["PickListModule"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_59__["ProgressBarModule"], primeng_radiobutton__WEBPACK_IMPORTED_MODULE_60__["RadioButtonModule"], primeng_rating__WEBPACK_IMPORTED_MODULE_61__["RatingModule"], primeng_ripple__WEBPACK_IMPORTED_MODULE_62__["RippleModule"], primeng_scrollpanel__WEBPACK_IMPORTED_MODULE_63__["ScrollPanelModule"], primeng_scrolltop__WEBPACK_IMPORTED_MODULE_64__["ScrollTopModule"], primeng_selectbutton__WEBPACK_IMPORTED_MODULE_65__["SelectButtonModule"], primeng_sidebar__WEBPACK_IMPORTED_MODULE_66__["SidebarModule"], primeng_skeleton__WEBPACK_IMPORTED_MODULE_67__["SkeletonModule"], primeng_slidemenu__WEBPACK_IMPORTED_MODULE_68__["SlideMenuModule"], primeng_slider__WEBPACK_IMPORTED_MODULE_69__["SliderModule"], primeng_splitbutton__WEBPACK_IMPORTED_MODULE_70__["SplitButtonModule"], primeng_splitter__WEBPACK_IMPORTED_MODULE_71__["SplitterModule"], primeng_steps__WEBPACK_IMPORTED_MODULE_72__["StepsModule"], primeng_table__WEBPACK_IMPORTED_MODULE_74__["TableModule"], primeng_tabmenu__WEBPACK_IMPORTED_MODULE_73__["TabMenuModule"], primeng_tabview__WEBPACK_IMPORTED_MODULE_75__["TabViewModule"], primeng_tag__WEBPACK_IMPORTED_MODULE_76__["TagModule"], primeng_terminal__WEBPACK_IMPORTED_MODULE_77__["TerminalModule"], primeng_timeline__WEBPACK_IMPORTED_MODULE_79__["TimelineModule"], primeng_tieredmenu__WEBPACK_IMPORTED_MODULE_78__["TieredMenuModule"], primeng_toast__WEBPACK_IMPORTED_MODULE_80__["ToastModule"], primeng_togglebutton__WEBPACK_IMPORTED_MODULE_81__["ToggleButtonModule"], primeng_toolbar__WEBPACK_IMPORTED_MODULE_82__["ToolbarModule"], primeng_tooltip__WEBPACK_IMPORTED_MODULE_83__["TooltipModule"], primeng_tree__WEBPACK_IMPORTED_MODULE_84__["TreeModule"], primeng_treetable__WEBPACK_IMPORTED_MODULE_85__["TreeTableModule"], primeng_virtualscroller__WEBPACK_IMPORTED_MODULE_86__["VirtualScrollerModule"], _app_code_component__WEBPACK_IMPORTED_MODULE_87__["AppCodeModule"]],
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_88__["AppComponent"], _app_main_component__WEBPACK_IMPORTED_MODULE_89__["AppMainComponent"], _app_menu_component__WEBPACK_IMPORTED_MODULE_95__["AppMenuComponent"], _app_menuitem_component__WEBPACK_IMPORTED_MODULE_96__["AppMenuitemComponent"], _app_topbar_component__WEBPACK_IMPORTED_MODULE_97__["AppTopBarComponent"], _app_footer_component__WEBPACK_IMPORTED_MODULE_98__["AppFooterComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _app_config_component__WEBPACK_IMPORTED_MODULE_90__["AppConfigComponent"], _demo_view_dashboarddemo_component__WEBPACK_IMPORTED_MODULE_100__["DashboardDemoComponent"], _demo_view_documentation_component__WEBPACK_IMPORTED_MODULE_101__["DocumentationComponent"], _demo_view_formlayoutdemo_component__WEBPACK_IMPORTED_MODULE_110__["FormLayoutDemoComponent"], _pages_app_notfound_component__WEBPACK_IMPORTED_MODULE_91__["AppNotfoundComponent"], _pages_app_error_component__WEBPACK_IMPORTED_MODULE_92__["AppErrorComponent"], _pages_app_accessdenied_component__WEBPACK_IMPORTED_MODULE_93__["AppAccessdeniedComponent"], _pages_app_login_component__WEBPACK_IMPORTED_MODULE_94__["AppLoginComponent"], _pages_app_crud_component__WEBPACK_IMPORTED_MODULE_111__["AppCrudComponent"], _pages_app_calendar_component__WEBPACK_IMPORTED_MODULE_112__["AppCalendarComponent"], _pages_app_timelinedemo_component__WEBPACK_IMPORTED_MODULE_113__["AppTimelineDemoComponent"], _pages_app_invoice_component__WEBPACK_IMPORTED_MODULE_114__["AppInvoiceComponent"], _pages_app_help_component__WEBPACK_IMPORTED_MODULE_115__["AppHelpComponent"], _apps_colis_reception_reception_component__WEBPACK_IMPORTED_MODULE_116__["ReceptionComponent"], _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_141__["RechercheComponent"], _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_142__["EnstockComponent"], _apps_parametrage_categorie_categorie_component__WEBPACK_IMPORTED_MODULE_117__["CategorieComponent"], _apps_parametrage_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_118__["UtilisateursComponent"], _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_119__["AccessComponent"], _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_120__["EmsComponent"], _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_121__["ColisComponent"], _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_122__["RecommandeComponent"], _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_123__["TableaubordComponent"], _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_124__["OrdinaireComponent"], _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_125__["EmsreceptionComponent"], _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_126__["TableaubordreceptionComponent"], _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_127__["RecommandereceptionComponent"], _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_128__["ColisreceptionComponent"], _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_129__["NouveauComponent"], _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_130__["EditionComponent"], _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_131__["NouveaucolisComponent"], _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_132__["EditioncolisComponent"], _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_133__["NouveaurecommandeComponent"], _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_134__["NouveauemsreceptionComponent"], _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_135__["EditreceptionComponent"], _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_136__["NouveaucolisreceptionComponent"], _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_137__["NouveaurecommandereceptionComponent"], _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_138__["NouveauordinairereceptionComponent"], _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_139__["SuiviComponent"], _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_140__["TableaubordstocksComponent"], _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_143__["EsuuqComponent"], _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_144__["NouveauesuuqComponent"], _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_145__["DefaillantComponent"], _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_146__["LivraisonComponent"], _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_147__["NouveaulivraisonComponent"], _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_148__["LivraisonreussiComponent"], _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_149__["LivraisonechoueComponent"], _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_150__["ParametrageComponent"], _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_151__["ParametrageVenteComponent"], _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_152__["NouveauventeComponent"], _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_153__["RapportsventeComponent"], _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__["TableaubordventeComponent"], _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_155__["OrdinaireenvoiComponent"], _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__["NouveauordinaireComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _profil_profil_component__WEBPACK_IMPORTED_MODULE_157__["ProfilComponent"]],
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_88__["AppComponent"], _app_main_component__WEBPACK_IMPORTED_MODULE_89__["AppMainComponent"], _app_menu_component__WEBPACK_IMPORTED_MODULE_95__["AppMenuComponent"], _app_menuitem_component__WEBPACK_IMPORTED_MODULE_96__["AppMenuitemComponent"], _app_topbar_component__WEBPACK_IMPORTED_MODULE_97__["AppTopBarComponent"], _app_footer_component__WEBPACK_IMPORTED_MODULE_98__["AppFooterComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _app_config_component__WEBPACK_IMPORTED_MODULE_90__["AppConfigComponent"], _demo_view_dashboarddemo_component__WEBPACK_IMPORTED_MODULE_100__["DashboardDemoComponent"], _demo_view_documentation_component__WEBPACK_IMPORTED_MODULE_101__["DocumentationComponent"], _demo_view_formlayoutdemo_component__WEBPACK_IMPORTED_MODULE_110__["FormLayoutDemoComponent"], _pages_app_notfound_component__WEBPACK_IMPORTED_MODULE_91__["AppNotfoundComponent"], _pages_app_error_component__WEBPACK_IMPORTED_MODULE_92__["AppErrorComponent"], _pages_app_accessdenied_component__WEBPACK_IMPORTED_MODULE_93__["AppAccessdeniedComponent"], _pages_app_login_component__WEBPACK_IMPORTED_MODULE_94__["AppLoginComponent"], _pages_app_crud_component__WEBPACK_IMPORTED_MODULE_111__["AppCrudComponent"], _pages_app_calendar_component__WEBPACK_IMPORTED_MODULE_112__["AppCalendarComponent"], _pages_app_timelinedemo_component__WEBPACK_IMPORTED_MODULE_113__["AppTimelineDemoComponent"], _pages_app_invoice_component__WEBPACK_IMPORTED_MODULE_114__["AppInvoiceComponent"], _pages_app_help_component__WEBPACK_IMPORTED_MODULE_115__["AppHelpComponent"], _apps_colis_reception_reception_component__WEBPACK_IMPORTED_MODULE_116__["ReceptionComponent"], _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_140__["RechercheComponent"], _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_141__["EnstockComponent"], _apps_parametrage_categorie_categorie_component__WEBPACK_IMPORTED_MODULE_117__["CategorieComponent"], _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_118__["AccessComponent"], _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_119__["EmsComponent"], _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_120__["ColisComponent"], _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_121__["RecommandeComponent"], _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_122__["TableaubordComponent"], _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_123__["OrdinaireComponent"], _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_124__["EmsreceptionComponent"], _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_125__["TableaubordreceptionComponent"], _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_126__["RecommandereceptionComponent"], _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_127__["ColisreceptionComponent"], _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_128__["NouveauComponent"], _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_129__["EditionComponent"], _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_130__["NouveaucolisComponent"], _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_131__["EditioncolisComponent"], _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_132__["NouveaurecommandeComponent"], _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_133__["NouveauemsreceptionComponent"], _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_134__["EditreceptionComponent"], _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_135__["NouveaucolisreceptionComponent"], _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_136__["NouveaurecommandereceptionComponent"], _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_137__["NouveauordinairereceptionComponent"], _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_138__["SuiviComponent"], _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_139__["TableaubordstocksComponent"], _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_142__["EsuuqComponent"], _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_143__["NouveauesuuqComponent"], _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_144__["DefaillantComponent"], _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_145__["LivraisonComponent"], _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_146__["NouveaulivraisonComponent"], _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_147__["LivraisonreussiComponent"], _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_148__["LivraisonechoueComponent"], _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_149__["ParametrageComponent"], _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_150__["ParametrageVenteComponent"], _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_151__["NouveauventeComponent"], _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_152__["RapportsventeComponent"], _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_153__["TableaubordventeComponent"], _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_154__["OrdinaireenvoiComponent"], _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_155__["NouveauordinaireComponent"], _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"], _profil_profil_component__WEBPACK_IMPORTED_MODULE_156__["ProfilComponent"]],
         providers: [{
           provide: _angular_common__WEBPACK_IMPORTED_MODULE_6__["LocationStrategy"],
           useClass: _angular_common__WEBPACK_IMPORTED_MODULE_6__["HashLocationStrategy"]
@@ -11439,7 +11940,7 @@
         _createClass(NouveauemsreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this57 = this;
+            var _this62 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -11467,24 +11968,24 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this57.typeactivites = [];
+              _this62.typeactivites = [];
               response.forEach(function (element) {
                 console.log(element);
 
                 if (element['name'] == 'EMS - EE') {
-                  _this57.typeactivite = {
+                  _this62.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this57.typeactivites.push({
+                _this62.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this57.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this62.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
             /**
             *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -11496,21 +11997,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this57.countries = [];
+              _this62.countries = [];
               response.forEach(function (element) {
-                _this57.countries.push({
+                _this62.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this57.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this62.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this58 = this;
+            var _this63 = this;
 
             /*
               let amontsection = emsForm['reference'].substring(0,2);
@@ -11532,38 +12033,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this58.receptiondto.reference = emsForm['reference'];
-                _this58.receptiondto.name = 'EMS - EXPRESS MAIL SERVICE';
-                _this58.receptiondto.type = emsForm['typearticle'];
-                _this58.receptiondto.adresse = emsForm['adresse'];
-                _this58.receptiondto.nomsender = emsForm['nomsender'];
-                _this58.receptiondto.telexpediteur = emsForm['telexpediteur'];
-                _this58.receptiondto.namerecipient = emsForm['namerecipient'];
-                _this58.receptiondto.telrecipient = emsForm['telrecipient'];
-                _this58.receptiondto.email = emsForm['email'];
-                _this58.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(emsForm['datereception'], format, locale);
-                _this58.receptiondto.typearticle = _this58.typeactivite.code;
-                _this58.receptiondto.dommage = _this58.dommage;
-                _this58.receptiondto.commentaire = emsForm['commentaire'];
-                _this58.receptiondto.envoisms = _this58.envoisms;
-                _this58.receptiondto.paysrecipient = _this58.selectedCountrydestinateur['code'];
-                _this58.receptiondto.paysexpediteur = _this58.selectedCountryexpediteur['code'];
+                _this63.receptiondto.reference = emsForm['reference'];
+                _this63.receptiondto.name = 'EMS - EXPRESS MAIL SERVICE';
+                _this63.receptiondto.type = emsForm['typearticle'];
+                _this63.receptiondto.adresse = emsForm['adresse'];
+                _this63.receptiondto.nomsender = emsForm['nomsender'];
+                _this63.receptiondto.telexpediteur = emsForm['telexpediteur'];
+                _this63.receptiondto.namerecipient = emsForm['namerecipient'];
+                _this63.receptiondto.telrecipient = emsForm['telrecipient'];
+                _this63.receptiondto.email = emsForm['email'];
+                _this63.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(emsForm['datereception'], format, locale);
+                _this63.receptiondto.typearticle = _this63.typeactivite.code;
+                _this63.receptiondto.dommage = _this63.dommage;
+                _this63.receptiondto.commentaire = emsForm['commentaire'];
+                _this63.receptiondto.envoisms = _this63.envoisms;
+                _this63.receptiondto.paysrecipient = _this63.selectedCountrydestinateur['code'];
+                _this63.receptiondto.paysexpediteur = _this63.selectedCountryexpediteur['code'];
 
-                _this58.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this58.receptiondto, {
+                _this63.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this63.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this58.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this63.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this58.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                  _this63.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                 }, function (error) {
-                  _this58.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
+                  _this63.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.message);
                 });
               } else {
-                _this58.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this63.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this58.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this63.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -11783,10 +12284,10 @@
         _createClass(EditionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this59 = this;
+            var _this64 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this59.value = params.id;
+              _this64.value = params.id;
             });
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -11802,21 +12303,21 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this59.envoidto.reference = response['reference'];
-              _this59.envoidto.type = response['type'];
-              _this59.envoidto.adresse = response['adresse'];
-              _this59.envoidto.nomsender = response['nomsender'];
-              _this59.envoidto.telexpediteur = response['telexpediteur'];
-              _this59.envoidto.namerecipient = response['namerecipient'];
-              _this59.envoidto.telrecipient = response['telrecipient'];
+              _this64.envoidto.reference = response['reference'];
+              _this64.envoidto.type = response['type'];
+              _this64.envoidto.adresse = response['adresse'];
+              _this64.envoidto.nomsender = response['nomsender'];
+              _this64.envoidto.telexpediteur = response['telexpediteur'];
+              _this64.envoidto.namerecipient = response['namerecipient'];
+              _this64.envoidto.telrecipient = response['telrecipient'];
             }, function (error) {
-              _this59.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
+              _this64.showWarn("L'article a modifié n'a pas pu etre chargé, Voici la raison " + error.message);
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this60 = this;
+            var _this65 = this;
 
             var amontsection = emsForm['reference'].substring(0, 2);
             var numbersection = Number(emsForm['reference'].substring(2, 11));
@@ -11838,9 +12339,9 @@
                     'Authorization': 'Bearer ' + this.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this60.showSuccess("L'article a été mise à jour avec success !!! ");
+                  _this65.showSuccess("L'article a été mise à jour avec success !!! ");
                 }, function (error) {
-                  _this60.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                  _this65.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                 });
               } else {
                 this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/reference?reference=" + emsForm['reference'], {
@@ -11849,27 +12350,27 @@
                   })
                 }).subscribe(function (response) {
                   if (response == null) {
-                    _this60.envoidto.reference = emsForm['reference'];
-                    _this60.envoidto.adresse = emsForm['adresse'];
-                    _this60.envoidto.nomsender = emsForm['nomsender'];
-                    _this60.envoidto.telexpediteur = emsForm['telexpediteur'];
-                    _this60.envoidto.namerecipient = emsForm['namerecipient'];
-                    _this60.envoidto.telrecipient = emsForm['telrecipient'];
+                    _this65.envoidto.reference = emsForm['reference'];
+                    _this65.envoidto.adresse = emsForm['adresse'];
+                    _this65.envoidto.nomsender = emsForm['nomsender'];
+                    _this65.envoidto.telexpediteur = emsForm['telexpediteur'];
+                    _this65.envoidto.namerecipient = emsForm['namerecipient'];
+                    _this65.envoidto.telrecipient = emsForm['telrecipient'];
 
-                    _this60.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + _this60.value, _this60.envoidto, {
+                    _this65.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/edit?id=" + _this65.value, _this65.envoidto, {
                       headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                        'Authorization': 'Bearer ' + _this60.tokenStorage.getToken()
+                        'Authorization': 'Bearer ' + _this65.tokenStorage.getToken()
                       })
                     }).subscribe(function (response) {
-                      _this60.showSuccess("L'article a été mise à jour avec success !!! ");
+                      _this65.showSuccess("L'article a été mise à jour avec success !!! ");
                     }, function (error) {
-                      _this60.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                      _this65.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                     });
                   } else {
-                    _this60.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                    _this65.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                   }
                 }, function (error) {
-                  _this60.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                  _this65.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
                 });
               }
             }
@@ -12113,7 +12614,7 @@
         _createClass(NouveauordinaireComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this61 = this;
+            var _this66 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -12134,28 +12635,28 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this61.typeactivites = [];
+              _this66.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'ORDINAIRE') {
-                  _this61.typeactivite = {
+                  _this66.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this61.typeactivites.push({
+                _this66.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this61.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this66.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this62 = this;
+            var _this67 = this;
 
             var amontsection = emsForm['reference'].substring(0, 2);
             var numbersection = Number(emsForm['reference'].substring(2, 11));
@@ -12172,31 +12673,31 @@
                 })
               }).subscribe(function (response) {
                 if (response == null) {
-                  _this62.envoidto.reference = emsForm['reference'];
-                  _this62.envoidto.name = 'ORDINAIRE';
-                  _this62.envoidto.type = emsForm['typearticle'];
-                  _this62.envoidto.adresse = emsForm['adresse'];
-                  _this62.envoidto.nomsender = emsForm['nomsender'];
-                  _this62.envoidto.telexpediteur = emsForm['telexpediteur'];
-                  _this62.envoidto.namerecipient = emsForm['namerecipient'];
-                  _this62.envoidto.telrecipient = emsForm['telrecipient'];
-                  _this62.envoidto.typearticle = _this62.typeactivite.code;
+                  _this67.envoidto.reference = emsForm['reference'];
+                  _this67.envoidto.name = 'ORDINAIRE';
+                  _this67.envoidto.type = emsForm['typearticle'];
+                  _this67.envoidto.adresse = emsForm['adresse'];
+                  _this67.envoidto.nomsender = emsForm['nomsender'];
+                  _this67.envoidto.telexpediteur = emsForm['telexpediteur'];
+                  _this67.envoidto.namerecipient = emsForm['namerecipient'];
+                  _this67.envoidto.telrecipient = emsForm['telrecipient'];
+                  _this67.envoidto.typearticle = _this67.typeactivite.code;
 
-                  _this62.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this62.envoidto, {
+                  _this67.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this67.envoidto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this62.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this67.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this62.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                    _this67.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                   }, function (error) {
-                    _this62.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                    _this67.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                   });
                 } else {
-                  _this62.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this67.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
               }, function (error) {
-                _this62.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this67.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -12374,7 +12875,7 @@
 
       var environment = {
         production: true,
-        url: 'https://lapostedjib.herokuapp.com'
+        url: 'http://192.168.0.58:8845'
       };
       /***/
     },
@@ -12469,7 +12970,7 @@
         _createClass(ColisComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this63 = this;
+            var _this68 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -12479,10 +12980,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this63.listcolis = response;
-              console.log(_this63.listcolis);
+              _this68.listcolis = response;
+              console.log(_this68.listcolis);
             }, function (error) {
-              _this63.showWarn("Les article  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this68.showWarn("Les article  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -12508,7 +13009,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this64 = this;
+            var _this69 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -12523,7 +13024,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this64.exportColumns, _this64.getDatas());
+                doc.autoTable(_this69.exportColumns, _this69.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -12531,14 +13032,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this65 = this;
+            var _this70 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this65.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this70.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -12550,7 +13051,7 @@
                 type: 'array'
               });
 
-              _this65.saveAsExcelFile(excelBuffer, "primengTable");
+              _this70.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -12764,13 +13265,13 @@
         }, {
           key: "getAuthorities",
           value: function getAuthorities() {
-            var _this66 = this;
+            var _this71 = this;
 
             this.roles = [];
 
             if (sessionStorage.getItem(TOKEN_KEY)) {
               JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(function (authority) {
-                _this66.roles.push(authority.authority);
+                _this71.roles.push(authority.authority);
               });
             }
 
@@ -12916,10 +13417,10 @@
         _createClass(AppCalendarComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this67 = this;
+            var _this72 = this;
 
             this.eventService.getEvents().then(function (events) {
-              _this67.events = events;
+              _this72.events = events;
             });
             this.changedEvent = {
               title: '',
@@ -12937,11 +13438,11 @@
               },
               editable: true,
               eventClick: function eventClick(e) {
-                _this67.eventDialog = true;
-                _this67.clickedEvent = e.event;
-                _this67.changedEvent.title = _this67.clickedEvent.title;
-                _this67.changedEvent.start = _this67.clickedEvent.start;
-                _this67.changedEvent.end = _this67.clickedEvent.end;
+                _this72.eventDialog = true;
+                _this72.clickedEvent = e.event;
+                _this72.changedEvent.title = _this72.clickedEvent.title;
+                _this72.changedEvent.start = _this72.clickedEvent.start;
+                _this72.changedEvent.end = _this72.clickedEvent.end;
               }
             };
           }
@@ -13023,7 +13524,7 @@
 
       AppFooterComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-footer',
-        template: "\n        <div class=\"layout-footer\">\n            <span class=\"footer-text-left\">\n                <img src=\"assets/layout/images/logo-dark.png\" />\n            </span>\n            <span class=\"footer-text-right\">\n                <a href=\"#\"><i class=\"pi pi-facebook\"></i></a>\n                <a href=\"#\"><i class=\"pi pi-twitter\"></i></a>\n                <a href=\"#\"><i class=\"pi pi-github\"></i></a>\n            </span>\n        </div>\n    "
+        template: "\n        <div class=\"layout-footer\">\n            <span class=\"footer-text-left\">\n                <b color=\"#00438b;\"> <u> Freelance - La poste de Djibouti </u> </b>\n            </span>\n            <span class=\"footer-text-right\">\n                <a href=\"#\"><i class=\"pi pi-facebook\"></i></a>\n                <a href=\"#\"><i class=\"pi pi-twitter\"></i></a>\n                <a href=\"#\"><i class=\"pi pi-github\"></i></a>\n            </span>\n        </div>\n    "
       })], AppFooterComponent);
       /***/
     },
@@ -13174,26 +13675,6 @@
 
 
       __webpack_exports__["default"] = "img.logo {\n  width: 20%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXGFwcC5sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFVBQUE7QUFDSiIsImZpbGUiOiJhcHAubG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpbWcubG9nbyB7XHJcbiAgICB3aWR0aDogMjAlO1xyXG59Il19 */";
-      /***/
-    },
-
-    /***/
-    "hNcx":
-    /*!*****************************************************************************************************************!*\
-      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/apps/parametrage/utilisateurs/utilisateurs.component.html ***!
-      \*****************************************************************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function hNcx(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "<p>utilisateurs works!</p>\n";
       /***/
     },
 
@@ -13429,7 +13910,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<p>access works!</p>\n";
+      __webpack_exports__["default"] = "<div class=\" card dashboard p-grid\">   \n\n    <div class=\"col-lg-12\">\n        <p-table #dt [value]=\"users\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n        styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n        [filterDelay]=\"0\" [globalFilterFields]=\"['username']\">\n        <ng-template pTemplate=\"caption\">\n            <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n           \n            </div>\n        </ng-template>\n            <ng-template pTemplate=\"header\">\n                <tr>               \n                    <th pSortableColumn=\"username\">Username <p-sortIcon field=\"username\"></p-sortIcon></th>\n                    <th pSortableColumn=\"nom\"> Nom <p-sortIcon field=\"nom\"></p-sortIcon> </th>\n                    <th pSortableColumn=\"role\"> Role <p-sortIcon field=\"role\"></p-sortIcon> </th>                  \n                    <th> Action</th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-user>\n                <tr class=\"p-selectable-row\">\n                    <td> {{user.username}} </td>\n                    <td> {{user.nom}} </td>                    \n                    <td> <span *ngFor=\"let r of user.role\">  {{r}} - </span></td>\n                    <td>  \n                        <button pButton pRipple type=\"button\" label=\"Edit Proil \" class=\"p-button-outlined p-button-rounded\"></button> &nbsp; &nbsp;\n                        <button pButton pRipple type=\"button\" label=\"edit password \" class=\"p-button-outlined p-button-rounded p-button-success\"></button> &nbsp; &nbsp;\n                        <button pButton pRipple type=\"button\" label=\"disabled  \" class=\"p-button-outlined p-button-rounded p-button-danger\"></button> &nbsp; &nbsp;\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td colspan=\"3\">\n                        <span>  Aucun  données. </span>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n\n</div>";
       /***/
     },
 
@@ -13851,7 +14332,7 @@
         _createClass(OrdinaireenvoiComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this68 = this;
+            var _this73 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -13861,10 +14342,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this68.listems = response;
-              console.log(_this68.listems);
+              _this73.listems = response;
+              console.log(_this73.listems);
             }, function (error) {
-              _this68.showWarn("Les articles Ordinaire  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this73.showWarn("Les articles Ordinaire  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -13890,7 +14371,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this69 = this;
+            var _this74 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -13905,7 +14386,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this69.exportColumns, _this69.getDatas());
+                doc.autoTable(_this74.exportColumns, _this74.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -13913,14 +14394,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this70 = this;
+            var _this75 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this70.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this75.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -13932,7 +14413,7 @@
                 type: 'array'
               });
 
-              _this70.saveAsExcelFile(excelBuffer, "primengTable");
+              _this75.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -14121,7 +14602,7 @@
 
       var AppMenuitemComponent = /*#__PURE__*/function () {
         function AppMenuitemComponent(appMain, router, cd, menuService) {
-          var _this71 = this;
+          var _this76 = this;
 
           _classCallCheck(this, AppMenuitemComponent);
 
@@ -14132,23 +14613,23 @@
           this.active = false;
           this.menuSourceSubscription = this.menuService.menuSource$.subscribe(function (key) {
             // deactivate current active menu
-            if (_this71.active && _this71.key !== key && key.indexOf(_this71.key) !== 0) {
-              _this71.active = false;
+            if (_this76.active && _this76.key !== key && key.indexOf(_this76.key) !== 0) {
+              _this76.active = false;
             }
           });
           this.menuResetSubscription = this.menuService.resetSource$.subscribe(function () {
-            _this71.active = false;
+            _this76.active = false;
           });
           this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (event) {
             return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"];
           })).subscribe(function (params) {
-            if (_this71.appMain.isHorizontal() || _this71.appMain.isSlim()) {
-              _this71.active = false;
+            if (_this76.appMain.isHorizontal() || _this76.appMain.isSlim()) {
+              _this76.active = false;
             } else {
-              if (_this71.item.routerLink) {
-                _this71.updateActiveStateFromRoute();
+              if (_this76.item.routerLink) {
+                _this76.updateActiveStateFromRoute();
               } else {
-                _this71.active = false;
+                _this76.active = false;
               }
             }
           });
@@ -14449,12 +14930,12 @@
         _createClass(RechercheComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this72 = this;
+            var _this77 = this;
 
             this.activeroute.queryParams.subscribe(function (params) {
-              _this72.parametre = params.id;
+              _this77.parametre = params.id;
 
-              _this72.serchByreferenceReceiveinparam(_this72.parametre);
+              _this77.serchByreferenceReceiveinparam(_this77.parametre);
             });
             this.rechercheForm = this.formBuilder.group({
               'reference': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required)
@@ -14463,7 +14944,7 @@
         }, {
           key: "serchByreferenceReceiveinparam",
           value: function serchByreferenceReceiveinparam(value) {
-            var _this73 = this;
+            var _this78 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche/resultat?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -14471,11 +14952,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this73.article = response;
+              _this78.article = response;
 
-              _this73.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this78.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this73.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this78.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/historique?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -14483,11 +14964,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this73.historiques = response;
+              _this78.historiques = response;
 
-              _this73.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this78.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this73.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this78.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/alarme?param=' + value, {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -14495,11 +14976,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this73.alarmes = response;
+              _this78.alarmes = response;
 
-              _this73.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this78.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this73.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this78.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
           }
           /**
@@ -14510,7 +14991,7 @@
         }, {
           key: "searchByReference",
           value: function searchByReference(event) {
-            var _this74 = this;
+            var _this79 = this;
 
             console.log(event);
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche?param=' + event.query, {
@@ -14519,15 +15000,15 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this74.string = response;
+              _this79.string = response;
             }, function (err) {
-              _this74.showError("La recherche n'est pas operationnel car une erreur c'est produit. Veuillez verifier que tout les services sont operationnels.*** voici l'erreur generer par le systeme :" + err.message);
+              _this79.showError("La recherche n'est pas operationnel car une erreur c'est produit. Veuillez verifier que tout les services sont operationnels.*** voici l'erreur generer par le systeme :" + err.message);
             });
           }
         }, {
           key: "findResultat",
           value: function findResultat(reference) {
-            var _this75 = this;
+            var _this80 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/stock/recherche/resultat?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -14535,11 +15016,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this75.article = response;
+              _this80.article = response;
 
-              _this75.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this80.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this75.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this80.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/historique?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -14547,11 +15028,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this75.historiques = response;
+              _this80.historiques = response;
 
-              _this75.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this80.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this75.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this80.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + '/api/postal/reception/alarme?param=' + reference['reference'], {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -14559,11 +15040,11 @@
               })
             }).subscribe(function (response) {
               console.log(response);
-              _this75.alarmes = response;
+              _this80.alarmes = response;
 
-              _this75.showInfo("Le chargement de l'information c'est deroulé avec success");
+              _this80.showInfo("Le chargement de l'information c'est deroulé avec success");
             }, function (error) {
-              _this75.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
+              _this80.showWarn("Une erreur c'est produit lors du chargement de l'information, veuillez contatcter l'administrateur systeme  et voici l'erreur  " + error.message);
             });
           }
           /**
@@ -14923,6 +15404,26 @@
     },
 
     /***/
+    "n2jU":
+    /*!********************************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/parametrage/gestion/utilisateurs/utilisateurs.component.html ***!
+      \********************************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function n2jU(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<div class=\" card dashboard p-grid\">    \n \n    <div class=\"col-lg-12\">\n        <p-table #dt [value]=\"users\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n        styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n        [filterDelay]=\"0\" [globalFilterFields]=\"['username']\">\n            \n            <ng-template pTemplate=\"header\">\n                <tr>               \n                    <th pSortableColumn=\"username\">Username <p-sortIcon field=\"username\"></p-sortIcon></th>\n                    <th pSortableColumn=\"nom\"> Nom <p-sortIcon field=\"nom\"></p-sortIcon> </th>\n                    <th pSortableColumn=\"role\"> Role <p-sortIcon field=\"role\"></p-sortIcon> </th>                  \n                    \n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-user>\n                <tr class=\"p-selectable-row\">\n                    <td> {{user.username}} </td>\n                    <td> {{user.nom}} </td>                    \n                    <td> <span *ngFo=\"let r of roles\">  {{r}} - </td>\n\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td colspan=\"8\">Aucune données.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n\n</div>\n\n<div class=\" card dashboard p-grid\">    \n    <p-table [value]=\"products\" responsiveLayout=\"scroll\">\n        <ng-template pTemplate=\"header\">\n            <tr>\n                <th>Code</th>\n                <th>Name</th>\n                <th>Category</th>\n                <th>Quantity</th>\n            </tr>\n        </ng-template>\n        <ng-template pTemplate=\"body\" let-product>\n            <tr>\n                <td>{{product.code}}</td>\n                <td>{{product.name}}</td>\n                <td>{{product.category}}</td>\n                <td>{{product.quantity}}</td>\n            </tr>\n        </ng-template>\n    </p-table>\n</div>";
+      /***/
+    },
+
+    /***/
     "oF4A":
     /*!*********************************************************************************************************************!*\
       !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/apps/livraison/livraisonechoue/livraisonechoue.component.html ***!
@@ -15052,7 +15553,7 @@
         _createClass(EnstockComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this76 = this;
+            var _this81 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -15062,10 +15563,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this76.liststocks = response;
-              console.log(_this76.liststocks);
+              _this81.liststocks = response;
+              console.log(_this81.liststocks);
             }, function (error) {
-              _this76.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this81.showWarn("Les articles en stocks  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
         }, {
@@ -15081,7 +15582,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this77 = this;
+            var _this82 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -15096,7 +15597,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this77.exportColumns, _this77.getDatas());
+                doc.autoTable(_this82.exportColumns, _this82.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -15104,14 +15605,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this78 = this;
+            var _this83 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this78.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this83.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -15123,7 +15624,7 @@
                 type: 'array'
               });
 
-              _this78.saveAsExcelFile(excelBuffer, "primengTable");
+              _this83.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -15361,7 +15862,7 @@
         _createClass(TableaubordComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this79 = this;
+            var _this84 = this;
 
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord1", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -15379,7 +15880,7 @@
                 colors.push(element['color']);
                 i++;
               });
-              _this79.tableaubord1 = {
+              _this84.tableaubord1 = {
                 labels: [].concat(labels),
                 datasets: [{
                   data: [].concat(results),
@@ -15388,7 +15889,7 @@
                 }]
               };
             }, function (error) {
-              _this79.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this84.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/tableau/bord2", {
               headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -15421,13 +15922,13 @@
               });
               Promise.all(['result']).then(function () {
                 console.log(datas);
-                _this79.basicData = {
+                _this84.basicData = {
                   labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                   datasets: [].concat(datas)
                 };
               });
             }, function (error) {
-              _this79.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+              _this84.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -15438,10 +15939,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this79.listems = response;
-              console.log(_this79.listems);
+              _this84.listems = response;
+              console.log(_this84.listems);
             }, function (error) {
-              _this79.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this84.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
         }, {
@@ -15453,14 +15954,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this80 = this;
+            var _this85 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this80.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this85.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -15472,7 +15973,7 @@
                 type: 'array'
               });
 
-              _this80.saveAsExcelFile(excelBuffer, "primengTable");
+              _this85.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -15702,7 +16203,7 @@
         _createClass(NouveauComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this81 = this;
+            var _this86 = this;
 
             this.emsForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](''),
@@ -15723,28 +16224,28 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this81.typeactivites = [];
+              _this86.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'EMS - EE') {
-                  _this81.typeactivite = {
+                  _this86.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this81.typeactivites.push({
+                _this86.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this81.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
+              _this86.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - EMS ");
             });
           }
         }, {
           key: "save",
           value: function save(emsForm) {
-            var _this82 = this;
+            var _this87 = this;
 
             console.log(emsForm);
             var amontsection = emsForm['reference'].substring(0, 2);
@@ -15761,31 +16262,31 @@
                 })
               }).subscribe(function (response) {
                 if (response == null) {
-                  _this82.envoidto.reference = emsForm['reference'];
-                  _this82.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
-                  _this82.envoidto.type = emsForm['typearticle'];
-                  _this82.envoidto.adresse = emsForm['adresse'];
-                  _this82.envoidto.nomsender = emsForm['nomsender'];
-                  _this82.envoidto.telexpediteur = emsForm['telexpediteur'];
-                  _this82.envoidto.namerecipient = emsForm['namerecipient'];
-                  _this82.envoidto.telrecipient = emsForm['telrecipient'];
-                  _this82.envoidto.typearticle = _this82.typeactivite.code;
+                  _this87.envoidto.reference = emsForm['reference'];
+                  _this87.envoidto.name = 'EMS - EXPRESS MAIL SERVICE';
+                  _this87.envoidto.type = emsForm['typearticle'];
+                  _this87.envoidto.adresse = emsForm['adresse'];
+                  _this87.envoidto.nomsender = emsForm['nomsender'];
+                  _this87.envoidto.telexpediteur = emsForm['telexpediteur'];
+                  _this87.envoidto.namerecipient = emsForm['namerecipient'];
+                  _this87.envoidto.telrecipient = emsForm['telrecipient'];
+                  _this87.envoidto.typearticle = _this87.typeactivite.code;
 
-                  _this82.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this82.envoidto, {
+                  _this87.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_9__["environment"].url + "/api/postal/envoi/save", _this87.envoidto, {
                     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-                      'Authorization': 'Bearer ' + _this82.tokenStorage.getToken()
+                      'Authorization': 'Bearer ' + _this87.tokenStorage.getToken()
                     })
                   }).subscribe(function (response) {
-                    _this82.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
+                    _this87.showSuccess("Vous avez enregistrer avec success votre EMS  !!! ");
                   }, function (error) {
-                    _this82.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
+                    _this87.showError(" une erreur c'est produit et le système n'a pas enregitré votre EMS - La raison est voici : " + error.getMessage());
                   });
                 } else {
-                  _this82.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                  _this87.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
                 } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
               }, function (error) {
-                _this82.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+                _this87.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
               });
             }
           }
@@ -16041,7 +16542,7 @@
         _createClass(ColisreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this83 = this;
+            var _this88 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -16051,10 +16552,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this83.listems = response;
-              console.log(_this83.listems);
+              _this88.listems = response;
+              console.log(_this88.listems);
             }, function (error) {
-              _this83.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this88.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -16080,7 +16581,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this84 = this;
+            var _this89 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -16095,7 +16596,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this84.exportColumns, _this84.getDatas());
+                doc.autoTable(_this89.exportColumns, _this89.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -16103,14 +16604,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this85 = this;
+            var _this90 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this85.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this90.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -16122,7 +16623,7 @@
                 type: 'array'
               });
 
-              _this85.saveAsExcelFile(excelBuffer, "primengTable");
+              _this90.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -16490,7 +16991,7 @@
         _createClass(EmsComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this86 = this;
+            var _this91 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -16500,10 +17001,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this86.listems = response;
-              console.log(_this86.listems);
+              _this91.listems = response;
+              console.log(_this91.listems);
             }, function (error) {
-              _this86.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this91.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -16529,7 +17030,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this87 = this;
+            var _this92 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -16544,7 +17045,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this87.exportColumns, _this87.getDatas());
+                doc.autoTable(_this92.exportColumns, _this92.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -16552,14 +17053,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this88 = this;
+            var _this93 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this88.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this93.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -16571,7 +17072,7 @@
                 type: 'array'
               });
 
-              _this88.saveAsExcelFile(excelBuffer, "primengTable");
+              _this93.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -16964,7 +17465,7 @@
         _createClass(LivraisonreussiComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this89 = this;
+            var _this94 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -16974,10 +17475,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this89.liste = response;
-              console.log(_this89.liste);
+              _this94.liste = response;
+              console.log(_this94.liste);
             }, function (error) {
-              _this89.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.getMessage());
+              _this94.showWarn("La liste n'a pas pu etre affiché !!! voici la raison - " + error.getMessage());
             });
           }
         }, {
@@ -16997,7 +17498,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this90 = this;
+            var _this95 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -17012,7 +17513,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this90.exportColumns, _this90.getDatas());
+                doc.autoTable(_this95.exportColumns, _this95.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -17020,14 +17521,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this91 = this;
+            var _this96 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this91.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this96.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -17039,7 +17540,7 @@
                 type: 'array'
               });
 
-              _this91.saveAsExcelFile(excelBuffer, "livraison_echoue");
+              _this96.saveAsExcelFile(excelBuffer, "livraison_echoue");
             });
           }
         }, {
@@ -17313,7 +17814,7 @@
         _createClass(EmsreceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this92 = this;
+            var _this97 = this;
 
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES TYPE D ARTICLE
@@ -17323,10 +17824,10 @@
                 'Authorization': 'Bearer ' + this.tokenStorage.getToken()
               })
             }).subscribe(function (response) {
-              _this92.listems = response;
-              console.log(_this92.listems);
+              _this97.listems = response;
+              console.log(_this97.listems);
             }, function (error) {
-              _this92.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
+              _this97.showWarn("Les articles EMS  n'ont pas pu etre chargé, Voici la raison " + error.getMessage());
             });
           }
           /**
@@ -17352,7 +17853,7 @@
         }, {
           key: "exportPdf",
           value: function exportPdf() {
-            var _this93 = this;
+            var _this98 = this;
 
             __webpack_require__.e(
             /*! import() | jspdf */
@@ -17367,7 +17868,7 @@
                 var doc = new jsPDF["default"]({
                   orientation: "landscape"
                 });
-                doc.autoTable(_this93.exportColumns, _this93.getDatas());
+                doc.autoTable(_this98.exportColumns, _this98.getDatas());
                 doc.save('primengTable.pdf');
               });
             });
@@ -17375,14 +17876,14 @@
         }, {
           key: "exportExcel",
           value: function exportExcel() {
-            var _this94 = this;
+            var _this99 = this;
 
             __webpack_require__.e(
             /*! import() | xlsx */
             "xlsx").then(__webpack_require__.t.bind(null,
             /*! xlsx */
             "YaGY", 7)).then(function (xlsx) {
-              var worksheet = xlsx.utils.json_to_sheet(_this94.getDatas());
+              var worksheet = xlsx.utils.json_to_sheet(_this99.getDatas());
               var workbook = {
                 Sheets: {
                   'data': worksheet
@@ -17394,7 +17895,7 @@
                 type: 'array'
               });
 
-              _this94.saveAsExcelFile(excelBuffer, "primengTable");
+              _this99.saveAsExcelFile(excelBuffer, "primengTable");
             });
           }
         }, {
@@ -17853,6 +18354,12 @@
       var _profil_profil_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(
       /*! ./profil/profil.component */
       "8IyQ");
+      /* harmony import */
+
+
+      var _parametrage_gestion_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(
+      /*! ./parametrage/gestion/utilisateurs/utilisateurs.component */
+      "UQP5");
 
       var AppRoutingModule = function AppRoutingModule() {
         _classCallCheck(this, AppRoutingModule);
@@ -17896,7 +18403,7 @@
            */
           {
             path: 'parametrage/utilisateurs',
-            component: _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_11__["AccessComponent"]
+            component: _parametrage_gestion_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_48__["UtilisateursComponent"]
           }, {
             path: 'parametrage/categorie',
             component: _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_11__["AccessComponent"]
@@ -18356,7 +18863,7 @@
         _createClass(NouveauordinairereceptionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this95 = this;
+            var _this100 = this;
 
             this.ordinaireForm = this.formBuilder.group({
               'typearticle': new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
@@ -18384,22 +18891,22 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this95.typeactivites = [];
+              _this100.typeactivites = [];
               response.forEach(function (element) {
                 if (element['name'] == 'ORDINAIRE - N/A') {
-                  _this95.typeactivite = {
+                  _this100.typeactivite = {
                     code: element,
                     name: element['name']
                   };
                 }
 
-                _this95.typeactivites.push({
+                _this100.typeactivites.push({
                   code: element,
                   name: element['name']
                 });
               });
             }, function (error) {
-              _this95.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - ordinaire ");
+              _this100.showWarn("Le type d'article n'a pas pu etre chargé, vous pouvez continuer cela ne bloquera pas dans l'enregistrement de votre article - ordinaire ");
             });
             /**
              *  -- REQUETE POUR RECUPERER LA LISTE DES PAYS
@@ -18411,21 +18918,21 @@
               })
             }).subscribe(function () {
               var response = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-              _this95.countries = [];
+              _this100.countries = [];
               response.forEach(function (element) {
-                _this95.countries.push({
+                _this100.countries.push({
                   name: element['name'],
                   code: element['code']
                 });
               });
             }, function (error) {
-              _this95.showWarn("La liste des pays n'a pas pu etre chargé ");
+              _this100.showWarn("La liste des pays n'a pas pu etre chargé ");
             });
           }
         }, {
           key: "save",
           value: function save(ordinaireForm) {
-            var _this96 = this;
+            var _this101 = this;
 
             /*
             let amontsection = ordinaireForm['reference'].substring(0,2);
@@ -18447,38 +18954,38 @@
                 var format = 'yyyy-MM-dd';
                 var format_date = 'dd';
                 var locale = 'en-US';
-                _this96.receptiondto.reference = ordinaireForm['reference'];
-                _this96.receptiondto.name = 'ordinaire - EXPRESS MAIL SERVICE';
-                _this96.receptiondto.type = ordinaireForm['typearticle'];
-                _this96.receptiondto.adresse = ordinaireForm['adresse'];
-                _this96.receptiondto.nomsender = ordinaireForm['nomsender'];
-                _this96.receptiondto.telexpediteur = ordinaireForm['telexpediteur'];
-                _this96.receptiondto.namerecipient = ordinaireForm['namerecipient'];
-                _this96.receptiondto.telrecipient = ordinaireForm['telrecipient'];
-                _this96.receptiondto.email = ordinaireForm['email'];
-                _this96.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(ordinaireForm['datereception'], format, locale);
-                _this96.receptiondto.typearticle = _this96.typeactivite.code;
-                _this96.receptiondto.dommage = _this96.dommage;
-                _this96.receptiondto.commentaire = ordinaireForm['commentaire'];
-                _this96.receptiondto.envoisms = _this96.envoisms;
-                _this96.receptiondto.paysrecipient = _this96.selectedCountrydestinateur['code'];
-                _this96.receptiondto.paysexpediteur = _this96.selectedCountryexpediteur['code'];
+                _this101.receptiondto.reference = ordinaireForm['reference'];
+                _this101.receptiondto.name = 'ordinaire - EXPRESS MAIL SERVICE';
+                _this101.receptiondto.type = ordinaireForm['typearticle'];
+                _this101.receptiondto.adresse = ordinaireForm['adresse'];
+                _this101.receptiondto.nomsender = ordinaireForm['nomsender'];
+                _this101.receptiondto.telexpediteur = ordinaireForm['telexpediteur'];
+                _this101.receptiondto.namerecipient = ordinaireForm['namerecipient'];
+                _this101.receptiondto.telrecipient = ordinaireForm['telrecipient'];
+                _this101.receptiondto.email = ordinaireForm['email'];
+                _this101.receptiondto.datereception = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(ordinaireForm['datereception'], format, locale);
+                _this101.receptiondto.typearticle = _this101.typeactivite.code;
+                _this101.receptiondto.dommage = _this101.dommage;
+                _this101.receptiondto.commentaire = ordinaireForm['commentaire'];
+                _this101.receptiondto.envoisms = _this101.envoisms;
+                _this101.receptiondto.paysrecipient = _this101.selectedCountrydestinateur['code'];
+                _this101.receptiondto.paysexpediteur = _this101.selectedCountryexpediteur['code'];
 
-                _this96.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this96.receptiondto, {
+                _this101.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/reception/save", _this101.receptiondto, {
                   headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    'Authorization': 'Bearer ' + _this96.tokenStorage.getToken()
+                    'Authorization': 'Bearer ' + _this101.tokenStorage.getToken()
                   })
                 }).subscribe(function (response) {
-                  _this96.showSuccess("Vous avez enregistrer avec success votre ordinaire  !!! ");
+                  _this101.showSuccess("Vous avez enregistrer avec success votre ordinaire  !!! ");
                 }, function (error) {
-                  _this96.showError(" une erreur c'est produit et le système n'a pas enregitré votre ordinaire - La raison est voici : " + error.message);
+                  _this101.showError(" une erreur c'est produit et le système n'a pas enregitré votre ordinaire - La raison est voici : " + error.message);
                 });
               } else {
-                _this96.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
+                _this101.showConfirm("Numero de reference existante", "Veuillez fourni un nouveau numero de reference, car ce dernier existe !!! ");
               } //this.showSuccess("Vous avez enregistrer avec success votre colis  !!! ")
 
             }, function (error) {
-              _this96.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
+              _this101.showError(" une erreur c'est produit et le système n'a pas enregitré votre colis - La raison est voici : " + error.getMessage());
             }); //}
           }
           /**
@@ -18689,13 +19196,13 @@
         _createClass(DashboardDemoComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this97 = this;
+            var _this102 = this;
 
             this.productService.getProducts().then(function (data) {
-              return _this97.products = data;
+              return _this102.products = data;
             });
             this.eventService.getEvents().then(function (events) {
-              _this97.events = events;
+              _this102.events = events;
             });
             this.cities = [];
             this.cities.push({

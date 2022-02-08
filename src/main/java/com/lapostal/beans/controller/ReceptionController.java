@@ -627,10 +627,9 @@ public class ReceptionController {
 				}
 			}
 
-			/**884395
+			/**
 			 * Recupration de la liste par mois
-			 */
-			
+			 */			
 			for(JSONObject json : receptionRepository.tableaudebord2())
 			{
 				

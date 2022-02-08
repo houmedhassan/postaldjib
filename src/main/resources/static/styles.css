@@ -4561,6 +4561,7 @@ Docs & License: https://fullcalendar.io/
   height: 60px;
   background-color: #2b32b2;
   background-image: -webkit-gradient(linear, left top, right top, from(#5aaaff), to(#1488cc)) !important;
+  padding-top: 6px;
 }.p-datatable .p-datatable-header {
   background: #5aaaff !important;
   color: #f9f9f9;
@@ -4570,8 +4571,9 @@ Docs & License: https://fullcalendar.io/
   font-weight: 600;
 }.layout-wrapper .topbar .topbar-left .topbar-logo {
   margin-top: -15px !important;
-  height: 80px !important;
-  width: 150px !important;
+  height: 60px !important;
+  width: 100px !important;
+  margin-left: 20% !important;
 }.p-datatable .p-datatable-tbody > tr > td {
   border: 1px solid #a7d2fd !important;
 }.p-datatable .p-datatable-thead > tr > th {

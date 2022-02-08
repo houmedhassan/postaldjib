@@ -89,7 +89,7 @@ public class Authentification {
 	  public ResponseEntity<User> profil(Principal principal)
 	  {
 		  try {
-			  System.out.println(principal.getName());
+
 			  Optional<User> user= userRepository.findByUsername(principal.getName());
 			  return new ResponseEntity<User>(user.get(), HttpStatus.OK);
 		  }catch(Exception ex)

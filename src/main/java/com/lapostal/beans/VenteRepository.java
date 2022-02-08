@@ -29,4 +29,23 @@ public interface VenteRepository extends JpaRepository<Vente, Integer> {
 	List<Vente> findByAnneeAndMonthOrderByItemstypevente(int annee, int month);
 	
 	
+	/**
+	 * 
+	 * @param annee
+	 * @param month
+	 * @param ventes
+	 * @return
+	 */
+	List<Vente> findByAnneeAndMonthAndTypeventeOrderByItemstypevente(int annee, int month, TypeVente ventes);
+	
+	/**
+	 * 
+	 * @param annee
+	 * @param month
+	 * @param ventes
+	 * @return
+	 */
+	List<Vente> findByAnneeAndMonthAndNomOrderByItemstypevente(int annee, int month, String vente);
+	
+	
 }

@@ -429,42 +429,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "1jHi":
-/*!*************************************************************************!*\
-  !*** ./src/app/apps/parametrage/utilisateurs/utilisateurs.component.ts ***!
-  \*************************************************************************/
-/*! exports provided: UtilisateursComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UtilisateursComponent", function() { return UtilisateursComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
-/* harmony import */ var _raw_loader_utilisateurs_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./utilisateurs.component.html */ "hNcx");
-/* harmony import */ var _utilisateurs_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utilisateurs.component.css */ "DBnK");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
-
-
-
-
-let UtilisateursComponent = class UtilisateursComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-UtilisateursComponent.ctorParameters = () => [];
-UtilisateursComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
-        selector: 'app-utilisateurs',
-        template: _raw_loader_utilisateurs_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
-        styles: [_utilisateurs_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    })
-], UtilisateursComponent);
-
-
-
-/***/ }),
-
 /***/ "1sSu":
 /*!*******************************************************************************!*\
   !*** ./src/app/apps/livraison/nouveaulivraison/nouveaulivraison.component.ts ***!
@@ -674,6 +638,19 @@ NouveaulivraisonComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorat
 ], NouveaulivraisonComponent);
 
 
+
+/***/ }),
+
+/***/ "2wp+":
+/*!*****************************************************************************!*\
+  !*** ./src/app/parametrage/gestion/utilisateurs/utilisateurs.component.css ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ1dGlsaXNhdGV1cnMuY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -1381,16 +1358,16 @@ AppTopBarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             <div class="topbar-left">
                 <div class="row" style="height:60px;">
                     <a routerLink="/" >
-                       <!-- <img src="assets/layout/images/logo.png" class="topbar-logo" routerLink="/" /> -->
+                        <img src="assets/layout/images/logo.png" class="topbar-logo" routerLink="/" />
                     </a>
                 </div>    
             </div>
 
-             <div class="topbar-right">
+            <div class="topbar-right">
 
-              <!-- <span style="
+               <span style="
                color: white;
-               padding-left: 5%;
+               padding-left: 35%;
                font-size: 40px;
                font-family: sans-serif;
                font-style: oblique;
@@ -1398,7 +1375,7 @@ AppTopBarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
                
                E-POSTAL 
                
-               </span> -->
+               </span>
 
                 <a id="menu-button" href="#" (click)="appMain.onMenuButtonClick($event)"
                    [ngClass]="{'menu-button-rotate': appMain.rotateMenuButton}">
@@ -2294,21 +2271,207 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
 /* harmony import */ var _raw_loader_tableaubordvente_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./tableaubordvente.component.html */ "9uQL");
 /* harmony import */ var _tableaubordvente_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tableaubordvente.component.css */ "rOO2");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primeng/api */ "7zfz");
+/* harmony import */ var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/auth/token-storage.service */ "dZLz");
+/* harmony import */ var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/environments/environment.prod */ "cxbk");
+
+
+
+
+
+
+
 
 
 
 
 let TableaubordventeComponent = class TableaubordventeComponent {
-    constructor() { }
+    constructor(formBuilder, messageService, httpClient, router, tokenStorage) {
+        this.formBuilder = formBuilder;
+        this.messageService = messageService;
+        this.httpClient = httpClient;
+        this.router = router;
+        this.tokenStorage = tokenStorage;
+        this.basicData = undefined;
+        this.basicData2 = undefined;
+        this.rapports = undefined;
+        this.rapportFormObject = {};
+        this.exportColumns = [];
+        /**
+        *  costumisation des erreurs
+        */
+        this.msgs = [];
+    }
     ngOnInit() {
+        const format = 'yyyy-MM-dd';
+        const format_date = 'dd';
+        const locale = 'en-US';
+        console.log(new Date().getUTCFullYear());
+        this.rapportFormObject.datedebut = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])('01/01/' + new Date().getUTCFullYear(), format, locale);
+        this.rapportFormObject.datefin = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])('12/31/' + new Date().getUTCFullYear(), format, locale);
+        this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/tableau/bord", this.rapportFormObject, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+            })
+        }).subscribe((response) => {
+            console.log(response);
+            let datas = [];
+            const result = Object.keys(response).forEach(key => {
+                var obj1 = response[key];
+                console.log('key is ' + key);
+                let _postsArray = [];
+                let _postsColor = [];
+                const sousresult = Object.keys(obj1).forEach(key1 => {
+                    _postsArray.push(obj1[key1]['value']);
+                    _postsColor.push(obj1[key1]['color']);
+                });
+                console.log(_postsArray);
+                Promise.all(['sousresult']).then(() => {
+                    datas.push({
+                        label: '' + key,
+                        data: [..._postsArray],
+                        fill: false,
+                        backgroundColor: _postsColor[0],
+                        borderColor: _postsColor[0],
+                        tension: .4
+                    });
+                });
+            });
+            Promise.all(['result']).then(() => {
+                console.log(datas);
+                this.basicData = {
+                    labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    datasets: [
+                        {
+                            label: 'Ventes par mois',
+                            backgroundColor: '#42A5F5',
+                            data: [...response]
+                        },
+                    ]
+                };
+            });
+        }, error => {
+            this.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+        });
+        /**
+         *  VALUE
+         */
+        this.httpClient.post(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/tableau/bord/ventes", this.rapportFormObject, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+            })
+        }).subscribe((response) => {
+            console.log(response);
+            let datas = [];
+            const result = Object.keys(response).forEach(key => {
+                var obj1 = response[key];
+                console.log('key is ' + key);
+                let _postsArray = [];
+                let _postsColor = [];
+                const sousresult = Object.keys(obj1).forEach(key1 => {
+                    _postsArray.push(obj1[key1]['value']);
+                    _postsColor.push(obj1[key1]['color']);
+                });
+                console.log(_postsArray);
+                Promise.all(['sousresult']).then(() => {
+                    datas.push({
+                        label: '' + key,
+                        data: [..._postsArray],
+                        backgroundColor: _postsColor[0],
+                        borderColor: _postsColor[0],
+                        tension: .4,
+                        fill: false,
+                    });
+                });
+            });
+            Promise.all(['result']).then(() => {
+                console.log(datas);
+                this.basicData2 = {
+                    labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    datasets: [
+                        ...datas
+                    ]
+                };
+            });
+        }, error => {
+            this.showWarn(" une erreur c'est produit et le système selectionner le type de ventes - La raison est voici : " + error.message);
+        });
+        /**
+         * Rapport de ventes
+         */
+        this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_10__["environment"].url + "/api/postal/vente/rapports/all", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+            }) }).subscribe(response => {
+            this.rapports = response;
+            console.log(this.rapports);
+        }, error => {
+            this.showError(" une erreur c'est produit lors de chargement des rapports");
+        });
+    }
+    exportPdf() {
+        __webpack_require__.e(/*! import() | jspdf */ "default~jspdf~jspdf-autotable").then(__webpack_require__.bind(null, /*! jspdf */ "i680")).then(jsPDF => {
+            Promise.all(/*! import() | jspdf-autotable */[__webpack_require__.e("default~jspdf~jspdf-autotable"), __webpack_require__.e("jspdf-autotable")]).then(__webpack_require__.t.bind(null, /*! jspdf-autotable */ "DaQG", 7)).then(x => {
+                const doc = new jsPDF.default({
+                    orientation: "landscape",
+                });
+                doc.autoTable(this.exportColumns, this.getDatas());
+                doc.save('primengTable.pdf');
+            });
+        });
+    }
+    exportExcel() {
+        __webpack_require__.e(/*! import() | xlsx */ "xlsx").then(__webpack_require__.t.bind(null, /*! xlsx */ "YaGY", 7)).then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.getDatas());
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "primengTable");
+        });
+    }
+    saveAsExcelFile(buffer, fileName) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! file-saver */ "Iab2", 7)).then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+    getDatas() {
+        return this.rapports;
+    }
+    showSuccess(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'success', summary: 'Message de success :', detail: '' + message });
+    }
+    showInfo(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'info', summary: 'Message Info :', detail: '' + message });
+    }
+    showWarn(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'warn', summary: 'Message d\'avertissement :', detail: '' + message });
+    }
+    showError(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'error', summary: 'Message d\'erreur ', detail: '' + message });
     }
 };
-TableaubordventeComponent.ctorParameters = () => [];
+TableaubordventeComponent.ctorParameters = () => [
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"] },
+    { type: primeng_api__WEBPACK_IMPORTED_MODULE_8__["MessageService"] },
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
+    { type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_9__["TokenStorageService"] }
+];
 TableaubordventeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["Component"])({
         selector: 'app-tableaubordvente',
         template: _raw_loader_tableaubordvente_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_8__["MessageService"]],
         styles: [_tableaubordvente_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
     })
 ], TableaubordventeComponent);
@@ -2595,7 +2758,7 @@ EditreceptionComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>tableaubordvente works!</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" card dashboard p-grid\">    \n \n\n    <div class=\"p-col-12 p-lg-6\">\n        \n        <p-chart type=\"line\" [data]=\"basicData2\" [options]=\"multiAxisOptions\"></p-chart>\n\n    </div>\n    <div class=\"p-col-12 p-lg-6\">\n        <p-chart type=\"bar\" [data]=\"basicData\" [options]=\"basicOptions\"></p-chart>\n    </div>\n  \n    <div class=\"col-lg-12\">\n        <p-table #dt [value]=\"rapports\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n        styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n        [filterDelay]=\"0\" [globalFilterFields]=\"['annee','nom','typepaiement','namerecipient', 'telrecipient']\">\n            <ng-template pTemplate=\"caption\">\n                <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                    \n                    <span class=\"p-input-icon-left\">\n                <i class=\"pi pi-search\"></i>\n                \n                <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                <button type=\"button\" pButton icon=\"pi pi-file-pdf\" iconPos=\"left\" label=\"PDF\" (click)=\"exportPdf()\" class=\"ui-button-warning\"></button>\n                \n                <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                        placeholder=\"Global Search\"/>\n            </span>\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"header\">\n                <tr>               \n                    <th pSortableColumn=\"annee\"> Annee <p-sortIcon field=\"annee\"></p-sortIcon> </th>\n                    <th pSortableColumn=\"datevente\">Date <p-sortIcon field=\"datevente\"></p-sortIcon></th>\n                    <th pSortableColumn=\"nom\"> Nom <p-sortIcon field=\"nom\"></p-sortIcon></th>\n                    <th pSortableColumn=\"prixtotal\"> Montant <p-sortIcon field=\"prixtotal\"></p-sortIcon></th>\n                    \n                    <th pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon></th>\n                    <th pSortableColumn=\"updatedat\"> Edition <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                    \n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-ems>\n                <tr class=\"p-selectable-row\">\n                    <td> {{ems.annee}} </td>\n                    <td> {{ems.datevente}} </td>\n                    \n                    <td>  {{ems.nom}} </td>\n                    <td>  {{ems.prixtotal}} </td>\n                    <td>  {{ems.updated.username}} </td>\n                    <td>  {{ems.updatedat}} </td>\n\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td colspan=\"8\">Aucune données.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -2848,7 +3011,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of which env maps to which file can be found in `angular-cli.json`.
 const environment = {
     production: false,
-    url: 'https://lapostedjib.herokuapp.com'
+    url: 'http://192.168.0.58:8845'
 };
 
 
@@ -3154,19 +3317,6 @@ CountryService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "DBnK":
-/*!**************************************************************************!*\
-  !*** ./src/app/apps/parametrage/utilisateurs/utilisateurs.component.css ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ1dGlsaXNhdGV1cnMuY29tcG9uZW50LmNzcyJ9 */");
-
-/***/ }),
-
 /***/ "DByU":
 /*!***************************************!*\
   !*** ./src/app/app.menu.component.ts ***!
@@ -3265,29 +3415,31 @@ let AppMenuComponent = class AppMenuComponent {
                 /**
                  * Gestion de parametrage
                  */
-                /*{
+                {
                     label: 'Parametrage', icon: 'pi pi-step-forward-alt',
                     items: [
                         {
-                            label: 'Utilisateurs', icon: 'pi pi-fw pi-forward',  routerLink: ['/parametrage/utilisateurs']
+                            label: 'Utilisateurs', icon: 'pi pi-fw pi-forward', routerLink: ['/parametrage/gestion/access']
                         },
-                        {
+                        /*{
                             label: 'Gestion d\'access ', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/gestion/access']
                         },
                         {
                             label: 'Categorie', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/parametrage/categorie']
+                        }*/
+                        {
+                            label: 'Recette', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
                         }
                     ]
-                }
-                ,*/
+                },
                 /**
                  * Gestion d'envoi
                  */
-                /*{
+                {
                     label: 'Envoie', icon: 'pi pi-step-forward-alt',
                     items: [
                         {
-                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                            label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
                         },
                         {
                             label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/colis?3898a49c054648fde86b609be6c7ae3f6fae4ee84cde8bc11e3310599d5df9eb']
@@ -3302,19 +3454,31 @@ let AppMenuComponent = class AppMenuComponent {
                             label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
                         }
                     ]
-                },*/
+                },
                 /**
                  * Gestion de reception
                  */
                 {
                     label: 'Reception', icon: 'pi pi-step-forward-alt',
                     items: [
-                        /*{
-                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
-                        },*/
+                        {
+                            label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                        },
                         {
                             label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
                         },
+                        {
+                            label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                        },
+                        {
+                            label: 'Ordinaire', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/ordinaire?28660c74f421a0d5636ae1716a62433e14a6a19fd672f93b9bd98b6b177d07ff']
+                        },
+                        {
+                            label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
+                        },
+                        {
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
+                        }
                     ]
                 },
                 /**
@@ -3364,29 +3528,25 @@ let AppMenuComponent = class AppMenuComponent {
                     label: 'Recette', icon: 'pi pi-step-forward-alt',
                     items: [
                         {
-                            label: 'Parametrage', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/vente/parametrage?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
-                        },
-                        {
                             label: 'Nouveau recettes', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/nouveau?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
                         },
                         {
                             label: 'Rapports', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
                         },
                         {
-                            label: 'Tabbleau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
                         }
                     ]
                 }
             ];
-        } /*else if(this.authority == "ROLE_STAFF_EMS")
-        {
+        }
+        else if (this.authority == "ROLE_STAFF_EMS") {
             this.model = [
                 {
                     label: 'Favorites', icon: 'pi pi-home',
-                    
                     items: [
                         {
-                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
                         },
                     ]
                 },
@@ -3394,7 +3554,7 @@ let AppMenuComponent = class AppMenuComponent {
                     label: 'Envoie ', icon: 'pi pi-step-forward-alt',
                     items: [
                         {
-                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                            label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
                         },
                         {
                             label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
@@ -3405,7 +3565,7 @@ let AppMenuComponent = class AppMenuComponent {
                     label: 'Reception', icon: 'pi pi-step-forward-alt',
                     items: [
                         {
-                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                            label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
                         },
                         {
                             label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
@@ -3413,16 +3573,14 @@ let AppMenuComponent = class AppMenuComponent {
                     ]
                 }
             ];
-
-        }else if(this.authority == "ROLE_STAFF_COLIS")
-        {
+        }
+        else if (this.authority == "ROLE_STAFF_COLIS") {
             this.model = [
                 {
                     label: 'Favorites', icon: 'pi pi-home',
-                    
                     items: [
                         {
-                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
                         },
                     ]
                 },
@@ -3430,7 +3588,7 @@ let AppMenuComponent = class AppMenuComponent {
                     label: 'Envoie de Colis', icon: 'pi pi-step-forward-alt',
                     items: [
                         {
-                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
+                            label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/envoi/ems?902ee88578f3fe8420701891bf3a0846cd5aae119f6b75db4495adc0525034f4']
                         },
                         {
                             label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/envoi/tableau de bord?7b7934aa5a94823fdb1a27b4a19bf73b515d43e487bd0b78c8bc7ecfc6ca67e3']
@@ -3449,16 +3607,14 @@ let AppMenuComponent = class AppMenuComponent {
                     ]
                 }
             ];
-
-        }else if(this.authority == "ROLE_STAFF_RECOMMANDE")
-        {
+        }
+        else if (this.authority == "ROLE_STAFF_RECOMMANDE") {
             this.model = [
                 {
                     label: 'Favorites', icon: 'pi pi-home',
-                    
                     items: [
                         {
-                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
                         },
                     ]
                 },
@@ -3485,16 +3641,14 @@ let AppMenuComponent = class AppMenuComponent {
                     ]
                 }
             ];
-
-        }else if(this.authority == "ROLE_STAFF_ORDINAIRE")
-        {
+        }
+        else if (this.authority == "ROLE_STAFF_ORDINAIRE") {
             this.model = [
                 {
                     label: 'Favorites', icon: 'pi pi-home',
-                    
                     items: [
                         {
-                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
                         },
                     ]
                 },
@@ -3521,20 +3675,17 @@ let AppMenuComponent = class AppMenuComponent {
                     ]
                 }
             ];
-
-        }else if(this.authority == "ROLE_STAFF_ESUUQ")
-        {
+        }
+        else if (this.authority == "ROLE_STAFF_ESUUQ") {
             this.model = [
                 {
                     label: 'Favorites', icon: 'pi pi-home',
-                    
                     items: [
                         {
-                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
                         },
                     ]
                 },
-                
                 {
                     label: 'Reception Esuuq', icon: 'pi pi-step-forward-alt',
                     items: [
@@ -3546,10 +3697,8 @@ let AppMenuComponent = class AppMenuComponent {
                         }
                     ]
                 }
-
             ];
-
-        }*/
+        }
         else if (this.authority == "ROLE_STAFF_LIVRAISON") {
             this.model = [
                 {
@@ -3609,13 +3758,13 @@ let AppMenuComponent = class AppMenuComponent {
                 {
                     label: 'Reception', icon: 'pi pi-step-forward-alt',
                     items: [
-                        /*{
-                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
-                        },*/
+                        {
+                            label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                        },
                         {
                             label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
                         },
-                        /*{
+                        {
                             label: 'Recommandé', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/recommande?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
                         },
                         {
@@ -3623,31 +3772,29 @@ let AppMenuComponent = class AppMenuComponent {
                         },
                         {
                             label: 'Esuuq', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/esuuq?86e47540ae19f6bfbe12691136bc32e9b06983ed03726bc62dd49b6861db2d50']
-                        },  */
+                        },
                         {
                             label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/tableau de bord?3e8429afaf5fc4d9770e124842011a54abaf8f61f157d86c14112ce91ca0194b']
                         }
                     ]
                 }
             ];
-        } /*else if(this.authority == "ROLE_STAFF_ENVOI")
-        {
+        }
+        else if (this.authority == "ROLE_STAFF_ENVOI") {
             this.model = [
                 {
                     label: 'Favorites', icon: 'pi pi-home',
-                    
                     items: [
                         {
-                            label: 'Profil', icon: 'pi pi-fw pi-forward',  routerLink: ['/profil']
+                            label: 'Profil', icon: 'pi pi-fw pi-forward', routerLink: ['/profil']
                         },
                     ]
                 },
-                
                 {
                     label: 'Reception', icon: 'pi pi-step-forward-alt',
                     items: [
                         {
-                            label: 'EMS', icon: 'pi pi-fw pi-forward',  routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
+                            label: 'EMS', icon: 'pi pi-fw pi-forward', routerLink: ['/gestion/reception/ems?5f28340aaf752a5a3bc26a23fea661575242bf65304f9f2e24c0d581385606e4']
                         },
                         {
                             label: 'Colis', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/reception/colis?7a3239ca19232f36f9c478bd8a7d4108f5be5df856fe2d95570b150090e98596']
@@ -3667,7 +3814,7 @@ let AppMenuComponent = class AppMenuComponent {
                     ]
                 }
             ];
-        }*/
+        }
         else if (this.authority == "ROLE_STAFF_RECETTE") {
             this.model = [
                 {
@@ -3688,7 +3835,7 @@ let AppMenuComponent = class AppMenuComponent {
                             label: 'Rapports', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/rapports?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
                         },
                         {
-                            label: 'Tabbleau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
+                            label: 'Tableau de bord', icon: 'pi pi-fw pi-fast-backward', routerLink: ['/gestion/vente/tableau de bord?d79b31f87777c36aaed60e745e3b19a238f8becd38b450e723d5a639072acdda']
                         }
                     ]
                 }
@@ -3762,7 +3909,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                     <ng-template pTemplate=\"caption\">\n                        <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                            \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                                \n                            <span class=\"p-input-icon-left\">\n                                \n                        <i class=\"pi pi-search\"></i>\n                        <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                                <\n                    </span>\n                        </div>\n                    </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>                   \n                        <th  pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th   pSortableColumn=\"reception.datesortie\">Date  <p-sortIcon field=\"reception.datesortie\"></p-sortIcon></th>\n                        <th   pSortableColumn=\"etat\"> Etat <p-sortIcon field=\"etat\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.type\"> Type  <p-sortIcon field=\"reception.type\"></p-sortIcon></th>\n\n                        <th  pSortableColumn=\"reception.namerecipient\"> Destinateur <p-sortIcon field=\"reception.namerecipient\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.telrecipient\"> Telephone 2  <p-sortIcon field=\"reception.telrecipient\"></p-sortIcon></th>\n                        \n                        <th  pSortableColumn=\"commentaire\"> Commentaire <p-sortIcon field=\"commentaire\"></p-sortIcon> </th>\n\n                        <th  pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td > {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(livre)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"p-grid table-demo\">\n    <div class=\"p-col-12\">\n        <div class=\"card\">\n            <h5>Livraison  reussi </h5>\n            <p-table #dt [value]=\"liste\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n                     styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n                     [filterDelay]=\"0\" [globalFilterFields]=\"['reference.reference']\">\n               \n                     <ng-template pTemplate=\"caption\">\n                        <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n                            \n                            <button type=\"button\" pButton icon=\"pi pi-file-excel\" iconPos=\"left\" label=\"EXCEL\" (click)=\"exportExcel()\" style=\"margin-right: 0.5em; margin-left: 0.5em;\" class=\"ui-button-success\"></button>\n                                \n                            <span class=\"p-input-icon-left\">\n                                \n                        <i class=\"pi pi-search\"></i>\n                        <input pInputText type=\"text\" (input)=\"dt.filterGlobal($event.target.value, 'contains')\"\n                                placeholder=\"Global Search\"/>\n                                \n                    </span>\n                        </div>\n                    </ng-template>\n                <ng-template pTemplate=\"header\">\n                    <tr>                   \n                        <th  pSortableColumn=\"reference\"> Reference <p-sortIcon field=\"reference\"></p-sortIcon> </th>\n                        <th   pSortableColumn=\"reception.datesortie\">Date  <p-sortIcon field=\"reception.datesortie\"></p-sortIcon></th>\n                        <th   pSortableColumn=\"etat\"> Etat <p-sortIcon field=\"etat\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.type\"> Type  <p-sortIcon field=\"reception.type\"></p-sortIcon></th>\n\n                        <th  pSortableColumn=\"reception.namerecipient\"> Destinateur <p-sortIcon field=\"reception.namerecipient\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"reception.telrecipient\"> Telephone 2  <p-sortIcon field=\"reception.telrecipient\"></p-sortIcon></th>\n                        \n\n                        <th  pSortableColumn=\"updated.username\"> Editeur <p-sortIcon field=\"updated.username\"></p-sortIcon> </th>\n                        <th  pSortableColumn=\"updatedat\"> Edition  <p-sortIcon field=\"updatedat\"></p-sortIcon></th>\n                        <th style=\"width: 8rem\"></th>\n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"body\" let-livre>\n                    <tr class=\"p-selectable-row\">\n                        <td > {{livre.reference}} </td>\n                        <td> {{livre.reception.datesortie}} </td>\n                        \n                        <td>  {{livre.etat}} </td> \n                        <td>  {{livre.reception.type}} </td> \n                        \n                        <td>  {{livre.reception.namerecipient}} </td>\n                        <td>  {{livre.reception.telrecipient}} </td>\n\n                        <td> \n                            \n                            <span *ngIf=\"livre.updated; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updated.username}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.created.username}} </span></ng-template>\n\n                        </td>\n                        <td> \n                            \n                            <span *ngIf=\"livre.updatedat; then thenBlock else elseBlock\"> </span>\n                            <ng-template #thenBlock> <span >{{livre.updatedat}}  </span></ng-template>\n                            <ng-template #elseBlock><span>{{livre.createdat}} </span></ng-template>\n                        </td>\n\n                        <td style=\"text-align: center\" style=\"width: 5%;\">\n                            <button (click)=\"search(livre)\" pButton type=\"button\" class=\"p-button-primary\" icon=\"pi pi-eye\"></button>\n                        </td>\n                        \n                    </tr>\n                </ng-template>\n                <ng-template pTemplate=\"emptymessage\">\n                    <tr>\n                        <td colspan=\"8\">Aucune données.</td>\n                    </tr>\n                </ng-template>\n            </p-table>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -3788,7 +3935,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <!-- <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/> -->\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur le plateForme Stock <!-- E-Postal Djibouti --></h2>\n                        <span class=\"guest-sign-in\">Connectez-vous sur le reseau</span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"login-body\">\n    <div class=\"login-image\"></div>\n\n\n    <div class=\"card login-panel p-fluid\">\n        <div class=\"login-panel-content\">            \n            <form id=\"login-form\" [formGroup]=\"authForm\" (ngSubmit)=\"connexion(authForm.value);\" >   \n                <div class=\"p-grid\">\n                    <div class=\"p-col-12\" style=\"width:100% !important;\">\n                        <img src=\"assets/layout/images/logo.png\" style=\"width: 100%; height: 100% !important;\"  class=\"logo\" alt=\"avalon-ng\"/>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <h2 class=\"welcome-text\">Bienvenue sur E-Postal Djibouti</h2>\n                        <span class=\"guest-sign-in\">Connecté vous sur le reseau e-postal </span>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Username</label>\n                        <div class=\"login-input\">\n                            <input type=\"text\" placeholder=\"Username\" class=\"form-control\" name=\"username\"  formControlName=\"username\"   required  pInputText />\n                        </div>\n                    </div>\n                    <div class=\"p-col-12\" style=\"text-align:left;\">\n                        <label class=\"login-label\">Password</label>\n                        <div class=\"login-input\">\n                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" name=\"password\"   formControlName=\"password\" required pPassword />\n                        </div>\n                    </div>\n                    <div *ngIf=\"isLoginFailed\">\n                        <span style=\"color:red;\"> Veuillez revoir votre mot de passe ou le username</span>\n                    </div>\n\n                    <div class=\"p-col-12 p-md-6 button-pane\">\n                        <button pButton  label=\"Sign In\"></button>\n                    </div>\n                    <div class=\"p-col-12 p-md-6 link-pane\">\n                        <button class=\"p-link\">J'ai oublié mon mot de passe ?</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n");
 
 /***/ }),
 
@@ -4989,21 +5136,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
 /* harmony import */ var _raw_loader_access_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./access.component.html */ "j0ow");
 /* harmony import */ var _access_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./access.component.css */ "mBE1");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primeng/api */ "7zfz");
+/* harmony import */ var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/auth/token-storage.service */ "dZLz");
+/* harmony import */ var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/environments/environment.prod */ "cxbk");
+
+
+
+
+
 
 
 
 
 let AccessComponent = class AccessComponent {
-    constructor() { }
+    constructor(messageService, httpClient, router, tokenStorage) {
+        this.messageService = messageService;
+        this.httpClient = httpClient;
+        this.router = router;
+        this.tokenStorage = tokenStorage;
+        this.users = undefined;
+        /**
+        *  costumisation des erreurs
+        */
+        this.msgs = [];
+    }
     ngOnInit() {
+        /**
+         *
+         */
+        this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__["environment"].url + "/api/postal/security/liste", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+            })
+        }).subscribe((response) => {
+            this.users = response;
+            console.log(this.users);
+        }, error => {
+            this.showError(" une erreur c est produit : " + error.message);
+        });
+    }
+    showSuccess(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'success', summary: 'Message de success :', detail: '' + message });
+    }
+    showInfo(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'info', summary: 'Message Info :', detail: '' + message });
+    }
+    showWarn(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'warn', summary: 'Message d\'avertissement :', detail: '' + message });
+    }
+    showError(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'error', summary: 'Message d\'erreur ', detail: '' + message });
     }
 };
-AccessComponent.ctorParameters = () => [];
+AccessComponent.ctorParameters = () => [
+    { type: primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"] },
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"] }
+];
 AccessComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
         selector: 'app-access',
         template: _raw_loader_access_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]],
         styles: [_access_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
     })
 ], AccessComponent);
@@ -6034,6 +6235,96 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "UQP5":
+/*!****************************************************************************!*\
+  !*** ./src/app/parametrage/gestion/utilisateurs/utilisateurs.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: UtilisateursComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UtilisateursComponent", function() { return UtilisateursComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _raw_loader_utilisateurs_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./utilisateurs.component.html */ "n2jU");
+/* harmony import */ var _utilisateurs_component_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utilisateurs.component.css */ "2wp+");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primeng/api */ "7zfz");
+/* harmony import */ var src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/auth/token-storage.service */ "dZLz");
+/* harmony import */ var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/environments/environment.prod */ "cxbk");
+
+
+
+
+
+
+
+
+
+let UtilisateursComponent = class UtilisateursComponent {
+    constructor(messageService, httpClient, router, tokenStorage) {
+        this.messageService = messageService;
+        this.httpClient = httpClient;
+        this.router = router;
+        this.tokenStorage = tokenStorage;
+        this.users = undefined;
+        /**
+        *  costumisation des erreurs
+        */
+        this.msgs = [];
+    }
+    ngOnInit() {
+        /**
+         *
+         */
+        this.httpClient.get(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_8__["environment"].url + "/api/postal/security/liste", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+            })
+        }).subscribe((response) => {
+            this.users = response;
+            console.log(this.users);
+        }, error => {
+            this.showError(" une erreur c est produit : " + error.message);
+        });
+    }
+    showSuccess(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'success', summary: 'Message de success :', detail: '' + message });
+    }
+    showInfo(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'info', summary: 'Message Info :', detail: '' + message });
+    }
+    showWarn(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'warn', summary: 'Message d\'avertissement :', detail: '' + message });
+    }
+    showError(message) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'error', summary: 'Message d\'erreur ', detail: '' + message });
+    }
+};
+UtilisateursComponent.ctorParameters = () => [
+    { type: primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"] },
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: src_app_auth_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"] }
+];
+UtilisateursComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
+        selector: 'app-utilisateurs',
+        template: _raw_loader_utilisateurs_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [primeng_api__WEBPACK_IMPORTED_MODULE_6__["MessageService"]],
+        styles: [_utilisateurs_component_css__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    })
+], UtilisateursComponent);
+
+
+
+/***/ }),
+
 /***/ "Vwg9":
 /*!**********************************************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component.html ***!
@@ -6597,47 +6888,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_app_help_component__WEBPACK_IMPORTED_MODULE_115__ = __webpack_require__(/*! ./pages/app.help.component */ "Bxr+");
 /* harmony import */ var _apps_colis_reception_reception_component__WEBPACK_IMPORTED_MODULE_116__ = __webpack_require__(/*! ./apps/colis/reception/reception.component */ "riBK");
 /* harmony import */ var _apps_parametrage_categorie_categorie_component__WEBPACK_IMPORTED_MODULE_117__ = __webpack_require__(/*! ./apps/parametrage/categorie/categorie.component */ "Rx9r");
-/* harmony import */ var _apps_parametrage_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_118__ = __webpack_require__(/*! ./apps/parametrage/utilisateurs/utilisateurs.component */ "1jHi");
-/* harmony import */ var _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_119__ = __webpack_require__(/*! ./apps/parametrage/gestion/access/access.component */ "O2fg");
-/* harmony import */ var _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_120__ = __webpack_require__(/*! ./apps/envoi/ems/ems.component */ "rbu+");
-/* harmony import */ var _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_121__ = __webpack_require__(/*! ./apps/envoi/colis/colis.component */ "d4o+");
-/* harmony import */ var _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_122__ = __webpack_require__(/*! ./apps/envoi/recommande/recommande.component */ "T4wd");
-/* harmony import */ var _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_123__ = __webpack_require__(/*! ./apps/envoi/tableaubord/tableaubord.component */ "ojSt");
-/* harmony import */ var _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_124__ = __webpack_require__(/*! ./apps/reception/ordinaire/ordinaire.component */ "BqQa");
-/* harmony import */ var _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_125__ = __webpack_require__(/*! ./apps/reception/emsreception/emsreception.component */ "urcB");
-/* harmony import */ var _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_126__ = __webpack_require__(/*! ./apps/reception/tableaubordreception/tableaubordreception.component */ "3e/o");
-/* harmony import */ var _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_127__ = __webpack_require__(/*! ./apps/reception/recommandereception/recommandereception.component */ "X5gR");
-/* harmony import */ var _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_128__ = __webpack_require__(/*! ./apps/reception/colisreception/colisreception.component */ "prZE");
-/* harmony import */ var _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_129__ = __webpack_require__(/*! ./apps/envoi/ems/nouveau/nouveau.component */ "pJhg");
-/* harmony import */ var _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_130__ = __webpack_require__(/*! ./apps/envoi/ems/edition/edition.component */ "bIAB");
-/* harmony import */ var _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_131__ = __webpack_require__(/*! ./apps/envoi/colis/nouveaucolis/nouveaucolis.component */ "+34J");
-/* harmony import */ var _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_132__ = __webpack_require__(/*! ./apps/envoi/colis/editioncolis/editioncolis.component */ "seg4");
-/* harmony import */ var _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_133__ = __webpack_require__(/*! ./apps/envoi/recommande/nouveaurecommande/nouveaurecommande.component */ "/XrQ");
-/* harmony import */ var _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_134__ = __webpack_require__(/*! ./apps/reception/emsreception/nouveauemsreception/nouveauemsreception.component */ "bGFz");
-/* harmony import */ var _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_135__ = __webpack_require__(/*! ./apps/reception/editreception/editreception.component */ "9Sdb");
-/* harmony import */ var _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_136__ = __webpack_require__(/*! ./apps/reception/colisreception/nouveaucolisreception/nouveaucolisreception.component */ "7RVm");
-/* harmony import */ var _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_137__ = __webpack_require__(/*! ./apps/reception/recommandereception/nouveaurecommandereception/nouveaurecommandereception.component */ "5ewr");
-/* harmony import */ var _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_138__ = __webpack_require__(/*! ./apps/reception/ordinaire/nouveauordinairereception/nouveauordinairereception.component */ "y76H");
-/* harmony import */ var _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_139__ = __webpack_require__(/*! ./apps/stocks/suivi/suivi.component */ "XAKf");
-/* harmony import */ var _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_140__ = __webpack_require__(/*! ./apps/stocks/tableaubordstocks/tableaubordstocks.component */ "L7Y2");
-/* harmony import */ var _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_141__ = __webpack_require__(/*! ./apps/stocks/recherche/recherche.component */ "lEO1");
-/* harmony import */ var _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_142__ = __webpack_require__(/*! ./apps/stocks/enstock/enstock.component */ "odXu");
-/* harmony import */ var _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_143__ = __webpack_require__(/*! ./apps/reception/esuuq/esuuq.component */ "GFK6");
-/* harmony import */ var _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_144__ = __webpack_require__(/*! ./apps/reception/esuuq/nouveauesuuq/nouveauesuuq.component */ "A8DN");
-/* harmony import */ var _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_145__ = __webpack_require__(/*! ./apps/stocks/defaillant/defaillant.component */ "8H/n");
-/* harmony import */ var _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_146__ = __webpack_require__(/*! ./apps/livraison/livraison/livraison.component */ "6M6E");
-/* harmony import */ var _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_147__ = __webpack_require__(/*! ./apps/livraison/nouveaulivraison/nouveaulivraison.component */ "1sSu");
-/* harmony import */ var _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_148__ = __webpack_require__(/*! ./apps/livraison/livraisonreussi/livraisonreussi.component */ "six9");
-/* harmony import */ var _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_149__ = __webpack_require__(/*! ./apps/livraison/livraisonechoue/livraisonechoue.component */ "Nc2I");
-/* harmony import */ var _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_150__ = __webpack_require__(/*! ./apps/vente/parametrage/parametrage.component */ "O8Ab");
-/* harmony import */ var _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_151__ = __webpack_require__(/*! ./apps/vente/parametrage-vente/parametrage-vente.component */ "8Gg0");
-/* harmony import */ var _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_152__ = __webpack_require__(/*! ./apps/vente/nouveauvente/nouveauvente.component */ "JL6J");
-/* harmony import */ var _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_153__ = __webpack_require__(/*! ./apps/vente/rapportsvente/rapportsvente.component */ "GgHU");
-/* harmony import */ var _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__ = __webpack_require__(/*! ./apps/vente/tableaubordvente/tableaubordvente.component */ "8KQc");
-/* harmony import */ var _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_155__ = __webpack_require__(/*! ./apps/envoi/ordinaireenvoi/ordinaireenvoi.component */ "k7Oa");
-/* harmony import */ var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__ = __webpack_require__(/*! ./apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component */ "bUil");
-/* harmony import */ var _profil_profil_component__WEBPACK_IMPORTED_MODULE_157__ = __webpack_require__(/*! ./profil/profil.component */ "8IyQ");
-
+/* harmony import */ var _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_118__ = __webpack_require__(/*! ./apps/parametrage/gestion/access/access.component */ "O2fg");
+/* harmony import */ var _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_119__ = __webpack_require__(/*! ./apps/envoi/ems/ems.component */ "rbu+");
+/* harmony import */ var _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_120__ = __webpack_require__(/*! ./apps/envoi/colis/colis.component */ "d4o+");
+/* harmony import */ var _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_121__ = __webpack_require__(/*! ./apps/envoi/recommande/recommande.component */ "T4wd");
+/* harmony import */ var _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_122__ = __webpack_require__(/*! ./apps/envoi/tableaubord/tableaubord.component */ "ojSt");
+/* harmony import */ var _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_123__ = __webpack_require__(/*! ./apps/reception/ordinaire/ordinaire.component */ "BqQa");
+/* harmony import */ var _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_124__ = __webpack_require__(/*! ./apps/reception/emsreception/emsreception.component */ "urcB");
+/* harmony import */ var _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_125__ = __webpack_require__(/*! ./apps/reception/tableaubordreception/tableaubordreception.component */ "3e/o");
+/* harmony import */ var _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_126__ = __webpack_require__(/*! ./apps/reception/recommandereception/recommandereception.component */ "X5gR");
+/* harmony import */ var _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_127__ = __webpack_require__(/*! ./apps/reception/colisreception/colisreception.component */ "prZE");
+/* harmony import */ var _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_128__ = __webpack_require__(/*! ./apps/envoi/ems/nouveau/nouveau.component */ "pJhg");
+/* harmony import */ var _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_129__ = __webpack_require__(/*! ./apps/envoi/ems/edition/edition.component */ "bIAB");
+/* harmony import */ var _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_130__ = __webpack_require__(/*! ./apps/envoi/colis/nouveaucolis/nouveaucolis.component */ "+34J");
+/* harmony import */ var _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_131__ = __webpack_require__(/*! ./apps/envoi/colis/editioncolis/editioncolis.component */ "seg4");
+/* harmony import */ var _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_132__ = __webpack_require__(/*! ./apps/envoi/recommande/nouveaurecommande/nouveaurecommande.component */ "/XrQ");
+/* harmony import */ var _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_133__ = __webpack_require__(/*! ./apps/reception/emsreception/nouveauemsreception/nouveauemsreception.component */ "bGFz");
+/* harmony import */ var _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_134__ = __webpack_require__(/*! ./apps/reception/editreception/editreception.component */ "9Sdb");
+/* harmony import */ var _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_135__ = __webpack_require__(/*! ./apps/reception/colisreception/nouveaucolisreception/nouveaucolisreception.component */ "7RVm");
+/* harmony import */ var _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_136__ = __webpack_require__(/*! ./apps/reception/recommandereception/nouveaurecommandereception/nouveaurecommandereception.component */ "5ewr");
+/* harmony import */ var _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_137__ = __webpack_require__(/*! ./apps/reception/ordinaire/nouveauordinairereception/nouveauordinairereception.component */ "y76H");
+/* harmony import */ var _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_138__ = __webpack_require__(/*! ./apps/stocks/suivi/suivi.component */ "XAKf");
+/* harmony import */ var _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_139__ = __webpack_require__(/*! ./apps/stocks/tableaubordstocks/tableaubordstocks.component */ "L7Y2");
+/* harmony import */ var _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_140__ = __webpack_require__(/*! ./apps/stocks/recherche/recherche.component */ "lEO1");
+/* harmony import */ var _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_141__ = __webpack_require__(/*! ./apps/stocks/enstock/enstock.component */ "odXu");
+/* harmony import */ var _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_142__ = __webpack_require__(/*! ./apps/reception/esuuq/esuuq.component */ "GFK6");
+/* harmony import */ var _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_143__ = __webpack_require__(/*! ./apps/reception/esuuq/nouveauesuuq/nouveauesuuq.component */ "A8DN");
+/* harmony import */ var _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_144__ = __webpack_require__(/*! ./apps/stocks/defaillant/defaillant.component */ "8H/n");
+/* harmony import */ var _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_145__ = __webpack_require__(/*! ./apps/livraison/livraison/livraison.component */ "6M6E");
+/* harmony import */ var _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_146__ = __webpack_require__(/*! ./apps/livraison/nouveaulivraison/nouveaulivraison.component */ "1sSu");
+/* harmony import */ var _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_147__ = __webpack_require__(/*! ./apps/livraison/livraisonreussi/livraisonreussi.component */ "six9");
+/* harmony import */ var _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_148__ = __webpack_require__(/*! ./apps/livraison/livraisonechoue/livraisonechoue.component */ "Nc2I");
+/* harmony import */ var _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_149__ = __webpack_require__(/*! ./apps/vente/parametrage/parametrage.component */ "O8Ab");
+/* harmony import */ var _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_150__ = __webpack_require__(/*! ./apps/vente/parametrage-vente/parametrage-vente.component */ "8Gg0");
+/* harmony import */ var _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_151__ = __webpack_require__(/*! ./apps/vente/nouveauvente/nouveauvente.component */ "JL6J");
+/* harmony import */ var _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_152__ = __webpack_require__(/*! ./apps/vente/rapportsvente/rapportsvente.component */ "GgHU");
+/* harmony import */ var _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_153__ = __webpack_require__(/*! ./apps/vente/tableaubordvente/tableaubordvente.component */ "8KQc");
+/* harmony import */ var _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_154__ = __webpack_require__(/*! ./apps/envoi/ordinaireenvoi/ordinaireenvoi.component */ "k7Oa");
+/* harmony import */ var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_155__ = __webpack_require__(/*! ./apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component */ "bUil");
+/* harmony import */ var _profil_profil_component__WEBPACK_IMPORTED_MODULE_156__ = __webpack_require__(/*! ./profil/profil.component */ "8IyQ");
 
 
 
@@ -6910,48 +7199,47 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _pages_app_invoice_component__WEBPACK_IMPORTED_MODULE_114__["AppInvoiceComponent"],
             _pages_app_help_component__WEBPACK_IMPORTED_MODULE_115__["AppHelpComponent"],
             _apps_colis_reception_reception_component__WEBPACK_IMPORTED_MODULE_116__["ReceptionComponent"],
-            _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_141__["RechercheComponent"],
-            _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_142__["EnstockComponent"],
+            _apps_stocks_recherche_recherche_component__WEBPACK_IMPORTED_MODULE_140__["RechercheComponent"],
+            _apps_stocks_enstock_enstock_component__WEBPACK_IMPORTED_MODULE_141__["EnstockComponent"],
             _apps_parametrage_categorie_categorie_component__WEBPACK_IMPORTED_MODULE_117__["CategorieComponent"],
-            _apps_parametrage_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_118__["UtilisateursComponent"],
-            _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_119__["AccessComponent"],
-            _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_120__["EmsComponent"],
-            _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_121__["ColisComponent"],
-            _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_122__["RecommandeComponent"],
-            _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_123__["TableaubordComponent"],
-            _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_124__["OrdinaireComponent"],
-            _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_125__["EmsreceptionComponent"],
-            _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_126__["TableaubordreceptionComponent"],
-            _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_127__["RecommandereceptionComponent"],
-            _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_128__["ColisreceptionComponent"],
-            _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_129__["NouveauComponent"],
-            _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_130__["EditionComponent"],
-            _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_131__["NouveaucolisComponent"],
-            _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_132__["EditioncolisComponent"],
-            _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_133__["NouveaurecommandeComponent"],
-            _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_134__["NouveauemsreceptionComponent"],
-            _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_135__["EditreceptionComponent"],
-            _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_136__["NouveaucolisreceptionComponent"],
-            _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_137__["NouveaurecommandereceptionComponent"],
-            _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_138__["NouveauordinairereceptionComponent"],
-            _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_139__["SuiviComponent"],
-            _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_140__["TableaubordstocksComponent"],
-            _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_143__["EsuuqComponent"],
-            _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_144__["NouveauesuuqComponent"],
-            _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_145__["DefaillantComponent"],
-            _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_146__["LivraisonComponent"],
-            _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_147__["NouveaulivraisonComponent"],
-            _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_148__["LivraisonreussiComponent"],
-            _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_149__["LivraisonechoueComponent"],
-            _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_150__["ParametrageComponent"],
-            _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_151__["ParametrageVenteComponent"],
-            _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_152__["NouveauventeComponent"],
-            _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_153__["RapportsventeComponent"],
-            _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_154__["TableaubordventeComponent"],
-            _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_155__["OrdinaireenvoiComponent"],
-            _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_156__["NouveauordinaireComponent"],
+            _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_118__["AccessComponent"],
+            _apps_envoi_ems_ems_component__WEBPACK_IMPORTED_MODULE_119__["EmsComponent"],
+            _apps_envoi_colis_colis_component__WEBPACK_IMPORTED_MODULE_120__["ColisComponent"],
+            _apps_envoi_recommande_recommande_component__WEBPACK_IMPORTED_MODULE_121__["RecommandeComponent"],
+            _apps_envoi_tableaubord_tableaubord_component__WEBPACK_IMPORTED_MODULE_122__["TableaubordComponent"],
+            _apps_reception_ordinaire_ordinaire_component__WEBPACK_IMPORTED_MODULE_123__["OrdinaireComponent"],
+            _apps_reception_emsreception_emsreception_component__WEBPACK_IMPORTED_MODULE_124__["EmsreceptionComponent"],
+            _apps_reception_tableaubordreception_tableaubordreception_component__WEBPACK_IMPORTED_MODULE_125__["TableaubordreceptionComponent"],
+            _apps_reception_recommandereception_recommandereception_component__WEBPACK_IMPORTED_MODULE_126__["RecommandereceptionComponent"],
+            _apps_reception_colisreception_colisreception_component__WEBPACK_IMPORTED_MODULE_127__["ColisreceptionComponent"],
+            _apps_envoi_ems_nouveau_nouveau_component__WEBPACK_IMPORTED_MODULE_128__["NouveauComponent"],
+            _apps_envoi_ems_edition_edition_component__WEBPACK_IMPORTED_MODULE_129__["EditionComponent"],
+            _apps_envoi_colis_nouveaucolis_nouveaucolis_component__WEBPACK_IMPORTED_MODULE_130__["NouveaucolisComponent"],
+            _apps_envoi_colis_editioncolis_editioncolis_component__WEBPACK_IMPORTED_MODULE_131__["EditioncolisComponent"],
+            _apps_envoi_recommande_nouveaurecommande_nouveaurecommande_component__WEBPACK_IMPORTED_MODULE_132__["NouveaurecommandeComponent"],
+            _apps_reception_emsreception_nouveauemsreception_nouveauemsreception_component__WEBPACK_IMPORTED_MODULE_133__["NouveauemsreceptionComponent"],
+            _apps_reception_editreception_editreception_component__WEBPACK_IMPORTED_MODULE_134__["EditreceptionComponent"],
+            _apps_reception_colisreception_nouveaucolisreception_nouveaucolisreception_component__WEBPACK_IMPORTED_MODULE_135__["NouveaucolisreceptionComponent"],
+            _apps_reception_recommandereception_nouveaurecommandereception_nouveaurecommandereception_component__WEBPACK_IMPORTED_MODULE_136__["NouveaurecommandereceptionComponent"],
+            _apps_reception_ordinaire_nouveauordinairereception_nouveauordinairereception_component__WEBPACK_IMPORTED_MODULE_137__["NouveauordinairereceptionComponent"],
+            _apps_stocks_suivi_suivi_component__WEBPACK_IMPORTED_MODULE_138__["SuiviComponent"],
+            _apps_stocks_tableaubordstocks_tableaubordstocks_component__WEBPACK_IMPORTED_MODULE_139__["TableaubordstocksComponent"],
+            _apps_reception_esuuq_esuuq_component__WEBPACK_IMPORTED_MODULE_142__["EsuuqComponent"],
+            _apps_reception_esuuq_nouveauesuuq_nouveauesuuq_component__WEBPACK_IMPORTED_MODULE_143__["NouveauesuuqComponent"],
+            _apps_stocks_defaillant_defaillant_component__WEBPACK_IMPORTED_MODULE_144__["DefaillantComponent"],
+            _apps_livraison_livraison_livraison_component__WEBPACK_IMPORTED_MODULE_145__["LivraisonComponent"],
+            _apps_livraison_nouveaulivraison_nouveaulivraison_component__WEBPACK_IMPORTED_MODULE_146__["NouveaulivraisonComponent"],
+            _apps_livraison_livraisonreussi_livraisonreussi_component__WEBPACK_IMPORTED_MODULE_147__["LivraisonreussiComponent"],
+            _apps_livraison_livraisonechoue_livraisonechoue_component__WEBPACK_IMPORTED_MODULE_148__["LivraisonechoueComponent"],
+            _apps_vente_parametrage_parametrage_component__WEBPACK_IMPORTED_MODULE_149__["ParametrageComponent"],
+            _apps_vente_parametrage_vente_parametrage_vente_component__WEBPACK_IMPORTED_MODULE_150__["ParametrageVenteComponent"],
+            _apps_vente_nouveauvente_nouveauvente_component__WEBPACK_IMPORTED_MODULE_151__["NouveauventeComponent"],
+            _apps_vente_rapportsvente_rapportsvente_component__WEBPACK_IMPORTED_MODULE_152__["RapportsventeComponent"],
+            _apps_vente_tableaubordvente_tableaubordvente_component__WEBPACK_IMPORTED_MODULE_153__["TableaubordventeComponent"],
+            _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_154__["OrdinaireenvoiComponent"],
+            _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_155__["NouveauordinaireComponent"],
             _app_profile_component__WEBPACK_IMPORTED_MODULE_99__["AppProfileComponent"],
-            _profil_profil_component__WEBPACK_IMPORTED_MODULE_157__["ProfilComponent"]
+            _profil_profil_component__WEBPACK_IMPORTED_MODULE_156__["ProfilComponent"]
         ],
         providers: [
             { provide: _angular_common__WEBPACK_IMPORTED_MODULE_6__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_6__["HashLocationStrategy"] },
@@ -7804,7 +8092,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 const environment = {
     production: true,
-    url: 'https://lapostedjib.herokuapp.com'
+    url: 'http://192.168.0.58:8845'
 };
 
 
@@ -8167,7 +8455,7 @@ AppFooterComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         template: `
         <div class="layout-footer">
             <span class="footer-text-left">
-                <img src="assets/layout/images/logo-dark.png" />
+                <b color="#00438b;"> <u> Freelance - La poste de Djibouti </u> </b>
             </span>
             <span class="footer-text-right">
                 <a href="#"><i class="pi pi-facebook"></i></a>
@@ -8270,19 +8558,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("img.logo {\n  width: 20%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXGFwcC5sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFVBQUE7QUFDSiIsImZpbGUiOiJhcHAubG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpbWcubG9nbyB7XHJcbiAgICB3aWR0aDogMjAlO1xyXG59Il19 */");
-
-/***/ }),
-
-/***/ "hNcx":
-/*!*****************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/apps/parametrage/utilisateurs/utilisateurs.component.html ***!
-  \*****************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>utilisateurs works!</p>\n");
 
 /***/ }),
 
@@ -8429,7 +8704,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>access works!</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" card dashboard p-grid\">   \n\n    <div class=\"col-lg-12\">\n        <p-table #dt [value]=\"users\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n        styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n        [filterDelay]=\"0\" [globalFilterFields]=\"['username']\">\n        <ng-template pTemplate=\"caption\">\n            <div class=\"p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header\">\n           \n            </div>\n        </ng-template>\n            <ng-template pTemplate=\"header\">\n                <tr>               \n                    <th pSortableColumn=\"username\">Username <p-sortIcon field=\"username\"></p-sortIcon></th>\n                    <th pSortableColumn=\"nom\"> Nom <p-sortIcon field=\"nom\"></p-sortIcon> </th>\n                    <th pSortableColumn=\"role\"> Role <p-sortIcon field=\"role\"></p-sortIcon> </th>                  \n                    <th> Action</th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-user>\n                <tr class=\"p-selectable-row\">\n                    <td> {{user.username}} </td>\n                    <td> {{user.nom}} </td>                    \n                    <td> <span *ngFor=\"let r of user.role\">  {{r}} - </span></td>\n                    <td>  \n                        <button pButton pRipple type=\"button\" label=\"Edit Proil \" class=\"p-button-outlined p-button-rounded\"></button> &nbsp; &nbsp;\n                        <button pButton pRipple type=\"button\" label=\"edit password \" class=\"p-button-outlined p-button-rounded p-button-success\"></button> &nbsp; &nbsp;\n                        <button pButton pRipple type=\"button\" label=\"disabled  \" class=\"p-button-outlined p-button-rounded p-button-danger\"></button> &nbsp; &nbsp;\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td colspan=\"3\">\n                        <span>  Aucun  données. </span>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n\n</div>");
 
 /***/ }),
 
@@ -9444,6 +9719,19 @@ AppMainComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 ], AppMainComponent);
 
 
+
+/***/ }),
+
+/***/ "n2jU":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/parametrage/gestion/utilisateurs/utilisateurs.component.html ***!
+  \********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" card dashboard p-grid\">    \n \n    <div class=\"col-lg-12\">\n        <p-table #dt [value]=\"users\" [(selection)]=\"selectedCustomers1\" dataKey=\"id\"\n        styleClass=\"p-datatable-customers\" [rowHover]=\"true\" [rows]=\"10\" [paginator]=\"true\"\n        [filterDelay]=\"0\" [globalFilterFields]=\"['username']\">\n            \n            <ng-template pTemplate=\"header\">\n                <tr>               \n                    <th pSortableColumn=\"username\">Username <p-sortIcon field=\"username\"></p-sortIcon></th>\n                    <th pSortableColumn=\"nom\"> Nom <p-sortIcon field=\"nom\"></p-sortIcon> </th>\n                    <th pSortableColumn=\"role\"> Role <p-sortIcon field=\"role\"></p-sortIcon> </th>                  \n                    \n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-user>\n                <tr class=\"p-selectable-row\">\n                    <td> {{user.username}} </td>\n                    <td> {{user.nom}} </td>                    \n                    <td> <span *ngFo=\"let r of roles\">  {{r}} - </td>\n\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td colspan=\"8\">Aucune données.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n\n</div>\n\n<div class=\" card dashboard p-grid\">    \n    <p-table [value]=\"products\" responsiveLayout=\"scroll\">\n        <ng-template pTemplate=\"header\">\n            <tr>\n                <th>Code</th>\n                <th>Name</th>\n                <th>Category</th>\n                <th>Quantity</th>\n            </tr>\n        </ng-template>\n        <ng-template pTemplate=\"body\" let-product>\n            <tr>\n                <td>{{product.code}}</td>\n                <td>{{product.name}}</td>\n                <td>{{product.category}}</td>\n                <td>{{product.quantity}}</td>\n            </tr>\n        </ng-template>\n    </p-table>\n</div>");
 
 /***/ }),
 
@@ -11007,6 +11295,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _apps_envoi_ordinaireenvoi_ordinaireenvoi_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./apps/envoi/ordinaireenvoi/ordinaireenvoi.component */ "k7Oa");
 /* harmony import */ var _apps_envoi_ordinaireenvoi_nouveauordinaire_nouveauordinaire_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./apps/envoi/ordinaireenvoi/nouveauordinaire/nouveauordinaire.component */ "bUil");
 /* harmony import */ var _profil_profil_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./profil/profil.component */ "8IyQ");
+/* harmony import */ var _parametrage_gestion_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./parametrage/gestion/utilisateurs/utilisateurs.component */ "UQP5");
+
 
 
 
@@ -11078,7 +11368,7 @@ AppRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
                         /**
                          * Routing Gestion de parametrage
                          */
-                        { path: 'parametrage/utilisateurs', component: _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_11__["AccessComponent"] },
+                        { path: 'parametrage/utilisateurs', component: _parametrage_gestion_utilisateurs_utilisateurs_component__WEBPACK_IMPORTED_MODULE_48__["UtilisateursComponent"] },
                         { path: 'parametrage/categorie', component: _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_11__["AccessComponent"] },
                         { path: 'parametrage/gestion/access', component: _apps_parametrage_gestion_access_access_component__WEBPACK_IMPORTED_MODULE_11__["AccessComponent"] },
                         /**
